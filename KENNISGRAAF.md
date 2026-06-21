@@ -13,9 +13,11 @@ query** box so people *and agents* can find and ask.
 - **Search** — type a term → highlights the matching repos and lists the mission/vision
   snippets that match (client-side, over the embedded `search_index`).
 - **Query via Lens** — flip *via Lens* on (or click **Vraag**) to send a natural-language
-  question to **Lens** (the reasoning lobe, `Knitweb/lens`). Wire it up by running
-  `knitweb-lens serve` and setting `window.LENS_ENDPOINT` (default `/lens/query`); the
-  page POSTs `{query, scope:"knitweb-graph"}` and renders `{answer, sources}`. If Lens is
+  question to **Lens** (the reasoning lobe, `Knitweb/lens`). Lens serves `POST /interpret`
+  taking `{query}` and returning `{text, citations[], reliability}`. Run
+  `knitweb-lens serve --host 0.0.0.0 --port 8765 <corpus-paths>` and proxy `/interpret` on
+  the host (or set `window.LENS_ENDPOINT` to the full URL, default `/interpret`). The page
+  renders the answer (`text`) + cited sources and highlights any cited repos. If Lens is
   unreachable it falls back to the local keyword search — so the page always works.
 
 ## For agents (P2P searchability)

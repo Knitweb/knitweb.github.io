@@ -58,9 +58,11 @@
 <script src="https://unpkg.com/3d-force-graph@1.73.4/dist/3d-force-graph.min.js"></script>
 <script>
 // ── config: where Lens (the reasoning lobe) answers natural-language queries ──
-// Run `knitweb-lens serve` (Knitweb/lens) and point this at it; falls back to a
-// local keyword search over the graph's search_index when unreachable.
-window.LENS_ENDPOINT = window.LENS_ENDPOINT || '/lens/query';
+// Lens (Knitweb/lens) serves `POST /interpret` ({query} -> {text, citations[]}).
+// Run `knitweb-lens serve --host 0.0.0.0 --port 8765` and proxy /interpret on the
+// host, or set window.LENS_ENDPOINT to the full URL. Falls back to a local keyword
+// search over the graph's search_index when Lens is unreachable, so the page always works.
+window.LENS_ENDPOINT = window.LENS_ENDPOINT || '/interpret';
 
 const esc = s => (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;');
 let G, DATA = null, level = 'core', curRepo = null;
@@ -125,13 +127,17 @@ async function lensQuery(query) {
   try {
     const r = await fetch(window.LENS_ENDPOINT, {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query, scope: 'knitweb-graph' })
+      body: JSON.stringify({ query })
     });
     if (!r.ok) throw new Error('Lens ' + r.status);
     const d = await r.json();
-    const ans = d.answer || d.text || JSON.stringify(d);
-    const srcs = (d.sources || d.citations || []);
+    const ans = d.text || d.answer || JSON.stringify(d);               // Lens answer is .text
+    const srcs = (d.citations || d.sources || [])                      // citations are objects
+      .map(c => (typeof c === 'string' ? c : (c.source_uri || c.source_id || c.node_id || '')))
+      .filter(Boolean);
+    const rel = d.reliability && (d.reliability.label || d.reliability.score);
     pbody.innerHTML = `<div class="ans">${esc(ans)}</div>` +
+      (rel ? `<div class="src">betrouwbaarheid: ${esc(String(rel))}</div>` : '') +
       (srcs.length ? `<div class="src">bronnen: ${srcs.map(esc).join(' · ')}</div>` : '');
     // highlight cited repos if any match
     const reposCited = DATA.core.nodes.filter(n => srcs.some(s => String(s).toLowerCase().includes(n.id.toLowerCase()))).map(n => n.id);
