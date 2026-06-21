@@ -1,0 +1,1571 @@
+{
+ "generated": "knitweb_public_drill",
+ "core": {
+  "nodes": [
+   {
+    "id": "pulse",
+    "name": "pulse",
+    "color": "#4a90d9",
+    "val": 18,
+    "group": "knitweb repo",
+    "kw": "pulse|exists|peer-to-peer|economy|useful|computation|possible|central",
+    "desc": "Pulse — the substrate The engine beneath the Web: a content-addressed P2P crypto",
+    "mission": "Concretely, Pulse provides the load-bearing primitives the rest of the system stands on. It defines the seven core primitives — Blob , Fiber , Knitweb , Knit , Braid , Web , Pulse — and the rules by which they combine. It fixes the cryptographic and encoding surface (secp256k1 ECDSA over SHA-256; CIDv1 dag-cbor/sha2-256; a hand-rolled float-free canonical encoder) so the hash-critical bytes never drift. It runs the integer settlement ledger, where a Fiber is an immutable content-addressed commit",
+    "vision": "Pulse exists to make a peer-to-peer economy of useful computation possible without a central operator, a privileged genesis allocation, or a speculative coin layered on top of an idle ledger. The vision is a single, tiny, deterministic substrate on which many independent applications — finance, supply-chain, chemistry, operational coordination — ride as plugins, while sharing one knowledge-and-resource fabric (the Web ), one settlement ledger ( Braid / Knit / Fiber ), one value unit ( PLS ), and one clock (the Pulse heartbeat). The unifying claim is that value should be a receipt for work that",
+    "hasDrill": true
+   },
+   {
+    "id": "lens",
+    "name": "lens",
+    "color": "#a05bd0",
+    "val": 18,
+    "group": "knitweb repo",
+    "kw": "exists|reasoning|content-addressed|auditable|rather|oracular|conventional|language-model",
+    "desc": "Lens The reasoning lobe of the Web — deterministic retrieval and provenance-cite",
+    "mission": "Lens delivers two composed operations over the woven Web. First, a deterministic retrieve : given a query and a subscription scope, it walks Web.traverse , neighbors, and provenance ancestry to produce a candidate set whose order and contents are fixed for a given (query, subscription, web_state_cid) . Second, a gated distill : a bounded, programmatic loop that selects relations, drops any output lacking proven provenance, and re-weaves verified intermediates back into the Web as new content-add",
+    "vision": "Lens exists to make reasoning over a content-addressed web auditable rather than oracular. Where a conventional language-model pipeline ingests opaque text and emits an answer whose support cannot be reconstructed, Lens treats every conclusion as a woven artifact : a content-addressed bundle that names the exact Fiber records it rested on, the traversal that found them, and the gate that admitted them. The vision is a reasoning surface where a third party — peer, auditor, or challenger — can re-derive the same answer from the same Web state, byte for byte, or reject it. Reasoning becomes a set",
+    "hasDrill": true
+   },
+   {
+    "id": "molgang",
+    "name": "molgang",
+    "color": "#3fa66a",
+    "val": 18,
+    "group": "knitweb repo",
+    "kw": "molgang|imagines|learning|chemistry|social|constructive|rather|solitary",
+    "desc": "molgang A chemistry knowledge bar where players knit verified concepts into a sh",
+    "mission": "The mission is to make verified curation legible and rewardable. Players progress through a curriculum, knit concepts, and assess each other's contributions; when a curation is verified — by peer assessment, by reaching a confirmation threshold, by clearing the integer-exact completion and consensus gates that govern progression — it becomes proof-of-useful-work. PLS is minted as the demand-gated reward for that verified-useful-work, epoch-bound to the Pulse heartbeat, never as a free emission.",
+    "vision": "molgang imagines learning chemistry as a social, constructive act rather than a solitary consumption of facts. It is a \"bar\" — a convivial, low-stakes room — where players and agent-driven NPCs sit together and knit chemistry concepts (elements, molecules, reactions, mechanisms) into a single shared, content-addressed web. Each contribution is a record, not an opinion: a canonical-CBOR node hashed to a CIDv1, linked by typed, integer-weighted edges. The vision is a knowledge graph that no one owns and everyone improves, where the act of curating it well is itself the thing that earns. molgang",
+    "hasDrill": true
+   },
+   {
+    "id": "vbank",
+    "name": "vbank",
+    "color": "#2e9e5b",
+    "val": 18,
+    "group": "knitweb repo",
+    "kw": "durable|peer-to-peer|system|eventually|faces|question|protocol|cannot",
+    "desc": "vbank The constitutional layer: who may mint, what may join, and how the Web dec",
+    "mission": "vbank provides the concrete governance machinery: poll voting for simple yes/no and multi-option questions, ranked-choice voting where a single winner must be chosen from many, and liquid (delegative) voting where a participant may either vote directly or delegate to a trusted peer, transitively, and reclaim that delegation at any time. It runs deterministic, integer-only tallies so that every node independently recomputes the same outcome from the same records — no trusted counting authority. I",
+    "vision": "Every durable peer-to-peer system eventually faces a question its protocol cannot answer alone: who gets to change the rules? In knitweb, two such rules carry real economic weight — the policy that governs how PLS is emitted as demand-gated reward for Proof-of-Useful-Work, and the policy that admits new domain plugins (\"knitwebs\") into the substrate. vbank is the chamber where those decisions are made. Its vision is a governance layer that is legible, forkable, and human-anchored: every motion, vote, delegation, and tally is itself a canonical-CBOR record on the Web, content-addressed and audi",
+    "hasDrill": true
+   },
+   {
+    "id": "monitor",
+    "name": "monitor",
+    "color": "#2aa39a",
+    "val": 18,
+    "group": "knitweb repo",
+    "kw": "anyone|trustworthy|being|asked|trust|seeing|monitor|exists",
+    "desc": "monitor A trustless lens on the living Web: health, the knowledge graph, and the",
+    "mission": "monitor reads pulse strictly through a read-only web_snapshot surface. It polls liveness, renders the content-addressed graph of canonical-CBOR records as a force-directed 3D explorer, and surfaces the kg/* facets — entities, relations, provenance-bearing assertions, OriginTrail-anchored crossings — as a navigable structure rather than a log. Its safety contract is absolute and load-bearing: it never writes state, never moves Fiber or PLS, never speaks a node's wire protocol, and binds to localh",
+    "vision": "A Web that anyone can join is only trustworthy if anyone can see it without being asked to trust the seeing. monitor exists so that the state of the knitweb — node liveness, the integer Braid/Knit/Fiber ledger, the PLS minted as demand-gated reward for verified-useful-work, and the knowledge graph ( kg/* ) woven across it — is observable from the outside, by independent eyes, with no privileged vantage point. The vision is observability as a public good: a zero-dependency, cross-platform window (pure Python, stdlib only, one file) that runs identically on any machine and shows the same fabric",
+    "hasDrill": true
+   },
+   {
+    "id": "virtualpc",
+    "name": "virtualpc",
+    "color": "#d98a2b",
+    "val": 18,
+    "group": "knitweb repo",
+    "kw": "envision|autonomous|agents|first-class|participants|isolated|processes|calling",
+    "desc": "virtualpc A coordination runtime where many agents share one memory, one fabric,",
+    "mission": "virtualpc provides three coordinated services over the shared fabric. First, an agent registry : a content-addressed catalogue of agents, their capabilities, and their provenance, so that any participant can discover who can do what. Second, a shared memory : a blackboard whose entries are Knit records, replicated through the same Byzantine-resistant gossip mesh that carries the rest of the Web, so that partial solutions accumulate and converge without a coordinator. Third, verifiable compute :",
+    "vision": "We envision autonomous agents as first-class participants in the Web — not isolated processes calling an API, but co-tenants of a shared, content-addressed graph in which every claim, plan, and intermediate result is a canonical-CBOR record with a stable CIDv1 identity. In such a world, coordination is not a side-effect of message-passing; it is a property of the substrate. virtualpc is the runtime that makes this concrete: a place where heterogeneous agents register their capabilities, read and write a common memory, and have their compute attested rather than merely trusted. The long horizon",
+    "hasDrill": true
+   },
+   {
+    "id": "docs",
+    "name": "docs",
+    "color": "#2aa39a",
+    "val": 18,
+    "group": "knitweb repo",
+    "kw": "protocol|trustworthy|account|gives|itself|vision|single|version-controlled",
+    "desc": "docs The map of the weave: one canonical account of what knitweb is, why each th",
+    "mission": "Concretely, docs carries: (1) the whitepaper — the formal, academically framed argument for a content-addressed knowledge weave, demand-gated minting, and epoch-bound rewards; (2) an architecture overview that names the substrate-and-plugins decomposition and the sacred vocabulary (Web, Knit, Pulse, Fiber) so that every repository speaks the same language; (3) per-repo documentation that explains each plugin's contract against the substrate; (4) plans that record decisions and their rationale; a",
+    "vision": "A protocol is only as trustworthy as the account it gives of itself. The vision for docs is a single, version-controlled source of truth for the entire knitweb — the Pulse substrate, the Braid/Knit/Fiber ledger, the PLS reward rule, the CIDv1 / dag-cbor / sha2-256 record model, and every plugin that hangs off them — written so that an outside reader can reconstruct the system's reasoning, not merely its surface. Documentation here is not an afterthought that trails the code; it is a first-class artefact that travels with the code, is reviewed with the code, and fails the build when it drifts f",
+    "hasDrill": true
+   },
+   {
+    "id": "news",
+    "name": "news",
+    "color": "#c0653a",
+    "val": 18,
+    "group": "knitweb repo",
+    "kw": "living|system|records|fibers|settle|ledger|minted|demand-gated",
+    "desc": "news The public record of what changed in the Web, and why it matters.",
+    "mission": "The mission of news is to be the single canonical surface for project news, announcements, and the changelog. Concretely it commits to: one entry per meaningful change, each dated and tied to a release tag or substrate epoch; a clear separation of added / changed / deprecated / removed / fixed / security so consequences are unambiguous; explicit call-outs for any change that touches consensus, canonical-CBOR encoding, CIDv1 addressing, the integer-only ledger, or PoUW minting rules, since those",
+    "vision": "Knitweb is a living system: records are Knit into the Web, Fibers settle in the ledger, and PLS is minted only as demand-gated reward for verified-useful-work, all paced by the Pulse heartbeat. A system that mints money for work owes its participants an honest, legible account of how it evolves. The vision for news is a durable, citable, append-mostly record of that evolution — releases, protocol changes, security disclosures, and milestones — written so that a node operator, an auditor, a researcher, and a newcomer can each reconstruct what changed, when, and why without privileged access. Ne",
+    "hasDrill": true
+   },
+   {
+    "id": "Knitweb",
+    "name": "Knitweb",
+    "color": "#caa64a",
+    "val": 26,
+    "group": "platform",
+    "kw": "weave|p2p|content-addressed|append-only|crdt|provenance|credence|graphrag",
+    "desc": "Knitweb — the P2P knowledge fabric (the weave) the whole suite rides on.",
+    "mission": "Be the single tiny deterministic substrate for a peer-to-peer knowledge commons.",
+    "vision": "A weave, not a chain: partial-order, contradiction-tolerant, provenance-bearing knowledge.",
+    "hasDrill": false
+   }
+  ],
+  "links": [
+   {
+    "source": "pulse",
+    "target": "Knitweb",
+    "rel": "part-of"
+   },
+   {
+    "source": "lens",
+    "target": "Knitweb",
+    "rel": "part-of"
+   },
+   {
+    "source": "molgang",
+    "target": "Knitweb",
+    "rel": "part-of"
+   },
+   {
+    "source": "vbank",
+    "target": "Knitweb",
+    "rel": "part-of"
+   },
+   {
+    "source": "monitor",
+    "target": "Knitweb",
+    "rel": "part-of"
+   },
+   {
+    "source": "virtualpc",
+    "target": "Knitweb",
+    "rel": "part-of"
+   },
+   {
+    "source": "docs",
+    "target": "Knitweb",
+    "rel": "part-of"
+   },
+   {
+    "source": "news",
+    "target": "Knitweb",
+    "rel": "part-of"
+   }
+  ]
+ },
+ "drill": {
+  "pulse": {
+   "nodes": [
+    {
+     "id": "pulse",
+     "name": "pulse",
+     "color": "#4a90d9",
+     "val": 16,
+     "group": "repo",
+     "desc": "Pulse — the substrate The engine beneath the Web: a content-addressed P2P crypto"
+    },
+    {
+     "id": "pulse:mission",
+     "name": "Mission",
+     "color": "#ffd479",
+     "val": 11,
+     "group": "mission",
+     "desc": "Concretely, Pulse provides the load-bearing primitives the rest of the system stands on. It defines the seven core primitives — Blob , Fiber , Knitweb , Knit , Braid , Web , Pulse — and the rules by which they combine. It fixes the cryptographic and encoding surface (secp256k1 ECDSA over SHA-256; CIDv1 dag-cbor/sha2-256; a hand-rolled float-free canonical encoder) so the hash-critical bytes never drift. It runs the integer settlement ledger, where a Fiber is an immutable content-addressed commit"
+    },
+    {
+     "id": "pulse:vision",
+     "name": "Vision",
+     "color": "#7ee0ff",
+     "val": 11,
+     "group": "vision",
+     "desc": "Pulse exists to make a peer-to-peer economy of useful computation possible without a central operator, a privileged genesis allocation, or a speculative coin layered on top of an idle ledger. The vision is a single, tiny, deterministic substrate on which many independent applications — finance, supply-chain, chemistry, operational coordination — ride as plugins, while sharing one knowledge-and-resource fabric (the Web ), one settlement ledger ( Braid / Knit / Fiber ), one value unit ( PLS ), and one clock (the Pulse heartbeat). The unifying claim is that value should be a receipt for work that"
+    },
+    {
+     "id": "pulse:role",
+     "name": "Role in the whole",
+     "color": "#9fb4c8",
+     "val": 9,
+     "group": "role",
+     "desc": "One substrate, many plugins. Everything in the wider project rides on Pulse. The domain knitwebs (finance, operational, supply-chain, and the MOLGANG chemistry plugin) are L5 applications that never enter core; the reasoning, governance, monitoring, and news layers consume Pulse's content-addressed records and its PLS settlement rather than reinventing them. Because identity is content (every reco"
+    },
+    {
+     "id": "pulse:kw:pulse",
+     "name": "pulse",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of pulse"
+    },
+    {
+     "id": "pulse:kw:exists",
+     "name": "exists",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of pulse"
+    },
+    {
+     "id": "pulse:kw:peer-to-peer",
+     "name": "peer-to-peer",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of pulse"
+    },
+    {
+     "id": "pulse:kw:economy",
+     "name": "economy",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of pulse"
+    },
+    {
+     "id": "pulse:kw:useful",
+     "name": "useful",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of pulse"
+    },
+    {
+     "id": "pulse:kw:computation",
+     "name": "computation",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of pulse"
+    },
+    {
+     "id": "pulse:kw:possible",
+     "name": "possible",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of pulse"
+    },
+    {
+     "id": "pulse:kw:central",
+     "name": "central",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of pulse"
+    }
+   ],
+   "links": [
+    {
+     "source": "pulse:mission",
+     "target": "pulse",
+     "rel": "mission-of"
+    },
+    {
+     "source": "pulse:vision",
+     "target": "pulse",
+     "rel": "vision-of"
+    },
+    {
+     "source": "pulse:role",
+     "target": "pulse",
+     "rel": "role-of"
+    },
+    {
+     "source": "pulse:kw:pulse",
+     "target": "pulse",
+     "rel": "concept-of"
+    },
+    {
+     "source": "pulse:kw:exists",
+     "target": "pulse",
+     "rel": "concept-of"
+    },
+    {
+     "source": "pulse:kw:peer-to-peer",
+     "target": "pulse",
+     "rel": "concept-of"
+    },
+    {
+     "source": "pulse:kw:economy",
+     "target": "pulse",
+     "rel": "concept-of"
+    },
+    {
+     "source": "pulse:kw:useful",
+     "target": "pulse",
+     "rel": "concept-of"
+    },
+    {
+     "source": "pulse:kw:computation",
+     "target": "pulse",
+     "rel": "concept-of"
+    },
+    {
+     "source": "pulse:kw:possible",
+     "target": "pulse",
+     "rel": "concept-of"
+    },
+    {
+     "source": "pulse:kw:central",
+     "target": "pulse",
+     "rel": "concept-of"
+    }
+   ]
+  },
+  "lens": {
+   "nodes": [
+    {
+     "id": "lens",
+     "name": "lens",
+     "color": "#a05bd0",
+     "val": 16,
+     "group": "repo",
+     "desc": "Lens The reasoning lobe of the Web — deterministic retrieval and provenance-cite"
+    },
+    {
+     "id": "lens:mission",
+     "name": "Mission",
+     "color": "#ffd479",
+     "val": 11,
+     "group": "mission",
+     "desc": "Lens delivers two composed operations over the woven Web. First, a deterministic retrieve : given a query and a subscription scope, it walks Web.traverse , neighbors, and provenance ancestry to produce a candidate set whose order and contents are fixed for a given (query, subscription, web_state_cid) . Second, a gated distill : a bounded, programmatic loop that selects relations, drops any output lacking proven provenance, and re-weaves verified intermediates back into the Web as new content-add"
+    },
+    {
+     "id": "lens:vision",
+     "name": "Vision",
+     "color": "#7ee0ff",
+     "val": 11,
+     "group": "vision",
+     "desc": "Lens exists to make reasoning over a content-addressed web auditable rather than oracular. Where a conventional language-model pipeline ingests opaque text and emits an answer whose support cannot be reconstructed, Lens treats every conclusion as a woven artifact : a content-addressed bundle that names the exact Fiber records it rested on, the traversal that found them, and the gate that admitted them. The vision is a reasoning surface where a third party — peer, auditor, or challenger — can re-derive the same answer from the same Web state, byte for byte, or reject it. Reasoning becomes a set"
+    },
+    {
+     "id": "lens:role",
+     "name": "Role in the whole",
+     "color": "#9fb4c8",
+     "val": 9,
+     "group": "role",
+     "desc": "One substrate, many plugins: Lens is a plugin, never the engine. It consumes pulse through a strict read-only export boundary, so reasoning can never mutate ledger or Web state — it can only read the woven graph and write new, fully-attributed distilled nodes back through the ordinary weave path. The integer Braid/Knit/Fiber ledger and PLS minting remain in pulse; Lens earns PLS only when its work"
+    },
+    {
+     "id": "lens:kw:exists",
+     "name": "exists",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of lens"
+    },
+    {
+     "id": "lens:kw:reasoning",
+     "name": "reasoning",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of lens"
+    },
+    {
+     "id": "lens:kw:content-addressed",
+     "name": "content-addressed",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of lens"
+    },
+    {
+     "id": "lens:kw:auditable",
+     "name": "auditable",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of lens"
+    },
+    {
+     "id": "lens:kw:rather",
+     "name": "rather",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of lens"
+    },
+    {
+     "id": "lens:kw:oracular",
+     "name": "oracular",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of lens"
+    },
+    {
+     "id": "lens:kw:conventional",
+     "name": "conventional",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of lens"
+    },
+    {
+     "id": "lens:kw:language-model",
+     "name": "language-model",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of lens"
+    }
+   ],
+   "links": [
+    {
+     "source": "lens:mission",
+     "target": "lens",
+     "rel": "mission-of"
+    },
+    {
+     "source": "lens:vision",
+     "target": "lens",
+     "rel": "vision-of"
+    },
+    {
+     "source": "lens:role",
+     "target": "lens",
+     "rel": "role-of"
+    },
+    {
+     "source": "lens:kw:exists",
+     "target": "lens",
+     "rel": "concept-of"
+    },
+    {
+     "source": "lens:kw:reasoning",
+     "target": "lens",
+     "rel": "concept-of"
+    },
+    {
+     "source": "lens:kw:content-addressed",
+     "target": "lens",
+     "rel": "concept-of"
+    },
+    {
+     "source": "lens:kw:auditable",
+     "target": "lens",
+     "rel": "concept-of"
+    },
+    {
+     "source": "lens:kw:rather",
+     "target": "lens",
+     "rel": "concept-of"
+    },
+    {
+     "source": "lens:kw:oracular",
+     "target": "lens",
+     "rel": "concept-of"
+    },
+    {
+     "source": "lens:kw:conventional",
+     "target": "lens",
+     "rel": "concept-of"
+    },
+    {
+     "source": "lens:kw:language-model",
+     "target": "lens",
+     "rel": "concept-of"
+    }
+   ]
+  },
+  "molgang": {
+   "nodes": [
+    {
+     "id": "molgang",
+     "name": "molgang",
+     "color": "#3fa66a",
+     "val": 16,
+     "group": "repo",
+     "desc": "molgang A chemistry knowledge bar where players knit verified concepts into a sh"
+    },
+    {
+     "id": "molgang:mission",
+     "name": "Mission",
+     "color": "#ffd479",
+     "val": 11,
+     "group": "mission",
+     "desc": "The mission is to make verified curation legible and rewardable. Players progress through a curriculum, knit concepts, and assess each other's contributions; when a curation is verified — by peer assessment, by reaching a confirmation threshold, by clearing the integer-exact completion and consensus gates that govern progression — it becomes proof-of-useful-work. PLS is minted as the demand-gated reward for that verified-useful-work, epoch-bound to the Pulse heartbeat, never as a free emission."
+    },
+    {
+     "id": "molgang:vision",
+     "name": "Vision",
+     "color": "#7ee0ff",
+     "val": 11,
+     "group": "vision",
+     "desc": "molgang imagines learning chemistry as a social, constructive act rather than a solitary consumption of facts. It is a \"bar\" — a convivial, low-stakes room — where players and agent-driven NPCs sit together and knit chemistry concepts (elements, molecules, reactions, mechanisms) into a single shared, content-addressed web. Each contribution is a record, not an opinion: a canonical-CBOR node hashed to a CIDv1, linked by typed, integer-weighted edges. The vision is a knowledge graph that no one owns and everyone improves, where the act of curating it well is itself the thing that earns. molgang"
+    },
+    {
+     "id": "molgang:role",
+     "name": "Role in the whole",
+     "color": "#9fb4c8",
+     "val": 9,
+     "group": "role",
+     "desc": "molgang is an L5 knitweb — a domain plugin riding the shared pulse substrate, not a standalone application. It contributes none of its own consensus, money, or transport: the integer-only ledger (Braid/Knit/Fiber), the PLS mint, the CIDv1/dag-cbor record model, and the Byzantine-resistant gossip mesh all come from pulse. molgang adds a chemistry-shaped curriculum, a scoring and certificate surface"
+    },
+    {
+     "id": "molgang:kw:molgang",
+     "name": "molgang",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of molgang"
+    },
+    {
+     "id": "molgang:kw:imagines",
+     "name": "imagines",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of molgang"
+    },
+    {
+     "id": "molgang:kw:learning",
+     "name": "learning",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of molgang"
+    },
+    {
+     "id": "molgang:kw:chemistry",
+     "name": "chemistry",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of molgang"
+    },
+    {
+     "id": "molgang:kw:social",
+     "name": "social",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of molgang"
+    },
+    {
+     "id": "molgang:kw:constructive",
+     "name": "constructive",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of molgang"
+    },
+    {
+     "id": "molgang:kw:rather",
+     "name": "rather",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of molgang"
+    },
+    {
+     "id": "molgang:kw:solitary",
+     "name": "solitary",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of molgang"
+    }
+   ],
+   "links": [
+    {
+     "source": "molgang:mission",
+     "target": "molgang",
+     "rel": "mission-of"
+    },
+    {
+     "source": "molgang:vision",
+     "target": "molgang",
+     "rel": "vision-of"
+    },
+    {
+     "source": "molgang:role",
+     "target": "molgang",
+     "rel": "role-of"
+    },
+    {
+     "source": "molgang:kw:molgang",
+     "target": "molgang",
+     "rel": "concept-of"
+    },
+    {
+     "source": "molgang:kw:imagines",
+     "target": "molgang",
+     "rel": "concept-of"
+    },
+    {
+     "source": "molgang:kw:learning",
+     "target": "molgang",
+     "rel": "concept-of"
+    },
+    {
+     "source": "molgang:kw:chemistry",
+     "target": "molgang",
+     "rel": "concept-of"
+    },
+    {
+     "source": "molgang:kw:social",
+     "target": "molgang",
+     "rel": "concept-of"
+    },
+    {
+     "source": "molgang:kw:constructive",
+     "target": "molgang",
+     "rel": "concept-of"
+    },
+    {
+     "source": "molgang:kw:rather",
+     "target": "molgang",
+     "rel": "concept-of"
+    },
+    {
+     "source": "molgang:kw:solitary",
+     "target": "molgang",
+     "rel": "concept-of"
+    }
+   ]
+  },
+  "vbank": {
+   "nodes": [
+    {
+     "id": "vbank",
+     "name": "vbank",
+     "color": "#2e9e5b",
+     "val": 16,
+     "group": "repo",
+     "desc": "vbank The constitutional layer: who may mint, what may join, and how the Web dec"
+    },
+    {
+     "id": "vbank:mission",
+     "name": "Mission",
+     "color": "#ffd479",
+     "val": 11,
+     "group": "mission",
+     "desc": "vbank provides the concrete governance machinery: poll voting for simple yes/no and multi-option questions, ranked-choice voting where a single winner must be chosen from many, and liquid (delegative) voting where a participant may either vote directly or delegate to a trusted peer, transitively, and reclaim that delegation at any time. It runs deterministic, integer-only tallies so that every node independently recomputes the same outcome from the same records — no trusted counting authority. I"
+    },
+    {
+     "id": "vbank:vision",
+     "name": "Vision",
+     "color": "#7ee0ff",
+     "val": 11,
+     "group": "vision",
+     "desc": "Every durable peer-to-peer system eventually faces a question its protocol cannot answer alone: who gets to change the rules? In knitweb, two such rules carry real economic weight — the policy that governs how PLS is emitted as demand-gated reward for Proof-of-Useful-Work, and the policy that admits new domain plugins (\"knitwebs\") into the substrate. vbank is the chamber where those decisions are made. Its vision is a governance layer that is legible, forkable, and human-anchored: every motion, vote, delegation, and tally is itself a canonical-CBOR record on the Web, content-addressed and audi"
+    },
+    {
+     "id": "vbank:role",
+     "name": "Role in the whole",
+     "color": "#9fb4c8",
+     "val": 9,
+     "group": "role",
+     "desc": "One substrate (pulse), many plugins — and vbank is the plugin that governs the others. It sits above the L0 core (CIDv1, dag-cbor/sha2-256, canonical records) and the L1 Braid/Knit/Fiber ledger, and it parameterises the L4 PoUW/emission layer and the L5 plugin set. The Pulse heartbeat supplies the epoch boundaries that bound voting periods and emission rounds. vbank does not mint money or do work;"
+    },
+    {
+     "id": "vbank:kw:durable",
+     "name": "durable",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of vbank"
+    },
+    {
+     "id": "vbank:kw:peer-to-peer",
+     "name": "peer-to-peer",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of vbank"
+    },
+    {
+     "id": "vbank:kw:system",
+     "name": "system",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of vbank"
+    },
+    {
+     "id": "vbank:kw:eventually",
+     "name": "eventually",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of vbank"
+    },
+    {
+     "id": "vbank:kw:faces",
+     "name": "faces",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of vbank"
+    },
+    {
+     "id": "vbank:kw:question",
+     "name": "question",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of vbank"
+    },
+    {
+     "id": "vbank:kw:protocol",
+     "name": "protocol",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of vbank"
+    },
+    {
+     "id": "vbank:kw:cannot",
+     "name": "cannot",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of vbank"
+    }
+   ],
+   "links": [
+    {
+     "source": "vbank:mission",
+     "target": "vbank",
+     "rel": "mission-of"
+    },
+    {
+     "source": "vbank:vision",
+     "target": "vbank",
+     "rel": "vision-of"
+    },
+    {
+     "source": "vbank:role",
+     "target": "vbank",
+     "rel": "role-of"
+    },
+    {
+     "source": "vbank:kw:durable",
+     "target": "vbank",
+     "rel": "concept-of"
+    },
+    {
+     "source": "vbank:kw:peer-to-peer",
+     "target": "vbank",
+     "rel": "concept-of"
+    },
+    {
+     "source": "vbank:kw:system",
+     "target": "vbank",
+     "rel": "concept-of"
+    },
+    {
+     "source": "vbank:kw:eventually",
+     "target": "vbank",
+     "rel": "concept-of"
+    },
+    {
+     "source": "vbank:kw:faces",
+     "target": "vbank",
+     "rel": "concept-of"
+    },
+    {
+     "source": "vbank:kw:question",
+     "target": "vbank",
+     "rel": "concept-of"
+    },
+    {
+     "source": "vbank:kw:protocol",
+     "target": "vbank",
+     "rel": "concept-of"
+    },
+    {
+     "source": "vbank:kw:cannot",
+     "target": "vbank",
+     "rel": "concept-of"
+    }
+   ]
+  },
+  "monitor": {
+   "nodes": [
+    {
+     "id": "monitor",
+     "name": "monitor",
+     "color": "#2aa39a",
+     "val": 16,
+     "group": "repo",
+     "desc": "monitor A trustless lens on the living Web: health, the knowledge graph, and the"
+    },
+    {
+     "id": "monitor:mission",
+     "name": "Mission",
+     "color": "#ffd479",
+     "val": 11,
+     "group": "mission",
+     "desc": "monitor reads pulse strictly through a read-only web_snapshot surface. It polls liveness, renders the content-addressed graph of canonical-CBOR records as a force-directed 3D explorer, and surfaces the kg/* facets — entities, relations, provenance-bearing assertions, OriginTrail-anchored crossings — as a navigable structure rather than a log. Its safety contract is absolute and load-bearing: it never writes state, never moves Fiber or PLS, never speaks a node's wire protocol, and binds to localh"
+    },
+    {
+     "id": "monitor:vision",
+     "name": "Vision",
+     "color": "#7ee0ff",
+     "val": 11,
+     "group": "vision",
+     "desc": "A Web that anyone can join is only trustworthy if anyone can see it without being asked to trust the seeing. monitor exists so that the state of the knitweb — node liveness, the integer Braid/Knit/Fiber ledger, the PLS minted as demand-gated reward for verified-useful-work, and the knowledge graph ( kg/* ) woven across it — is observable from the outside, by independent eyes, with no privileged vantage point. The vision is observability as a public good: a zero-dependency, cross-platform window (pure Python, stdlib only, one file) that runs identically on any machine and shows the same fabric"
+    },
+    {
+     "id": "monitor:role",
+     "name": "Role in the whole",
+     "color": "#9fb4c8",
+     "val": 9,
+     "group": "role",
+     "desc": "One substrate, many plugins: pulse is the engine — the gossip mesh, the heartbeat, the ledger, the woven Web — and monitor is the plugin that watches without participating. Where molgang and lens do work on the substrate (playing sessions, reasoning over the graph), monitor only witnesses it. It depends on pulse for the snapshot and on the shared content-addressing discipline that makes witnessing"
+    },
+    {
+     "id": "monitor:kw:anyone",
+     "name": "anyone",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of monitor"
+    },
+    {
+     "id": "monitor:kw:trustworthy",
+     "name": "trustworthy",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of monitor"
+    },
+    {
+     "id": "monitor:kw:being",
+     "name": "being",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of monitor"
+    },
+    {
+     "id": "monitor:kw:asked",
+     "name": "asked",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of monitor"
+    },
+    {
+     "id": "monitor:kw:trust",
+     "name": "trust",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of monitor"
+    },
+    {
+     "id": "monitor:kw:seeing",
+     "name": "seeing",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of monitor"
+    },
+    {
+     "id": "monitor:kw:monitor",
+     "name": "monitor",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of monitor"
+    },
+    {
+     "id": "monitor:kw:exists",
+     "name": "exists",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of monitor"
+    }
+   ],
+   "links": [
+    {
+     "source": "monitor:mission",
+     "target": "monitor",
+     "rel": "mission-of"
+    },
+    {
+     "source": "monitor:vision",
+     "target": "monitor",
+     "rel": "vision-of"
+    },
+    {
+     "source": "monitor:role",
+     "target": "monitor",
+     "rel": "role-of"
+    },
+    {
+     "source": "monitor:kw:anyone",
+     "target": "monitor",
+     "rel": "concept-of"
+    },
+    {
+     "source": "monitor:kw:trustworthy",
+     "target": "monitor",
+     "rel": "concept-of"
+    },
+    {
+     "source": "monitor:kw:being",
+     "target": "monitor",
+     "rel": "concept-of"
+    },
+    {
+     "source": "monitor:kw:asked",
+     "target": "monitor",
+     "rel": "concept-of"
+    },
+    {
+     "source": "monitor:kw:trust",
+     "target": "monitor",
+     "rel": "concept-of"
+    },
+    {
+     "source": "monitor:kw:seeing",
+     "target": "monitor",
+     "rel": "concept-of"
+    },
+    {
+     "source": "monitor:kw:monitor",
+     "target": "monitor",
+     "rel": "concept-of"
+    },
+    {
+     "source": "monitor:kw:exists",
+     "target": "monitor",
+     "rel": "concept-of"
+    }
+   ]
+  },
+  "virtualpc": {
+   "nodes": [
+    {
+     "id": "virtualpc",
+     "name": "virtualpc",
+     "color": "#d98a2b",
+     "val": 16,
+     "group": "repo",
+     "desc": "virtualpc A coordination runtime where many agents share one memory, one fabric,"
+    },
+    {
+     "id": "virtualpc:mission",
+     "name": "Mission",
+     "color": "#ffd479",
+     "val": 11,
+     "group": "mission",
+     "desc": "virtualpc provides three coordinated services over the shared fabric. First, an agent registry : a content-addressed catalogue of agents, their capabilities, and their provenance, so that any participant can discover who can do what. Second, a shared memory : a blackboard whose entries are Knit records, replicated through the same Byzantine-resistant gossip mesh that carries the rest of the Web, so that partial solutions accumulate and converge without a coordinator. Third, verifiable compute :"
+    },
+    {
+     "id": "virtualpc:vision",
+     "name": "Vision",
+     "color": "#7ee0ff",
+     "val": 11,
+     "group": "vision",
+     "desc": "We envision autonomous agents as first-class participants in the Web — not isolated processes calling an API, but co-tenants of a shared, content-addressed graph in which every claim, plan, and intermediate result is a canonical-CBOR record with a stable CIDv1 identity. In such a world, coordination is not a side-effect of message-passing; it is a property of the substrate. virtualpc is the runtime that makes this concrete: a place where heterogeneous agents register their capabilities, read and write a common memory, and have their compute attested rather than merely trusted. The long horizon"
+    },
+    {
+     "id": "virtualpc:role",
+     "name": "Role in the whole",
+     "color": "#9fb4c8",
+     "val": 9,
+     "group": "role",
+     "desc": "Knitweb is one substrate (pulse), many plugins. virtualpc is the plugin that brings agents onto that substrate. It does not invent its own ledger, identity scheme, or transport: identities and records are CIDs over canonical CBOR exactly as elsewhere in the Web; replication rides the same gossip mesh; minting flows only through the integer-only Braid/Knit/Fiber ledger and only as PoUW reward, epoc"
+    },
+    {
+     "id": "virtualpc:kw:envision",
+     "name": "envision",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of virtualpc"
+    },
+    {
+     "id": "virtualpc:kw:autonomous",
+     "name": "autonomous",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of virtualpc"
+    },
+    {
+     "id": "virtualpc:kw:agents",
+     "name": "agents",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of virtualpc"
+    },
+    {
+     "id": "virtualpc:kw:first-class",
+     "name": "first-class",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of virtualpc"
+    },
+    {
+     "id": "virtualpc:kw:participants",
+     "name": "participants",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of virtualpc"
+    },
+    {
+     "id": "virtualpc:kw:isolated",
+     "name": "isolated",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of virtualpc"
+    },
+    {
+     "id": "virtualpc:kw:processes",
+     "name": "processes",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of virtualpc"
+    },
+    {
+     "id": "virtualpc:kw:calling",
+     "name": "calling",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of virtualpc"
+    }
+   ],
+   "links": [
+    {
+     "source": "virtualpc:mission",
+     "target": "virtualpc",
+     "rel": "mission-of"
+    },
+    {
+     "source": "virtualpc:vision",
+     "target": "virtualpc",
+     "rel": "vision-of"
+    },
+    {
+     "source": "virtualpc:role",
+     "target": "virtualpc",
+     "rel": "role-of"
+    },
+    {
+     "source": "virtualpc:kw:envision",
+     "target": "virtualpc",
+     "rel": "concept-of"
+    },
+    {
+     "source": "virtualpc:kw:autonomous",
+     "target": "virtualpc",
+     "rel": "concept-of"
+    },
+    {
+     "source": "virtualpc:kw:agents",
+     "target": "virtualpc",
+     "rel": "concept-of"
+    },
+    {
+     "source": "virtualpc:kw:first-class",
+     "target": "virtualpc",
+     "rel": "concept-of"
+    },
+    {
+     "source": "virtualpc:kw:participants",
+     "target": "virtualpc",
+     "rel": "concept-of"
+    },
+    {
+     "source": "virtualpc:kw:isolated",
+     "target": "virtualpc",
+     "rel": "concept-of"
+    },
+    {
+     "source": "virtualpc:kw:processes",
+     "target": "virtualpc",
+     "rel": "concept-of"
+    },
+    {
+     "source": "virtualpc:kw:calling",
+     "target": "virtualpc",
+     "rel": "concept-of"
+    }
+   ]
+  },
+  "docs": {
+   "nodes": [
+    {
+     "id": "docs",
+     "name": "docs",
+     "color": "#2aa39a",
+     "val": 16,
+     "group": "repo",
+     "desc": "docs The map of the weave: one canonical account of what knitweb is, why each th"
+    },
+    {
+     "id": "docs:mission",
+     "name": "Mission",
+     "color": "#ffd479",
+     "val": 11,
+     "group": "mission",
+     "desc": "Concretely, docs carries: (1) the whitepaper — the formal, academically framed argument for a content-addressed knowledge weave, demand-gated minting, and epoch-bound rewards; (2) an architecture overview that names the substrate-and-plugins decomposition and the sacred vocabulary (Web, Knit, Pulse, Fiber) so that every repository speaks the same language; (3) per-repo documentation that explains each plugin's contract against the substrate; (4) plans that record decisions and their rationale; a"
+    },
+    {
+     "id": "docs:vision",
+     "name": "Vision",
+     "color": "#7ee0ff",
+     "val": 11,
+     "group": "vision",
+     "desc": "A protocol is only as trustworthy as the account it gives of itself. The vision for docs is a single, version-controlled source of truth for the entire knitweb — the Pulse substrate, the Braid/Knit/Fiber ledger, the PLS reward rule, the CIDv1 / dag-cbor / sha2-256 record model, and every plugin that hangs off them — written so that an outside reader can reconstruct the system's reasoning, not merely its surface. Documentation here is not an afterthought that trails the code; it is a first-class artefact that travels with the code, is reviewed with the code, and fails the build when it drifts f"
+    },
+    {
+     "id": "docs:role",
+     "name": "Role in the whole",
+     "color": "#9fb4c8",
+     "val": 9,
+     "group": "role",
+     "desc": "docs is the only repository that legitimately sees the entire system at once. Every other repository is either the substrate ( pulse ) or a plugin upon it; docs is the connective account that explains why one substrate hosts many plugins, what each may and may not assume, and where the hard gates between them lie. It depends on all of them for ground truth and is depended upon by all of them for s"
+    },
+    {
+     "id": "docs:kw:protocol",
+     "name": "protocol",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of docs"
+    },
+    {
+     "id": "docs:kw:trustworthy",
+     "name": "trustworthy",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of docs"
+    },
+    {
+     "id": "docs:kw:account",
+     "name": "account",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of docs"
+    },
+    {
+     "id": "docs:kw:gives",
+     "name": "gives",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of docs"
+    },
+    {
+     "id": "docs:kw:itself",
+     "name": "itself",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of docs"
+    },
+    {
+     "id": "docs:kw:vision",
+     "name": "vision",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of docs"
+    },
+    {
+     "id": "docs:kw:single",
+     "name": "single",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of docs"
+    },
+    {
+     "id": "docs:kw:version-controlled",
+     "name": "version-controlled",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of docs"
+    }
+   ],
+   "links": [
+    {
+     "source": "docs:mission",
+     "target": "docs",
+     "rel": "mission-of"
+    },
+    {
+     "source": "docs:vision",
+     "target": "docs",
+     "rel": "vision-of"
+    },
+    {
+     "source": "docs:role",
+     "target": "docs",
+     "rel": "role-of"
+    },
+    {
+     "source": "docs:kw:protocol",
+     "target": "docs",
+     "rel": "concept-of"
+    },
+    {
+     "source": "docs:kw:trustworthy",
+     "target": "docs",
+     "rel": "concept-of"
+    },
+    {
+     "source": "docs:kw:account",
+     "target": "docs",
+     "rel": "concept-of"
+    },
+    {
+     "source": "docs:kw:gives",
+     "target": "docs",
+     "rel": "concept-of"
+    },
+    {
+     "source": "docs:kw:itself",
+     "target": "docs",
+     "rel": "concept-of"
+    },
+    {
+     "source": "docs:kw:vision",
+     "target": "docs",
+     "rel": "concept-of"
+    },
+    {
+     "source": "docs:kw:single",
+     "target": "docs",
+     "rel": "concept-of"
+    },
+    {
+     "source": "docs:kw:version-controlled",
+     "target": "docs",
+     "rel": "concept-of"
+    }
+   ]
+  },
+  "news": {
+   "nodes": [
+    {
+     "id": "news",
+     "name": "news",
+     "color": "#c0653a",
+     "val": 16,
+     "group": "repo",
+     "desc": "news The public record of what changed in the Web, and why it matters."
+    },
+    {
+     "id": "news:mission",
+     "name": "Mission",
+     "color": "#ffd479",
+     "val": 11,
+     "group": "mission",
+     "desc": "The mission of news is to be the single canonical surface for project news, announcements, and the changelog. Concretely it commits to: one entry per meaningful change, each dated and tied to a release tag or substrate epoch; a clear separation of added / changed / deprecated / removed / fixed / security so consequences are unambiguous; explicit call-outs for any change that touches consensus, canonical-CBOR encoding, CIDv1 addressing, the integer-only ledger, or PoUW minting rules, since those"
+    },
+    {
+     "id": "news:vision",
+     "name": "Vision",
+     "color": "#7ee0ff",
+     "val": 11,
+     "group": "vision",
+     "desc": "Knitweb is a living system: records are Knit into the Web, Fibers settle in the ledger, and PLS is minted only as demand-gated reward for verified-useful-work, all paced by the Pulse heartbeat. A system that mints money for work owes its participants an honest, legible account of how it evolves. The vision for news is a durable, citable, append-mostly record of that evolution — releases, protocol changes, security disclosures, and milestones — written so that a node operator, an auditor, a researcher, and a newcomer can each reconstruct what changed, when, and why without privileged access. Ne"
+    },
+    {
+     "id": "news:role",
+     "name": "Role in the whole",
+     "color": "#9fb4c8",
+     "val": 9,
+     "group": "role",
+     "desc": "One substrate, many plugins — pulse is the engine, and molgang , lens , monitor , and docs are plugins and surfaces built upon it. news sits orthogonal to all of them: it does not extend the protocol or touch the Web, the Fiber ledger, or the Pulse loop. Instead it observes and narrates them. Its entries reference releases across the substrate and its plugins, so that a single timeline ties an eng"
+    },
+    {
+     "id": "news:kw:living",
+     "name": "living",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of news"
+    },
+    {
+     "id": "news:kw:system",
+     "name": "system",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of news"
+    },
+    {
+     "id": "news:kw:records",
+     "name": "records",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of news"
+    },
+    {
+     "id": "news:kw:fibers",
+     "name": "fibers",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of news"
+    },
+    {
+     "id": "news:kw:settle",
+     "name": "settle",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of news"
+    },
+    {
+     "id": "news:kw:ledger",
+     "name": "ledger",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of news"
+    },
+    {
+     "id": "news:kw:minted",
+     "name": "minted",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of news"
+    },
+    {
+     "id": "news:kw:demand-gated",
+     "name": "demand-gated",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of news"
+    }
+   ],
+   "links": [
+    {
+     "source": "news:mission",
+     "target": "news",
+     "rel": "mission-of"
+    },
+    {
+     "source": "news:vision",
+     "target": "news",
+     "rel": "vision-of"
+    },
+    {
+     "source": "news:role",
+     "target": "news",
+     "rel": "role-of"
+    },
+    {
+     "source": "news:kw:living",
+     "target": "news",
+     "rel": "concept-of"
+    },
+    {
+     "source": "news:kw:system",
+     "target": "news",
+     "rel": "concept-of"
+    },
+    {
+     "source": "news:kw:records",
+     "target": "news",
+     "rel": "concept-of"
+    },
+    {
+     "source": "news:kw:fibers",
+     "target": "news",
+     "rel": "concept-of"
+    },
+    {
+     "source": "news:kw:settle",
+     "target": "news",
+     "rel": "concept-of"
+    },
+    {
+     "source": "news:kw:ledger",
+     "target": "news",
+     "rel": "concept-of"
+    },
+    {
+     "source": "news:kw:minted",
+     "target": "news",
+     "rel": "concept-of"
+    },
+    {
+     "source": "news:kw:demand-gated",
+     "target": "news",
+     "rel": "concept-of"
+    }
+   ]
+  }
+ },
+ "search_index": [
+  {
+   "id": "pulse",
+   "repo": "pulse",
+   "kind": "repo",
+   "text": "Pulse — the substrate The engine beneath the Web: a content-addressed P2P crypto"
+  },
+  {
+   "id": "pulse:mission",
+   "repo": "pulse",
+   "kind": "mission",
+   "text": "Concretely, Pulse provides the load-bearing primitives the rest of the system stands on. It defines the seven core primitives — Blob , Fiber , Knitweb , Knit , Braid , Web , Pulse — and the rules by which they combine. It fixes the cryptographic and encoding surface (secp256k1 ECDSA over SHA-256; CIDv1 dag-cbor/sha2-256; a hand-rolled float-free canonical encoder) so the hash-critical bytes never drift. It runs the integer settlement ledger, where a Fiber is an immutable content-addressed commit"
+  },
+  {
+   "id": "pulse:vision",
+   "repo": "pulse",
+   "kind": "vision",
+   "text": "Pulse exists to make a peer-to-peer economy of useful computation possible without a central operator, a privileged genesis allocation, or a speculative coin layered on top of an idle ledger. The vision is a single, tiny, deterministic substrate on which many independent applications — finance, supply-chain, chemistry, operational coordination — ride as plugins, while sharing one knowledge-and-resource fabric (the Web ), one settlement ledger ( Braid / Knit / Fiber ), one value unit ( PLS ), and one clock (the Pulse heartbeat). The unifying claim is that value should be a receipt for work that"
+  },
+  {
+   "id": "lens",
+   "repo": "lens",
+   "kind": "repo",
+   "text": "Lens The reasoning lobe of the Web — deterministic retrieval and provenance-cite"
+  },
+  {
+   "id": "lens:mission",
+   "repo": "lens",
+   "kind": "mission",
+   "text": "Lens delivers two composed operations over the woven Web. First, a deterministic retrieve : given a query and a subscription scope, it walks Web.traverse , neighbors, and provenance ancestry to produce a candidate set whose order and contents are fixed for a given (query, subscription, web_state_cid) . Second, a gated distill : a bounded, programmatic loop that selects relations, drops any output lacking proven provenance, and re-weaves verified intermediates back into the Web as new content-add"
+  },
+  {
+   "id": "lens:vision",
+   "repo": "lens",
+   "kind": "vision",
+   "text": "Lens exists to make reasoning over a content-addressed web auditable rather than oracular. Where a conventional language-model pipeline ingests opaque text and emits an answer whose support cannot be reconstructed, Lens treats every conclusion as a woven artifact : a content-addressed bundle that names the exact Fiber records it rested on, the traversal that found them, and the gate that admitted them. The vision is a reasoning surface where a third party — peer, auditor, or challenger — can re-derive the same answer from the same Web state, byte for byte, or reject it. Reasoning becomes a set"
+  },
+  {
+   "id": "molgang",
+   "repo": "molgang",
+   "kind": "repo",
+   "text": "molgang A chemistry knowledge bar where players knit verified concepts into a sh"
+  },
+  {
+   "id": "molgang:mission",
+   "repo": "molgang",
+   "kind": "mission",
+   "text": "The mission is to make verified curation legible and rewardable. Players progress through a curriculum, knit concepts, and assess each other's contributions; when a curation is verified — by peer assessment, by reaching a confirmation threshold, by clearing the integer-exact completion and consensus gates that govern progression — it becomes proof-of-useful-work. PLS is minted as the demand-gated reward for that verified-useful-work, epoch-bound to the Pulse heartbeat, never as a free emission."
+  },
+  {
+   "id": "molgang:vision",
+   "repo": "molgang",
+   "kind": "vision",
+   "text": "molgang imagines learning chemistry as a social, constructive act rather than a solitary consumption of facts. It is a \"bar\" — a convivial, low-stakes room — where players and agent-driven NPCs sit together and knit chemistry concepts (elements, molecules, reactions, mechanisms) into a single shared, content-addressed web. Each contribution is a record, not an opinion: a canonical-CBOR node hashed to a CIDv1, linked by typed, integer-weighted edges. The vision is a knowledge graph that no one owns and everyone improves, where the act of curating it well is itself the thing that earns. molgang"
+  },
+  {
+   "id": "vbank",
+   "repo": "vbank",
+   "kind": "repo",
+   "text": "vbank The constitutional layer: who may mint, what may join, and how the Web dec"
+  },
+  {
+   "id": "vbank:mission",
+   "repo": "vbank",
+   "kind": "mission",
+   "text": "vbank provides the concrete governance machinery: poll voting for simple yes/no and multi-option questions, ranked-choice voting where a single winner must be chosen from many, and liquid (delegative) voting where a participant may either vote directly or delegate to a trusted peer, transitively, and reclaim that delegation at any time. It runs deterministic, integer-only tallies so that every node independently recomputes the same outcome from the same records — no trusted counting authority. I"
+  },
+  {
+   "id": "vbank:vision",
+   "repo": "vbank",
+   "kind": "vision",
+   "text": "Every durable peer-to-peer system eventually faces a question its protocol cannot answer alone: who gets to change the rules? In knitweb, two such rules carry real economic weight — the policy that governs how PLS is emitted as demand-gated reward for Proof-of-Useful-Work, and the policy that admits new domain plugins (\"knitwebs\") into the substrate. vbank is the chamber where those decisions are made. Its vision is a governance layer that is legible, forkable, and human-anchored: every motion, vote, delegation, and tally is itself a canonical-CBOR record on the Web, content-addressed and audi"
+  },
+  {
+   "id": "monitor",
+   "repo": "monitor",
+   "kind": "repo",
+   "text": "monitor A trustless lens on the living Web: health, the knowledge graph, and the"
+  },
+  {
+   "id": "monitor:mission",
+   "repo": "monitor",
+   "kind": "mission",
+   "text": "monitor reads pulse strictly through a read-only web_snapshot surface. It polls liveness, renders the content-addressed graph of canonical-CBOR records as a force-directed 3D explorer, and surfaces the kg/* facets — entities, relations, provenance-bearing assertions, OriginTrail-anchored crossings — as a navigable structure rather than a log. Its safety contract is absolute and load-bearing: it never writes state, never moves Fiber or PLS, never speaks a node's wire protocol, and binds to localh"
+  },
+  {
+   "id": "monitor:vision",
+   "repo": "monitor",
+   "kind": "vision",
+   "text": "A Web that anyone can join is only trustworthy if anyone can see it without being asked to trust the seeing. monitor exists so that the state of the knitweb — node liveness, the integer Braid/Knit/Fiber ledger, the PLS minted as demand-gated reward for verified-useful-work, and the knowledge graph ( kg/* ) woven across it — is observable from the outside, by independent eyes, with no privileged vantage point. The vision is observability as a public good: a zero-dependency, cross-platform window (pure Python, stdlib only, one file) that runs identically on any machine and shows the same fabric"
+  },
+  {
+   "id": "virtualpc",
+   "repo": "virtualpc",
+   "kind": "repo",
+   "text": "virtualpc A coordination runtime where many agents share one memory, one fabric,"
+  },
+  {
+   "id": "virtualpc:mission",
+   "repo": "virtualpc",
+   "kind": "mission",
+   "text": "virtualpc provides three coordinated services over the shared fabric. First, an agent registry : a content-addressed catalogue of agents, their capabilities, and their provenance, so that any participant can discover who can do what. Second, a shared memory : a blackboard whose entries are Knit records, replicated through the same Byzantine-resistant gossip mesh that carries the rest of the Web, so that partial solutions accumulate and converge without a coordinator. Third, verifiable compute :"
+  },
+  {
+   "id": "virtualpc:vision",
+   "repo": "virtualpc",
+   "kind": "vision",
+   "text": "We envision autonomous agents as first-class participants in the Web — not isolated processes calling an API, but co-tenants of a shared, content-addressed graph in which every claim, plan, and intermediate result is a canonical-CBOR record with a stable CIDv1 identity. In such a world, coordination is not a side-effect of message-passing; it is a property of the substrate. virtualpc is the runtime that makes this concrete: a place where heterogeneous agents register their capabilities, read and write a common memory, and have their compute attested rather than merely trusted. The long horizon"
+  },
+  {
+   "id": "docs",
+   "repo": "docs",
+   "kind": "repo",
+   "text": "docs The map of the weave: one canonical account of what knitweb is, why each th"
+  },
+  {
+   "id": "docs:mission",
+   "repo": "docs",
+   "kind": "mission",
+   "text": "Concretely, docs carries: (1) the whitepaper — the formal, academically framed argument for a content-addressed knowledge weave, demand-gated minting, and epoch-bound rewards; (2) an architecture overview that names the substrate-and-plugins decomposition and the sacred vocabulary (Web, Knit, Pulse, Fiber) so that every repository speaks the same language; (3) per-repo documentation that explains each plugin's contract against the substrate; (4) plans that record decisions and their rationale; a"
+  },
+  {
+   "id": "docs:vision",
+   "repo": "docs",
+   "kind": "vision",
+   "text": "A protocol is only as trustworthy as the account it gives of itself. The vision for docs is a single, version-controlled source of truth for the entire knitweb — the Pulse substrate, the Braid/Knit/Fiber ledger, the PLS reward rule, the CIDv1 / dag-cbor / sha2-256 record model, and every plugin that hangs off them — written so that an outside reader can reconstruct the system's reasoning, not merely its surface. Documentation here is not an afterthought that trails the code; it is a first-class artefact that travels with the code, is reviewed with the code, and fails the build when it drifts f"
+  },
+  {
+   "id": "news",
+   "repo": "news",
+   "kind": "repo",
+   "text": "news The public record of what changed in the Web, and why it matters."
+  },
+  {
+   "id": "news:mission",
+   "repo": "news",
+   "kind": "mission",
+   "text": "The mission of news is to be the single canonical surface for project news, announcements, and the changelog. Concretely it commits to: one entry per meaningful change, each dated and tied to a release tag or substrate epoch; a clear separation of added / changed / deprecated / removed / fixed / security so consequences are unambiguous; explicit call-outs for any change that touches consensus, canonical-CBOR encoding, CIDv1 addressing, the integer-only ledger, or PoUW minting rules, since those"
+  },
+  {
+   "id": "news:vision",
+   "repo": "news",
+   "kind": "vision",
+   "text": "Knitweb is a living system: records are Knit into the Web, Fibers settle in the ledger, and PLS is minted only as demand-gated reward for verified-useful-work, all paced by the Pulse heartbeat. A system that mints money for work owes its participants an honest, legible account of how it evolves. The vision for news is a durable, citable, append-mostly record of that evolution — releases, protocol changes, security disclosures, and milestones — written so that a node operator, an auditor, a researcher, and a newcomer can each reconstruct what changed, when, and why without privileged access. Ne"
+  }
+ ],
+ "repos": [
+  "pulse",
+  "lens",
+  "molgang",
+  "vbank",
+  "monitor",
+  "virtualpc",
+  "docs",
+  "news"
+ ]
+}
