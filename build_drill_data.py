@@ -96,6 +96,44 @@ def main():
                        "vision": "A weave, not a chain: partial-order, contradiction-tolerant, provenance-bearing knowledge.",
                        "hasDrill": False})
 
+    # ── merge the domain knitwebs from the existing 5mart viewer (agriknit, mediweave …) ──
+    # so the graph is "compleet": core repos (mission/vision drill) + domain applications.
+    existing = os.path.join(os.path.dirname(os.path.abspath(__file__)), "existing_5mart_view.json")
+    if os.path.exists(existing):
+        view = json.load(open(existing))
+        have = {n["id"] for n in core_nodes}
+        lower = {n["id"].lower(): n["id"] for n in core_nodes}   # merge "Pulse" onto charter "pulse"
+        idmap = {}
+        for n in view["nodes"]:
+            nid = n["id"]
+            if nid.lower() in lower:
+                idmap[nid] = lower[nid.lower()]; continue
+            idmap[nid] = nid
+            if nid in have:
+                continue
+            have.add(nid)
+            core_nodes.append({"id": nid, "name": n.get("name", nid), "color": n.get("color", "#6b7a8f"),
+                               "val": n.get("val", 9), "group": n.get("group", "domain knitweb"),
+                               "kw": n.get("kw", ""), "desc": n.get("desc", ""), "hasDrill": True})
+            dn = [{"id": nid, "name": n.get("name", nid), "color": n.get("color", "#6b7a8f"),
+                   "val": 14, "group": n.get("group", "domain knitweb"), "desc": n.get("desc", "")}]
+            dl = []
+            for k in (n.get("kw", "").split("|") if n.get("kw") else []):
+                if not k:
+                    continue
+                kid = f"{nid}:kw:{k}"
+                dn.append({"id": kid, "name": k, "color": "#5a6b80", "val": 4, "group": "keyword",
+                           "desc": f"key concept of {nid}"})
+                dl.append({"source": kid, "target": nid, "rel": "concept-of"})
+            drill[nid] = {"nodes": dn, "links": dl}
+            index.append({"id": nid, "repo": nid, "kind": "domain",
+                          "text": (n.get("desc", "") + " " + n.get("kw", "")).strip()})
+        seen = {(l["source"], l["target"]) for l in core_links}
+        for l in view.get("links", []):
+            s, t = idmap.get(l.get("source"), l.get("source")), idmap.get(l.get("target"), l.get("target"))
+            if s and t and s != t and (s, t) not in seen and (t, s) not in seen:
+                seen.add((s, t)); core_links.append({"source": s, "target": t, "rel": l.get("rel", "")})
+
     out = {"generated": "knitweb_public_drill",
            "core": {"nodes": core_nodes, "links": core_links},
            "drill": drill, "search_index": index,

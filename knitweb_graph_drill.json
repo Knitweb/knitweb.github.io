@@ -109,6 +109,206 @@
     "mission": "Be the single tiny deterministic substrate for a peer-to-peer knowledge commons.",
     "vision": "A weave, not a chain: partial-order, contradiction-tolerant, provenance-bearing knowledge.",
     "hasDrill": false
+   },
+   {
+    "id": "bioweave",
+    "name": "bioweave",
+    "color": "#2b7bba",
+    "val": 10,
+    "group": "Science & knowledge",
+    "kw": "biology|taxonomy|species|genomics|phylogeny|ecology|provenance|open-data",
+    "desc": "biology & taxonomy of life",
+    "hasDrill": true
+   },
+   {
+    "id": "theoremgang",
+    "name": "theoremgang",
+    "color": "#2b7bba",
+    "val": 8,
+    "group": "Science & knowledge",
+    "kw": "mathematics|proofs|lemmas|formal-verification|dependency-graph|Lean/Coq|citations|rigor",
+    "desc": "mathematics & formal proofs",
+    "hasDrill": true
+   },
+   {
+    "id": "citeweave",
+    "name": "citeweave",
+    "color": "#2b7bba",
+    "val": 10,
+    "group": "Science & knowledge",
+    "kw": "citations|papers|DOI|provenance|peer-review|replication|attribution|scholarly-graph",
+    "desc": "research citations & provenance",
+    "hasDrill": true
+   },
+   {
+    "id": "veriweave",
+    "name": "veriweave",
+    "color": "#2e8b57",
+    "val": 8,
+    "group": "Markets & value",
+    "kw": "prediction-market|claims|forecasting|resolution|dispute-window|oracle-free|reliability|staking",
+    "desc": "prediction & truth markets",
+    "hasDrill": true
+   },
+   {
+    "id": "gridweave",
+    "name": "gridweave",
+    "color": "#2e8b57",
+    "val": 9,
+    "group": "Markets & value",
+    "kw": "energy|microgrid|P2P-trading|kWh|demand-response|settlement|prosumer|balancing",
+    "desc": "peer-to-peer energy grid & trading",
+    "hasDrill": true
+   },
+   {
+    "id": "carbonknit",
+    "name": "carbonknit",
+    "color": "#2e8b57",
+    "val": 9,
+    "group": "Markets & value",
+    "kw": "carbon-credits|MRV|offsets|sequestration|registry|additionality|retirement|audit-trail",
+    "desc": "carbon credits & sustainability",
+    "hasDrill": true
+   },
+   {
+    "id": "ledgerweave",
+    "name": "ledgerweave",
+    "color": "#2e8b57",
+    "val": 7,
+    "group": "Markets & value",
+    "kw": "accounting|double-entry|ledgers|invoices|audit|reconciliation|transparency|integer-money",
+    "desc": "open accounting & org ledgers",
+    "hasDrill": true
+   },
+   {
+    "id": "lexknit",
+    "name": "lexknit",
+    "color": "#e08a1e",
+    "val": 8,
+    "group": "Civic & trust",
+    "kw": "law|case-law|precedent|statutes|citations|jurisdiction|provenance|annotations",
+    "desc": "law & case-law precedent",
+    "hasDrill": true
+   },
+   {
+    "id": "factwire",
+    "name": "factwire",
+    "color": "#e08a1e",
+    "val": 8,
+    "group": "Civic & trust",
+    "kw": "journalism|fact-check|sources|claims|verification|provenance|corrections|credibility",
+    "desc": "journalism & fact-checking",
+    "hasDrill": true
+   },
+   {
+    "id": "trustweave",
+    "name": "trustweave",
+    "color": "#e08a1e",
+    "val": 9,
+    "group": "Civic & trust",
+    "kw": "identity|reputation|DID|personhood|web-of-trust|attestations|sybil-resistance|revocable",
+    "desc": "identity & reputation graph",
+    "hasDrill": true
+   },
+   {
+    "id": "patentweave",
+    "name": "patentweave",
+    "color": "#e08a1e",
+    "val": 10,
+    "group": "Civic & trust",
+    "kw": "patents|prior-art|claims|IP|provenance|priority-date|citations|novelty",
+    "desc": "patents & IP provenance",
+    "hasDrill": true
+   },
+   {
+    "id": "mediweave",
+    "name": "mediweave",
+    "color": "#c0392b",
+    "val": 9,
+    "group": "Health & living",
+    "kw": "clinical|evidence-based|guidelines|provenance-cited|ICD|contraindications|calibrated|privacy",
+    "desc": "clinical knowledge (provenance-cited)",
+    "hasDrill": true
+   },
+   {
+    "id": "agriknit",
+    "name": "agriknit",
+    "color": "#c0392b",
+    "val": 11,
+    "group": "Health & living",
+    "kw": "agriculture|crops|soil|yields|agronomy|sensors|provenance|sustainability",
+    "desc": "agriculture, crops & soil",
+    "hasDrill": true
+   },
+   {
+    "id": "faunaknit",
+    "name": "faunaknit",
+    "color": "#c0392b",
+    "val": 10,
+    "group": "Health & living",
+    "kw": "livestock|animal-welfare|herds|husbandry|breeding|veterinary|biodiversity|traceability",
+    "desc": "animals & livestock — welfare & husbandry",
+    "hasDrill": true
+   },
+   {
+    "id": "kinknit",
+    "name": "kinknit",
+    "color": "#c0392b",
+    "val": 6,
+    "group": "Health & living",
+    "kw": "genealogy|lineage|family-tree|records|provenance|privacy|kinship|attestation",
+    "desc": "genealogy & family trees",
+    "hasDrill": true
+   },
+   {
+    "id": "nutriknit",
+    "name": "nutriknit",
+    "color": "#c0392b",
+    "val": 9,
+    "group": "Health & living",
+    "kw": "nutrition|food-science|macros|ingredients|provenance|labels|health-claims|evidence",
+    "desc": "nutrition & food science",
+    "hasDrill": true
+   },
+   {
+    "id": "lingogang",
+    "name": "lingogang",
+    "color": "#8e44ad",
+    "val": 7,
+    "group": "Culture & craft",
+    "kw": "languages|dictionary|translation|multilingual|etymology|corpora|attestation|localization",
+    "desc": "languages & translation",
+    "hasDrill": true
+   },
+   {
+    "id": "forgeknit",
+    "name": "forgeknit",
+    "color": "#8e44ad",
+    "val": 7,
+    "group": "Culture & craft",
+    "kw": "open-hardware|CAD|BOM|designs|provenance|licensing|fabrication|versioning",
+    "desc": "open hardware & CAD",
+    "hasDrill": true
+   },
+   {
+    "id": "harmonweave",
+    "name": "harmonweave",
+    "color": "#8e44ad",
+    "val": 7,
+    "group": "Culture & craft",
+    "kw": "music|collaboration|rights|royalties|stems|provenance|licensing|attribution",
+    "desc": "music collaboration & rights",
+    "hasDrill": true
+   },
+   {
+    "id": "geoknit",
+    "name": "geoknit",
+    "color": "#8e44ad",
+    "val": 8,
+    "group": "Culture & craft",
+    "kw": "geospatial|maps|OSM-like|geohash|provenance|layers|crowdsourced|versioning",
+    "desc": "collaborative geospatial maps",
+    "hasDrill": true
    }
   ],
   "links": [
@@ -151,6 +351,256 @@
     "source": "news",
     "target": "Knitweb",
     "rel": "part-of"
+   },
+   {
+    "source": "vbank",
+    "target": "pulse",
+    "rel": "controls emission"
+   },
+   {
+    "source": "vbank",
+    "target": "lens",
+    "rel": "sets curation policy"
+   },
+   {
+    "source": "vbank",
+    "target": "monitor",
+    "rel": "transparency"
+   },
+   {
+    "source": "vbank",
+    "target": "molgang",
+    "rel": "governed via voting"
+   },
+   {
+    "source": "vbank",
+    "target": "bioweave",
+    "rel": "governed via voting"
+   },
+   {
+    "source": "vbank",
+    "target": "theoremgang",
+    "rel": "governed via voting"
+   },
+   {
+    "source": "vbank",
+    "target": "citeweave",
+    "rel": "governed via voting"
+   },
+   {
+    "source": "vbank",
+    "target": "veriweave",
+    "rel": "governed via voting"
+   },
+   {
+    "source": "vbank",
+    "target": "gridweave",
+    "rel": "governed via voting"
+   },
+   {
+    "source": "vbank",
+    "target": "carbonknit",
+    "rel": "governed via voting"
+   },
+   {
+    "source": "vbank",
+    "target": "ledgerweave",
+    "rel": "governed via voting"
+   },
+   {
+    "source": "vbank",
+    "target": "lexknit",
+    "rel": "governed via voting"
+   },
+   {
+    "source": "vbank",
+    "target": "factwire",
+    "rel": "governed via voting"
+   },
+   {
+    "source": "vbank",
+    "target": "trustweave",
+    "rel": "governed via voting"
+   },
+   {
+    "source": "vbank",
+    "target": "patentweave",
+    "rel": "governed via voting"
+   },
+   {
+    "source": "vbank",
+    "target": "mediweave",
+    "rel": "governed via voting"
+   },
+   {
+    "source": "vbank",
+    "target": "agriknit",
+    "rel": "governed via voting"
+   },
+   {
+    "source": "vbank",
+    "target": "faunaknit",
+    "rel": "governed via voting"
+   },
+   {
+    "source": "vbank",
+    "target": "kinknit",
+    "rel": "governed via voting"
+   },
+   {
+    "source": "vbank",
+    "target": "nutriknit",
+    "rel": "governed via voting"
+   },
+   {
+    "source": "vbank",
+    "target": "lingogang",
+    "rel": "governed via voting"
+   },
+   {
+    "source": "vbank",
+    "target": "forgeknit",
+    "rel": "governed via voting"
+   },
+   {
+    "source": "vbank",
+    "target": "harmonweave",
+    "rel": "governed via voting"
+   },
+   {
+    "source": "vbank",
+    "target": "geoknit",
+    "rel": "governed via voting"
+   },
+   {
+    "source": "citeweave",
+    "target": "theoremgang",
+    "rel": "shared proofs"
+   },
+   {
+    "source": "citeweave",
+    "target": "patentweave",
+    "rel": "research → IP"
+   },
+   {
+    "source": "citeweave",
+    "target": "mediweave",
+    "rel": "clinical evidence"
+   },
+   {
+    "source": "bioweave",
+    "target": "mediweave",
+    "rel": "biology → medicine"
+   },
+   {
+    "source": "bioweave",
+    "target": "agriknit",
+    "rel": "applied biology"
+   },
+   {
+    "source": "bioweave",
+    "target": "molgang",
+    "rel": "biochemistry"
+   },
+   {
+    "source": "mediweave",
+    "target": "nutriknit",
+    "rel": "health ↔ diet"
+   },
+   {
+    "source": "agriknit",
+    "target": "nutriknit",
+    "rel": "farm → food"
+   },
+   {
+    "source": "agriknit",
+    "target": "carbonknit",
+    "rel": "soil carbon"
+   },
+   {
+    "source": "gridweave",
+    "target": "carbonknit",
+    "rel": "clean energy"
+   },
+   {
+    "source": "gridweave",
+    "target": "ledgerweave",
+    "rel": "energy trading"
+   },
+   {
+    "source": "veriweave",
+    "target": "factwire",
+    "rel": "truth signals"
+   },
+   {
+    "source": "veriweave",
+    "target": "trustweave",
+    "rel": "reputation stake"
+   },
+   {
+    "source": "factwire",
+    "target": "trustweave",
+    "rel": "source credibility"
+   },
+   {
+    "source": "lexknit",
+    "target": "patentweave",
+    "rel": "law ↔ IP"
+   },
+   {
+    "source": "lexknit",
+    "target": "trustweave",
+    "rel": "legal identity"
+   },
+   {
+    "source": "harmonweave",
+    "target": "patentweave",
+    "rel": "music rights"
+   },
+   {
+    "source": "forgeknit",
+    "target": "patentweave",
+    "rel": "hardware IP"
+   },
+   {
+    "source": "geoknit",
+    "target": "gridweave",
+    "rel": "spatial grid"
+   },
+   {
+    "source": "geoknit",
+    "target": "agriknit",
+    "rel": "geo farming"
+   },
+   {
+    "source": "lingogang",
+    "target": "citeweave",
+    "rel": "multilingual knowledge"
+   },
+   {
+    "source": "molgang",
+    "target": "theoremgang",
+    "rel": "formal chemistry"
+   },
+   {
+    "source": "faunaknit",
+    "target": "agriknit",
+    "rel": "mixed farming"
+   },
+   {
+    "source": "faunaknit",
+    "target": "bioweave",
+    "rel": "animal biology"
+   },
+   {
+    "source": "faunaknit",
+    "target": "carbonknit",
+    "rel": "livestock emissions"
+   },
+   {
+    "source": "faunaknit",
+    "target": "nutriknit",
+    "rel": "animal → food"
    }
   ]
  },
@@ -1410,6 +1860,2366 @@
      "rel": "concept-of"
     }
    ]
+  },
+  "bioweave": {
+   "nodes": [
+    {
+     "id": "bioweave",
+     "name": "bioweave",
+     "color": "#2b7bba",
+     "val": 14,
+     "group": "Science & knowledge",
+     "desc": "biology & taxonomy of life"
+    },
+    {
+     "id": "bioweave:kw:biology",
+     "name": "biology",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of bioweave"
+    },
+    {
+     "id": "bioweave:kw:taxonomy",
+     "name": "taxonomy",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of bioweave"
+    },
+    {
+     "id": "bioweave:kw:species",
+     "name": "species",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of bioweave"
+    },
+    {
+     "id": "bioweave:kw:genomics",
+     "name": "genomics",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of bioweave"
+    },
+    {
+     "id": "bioweave:kw:phylogeny",
+     "name": "phylogeny",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of bioweave"
+    },
+    {
+     "id": "bioweave:kw:ecology",
+     "name": "ecology",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of bioweave"
+    },
+    {
+     "id": "bioweave:kw:provenance",
+     "name": "provenance",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of bioweave"
+    },
+    {
+     "id": "bioweave:kw:open-data",
+     "name": "open-data",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of bioweave"
+    }
+   ],
+   "links": [
+    {
+     "source": "bioweave:kw:biology",
+     "target": "bioweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "bioweave:kw:taxonomy",
+     "target": "bioweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "bioweave:kw:species",
+     "target": "bioweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "bioweave:kw:genomics",
+     "target": "bioweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "bioweave:kw:phylogeny",
+     "target": "bioweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "bioweave:kw:ecology",
+     "target": "bioweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "bioweave:kw:provenance",
+     "target": "bioweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "bioweave:kw:open-data",
+     "target": "bioweave",
+     "rel": "concept-of"
+    }
+   ]
+  },
+  "theoremgang": {
+   "nodes": [
+    {
+     "id": "theoremgang",
+     "name": "theoremgang",
+     "color": "#2b7bba",
+     "val": 14,
+     "group": "Science & knowledge",
+     "desc": "mathematics & formal proofs"
+    },
+    {
+     "id": "theoremgang:kw:mathematics",
+     "name": "mathematics",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of theoremgang"
+    },
+    {
+     "id": "theoremgang:kw:proofs",
+     "name": "proofs",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of theoremgang"
+    },
+    {
+     "id": "theoremgang:kw:lemmas",
+     "name": "lemmas",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of theoremgang"
+    },
+    {
+     "id": "theoremgang:kw:formal-verification",
+     "name": "formal-verification",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of theoremgang"
+    },
+    {
+     "id": "theoremgang:kw:dependency-graph",
+     "name": "dependency-graph",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of theoremgang"
+    },
+    {
+     "id": "theoremgang:kw:Lean/Coq",
+     "name": "Lean/Coq",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of theoremgang"
+    },
+    {
+     "id": "theoremgang:kw:citations",
+     "name": "citations",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of theoremgang"
+    },
+    {
+     "id": "theoremgang:kw:rigor",
+     "name": "rigor",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of theoremgang"
+    }
+   ],
+   "links": [
+    {
+     "source": "theoremgang:kw:mathematics",
+     "target": "theoremgang",
+     "rel": "concept-of"
+    },
+    {
+     "source": "theoremgang:kw:proofs",
+     "target": "theoremgang",
+     "rel": "concept-of"
+    },
+    {
+     "source": "theoremgang:kw:lemmas",
+     "target": "theoremgang",
+     "rel": "concept-of"
+    },
+    {
+     "source": "theoremgang:kw:formal-verification",
+     "target": "theoremgang",
+     "rel": "concept-of"
+    },
+    {
+     "source": "theoremgang:kw:dependency-graph",
+     "target": "theoremgang",
+     "rel": "concept-of"
+    },
+    {
+     "source": "theoremgang:kw:Lean/Coq",
+     "target": "theoremgang",
+     "rel": "concept-of"
+    },
+    {
+     "source": "theoremgang:kw:citations",
+     "target": "theoremgang",
+     "rel": "concept-of"
+    },
+    {
+     "source": "theoremgang:kw:rigor",
+     "target": "theoremgang",
+     "rel": "concept-of"
+    }
+   ]
+  },
+  "citeweave": {
+   "nodes": [
+    {
+     "id": "citeweave",
+     "name": "citeweave",
+     "color": "#2b7bba",
+     "val": 14,
+     "group": "Science & knowledge",
+     "desc": "research citations & provenance"
+    },
+    {
+     "id": "citeweave:kw:citations",
+     "name": "citations",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of citeweave"
+    },
+    {
+     "id": "citeweave:kw:papers",
+     "name": "papers",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of citeweave"
+    },
+    {
+     "id": "citeweave:kw:DOI",
+     "name": "DOI",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of citeweave"
+    },
+    {
+     "id": "citeweave:kw:provenance",
+     "name": "provenance",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of citeweave"
+    },
+    {
+     "id": "citeweave:kw:peer-review",
+     "name": "peer-review",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of citeweave"
+    },
+    {
+     "id": "citeweave:kw:replication",
+     "name": "replication",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of citeweave"
+    },
+    {
+     "id": "citeweave:kw:attribution",
+     "name": "attribution",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of citeweave"
+    },
+    {
+     "id": "citeweave:kw:scholarly-graph",
+     "name": "scholarly-graph",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of citeweave"
+    }
+   ],
+   "links": [
+    {
+     "source": "citeweave:kw:citations",
+     "target": "citeweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "citeweave:kw:papers",
+     "target": "citeweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "citeweave:kw:DOI",
+     "target": "citeweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "citeweave:kw:provenance",
+     "target": "citeweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "citeweave:kw:peer-review",
+     "target": "citeweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "citeweave:kw:replication",
+     "target": "citeweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "citeweave:kw:attribution",
+     "target": "citeweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "citeweave:kw:scholarly-graph",
+     "target": "citeweave",
+     "rel": "concept-of"
+    }
+   ]
+  },
+  "veriweave": {
+   "nodes": [
+    {
+     "id": "veriweave",
+     "name": "veriweave",
+     "color": "#2e8b57",
+     "val": 14,
+     "group": "Markets & value",
+     "desc": "prediction & truth markets"
+    },
+    {
+     "id": "veriweave:kw:prediction-market",
+     "name": "prediction-market",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of veriweave"
+    },
+    {
+     "id": "veriweave:kw:claims",
+     "name": "claims",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of veriweave"
+    },
+    {
+     "id": "veriweave:kw:forecasting",
+     "name": "forecasting",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of veriweave"
+    },
+    {
+     "id": "veriweave:kw:resolution",
+     "name": "resolution",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of veriweave"
+    },
+    {
+     "id": "veriweave:kw:dispute-window",
+     "name": "dispute-window",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of veriweave"
+    },
+    {
+     "id": "veriweave:kw:oracle-free",
+     "name": "oracle-free",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of veriweave"
+    },
+    {
+     "id": "veriweave:kw:reliability",
+     "name": "reliability",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of veriweave"
+    },
+    {
+     "id": "veriweave:kw:staking",
+     "name": "staking",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of veriweave"
+    }
+   ],
+   "links": [
+    {
+     "source": "veriweave:kw:prediction-market",
+     "target": "veriweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "veriweave:kw:claims",
+     "target": "veriweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "veriweave:kw:forecasting",
+     "target": "veriweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "veriweave:kw:resolution",
+     "target": "veriweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "veriweave:kw:dispute-window",
+     "target": "veriweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "veriweave:kw:oracle-free",
+     "target": "veriweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "veriweave:kw:reliability",
+     "target": "veriweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "veriweave:kw:staking",
+     "target": "veriweave",
+     "rel": "concept-of"
+    }
+   ]
+  },
+  "gridweave": {
+   "nodes": [
+    {
+     "id": "gridweave",
+     "name": "gridweave",
+     "color": "#2e8b57",
+     "val": 14,
+     "group": "Markets & value",
+     "desc": "peer-to-peer energy grid & trading"
+    },
+    {
+     "id": "gridweave:kw:energy",
+     "name": "energy",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of gridweave"
+    },
+    {
+     "id": "gridweave:kw:microgrid",
+     "name": "microgrid",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of gridweave"
+    },
+    {
+     "id": "gridweave:kw:P2P-trading",
+     "name": "P2P-trading",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of gridweave"
+    },
+    {
+     "id": "gridweave:kw:kWh",
+     "name": "kWh",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of gridweave"
+    },
+    {
+     "id": "gridweave:kw:demand-response",
+     "name": "demand-response",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of gridweave"
+    },
+    {
+     "id": "gridweave:kw:settlement",
+     "name": "settlement",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of gridweave"
+    },
+    {
+     "id": "gridweave:kw:prosumer",
+     "name": "prosumer",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of gridweave"
+    },
+    {
+     "id": "gridweave:kw:balancing",
+     "name": "balancing",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of gridweave"
+    }
+   ],
+   "links": [
+    {
+     "source": "gridweave:kw:energy",
+     "target": "gridweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "gridweave:kw:microgrid",
+     "target": "gridweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "gridweave:kw:P2P-trading",
+     "target": "gridweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "gridweave:kw:kWh",
+     "target": "gridweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "gridweave:kw:demand-response",
+     "target": "gridweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "gridweave:kw:settlement",
+     "target": "gridweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "gridweave:kw:prosumer",
+     "target": "gridweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "gridweave:kw:balancing",
+     "target": "gridweave",
+     "rel": "concept-of"
+    }
+   ]
+  },
+  "carbonknit": {
+   "nodes": [
+    {
+     "id": "carbonknit",
+     "name": "carbonknit",
+     "color": "#2e8b57",
+     "val": 14,
+     "group": "Markets & value",
+     "desc": "carbon credits & sustainability"
+    },
+    {
+     "id": "carbonknit:kw:carbon-credits",
+     "name": "carbon-credits",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of carbonknit"
+    },
+    {
+     "id": "carbonknit:kw:MRV",
+     "name": "MRV",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of carbonknit"
+    },
+    {
+     "id": "carbonknit:kw:offsets",
+     "name": "offsets",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of carbonknit"
+    },
+    {
+     "id": "carbonknit:kw:sequestration",
+     "name": "sequestration",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of carbonknit"
+    },
+    {
+     "id": "carbonknit:kw:registry",
+     "name": "registry",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of carbonknit"
+    },
+    {
+     "id": "carbonknit:kw:additionality",
+     "name": "additionality",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of carbonknit"
+    },
+    {
+     "id": "carbonknit:kw:retirement",
+     "name": "retirement",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of carbonknit"
+    },
+    {
+     "id": "carbonknit:kw:audit-trail",
+     "name": "audit-trail",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of carbonknit"
+    }
+   ],
+   "links": [
+    {
+     "source": "carbonknit:kw:carbon-credits",
+     "target": "carbonknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "carbonknit:kw:MRV",
+     "target": "carbonknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "carbonknit:kw:offsets",
+     "target": "carbonknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "carbonknit:kw:sequestration",
+     "target": "carbonknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "carbonknit:kw:registry",
+     "target": "carbonknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "carbonknit:kw:additionality",
+     "target": "carbonknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "carbonknit:kw:retirement",
+     "target": "carbonknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "carbonknit:kw:audit-trail",
+     "target": "carbonknit",
+     "rel": "concept-of"
+    }
+   ]
+  },
+  "ledgerweave": {
+   "nodes": [
+    {
+     "id": "ledgerweave",
+     "name": "ledgerweave",
+     "color": "#2e8b57",
+     "val": 14,
+     "group": "Markets & value",
+     "desc": "open accounting & org ledgers"
+    },
+    {
+     "id": "ledgerweave:kw:accounting",
+     "name": "accounting",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of ledgerweave"
+    },
+    {
+     "id": "ledgerweave:kw:double-entry",
+     "name": "double-entry",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of ledgerweave"
+    },
+    {
+     "id": "ledgerweave:kw:ledgers",
+     "name": "ledgers",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of ledgerweave"
+    },
+    {
+     "id": "ledgerweave:kw:invoices",
+     "name": "invoices",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of ledgerweave"
+    },
+    {
+     "id": "ledgerweave:kw:audit",
+     "name": "audit",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of ledgerweave"
+    },
+    {
+     "id": "ledgerweave:kw:reconciliation",
+     "name": "reconciliation",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of ledgerweave"
+    },
+    {
+     "id": "ledgerweave:kw:transparency",
+     "name": "transparency",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of ledgerweave"
+    },
+    {
+     "id": "ledgerweave:kw:integer-money",
+     "name": "integer-money",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of ledgerweave"
+    }
+   ],
+   "links": [
+    {
+     "source": "ledgerweave:kw:accounting",
+     "target": "ledgerweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "ledgerweave:kw:double-entry",
+     "target": "ledgerweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "ledgerweave:kw:ledgers",
+     "target": "ledgerweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "ledgerweave:kw:invoices",
+     "target": "ledgerweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "ledgerweave:kw:audit",
+     "target": "ledgerweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "ledgerweave:kw:reconciliation",
+     "target": "ledgerweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "ledgerweave:kw:transparency",
+     "target": "ledgerweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "ledgerweave:kw:integer-money",
+     "target": "ledgerweave",
+     "rel": "concept-of"
+    }
+   ]
+  },
+  "lexknit": {
+   "nodes": [
+    {
+     "id": "lexknit",
+     "name": "lexknit",
+     "color": "#e08a1e",
+     "val": 14,
+     "group": "Civic & trust",
+     "desc": "law & case-law precedent"
+    },
+    {
+     "id": "lexknit:kw:law",
+     "name": "law",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of lexknit"
+    },
+    {
+     "id": "lexknit:kw:case-law",
+     "name": "case-law",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of lexknit"
+    },
+    {
+     "id": "lexknit:kw:precedent",
+     "name": "precedent",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of lexknit"
+    },
+    {
+     "id": "lexknit:kw:statutes",
+     "name": "statutes",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of lexknit"
+    },
+    {
+     "id": "lexknit:kw:citations",
+     "name": "citations",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of lexknit"
+    },
+    {
+     "id": "lexknit:kw:jurisdiction",
+     "name": "jurisdiction",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of lexknit"
+    },
+    {
+     "id": "lexknit:kw:provenance",
+     "name": "provenance",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of lexknit"
+    },
+    {
+     "id": "lexknit:kw:annotations",
+     "name": "annotations",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of lexknit"
+    }
+   ],
+   "links": [
+    {
+     "source": "lexknit:kw:law",
+     "target": "lexknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "lexknit:kw:case-law",
+     "target": "lexknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "lexknit:kw:precedent",
+     "target": "lexknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "lexknit:kw:statutes",
+     "target": "lexknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "lexknit:kw:citations",
+     "target": "lexknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "lexknit:kw:jurisdiction",
+     "target": "lexknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "lexknit:kw:provenance",
+     "target": "lexknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "lexknit:kw:annotations",
+     "target": "lexknit",
+     "rel": "concept-of"
+    }
+   ]
+  },
+  "factwire": {
+   "nodes": [
+    {
+     "id": "factwire",
+     "name": "factwire",
+     "color": "#e08a1e",
+     "val": 14,
+     "group": "Civic & trust",
+     "desc": "journalism & fact-checking"
+    },
+    {
+     "id": "factwire:kw:journalism",
+     "name": "journalism",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of factwire"
+    },
+    {
+     "id": "factwire:kw:fact-check",
+     "name": "fact-check",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of factwire"
+    },
+    {
+     "id": "factwire:kw:sources",
+     "name": "sources",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of factwire"
+    },
+    {
+     "id": "factwire:kw:claims",
+     "name": "claims",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of factwire"
+    },
+    {
+     "id": "factwire:kw:verification",
+     "name": "verification",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of factwire"
+    },
+    {
+     "id": "factwire:kw:provenance",
+     "name": "provenance",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of factwire"
+    },
+    {
+     "id": "factwire:kw:corrections",
+     "name": "corrections",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of factwire"
+    },
+    {
+     "id": "factwire:kw:credibility",
+     "name": "credibility",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of factwire"
+    }
+   ],
+   "links": [
+    {
+     "source": "factwire:kw:journalism",
+     "target": "factwire",
+     "rel": "concept-of"
+    },
+    {
+     "source": "factwire:kw:fact-check",
+     "target": "factwire",
+     "rel": "concept-of"
+    },
+    {
+     "source": "factwire:kw:sources",
+     "target": "factwire",
+     "rel": "concept-of"
+    },
+    {
+     "source": "factwire:kw:claims",
+     "target": "factwire",
+     "rel": "concept-of"
+    },
+    {
+     "source": "factwire:kw:verification",
+     "target": "factwire",
+     "rel": "concept-of"
+    },
+    {
+     "source": "factwire:kw:provenance",
+     "target": "factwire",
+     "rel": "concept-of"
+    },
+    {
+     "source": "factwire:kw:corrections",
+     "target": "factwire",
+     "rel": "concept-of"
+    },
+    {
+     "source": "factwire:kw:credibility",
+     "target": "factwire",
+     "rel": "concept-of"
+    }
+   ]
+  },
+  "trustweave": {
+   "nodes": [
+    {
+     "id": "trustweave",
+     "name": "trustweave",
+     "color": "#e08a1e",
+     "val": 14,
+     "group": "Civic & trust",
+     "desc": "identity & reputation graph"
+    },
+    {
+     "id": "trustweave:kw:identity",
+     "name": "identity",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of trustweave"
+    },
+    {
+     "id": "trustweave:kw:reputation",
+     "name": "reputation",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of trustweave"
+    },
+    {
+     "id": "trustweave:kw:DID",
+     "name": "DID",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of trustweave"
+    },
+    {
+     "id": "trustweave:kw:personhood",
+     "name": "personhood",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of trustweave"
+    },
+    {
+     "id": "trustweave:kw:web-of-trust",
+     "name": "web-of-trust",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of trustweave"
+    },
+    {
+     "id": "trustweave:kw:attestations",
+     "name": "attestations",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of trustweave"
+    },
+    {
+     "id": "trustweave:kw:sybil-resistance",
+     "name": "sybil-resistance",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of trustweave"
+    },
+    {
+     "id": "trustweave:kw:revocable",
+     "name": "revocable",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of trustweave"
+    }
+   ],
+   "links": [
+    {
+     "source": "trustweave:kw:identity",
+     "target": "trustweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "trustweave:kw:reputation",
+     "target": "trustweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "trustweave:kw:DID",
+     "target": "trustweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "trustweave:kw:personhood",
+     "target": "trustweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "trustweave:kw:web-of-trust",
+     "target": "trustweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "trustweave:kw:attestations",
+     "target": "trustweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "trustweave:kw:sybil-resistance",
+     "target": "trustweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "trustweave:kw:revocable",
+     "target": "trustweave",
+     "rel": "concept-of"
+    }
+   ]
+  },
+  "patentweave": {
+   "nodes": [
+    {
+     "id": "patentweave",
+     "name": "patentweave",
+     "color": "#e08a1e",
+     "val": 14,
+     "group": "Civic & trust",
+     "desc": "patents & IP provenance"
+    },
+    {
+     "id": "patentweave:kw:patents",
+     "name": "patents",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of patentweave"
+    },
+    {
+     "id": "patentweave:kw:prior-art",
+     "name": "prior-art",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of patentweave"
+    },
+    {
+     "id": "patentweave:kw:claims",
+     "name": "claims",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of patentweave"
+    },
+    {
+     "id": "patentweave:kw:IP",
+     "name": "IP",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of patentweave"
+    },
+    {
+     "id": "patentweave:kw:provenance",
+     "name": "provenance",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of patentweave"
+    },
+    {
+     "id": "patentweave:kw:priority-date",
+     "name": "priority-date",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of patentweave"
+    },
+    {
+     "id": "patentweave:kw:citations",
+     "name": "citations",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of patentweave"
+    },
+    {
+     "id": "patentweave:kw:novelty",
+     "name": "novelty",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of patentweave"
+    }
+   ],
+   "links": [
+    {
+     "source": "patentweave:kw:patents",
+     "target": "patentweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "patentweave:kw:prior-art",
+     "target": "patentweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "patentweave:kw:claims",
+     "target": "patentweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "patentweave:kw:IP",
+     "target": "patentweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "patentweave:kw:provenance",
+     "target": "patentweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "patentweave:kw:priority-date",
+     "target": "patentweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "patentweave:kw:citations",
+     "target": "patentweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "patentweave:kw:novelty",
+     "target": "patentweave",
+     "rel": "concept-of"
+    }
+   ]
+  },
+  "mediweave": {
+   "nodes": [
+    {
+     "id": "mediweave",
+     "name": "mediweave",
+     "color": "#c0392b",
+     "val": 14,
+     "group": "Health & living",
+     "desc": "clinical knowledge (provenance-cited)"
+    },
+    {
+     "id": "mediweave:kw:clinical",
+     "name": "clinical",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of mediweave"
+    },
+    {
+     "id": "mediweave:kw:evidence-based",
+     "name": "evidence-based",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of mediweave"
+    },
+    {
+     "id": "mediweave:kw:guidelines",
+     "name": "guidelines",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of mediweave"
+    },
+    {
+     "id": "mediweave:kw:provenance-cited",
+     "name": "provenance-cited",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of mediweave"
+    },
+    {
+     "id": "mediweave:kw:ICD",
+     "name": "ICD",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of mediweave"
+    },
+    {
+     "id": "mediweave:kw:contraindications",
+     "name": "contraindications",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of mediweave"
+    },
+    {
+     "id": "mediweave:kw:calibrated",
+     "name": "calibrated",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of mediweave"
+    },
+    {
+     "id": "mediweave:kw:privacy",
+     "name": "privacy",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of mediweave"
+    }
+   ],
+   "links": [
+    {
+     "source": "mediweave:kw:clinical",
+     "target": "mediweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "mediweave:kw:evidence-based",
+     "target": "mediweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "mediweave:kw:guidelines",
+     "target": "mediweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "mediweave:kw:provenance-cited",
+     "target": "mediweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "mediweave:kw:ICD",
+     "target": "mediweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "mediweave:kw:contraindications",
+     "target": "mediweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "mediweave:kw:calibrated",
+     "target": "mediweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "mediweave:kw:privacy",
+     "target": "mediweave",
+     "rel": "concept-of"
+    }
+   ]
+  },
+  "agriknit": {
+   "nodes": [
+    {
+     "id": "agriknit",
+     "name": "agriknit",
+     "color": "#c0392b",
+     "val": 14,
+     "group": "Health & living",
+     "desc": "agriculture, crops & soil"
+    },
+    {
+     "id": "agriknit:kw:agriculture",
+     "name": "agriculture",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of agriknit"
+    },
+    {
+     "id": "agriknit:kw:crops",
+     "name": "crops",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of agriknit"
+    },
+    {
+     "id": "agriknit:kw:soil",
+     "name": "soil",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of agriknit"
+    },
+    {
+     "id": "agriknit:kw:yields",
+     "name": "yields",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of agriknit"
+    },
+    {
+     "id": "agriknit:kw:agronomy",
+     "name": "agronomy",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of agriknit"
+    },
+    {
+     "id": "agriknit:kw:sensors",
+     "name": "sensors",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of agriknit"
+    },
+    {
+     "id": "agriknit:kw:provenance",
+     "name": "provenance",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of agriknit"
+    },
+    {
+     "id": "agriknit:kw:sustainability",
+     "name": "sustainability",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of agriknit"
+    }
+   ],
+   "links": [
+    {
+     "source": "agriknit:kw:agriculture",
+     "target": "agriknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "agriknit:kw:crops",
+     "target": "agriknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "agriknit:kw:soil",
+     "target": "agriknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "agriknit:kw:yields",
+     "target": "agriknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "agriknit:kw:agronomy",
+     "target": "agriknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "agriknit:kw:sensors",
+     "target": "agriknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "agriknit:kw:provenance",
+     "target": "agriknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "agriknit:kw:sustainability",
+     "target": "agriknit",
+     "rel": "concept-of"
+    }
+   ]
+  },
+  "faunaknit": {
+   "nodes": [
+    {
+     "id": "faunaknit",
+     "name": "faunaknit",
+     "color": "#c0392b",
+     "val": 14,
+     "group": "Health & living",
+     "desc": "animals & livestock — welfare & husbandry"
+    },
+    {
+     "id": "faunaknit:kw:livestock",
+     "name": "livestock",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of faunaknit"
+    },
+    {
+     "id": "faunaknit:kw:animal-welfare",
+     "name": "animal-welfare",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of faunaknit"
+    },
+    {
+     "id": "faunaknit:kw:herds",
+     "name": "herds",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of faunaknit"
+    },
+    {
+     "id": "faunaknit:kw:husbandry",
+     "name": "husbandry",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of faunaknit"
+    },
+    {
+     "id": "faunaknit:kw:breeding",
+     "name": "breeding",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of faunaknit"
+    },
+    {
+     "id": "faunaknit:kw:veterinary",
+     "name": "veterinary",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of faunaknit"
+    },
+    {
+     "id": "faunaknit:kw:biodiversity",
+     "name": "biodiversity",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of faunaknit"
+    },
+    {
+     "id": "faunaknit:kw:traceability",
+     "name": "traceability",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of faunaknit"
+    }
+   ],
+   "links": [
+    {
+     "source": "faunaknit:kw:livestock",
+     "target": "faunaknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "faunaknit:kw:animal-welfare",
+     "target": "faunaknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "faunaknit:kw:herds",
+     "target": "faunaknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "faunaknit:kw:husbandry",
+     "target": "faunaknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "faunaknit:kw:breeding",
+     "target": "faunaknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "faunaknit:kw:veterinary",
+     "target": "faunaknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "faunaknit:kw:biodiversity",
+     "target": "faunaknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "faunaknit:kw:traceability",
+     "target": "faunaknit",
+     "rel": "concept-of"
+    }
+   ]
+  },
+  "kinknit": {
+   "nodes": [
+    {
+     "id": "kinknit",
+     "name": "kinknit",
+     "color": "#c0392b",
+     "val": 14,
+     "group": "Health & living",
+     "desc": "genealogy & family trees"
+    },
+    {
+     "id": "kinknit:kw:genealogy",
+     "name": "genealogy",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of kinknit"
+    },
+    {
+     "id": "kinknit:kw:lineage",
+     "name": "lineage",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of kinknit"
+    },
+    {
+     "id": "kinknit:kw:family-tree",
+     "name": "family-tree",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of kinknit"
+    },
+    {
+     "id": "kinknit:kw:records",
+     "name": "records",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of kinknit"
+    },
+    {
+     "id": "kinknit:kw:provenance",
+     "name": "provenance",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of kinknit"
+    },
+    {
+     "id": "kinknit:kw:privacy",
+     "name": "privacy",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of kinknit"
+    },
+    {
+     "id": "kinknit:kw:kinship",
+     "name": "kinship",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of kinknit"
+    },
+    {
+     "id": "kinknit:kw:attestation",
+     "name": "attestation",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of kinknit"
+    }
+   ],
+   "links": [
+    {
+     "source": "kinknit:kw:genealogy",
+     "target": "kinknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "kinknit:kw:lineage",
+     "target": "kinknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "kinknit:kw:family-tree",
+     "target": "kinknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "kinknit:kw:records",
+     "target": "kinknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "kinknit:kw:provenance",
+     "target": "kinknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "kinknit:kw:privacy",
+     "target": "kinknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "kinknit:kw:kinship",
+     "target": "kinknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "kinknit:kw:attestation",
+     "target": "kinknit",
+     "rel": "concept-of"
+    }
+   ]
+  },
+  "nutriknit": {
+   "nodes": [
+    {
+     "id": "nutriknit",
+     "name": "nutriknit",
+     "color": "#c0392b",
+     "val": 14,
+     "group": "Health & living",
+     "desc": "nutrition & food science"
+    },
+    {
+     "id": "nutriknit:kw:nutrition",
+     "name": "nutrition",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of nutriknit"
+    },
+    {
+     "id": "nutriknit:kw:food-science",
+     "name": "food-science",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of nutriknit"
+    },
+    {
+     "id": "nutriknit:kw:macros",
+     "name": "macros",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of nutriknit"
+    },
+    {
+     "id": "nutriknit:kw:ingredients",
+     "name": "ingredients",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of nutriknit"
+    },
+    {
+     "id": "nutriknit:kw:provenance",
+     "name": "provenance",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of nutriknit"
+    },
+    {
+     "id": "nutriknit:kw:labels",
+     "name": "labels",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of nutriknit"
+    },
+    {
+     "id": "nutriknit:kw:health-claims",
+     "name": "health-claims",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of nutriknit"
+    },
+    {
+     "id": "nutriknit:kw:evidence",
+     "name": "evidence",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of nutriknit"
+    }
+   ],
+   "links": [
+    {
+     "source": "nutriknit:kw:nutrition",
+     "target": "nutriknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "nutriknit:kw:food-science",
+     "target": "nutriknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "nutriknit:kw:macros",
+     "target": "nutriknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "nutriknit:kw:ingredients",
+     "target": "nutriknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "nutriknit:kw:provenance",
+     "target": "nutriknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "nutriknit:kw:labels",
+     "target": "nutriknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "nutriknit:kw:health-claims",
+     "target": "nutriknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "nutriknit:kw:evidence",
+     "target": "nutriknit",
+     "rel": "concept-of"
+    }
+   ]
+  },
+  "lingogang": {
+   "nodes": [
+    {
+     "id": "lingogang",
+     "name": "lingogang",
+     "color": "#8e44ad",
+     "val": 14,
+     "group": "Culture & craft",
+     "desc": "languages & translation"
+    },
+    {
+     "id": "lingogang:kw:languages",
+     "name": "languages",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of lingogang"
+    },
+    {
+     "id": "lingogang:kw:dictionary",
+     "name": "dictionary",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of lingogang"
+    },
+    {
+     "id": "lingogang:kw:translation",
+     "name": "translation",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of lingogang"
+    },
+    {
+     "id": "lingogang:kw:multilingual",
+     "name": "multilingual",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of lingogang"
+    },
+    {
+     "id": "lingogang:kw:etymology",
+     "name": "etymology",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of lingogang"
+    },
+    {
+     "id": "lingogang:kw:corpora",
+     "name": "corpora",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of lingogang"
+    },
+    {
+     "id": "lingogang:kw:attestation",
+     "name": "attestation",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of lingogang"
+    },
+    {
+     "id": "lingogang:kw:localization",
+     "name": "localization",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of lingogang"
+    }
+   ],
+   "links": [
+    {
+     "source": "lingogang:kw:languages",
+     "target": "lingogang",
+     "rel": "concept-of"
+    },
+    {
+     "source": "lingogang:kw:dictionary",
+     "target": "lingogang",
+     "rel": "concept-of"
+    },
+    {
+     "source": "lingogang:kw:translation",
+     "target": "lingogang",
+     "rel": "concept-of"
+    },
+    {
+     "source": "lingogang:kw:multilingual",
+     "target": "lingogang",
+     "rel": "concept-of"
+    },
+    {
+     "source": "lingogang:kw:etymology",
+     "target": "lingogang",
+     "rel": "concept-of"
+    },
+    {
+     "source": "lingogang:kw:corpora",
+     "target": "lingogang",
+     "rel": "concept-of"
+    },
+    {
+     "source": "lingogang:kw:attestation",
+     "target": "lingogang",
+     "rel": "concept-of"
+    },
+    {
+     "source": "lingogang:kw:localization",
+     "target": "lingogang",
+     "rel": "concept-of"
+    }
+   ]
+  },
+  "forgeknit": {
+   "nodes": [
+    {
+     "id": "forgeknit",
+     "name": "forgeknit",
+     "color": "#8e44ad",
+     "val": 14,
+     "group": "Culture & craft",
+     "desc": "open hardware & CAD"
+    },
+    {
+     "id": "forgeknit:kw:open-hardware",
+     "name": "open-hardware",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of forgeknit"
+    },
+    {
+     "id": "forgeknit:kw:CAD",
+     "name": "CAD",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of forgeknit"
+    },
+    {
+     "id": "forgeknit:kw:BOM",
+     "name": "BOM",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of forgeknit"
+    },
+    {
+     "id": "forgeknit:kw:designs",
+     "name": "designs",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of forgeknit"
+    },
+    {
+     "id": "forgeknit:kw:provenance",
+     "name": "provenance",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of forgeknit"
+    },
+    {
+     "id": "forgeknit:kw:licensing",
+     "name": "licensing",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of forgeknit"
+    },
+    {
+     "id": "forgeknit:kw:fabrication",
+     "name": "fabrication",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of forgeknit"
+    },
+    {
+     "id": "forgeknit:kw:versioning",
+     "name": "versioning",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of forgeknit"
+    }
+   ],
+   "links": [
+    {
+     "source": "forgeknit:kw:open-hardware",
+     "target": "forgeknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "forgeknit:kw:CAD",
+     "target": "forgeknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "forgeknit:kw:BOM",
+     "target": "forgeknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "forgeknit:kw:designs",
+     "target": "forgeknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "forgeknit:kw:provenance",
+     "target": "forgeknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "forgeknit:kw:licensing",
+     "target": "forgeknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "forgeknit:kw:fabrication",
+     "target": "forgeknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "forgeknit:kw:versioning",
+     "target": "forgeknit",
+     "rel": "concept-of"
+    }
+   ]
+  },
+  "harmonweave": {
+   "nodes": [
+    {
+     "id": "harmonweave",
+     "name": "harmonweave",
+     "color": "#8e44ad",
+     "val": 14,
+     "group": "Culture & craft",
+     "desc": "music collaboration & rights"
+    },
+    {
+     "id": "harmonweave:kw:music",
+     "name": "music",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of harmonweave"
+    },
+    {
+     "id": "harmonweave:kw:collaboration",
+     "name": "collaboration",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of harmonweave"
+    },
+    {
+     "id": "harmonweave:kw:rights",
+     "name": "rights",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of harmonweave"
+    },
+    {
+     "id": "harmonweave:kw:royalties",
+     "name": "royalties",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of harmonweave"
+    },
+    {
+     "id": "harmonweave:kw:stems",
+     "name": "stems",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of harmonweave"
+    },
+    {
+     "id": "harmonweave:kw:provenance",
+     "name": "provenance",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of harmonweave"
+    },
+    {
+     "id": "harmonweave:kw:licensing",
+     "name": "licensing",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of harmonweave"
+    },
+    {
+     "id": "harmonweave:kw:attribution",
+     "name": "attribution",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of harmonweave"
+    }
+   ],
+   "links": [
+    {
+     "source": "harmonweave:kw:music",
+     "target": "harmonweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "harmonweave:kw:collaboration",
+     "target": "harmonweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "harmonweave:kw:rights",
+     "target": "harmonweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "harmonweave:kw:royalties",
+     "target": "harmonweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "harmonweave:kw:stems",
+     "target": "harmonweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "harmonweave:kw:provenance",
+     "target": "harmonweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "harmonweave:kw:licensing",
+     "target": "harmonweave",
+     "rel": "concept-of"
+    },
+    {
+     "source": "harmonweave:kw:attribution",
+     "target": "harmonweave",
+     "rel": "concept-of"
+    }
+   ]
+  },
+  "geoknit": {
+   "nodes": [
+    {
+     "id": "geoknit",
+     "name": "geoknit",
+     "color": "#8e44ad",
+     "val": 14,
+     "group": "Culture & craft",
+     "desc": "collaborative geospatial maps"
+    },
+    {
+     "id": "geoknit:kw:geospatial",
+     "name": "geospatial",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of geoknit"
+    },
+    {
+     "id": "geoknit:kw:maps",
+     "name": "maps",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of geoknit"
+    },
+    {
+     "id": "geoknit:kw:OSM-like",
+     "name": "OSM-like",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of geoknit"
+    },
+    {
+     "id": "geoknit:kw:geohash",
+     "name": "geohash",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of geoknit"
+    },
+    {
+     "id": "geoknit:kw:provenance",
+     "name": "provenance",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of geoknit"
+    },
+    {
+     "id": "geoknit:kw:layers",
+     "name": "layers",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of geoknit"
+    },
+    {
+     "id": "geoknit:kw:crowdsourced",
+     "name": "crowdsourced",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of geoknit"
+    },
+    {
+     "id": "geoknit:kw:versioning",
+     "name": "versioning",
+     "color": "#5a6b80",
+     "val": 4,
+     "group": "keyword",
+     "desc": "key concept of geoknit"
+    }
+   ],
+   "links": [
+    {
+     "source": "geoknit:kw:geospatial",
+     "target": "geoknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "geoknit:kw:maps",
+     "target": "geoknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "geoknit:kw:OSM-like",
+     "target": "geoknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "geoknit:kw:geohash",
+     "target": "geoknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "geoknit:kw:provenance",
+     "target": "geoknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "geoknit:kw:layers",
+     "target": "geoknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "geoknit:kw:crowdsourced",
+     "target": "geoknit",
+     "rel": "concept-of"
+    },
+    {
+     "source": "geoknit:kw:versioning",
+     "target": "geoknit",
+     "rel": "concept-of"
+    }
+   ]
   }
  },
  "search_index": [
@@ -1556,6 +4366,126 @@
    "repo": "news",
    "kind": "vision",
    "text": "Knitweb is a living system: records are Knit into the Web, Fibers settle in the ledger, and PLS is minted only as demand-gated reward for verified-useful-work, all paced by the Pulse heartbeat. A system that mints money for work owes its participants an honest, legible account of how it evolves. The vision for news is a durable, citable, append-mostly record of that evolution — releases, protocol changes, security disclosures, and milestones — written so that a node operator, an auditor, a researcher, and a newcomer can each reconstruct what changed, when, and why without privileged access. Ne"
+  },
+  {
+   "id": "bioweave",
+   "repo": "bioweave",
+   "kind": "domain",
+   "text": "biology & taxonomy of life biology|taxonomy|species|genomics|phylogeny|ecology|provenance|open-data"
+  },
+  {
+   "id": "theoremgang",
+   "repo": "theoremgang",
+   "kind": "domain",
+   "text": "mathematics & formal proofs mathematics|proofs|lemmas|formal-verification|dependency-graph|Lean/Coq|citations|rigor"
+  },
+  {
+   "id": "citeweave",
+   "repo": "citeweave",
+   "kind": "domain",
+   "text": "research citations & provenance citations|papers|DOI|provenance|peer-review|replication|attribution|scholarly-graph"
+  },
+  {
+   "id": "veriweave",
+   "repo": "veriweave",
+   "kind": "domain",
+   "text": "prediction & truth markets prediction-market|claims|forecasting|resolution|dispute-window|oracle-free|reliability|staking"
+  },
+  {
+   "id": "gridweave",
+   "repo": "gridweave",
+   "kind": "domain",
+   "text": "peer-to-peer energy grid & trading energy|microgrid|P2P-trading|kWh|demand-response|settlement|prosumer|balancing"
+  },
+  {
+   "id": "carbonknit",
+   "repo": "carbonknit",
+   "kind": "domain",
+   "text": "carbon credits & sustainability carbon-credits|MRV|offsets|sequestration|registry|additionality|retirement|audit-trail"
+  },
+  {
+   "id": "ledgerweave",
+   "repo": "ledgerweave",
+   "kind": "domain",
+   "text": "open accounting & org ledgers accounting|double-entry|ledgers|invoices|audit|reconciliation|transparency|integer-money"
+  },
+  {
+   "id": "lexknit",
+   "repo": "lexknit",
+   "kind": "domain",
+   "text": "law & case-law precedent law|case-law|precedent|statutes|citations|jurisdiction|provenance|annotations"
+  },
+  {
+   "id": "factwire",
+   "repo": "factwire",
+   "kind": "domain",
+   "text": "journalism & fact-checking journalism|fact-check|sources|claims|verification|provenance|corrections|credibility"
+  },
+  {
+   "id": "trustweave",
+   "repo": "trustweave",
+   "kind": "domain",
+   "text": "identity & reputation graph identity|reputation|DID|personhood|web-of-trust|attestations|sybil-resistance|revocable"
+  },
+  {
+   "id": "patentweave",
+   "repo": "patentweave",
+   "kind": "domain",
+   "text": "patents & IP provenance patents|prior-art|claims|IP|provenance|priority-date|citations|novelty"
+  },
+  {
+   "id": "mediweave",
+   "repo": "mediweave",
+   "kind": "domain",
+   "text": "clinical knowledge (provenance-cited) clinical|evidence-based|guidelines|provenance-cited|ICD|contraindications|calibrated|privacy"
+  },
+  {
+   "id": "agriknit",
+   "repo": "agriknit",
+   "kind": "domain",
+   "text": "agriculture, crops & soil agriculture|crops|soil|yields|agronomy|sensors|provenance|sustainability"
+  },
+  {
+   "id": "faunaknit",
+   "repo": "faunaknit",
+   "kind": "domain",
+   "text": "animals & livestock — welfare & husbandry livestock|animal-welfare|herds|husbandry|breeding|veterinary|biodiversity|traceability"
+  },
+  {
+   "id": "kinknit",
+   "repo": "kinknit",
+   "kind": "domain",
+   "text": "genealogy & family trees genealogy|lineage|family-tree|records|provenance|privacy|kinship|attestation"
+  },
+  {
+   "id": "nutriknit",
+   "repo": "nutriknit",
+   "kind": "domain",
+   "text": "nutrition & food science nutrition|food-science|macros|ingredients|provenance|labels|health-claims|evidence"
+  },
+  {
+   "id": "lingogang",
+   "repo": "lingogang",
+   "kind": "domain",
+   "text": "languages & translation languages|dictionary|translation|multilingual|etymology|corpora|attestation|localization"
+  },
+  {
+   "id": "forgeknit",
+   "repo": "forgeknit",
+   "kind": "domain",
+   "text": "open hardware & CAD open-hardware|CAD|BOM|designs|provenance|licensing|fabrication|versioning"
+  },
+  {
+   "id": "harmonweave",
+   "repo": "harmonweave",
+   "kind": "domain",
+   "text": "music collaboration & rights music|collaboration|rights|royalties|stems|provenance|licensing|attribution"
+  },
+  {
+   "id": "geoknit",
+   "repo": "geoknit",
+   "kind": "domain",
+   "text": "collaborative geospatial maps geospatial|maps|OSM-like|geohash|provenance|layers|crowdsourced|versioning"
   }
  ],
  "repos": [
