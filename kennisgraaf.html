@@ -135,9 +135,10 @@ async function lensQuery(query) {
     const srcs = (d.citations || d.sources || [])                      // citations are objects
       .map(c => (typeof c === 'string' ? c : (c.source_uri || c.source_id || c.node_id || '')))
       .filter(Boolean);
-    const rel = d.reliability && (d.reliability.label || d.reliability.score);
+    const R = d.reliability || {};
+    const rel = R.status ? (R.status + (R.confidence != null ? ' · vertrouwen ' + R.confidence : '') + (R.abstained ? ' · onthouden' : '')) : '';
     pbody.innerHTML = `<div class="ans">${esc(ans)}</div>` +
-      (rel ? `<div class="src">betrouwbaarheid: ${esc(String(rel))}</div>` : '') +
+      (rel ? `<div class="src">Lens: ${esc(rel)}${R.reason ? ' — ' + esc(R.reason) : ''}</div>` : '') +
       (srcs.length ? `<div class="src">bronnen: ${srcs.map(esc).join(' · ')}</div>` : '');
     // highlight cited repos if any match
     const reposCited = DATA.core.nodes.filter(n => srcs.some(s => String(s).toLowerCase().includes(n.id.toLowerCase()))).map(n => n.id);
