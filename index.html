@@ -1,0 +1,1509 @@
+<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>KnitWeb — Whitepaper · knitweb/pulse</title><style>:root{color-scheme:light dark}body{font:16px/1.65 -apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;max-width:880px;margin:0 auto;padding:2.5rem 1.4rem 6rem;color:#1a1a1a;background:#fff}@media(prefers-color-scheme:dark){body{color:#e6e6e6;background:#15171a}a{color:#6fb3ff}code,pre,th{background:#22262b!important}hr{border-color:#333}.nav,.toc{background:#1c1f23!important;border-color:#333!important}}h1{font-size:1.9rem;line-height:1.25;border-bottom:2px solid #ddd;padding-bottom:.3em;margin-top:1.6em}h2{font-size:1.4rem;border-bottom:1px solid #eee;padding-bottom:.2em;margin-top:1.8em}h3{font-size:1.15rem;margin-top:1.5em}code{font:13.5px/1.5 ui-monospace,Menlo,Consolas,monospace;background:#f3f4f6;padding:.15em .35em;border-radius:4px}pre{background:#f6f8fa;padding:1rem;border-radius:8px;overflow:auto;border:1px solid #e5e7eb}pre code{background:none;padding:0}table{border-collapse:collapse;width:100%;margin:1.2em 0;font-size:14.5px;display:block;overflow:auto}th,td{border:1px solid #d0d7de;padding:6px 11px;text-align:left;vertical-align:top}th{background:#f3f4f6}blockquote{border-left:4px solid #d0d7de;margin:1em 0;padding:.2em 1em;color:#57606a}.nav{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(6px);margin:-2.5rem -1.4rem 1.5rem;padding:.6rem 0 .6rem 1.4rem;border-bottom:1px solid #e5e7eb;font-size:14px}.toc{background:#f6f8fa;border:1px solid #e5e7eb;border-radius:8px;padding:.6em 1.4em;margin:1.5em 0}</style></head><body><div class="nav">📄 <strong>KnitWeb</strong> — Whitepaper · <a href="https://github.com/Knitweb">github.com/Knitweb</a></div><h1 id="knitweb-a-knowledge-graph-peer-to-peer-weave-no-blocks-no-hashgraph">KnitWeb: A Knowledge-Graph Peer-to-Peer Weave (No Blocks, No Hashgraph)</h1><div class="toc" style="border-left:4px solid #ff8c00"><strong>2026 reconciliation note.</strong> This whitepaper is from the original KnitWeb companion series. In the current <strong>knitweb/pulse</strong> implementation the terminology has settled: the value unit is <strong>PLS</strong> (formerly framed as “AGT”), minted <em>only</em> as a demand-gated reward for <strong>Proof-of-Useful-Work</strong> and epoch-bound to the <strong>Pulse</strong> heartbeat — the weave/Web layer itself still introduces no coin; PLS is minted at the work/settlement layer. The peer-to-peer mesh is the <strong>knitweb mesh</strong>; settlement is the integer <strong>Braid / Knit / Fiber</strong> ledger; reasoning is <strong>Lens</strong>; governance is <strong>vBank</strong>; Sybil-resistance is <strong>personhood</strong>. Canonical vocabulary: <em>Web · Knit · Pulse · Fiber · knitweb</em>.</div>
+<p><strong>Author:</strong> E. Hauwert, VirtualV Holding B.V.
+<strong>Date:</strong> 2026-06-16
+<strong>Version:</strong> v0.1
+<strong>Part of the original KnitWeb companion series.</strong> In the current <strong>knitweb/pulse</strong> implementation the value unit is <strong>PLS</strong> — see the reconciliation note below.</p>
+<h2 id="abstract">Abstract</h2>
+<p>A peer-to-peer knowledge commons needs a data structure to hold the graph that its participants collaboratively fill and share. This paper argues that the right structure is a <strong>weave</strong> — a two-dimensional woven fabric of append-only, content-addressed strands — and explicitly <strong>not</strong> a blockchain (W1, W11) and <strong>not</strong> a hashgraph (W2). KnitWeb is the fabric underneath KnitNet (#4): <strong>warp threads</strong> are stable axes (entities, topics, schemas, authorities), <strong>weft picks</strong> are provenance-bearing assertions woven across them, and <strong>interlacements</strong> are the content-addressed crossings that are the unit of structural sharing and dedup (W4). The fabric is a state-based CRDT: peers reconcile by monotone union plus content-address dedup of strands, converging on identical structure with <strong>no leader, no quorum, and no virtual voting</strong> (W3). Order is total <em>within</em> a strand and partial <em>across</em> strands (W10, W12) — by design, because knowledge is multi-authored, partially ordered, and contradiction-tolerant. Crucially, structural convergence is not semantic agreement: contradictory picks coexist, each carrying PROV-O provenance (W5) and a <code>[0,1]</code> credence, weighed by SHACL validation (W6) and KnitNet reputation/dispute (W8), never forked or voted away. Value and finality stay on MeshLattice's block-lattice (#3); the weave is for knowledge.</p>
+<h2 id="1-introduction">1. Introduction</h2>
+<p>A peer-to-peer <strong>knowledge commons</strong> — many independent agents collaboratively asserting, sourcing, contradicting, and refining facts — is not a ledger of value. Yet the dominant decentralised data structures were all designed to be ledgers of value, and they carry that design's assumptions with them. Before choosing one for knowledge, it is worth asking what knowledge actually <em>is</em> as a data structure, and whether those assumptions fit.</p>
+<h3 id="11-a-knowledge-commons-needs-a-data-structure">1.1 A knowledge commons needs a data structure</h3>
+<p>KnitNet (#4) defines an economy of Knowledge Assets and proof-of-knowledge, but an economy needs a substrate: the actual graph that participants fill and share, and the rules by which two peers who have never met reconcile their copies of it. That substrate is what this paper specifies. It must let any agent append an assertion at any time, let those assertions reference shared entities and schemas, dedup identical contributions made independently, and let two peers exchange and merge sub-graphs and provably end up holding the same thing — all without a coordinator. The substrate is a <em>structure-and-merge</em> problem, distinct from KnitNet's <em>value-and-trust</em> problem layered on top of it.</p>
+<h3 id="12-the-thesis-a-weave-not-a-chain-or-an-event-dag">1.2 The thesis: a weave, not a chain or an event-DAG</h3>
+<p>A <strong>blockchain</strong> (W1) imposes a single global total order with objective finality; a <strong>block-lattice</strong> (W11) relaxes this to one total-ordered chain per account, still with finality. A <strong>hashgraph</strong> (W2) builds a global total order and deterministic finality over an event-DAG via gossip-about-gossip and virtual voting. All three are, at heart, machines for manufacturing <strong>agreement on order</strong> so that value cannot fork. That is exactly the right primitive for money and exactly the wrong primitive for knowledge.</p>
+<p>We argue the right structure for a knowledge commons is a <strong>weave</strong>: a two-dimensional fabric of append-only, content-addressed strands (W4, W10), woven from two kinds of thread.</p>
+<ul>
+<li><strong>Warp threads</strong> are the stable axes — persistent entities, topics, schemas, and authorities — the long-lived, content-addressed identifiers across which knowledge is laid.</li>
+<li><strong>Weft picks</strong> are the assertions woven <em>across</em> the warps: each pick is a provenance-bearing statement (an RDF triple/quad, W7) linking warps, carrying PROV-O provenance (W5) and a <code>[0,1]</code> credence. A KnitNet Knowledge Asset (#4) is a bundle of weft picks.</li>
+<li><strong>Interlacements (knots)</strong> are the content-addressed points where a weft crosses a warp — the atomic unit of structural sharing and dedup, deterministically named so two peers independently mint the same knot.</li>
+</ul>
+<p>The whole fabric is the union of all threads and interlacements; that union <strong>is</strong> the knowledge graph. Because every primitive is keyed by a CID over its canonical bytes, two peers reconcile by <strong>set union plus content-address dedup</strong> — the fabric is a join-semilattice and a state-based CRDT (W3): merge is commutative, associative, idempotent, and monotone. Peers therefore converge on byte-identical structure <strong>with no leader, no quorum, and no virtual voting</strong> — the deliberate difference from chains (W1, W11) and hashgraph (W2).</p>
+<h3 id="13-knowledge-is-partially-ordered-and-contradiction-tolerant">1.3 Knowledge is partially ordered and contradiction-tolerant</h3>
+<p>The mismatch between value-ledgers and knowledge is not incidental; it is structural.</p>
+<ul>
+<li><strong>Knowledge is multi-authored and partially ordered.</strong> Two agents asserting unrelated facts at the same time are not competing for a slot in a global sequence; their statements are simply <em>incomparable</em>. Causal order matters <em>within</em> a line of derivation — and the weave preserves it via per-strand append-only links and Lamport happens-before (W10, W12) — but forcing all facts into one canonical history is invented coordination that knowledge does not need and that acts as a centralising pressure.</li>
+<li><strong>Knowledge is contradiction-tolerant.</strong> A double-spend must be rejected; a <em>disputed fact</em> must not be. Two sources that disagree are a normal, information-bearing state of a knowledge graph, not an error to be resolved by picking a winning branch. The weave therefore lets contradictory weft picks <strong>coexist</strong>, each with its own provenance and credence.</li>
+</ul>
+<p>This forces a sharp distinction the rest of the paper develops: <strong>structural convergence is not semantic agreement.</strong> Everyone eventually holding the same fabric does not mean they agree on what is true. Conflicts are <strong>weighed, not erased</strong> — by credence, by SHACL validation-by-replay (W6), and by KnitNet's stake-plus-reputation dispute mechanism (time-decayed EigenTrust, W8) — and never by forking the fabric or voting a fact away. Sybil and abuse resistance comes from KnitNet (#4), not from the weave structure: <strong>KnitWeb adds no new token and no new consensus.</strong> Where an application genuinely needs total order or objective finality — token transfers, irreversible commitments — it uses MeshLattice's block-lattice (#3). Value and finality stay on the ledger; knowledge lives on the weave; the two compose over the same knitweb mesh transport and PLS/DID identity (#1, W9).</p>
+<h3 id="14-contributions">1.4 Contributions</h3>
+<p>This paper makes the following contributions.</p>
+<ul>
+<li><strong>The WEAVE data model.</strong> A formal two-dimensional fabric of append-only, content-addressed strands — warp threads, weft picks, and interlacements — as the data structure underneath KnitNet (#4), with canonical schemas for each primitive (§2.1–§2.2).</li>
+<li><strong>Convergence without consensus.</strong> A proof-shaped treatment of the fabric as a state-based CRDT (W3): merge by CID-keyed set union and dedup is commutative, associative, idempotent, and monotone, yielding byte-identical convergence with no leader, quorum, or virtual voting (§2.3).</li>
+<li><strong>An explicit order model.</strong> Total order <em>within</em> a strand (append-only, hash-linked, Lamport-clocked; W10, W12) and partial order <em>across</em> strands — and a precise statement of what KnitWeb deliberately does <strong>not</strong> provide: no total order over the fabric, no objective finality on facts, no consensus-on-order (§2.3).</li>
+<li><strong>Truth ≠ structure.</strong> A model in which contradictory picks coexist with PROV-O provenance (W5) and <code>[0,1]</code> credence, weighed by SHACL validation (W6) and KnitNet reputation/dispute (W8) rather than resolved by the weave (§2.4).</li>
+<li><strong>A three-way comparison</strong> of blockchain (W1, W11), hashgraph (W2), and KnitWeb across order, finality, multi-author support, contradiction-tolerance, consensus mechanism, and what each sacrifices (§2.5).</li>
+<li><strong>A clean separation of concerns:</strong> knowledge on the KnitWeb weave, value and finality on MeshLattice's block-lattice (#3), composing over a shared knitweb mesh transport and PLS/DID identity (#1, W9) without either layer imposing its ordering on the other (§2.6).</li>
+</ul>
+<h2 id="2-background">2. Background</h2>
+<p>This section reviews the data structures and ordering primitives that an open, multi-author knowledge graph might be built on, and what each one <em>provides</em> versus what it <em>costs</em> when the goal is collaboratively filling and sharing a knowledge graph rather than moving value. The contrast frames the KnitWeb design decision (Section 3 onward): knowledge is partially ordered, multi-authored, and contradiction-tolerant, so the primitives that buy a <em>single canonical history</em> are buying the wrong thing.</p>
+<h3 id="21-blockchains-a-single-global-total-order-with-finality">2.1 Blockchains: a single global total order with finality</h3>
+<p>A blockchain in the Nakamoto sense (W1) is a <strong>1-D chain of blocks</strong>: each block hash-links to its predecessor, and a consensus rule (proof-of-work in W1, proof-of-stake and others since) selects, among competing forks, one canonical chain. The output is a <strong>global total order</strong> over all committed transactions plus <strong>objective finality</strong>: once a transaction is buried sufficiently deep, all honest participants treat it as irreversible, and a contradicting transaction (a double-spend) is by construction <em>invalid</em> — exactly one branch survives and the other is discarded.</p>
+<ul>
+<li><strong>Provides.</strong> A single agreed history; no-double-spend; tamper-evidence via hash-linking; a definite "this happened, in this position" answer for every transaction.</li>
+<li><strong>Costs for a knowledge graph.</strong> The defining strengths are liabilities for knowledge. Writers are <strong>serialized</strong> into one history, which is a centralizing pressure and a throughput bottleneck. Forks must be <em>resolved away</em> — but contradiction between two assertions is the normal, desirable state of a knowledge commons, not an error to be pruned. There is <strong>no native multi-author concurrency</strong> and <strong>no contradiction-tolerance</strong>: the structure cannot represent "A says X, B says ¬X, both stand with provenance and credence." Imposing a total order on facts answers a question — <em>which fact came first?</em> — that knowledge curation rarely needs.</li>
+</ul>
+<h3 id="22-block-lattice-per-account-total-order">2.2 Block-lattice: per-account total order</h3>
+<p>Nano's block-lattice (W11) refines the chain into <strong>one chain per account</strong>: each account owns and extends its own ledger, and a transfer is a send-block on the sender's chain matched by a receive-block on the receiver's chain. Ordering becomes <strong>per-account total</strong> rather than globally total, removing the single-writer bottleneck; cross-account agreement (which send pairs with which receive, and which of two conflicting blocks on the <em>same</em> account wins) is reached by Open Representative Voting — a stake-weighted vote among delegated representatives (W11).</p>
+<ul>
+<li><strong>Provides.</strong> Parallel, per-writer append (each account writes its own chain independently); still <strong>objective finality</strong> on transfers, via the representative vote that picks a winner whenever an account double-signs.</li>
+<li><strong>Costs for a knowledge graph.</strong> The block-lattice shows that <em>per-writer</em> append-only chains compose well — a structural idea KnitWeb reuses at the strand level. But it still resolves conflicts by <strong>voting one block away</strong> to keep each account's chain a single line with finality. For a knowledge graph that is the wrong primitive twice over: assertions are not owned by one account-chain, and conflicting assertions must <strong>coexist</strong>, not be voted out. The lattice keeps the value-ledger requirement (one winner, finality) that knowledge does not want.</li>
+</ul>
+<h3 id="23-hashgraph-total-order-via-gossip-about-gossip-and-virtual-voting">2.3 Hashgraph: total order via gossip-about-gossip and virtual voting</h3>
+<p>Hashgraph (W2) reaches consensus without an explicit chain. Each participant records <em>events</em>, every event hash-links to two parents — the participant's own previous event and the last event received from a peer — and these events spread by <strong>gossip-about-gossip</strong>: peers exchange not just transactions but the history of <em>who told whom, and when</em>. Propagation is <strong>randomized pairwise gossip</strong> — each node periodically syncs with a random peer — so the gossip-about-gossip history spreads epidemically and reaches all nodes in O(log n) rounds, not by any all-to-all message pattern. From this gossip history every node can locally reconstruct what every other node would have seen and run <strong>virtual voting</strong> — computing the votes other nodes <em>would</em> have cast without sending any vote messages. The result is a <strong>total order over all events</strong> with deterministic, Byzantine-fault-tolerant <strong>finality</strong> (W2).</p>
+<ul>
+<li><strong>Provides.</strong> A globally consistent total order and fast deterministic finality on every event, with low per-decision message overhead (votes are inferred, not transmitted).</li>
+<li><strong>Costs for a knowledge graph.</strong> Hashgraph still delivers the very thing a knowledge commons should <em>not</em> want: a single ordered history with finality on every event. It is a <strong>1-D-per-participant event-DAG</strong> whose purpose is to collapse to one sequence. The cost is not fan-out — KnitWeb gossips pairwise too — but the <strong>metadata and voting machinery</strong> that the total order demands: every event must carry two parent hashes plus the gossip-about-gossip history needed to run virtual voting, overhead spent purely to manufacture order and finality. And, as with blockchains, it offers no representation for contradictory assertions coexisting with provenance and credence. Ordering and finality are computed at cost, then thrown at a problem (knowledge) that is partially ordered by nature.</li>
+</ul>
+<h3 id="24-crdts-and-join-semilattices-convergence-without-consensus">2.4 CRDTs and join-semilattices: convergence without consensus</h3>
+<p>Conflict-free Replicated Data Types (W3) provide a different guarantee entirely. In a <strong>state-based CRDT</strong> (CvRDT), each replica holds a state drawn from a <strong>join-semilattice</strong>, and replicas reconcile by repeatedly applying the lattice <strong>join</strong> (least-upper-bound, <code>⊔</code>) of their states. The join is <strong>commutative, associative, and idempotent</strong>, and on a join-semilattice these properties characterize the least-upper-bound: replicas that have observed the same set of updates converge to <strong>identical state regardless of message order, duplication, or delay</strong> — with <strong>no leader, no quorum, and no voting</strong> (W3). <strong>Monotonicity follows</strong>: on a join-semilattice the join is <em>inflationary</em> (<code>F ⊑ F ⊔ F'</code> for all states), so merging only ever moves a replica <em>up</em> the lattice — state grows, never silently shrinks. It is not an extra axiom layered on top of the three; it is a consequence of the lattice structure. (In KnitWeb this is the grow-only, no-deletion property: retraction is modelled as a further assertion, not as removal.) Crucially, CRDTs deliver <strong>convergence of structure</strong> while deliberately <em>not</em> establishing any total order over the updates.</p>
+<ul>
+<li><strong>Provides.</strong> Eventual, deterministic convergence under arbitrary network behaviour; native multi-writer concurrency; no consensus protocol, no finality machinery.</li>
+<li><strong>Costs / limits for a knowledge graph.</strong> A CRDT guarantees that replicas hold the <em>same</em> state — it does <strong>not</strong> adjudicate which assertions are <em>true</em>. Structural convergence is necessary but not sufficient: meaning, contradiction, and trust must be layered on top (in KnitWeb: PROV-O provenance, credence, SHACL validation, and KnitNet curation). This is precisely the right trade for knowledge — pay nothing for ordering you do not need, and handle truth as a separate, explicit concern.</li>
+</ul>
+<h3 id="25-content-addressing-and-merkle-dags">2.5 Content-addressing and Merkle DAGs</h3>
+<p>Content-addressing identifies an object by a cryptographic hash of its bytes rather than by location or name. IPFS/IPLD (W4) generalize this into a <strong>Merkle DAG</strong>: objects reference one another by hash, so any object's identifier transitively commits to its entire dependency closure. Two consequences matter here. First, <strong>identity is content</strong> — equal content yields one identifier, so independently produced copies of the same object <strong>deduplicate</strong> automatically. Second, references are <strong>tamper-evident</strong>: changing any byte changes the hash and breaks every link that pointed at the old version.</p>
+<ul>
+<li><strong>Provides.</strong> Global dedup, structural sharing of common sub-structure, verifiable integrity, and cheap diff/reconcile via Merkle roots (compare roots; descend only where they differ).</li>
+<li><strong>Use for a knowledge graph.</strong> Content-addressing is the <em>key space</em> that makes CRDT merge (Section 2.4) trivially correct: if elements are keyed by a content identifier, set union performs dedup for free and the join is exact. It supplies the addressing layer; it does not by itself say how strands are ordered or how truth is weighed.</li>
+</ul>
+<h3 id="26-append-only-feeds-per-author-signed-logs">2.6 Append-only feeds: per-author signed logs</h3>
+<p>Secure Scuttlebutt (W10) models each identity as a single <strong>append-only, signed, hash-linked feed</strong>: every message carries the hash of the previous message on that author's feed and is signed by that author's key. This yields a <strong>per-author total order</strong> that is cryptographically verifiable — any gap, reordering, or edit is detectable, because it breaks the hash chain or the signature.</p>
+<ul>
+<li><strong>Provides.</strong> Tamper-evident, attributable, totally-ordered <em>per author</em>; partial replication (a peer can hold some feeds and not others) and offline-first operation.</li>
+<li><strong>Use for a knowledge graph.</strong> Append-only feeds give the <strong>per-strand</strong> building block: a single author's strand is a verifiable, totally-ordered log. They say nothing about ordering <em>across</em> authors — which is exactly the freedom a multi-author knowledge graph needs, and which CRDT merge then reconciles structurally without imposing a global sequence.</li>
+</ul>
+<h3 id="27-causal-order-and-logical-clocks">2.7 Causal order and logical clocks</h3>
+<p>Lamport (W12) established that distributed events admit a <strong>partial order</strong> — <em>happens-before</em> — defined by causality: within one process events are ordered by their sequence, and a send happens-before its matching receive; events on different processes with no such causal path are <strong>concurrent</strong> and <strong>incomparable</strong>. Logical (Lamport) clocks assign each event a counter consistent with this partial order, and the partial order can be <em>extended</em> to a total order if an application needs one — but doing so requires an arbitrary tie-breaking rule and discards the information that the events were genuinely concurrent.</p>
+<ul>
+<li><strong>Provides.</strong> A principled, message-driven notion of order — total <em>within</em> a process, partial <em>across</em> processes — with cheap logical timestamps and no global clock.</li>
+<li><strong>Use for a knowledge graph.</strong> Lamport's distinction is the conceptual backbone of the design: <strong>within</strong> a strand, causality gives a true total order (matching the append-only feed of Section 2.6); <strong>across</strong> strands, concurrent assertions are incomparable and should <em>stay</em> that way. Blockchains, block-lattice, and hashgraph all spend effort to extend this partial order into a total one with finality. A knowledge graph should <strong>not</strong> pay that cost: the partial order is not a deficiency to be eliminated but the correct model of a multi-authored, contradiction-tolerant commons.</li>
+</ul>
+<h3 id="28-summary-what-each-primitive-provides-and-costs-for-a-knowledge-graph">2.8 Summary: what each primitive provides and costs for a knowledge graph</h3>
+<table>
+<thead>
+<tr>
+<th>Primitive</th>
+<th>Order it gives</th>
+<th>Finality</th>
+<th>Multi-author</th>
+<th>Contradiction-tolerant</th>
+<th>Net fit for a knowledge graph</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Blockchain</strong> (W1)</td>
+<td>Global total</td>
+<td>Objective</td>
+<td>Serialized to one history</td>
+<td>No (forks resolved away)</td>
+<td>Wrong primitive: buys a single canonical history knowledge does not want</td>
+</tr>
+<tr>
+<td><strong>Block-lattice</strong> (W11)</td>
+<td>Per-account total</td>
+<td>Objective (via ORV vote)</td>
+<td>Per-account chains</td>
+<td>No (conflicts voted away)</td>
+<td>Reusable idea (per-writer chains); still votes conflicts out</td>
+</tr>
+<tr>
+<td><strong>Hashgraph</strong> (W2)</td>
+<td>Global total</td>
+<td>Objective, deterministic BFT</td>
+<td>One ordered history</td>
+<td>No</td>
+<td>Wrong primitive: total order + finality via gossip-about-gossip metadata + virtual voting</td>
+</tr>
+<tr>
+<td><strong>CRDT / join-semilattice</strong> (W3)</td>
+<td>None imposed (convergent state)</td>
+<td>None</td>
+<td>Native</td>
+<td>Yes (at structural level)</td>
+<td>Core merge primitive: convergence without consensus</td>
+</tr>
+<tr>
+<td><strong>Content-addressing / Merkle DAG</strong> (W4)</td>
+<td>n/a (addressing)</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>Key space enabling exact dedup + verifiable diff</td>
+</tr>
+<tr>
+<td><strong>Append-only feed</strong> (W10)</td>
+<td>Per-author total</td>
+<td>n/a</td>
+<td>Per-author logs</td>
+<td>n/a</td>
+<td>Per-strand building block: verifiable, attributable log</td>
+</tr>
+<tr>
+<td><strong>Causal / Lamport order</strong> (W12)</td>
+<td>Within-process total; across-process partial</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>The right order model: total within strand, partial across</td>
+</tr>
+</tbody>
+</table>
+<p>The pattern is consistent: blockchains, the block-lattice, and hashgraph each invest substantial machinery to manufacture a <strong>single totally-ordered history with finality</strong> (W1, W11, W2) — the correct primitive for <em>value</em>, where double-spends must be impossible and exactly one history must win. A knowledge graph has the opposite shape: it is multi-authored, partially ordered, and tolerant of standing contradiction. The remaining ingredients — CRDT join over a content-addressed key space (W3, W4), per-author append-only feeds (W10), and Lamport's within/across distinction (W12) — compose into convergence <em>without</em> consensus on order, leaving truth to be weighed explicitly rather than decided by the structure. That composition is the KnitWeb weave.</p>
+<p>This is a self-contained academic authoring task. The content is fully specified in the brief and reference list, so I'll write the section directly per the canonical spec.</p>
+<h2 id="3-why-neither-a-block-nor-a-hashgraph-for-knowledge">3. Why Neither a Block nor a Hashgraph for Knowledge</h2>
+<p>This section argues, from the nature of knowledge itself, that the two canonical decentralized-ordering primitives — the blockchain (total order + objective finality, W1, W11) and the hashgraph (total order + finality via gossip-about-gossip and virtual voting, W2) — are the <strong>wrong primitives for a knowledge commons</strong>. The argument is not that these mechanisms are flawed; on their own terrain — <em>value</em> — they are exactly right, and KnitWeb delegates that terrain to them (§2.6, #3). The claim is narrower and structural: knowledge is <strong>partially ordered, multi-authored, and contradiction-tolerant</strong>, and imposing a single canonical history or global finality on facts is at best unnecessary overhead and at worst an actively centralizing, knowledge-destroying constraint.</p>
+<h3 id="31-what-a-knowledge-commons-actually-requires">3.1 What a knowledge commons actually requires</h3>
+<p>A knowledge graph is not a ledger of transactions; it is an open, growing body of <strong>assertions</strong> authored concurrently by many parties who need not agree. Three properties are intrinsic to it, and each is in direct tension with consensus-on-order.</p>
+<table>
+<thead>
+<tr>
+<th>Property of knowledge</th>
+<th>What it means</th>
+<th>What an ordering consensus does to it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Partially ordered</strong></td>
+<td>Most assertions are <em>causally independent</em>: "slag batch H2-2026 has pH 9.1" and "EigenTrust is time-decayed" stand in no happens-before relation. Only derivation (<code>prov:wasDerivedFrom</code>) and within-source revision are genuinely ordered.</td>
+<td>A blockchain (W1) or hashgraph (W2) computes a <strong>total order over all events</strong>, manufacturing a sequence between facts that have no real ordering relation — pure overhead with no semantic content.</td>
+</tr>
+<tr>
+<td><strong>Multi-authored</strong></td>
+<td>Many peers assert about the same warp simultaneously, in good faith, without coordination. There is no single writer and no canonical author of "the truth about" an entity.</td>
+<td>Both primitives serialize writers into <strong>one canonical history</strong>; concurrent assertions are forced through a single ordered timeline, and "who got there first" becomes load-bearing where it should be irrelevant.</td>
+</tr>
+<tr>
+<td><strong>Contradiction-tolerant</strong></td>
+<td>Two well-sourced assertions can disagree ("pH 9.1" vs. "pH 8.7"), and the commons must <strong>hold both</strong> with provenance and credence until evidence, replay, or dispute resolves them (§2.4). Disagreement is information, not corruption.</td>
+<td>A total-order ledger admits <strong>one history</strong>: a fork or double-write is <em>invalid</em>, one branch wins and the other is erased. Contradiction is modelled as fault, so the commons cannot represent its most common and useful state — open disagreement.</td>
+</tr>
+</tbody>
+</table>
+<p>A consensus protocol exists to answer one question: <em>in what single order did these events happen, and which is final?</em> For value that question is essential (§3.4). For knowledge it is <strong>mostly meaningless</strong> — there is no single order — and where it is meaningful (within a source, by derivation) it is already captured <em>locally</em> by the append-only, hash-linked strand (§2.1, W10, W12) without any global agreement.</p>
+<h3 id="32-against-the-blockchain-total-order-finality-on-facts-is-the-wrong-primitive">3.2 Against the blockchain: total order + finality on facts is the wrong primitive</h3>
+<p>A blockchain (W1) — and equally a block-lattice such as Nano's per-account chains with representative-voted finality (W11) — provides a <strong>globally (or per-account) total order with objective finality</strong>. Three consequences make this a poor fit for a knowledge commons.</p>
+<ol>
+<li>
+<p><strong>Manufactured order is overhead, not information.</strong> To place independent assertions into one chain (W1) or to settle each account's chain head (W11), the protocol must run leader election, proof-of-work/stake, or representative voting. That machinery's entire output is <em>an order</em> — precisely the artefact a knowledge graph does not need across threads (§3.1). The cost (block production, voting rounds, confirmation latency) is paid to produce a serialization that carries no semantic value for facts.</p>
+</li>
+<li>
+<p><strong>Objective finality on facts is undesirable.</strong> Finality means <em>irreversible</em>. But a knowledge claim should <strong>never</strong> be structurally irreversible: new measurement, a failed SHACL replay (W6), or a successful dispute (#4) must be able to contradict, supersede, or re-weight it at any time (§2.3.3, §2.4). A primitive whose defining feature is "this is now permanent and one-history-true" is in direct conflict with the epistemics of a commons that is meant to <em>revise</em>. KnitWeb instead retracts via a <code>prov:wasInvalidatedBy</code> weft pick — monotone addition, never deletion (§2.3.1).</p>
+</li>
+<li>
+<p><strong>One canonical history is a centralizing pressure.</strong> A single agreed history requires the network to converge on <em>who decides the order</em>: miners, stakers, or elected representatives (W1, W11). Whoever controls ordering controls which assertions enter and in what sequence — a chokepoint and a gatekeeper. An open, contradiction-tolerant commons must let any peer weave a pick and let conflicts coexist; routing every fact through an ordering authority reintroduces exactly the central control the suite is built to avoid.</p>
+</li>
+</ol>
+<p>In short, the blockchain optimizes for the property knowledge least needs (a single irreversible order) and pays for it with the properties knowledge most needs (openness, partial order, contradiction-tolerance).</p>
+<h3 id="33-against-the-hashgraph-virtual-voting-still-produces-the-wrong-artefact">3.3 Against the hashgraph: virtual voting still produces the wrong artefact</h3>
+<p>The hashgraph (W2) is more efficient and more elegant than chain-based consensus: peers exchange events via <strong>gossip-about-gossip</strong>, and each peer computes a <strong>total order and finality by virtual voting</strong> — inferring how others would have voted from the shared event-DAG, with no actual vote messages. It is an excellent consensus algorithm. But for a knowledge commons it is the right machine aimed at the wrong target.</p>
+<ul>
+<li><strong>The output is still a single total order with finality</strong> — exactly the artefact §3.1–§3.2 showed is undesirable for facts. A more efficient route to the wrong primitive is still the wrong primitive. Virtual voting buys cheap <em>agreement on order</em>; a knowledge commons does not want agreement on order, it wants <strong>coexistence with provenance</strong>.</li>
+<li><strong>It assumes a single shared history is the goal.</strong> Hashgraph's correctness rests on every participant converging to one ordered, final sequence of events (W2). Knowledge has no such canonical sequence to converge to; the assumption that finality is even desirable does not hold for revisable, multi-authored assertions (§3.1).</li>
+<li><strong>Gossip-about-gossip is a 1-D-per-account event-DAG</strong>, not a woven fabric. It orders <em>events</em>; KnitWeb shares <em>structure</em>. Two KnitWeb peers do not need to agree on the order in which picks were gossiped — only to hold the <strong>same set</strong> of content-addressed strands, which set-union + CID dedup achieves directly (§2.3.1, W3, W4) with no DAG of events, no famous-witness computation, and no virtual election.</li>
+</ul>
+<p>The contrast is sharpest here: hashgraph and KnitWeb both avoid heavyweight leaders and both achieve deterministic convergence, but hashgraph converges on an <strong>order of events</strong> (a total sequence) while KnitWeb converges on a <strong>state</strong> (a set of facts). For knowledge, the state is the goal and the order is an artefact.</p>
+<h3 id="34-where-order-is-needed-and-where-it-lives">3.4 Where order <em>is</em> needed — and where it lives</h3>
+<p>Rigour requires the converse claim: there are real needs for total order and objective finality, and KnitWeb does not pretend otherwise. <strong>Value</strong> is the canonical case. A token transfer must have a single agreed history and must be irreversible — double-spends are prevented precisely by a total order with finality, which is what a blockchain (W1) or a block-lattice with representative voting (W11) delivers. An irreversible commitment (a stake, a payment, a signed obligation) is meaningless without finality.</p>
+<p>KnitWeb's design response is <strong>separation, not denial</strong> (§2.6): where an application needs total order or objective finality it uses <strong>MeshLattice's block-lattice (#3, W11)</strong>; where it needs an open, contradiction-tolerant, partially-ordered knowledge commons it uses the <strong>KnitWeb weave</strong>. The two compose over the same knitweb mesh transport and PLS/DID identity (§2.6), and may cross-reference by CID — a pick may cite a ledger transaction as <code>prov:wasDerivedFrom</code>, a ledger commitment may anchor a fabric root manifest — but <strong>neither imposes its ordering on the other</strong>. The ledger never totally-orders knowledge; the weave never grants value objective finality.</p>
+<h3 id="35-summary-matching-the-primitive-to-the-data">3.5 Summary: matching the primitive to the data</h3>
+<p>The error both primitives would make, applied to knowledge, is a <strong>type error</strong>: using an <em>order-and-finality</em> mechanism on data that is <em>partially ordered and revisable</em>.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Blockchain / block-lattice (W1, W11)</th>
+<th>Hashgraph (W2)</th>
+<th>KnitWeb weave (§2)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Computes</strong></td>
+<td>Global / per-account total order + finality</td>
+<td>Total order + finality via virtual voting</td>
+<td>Convergent <strong>state</strong> (set of facts)</td>
+</tr>
+<tr>
+<td><strong>Order across independent facts</strong></td>
+<td>Manufactured (overhead)</td>
+<td>Manufactured (overhead)</td>
+<td><strong>None — partial order only, by design</strong></td>
+</tr>
+<tr>
+<td><strong>Reversibility of a fact</strong></td>
+<td>None (final, one history)</td>
+<td>None (final, one history)</td>
+<td><strong>Always revisable (supersede / invalidate / re-weight)</strong></td>
+</tr>
+<tr>
+<td><strong>Concurrent multi-author assertions</strong></td>
+<td>Serialized into one history</td>
+<td>Serialized into one history</td>
+<td><strong>Coexist with credence + provenance</strong></td>
+</tr>
+<tr>
+<td><strong>Centralizing pressure</strong></td>
+<td>Ordering authority (miners/stakers/reps)</td>
+<td>Convergence on one canonical sequence</td>
+<td><strong>None — any peer weaves; conflicts coexist</strong></td>
+</tr>
+<tr>
+<td><strong>Correct domain</strong></td>
+<td><strong>Value / finality</strong> (its right job)</td>
+<td><strong>Value / finality</strong> (its right job)</td>
+<td><strong>Knowledge commons</strong> (its right job)</td>
+</tr>
+</tbody>
+</table>
+<p>The conclusion is not that consensus-on-order is bad — it is indispensable for value, and the suite keeps it for exactly that on the block-lattice (#3). It is that <strong>knowledge is the wrong workload for it.</strong> A knowledge commons needs convergence of <em>structure</em>, not agreement on <em>order</em>; KnitWeb obtains that convergence from content-addressing and CRDT merge (W3, W4) — no leader, no quorum, no virtual voting — and leaves total order and finality to the layer whose data genuinely demands them.</p>
+<h2 id="4-the-weave">4. The Weave</h2>
+<p>This section instantiates the formal model of §2 (Canonical Design Spec) as the operative description of the KnitWeb fabric. It defines each primitive — warp threads, weft picks, interlacements, fabric/net, and selvedge — shows how a KnitNet Knowledge Asset (#4) maps onto a set of weft picks woven across warps, and closes with a text diagram of a woven fabric. Throughout, every primitive is identified by a <strong>CID</strong> (Content IDentifier): a multihash over its canonicalized bytes, so that identity <em>is</em> content and byte-equal objects deduplicate to a single node (W4).</p>
+<h3 id="41-primitives-of-the-weave">4.1 Primitives of the weave</h3>
+<p>KnitWeb is a <strong>2-D woven fabric</strong> rather than a 1-D chain or a 1-D-per-account event-DAG. The fabric is built from five primitives, each a content-addressed object or a set thereof.</p>
+<table>
+<thead>
+<tr>
+<th>Primitive</th>
+<th>Symbol</th>
+<th>Role in the weave</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Warp thread</strong></td>
+<td><code>w ∈ W</code></td>
+<td>A stable <em>axis</em> — a persistent entity, topic, schema, or authority — across which assertions are woven. The "vertical" thread of the fabric; long-lived and content-addressed.</td>
+</tr>
+<tr>
+<td><strong>Weft thread (pick)</strong></td>
+<td><code>p ∈ P</code></td>
+<td>A provenance-bearing <em>assertion</em> woven across one or more warps: an RDF triple/quad (W7) carrying PROV-O provenance (W5) and a <code>[0,1]</code> credence. The "horizontal" thread. Its structural core is an <strong>edge</strong> (the bare statement); credence/provenance/asset are envelope fields.</td>
+</tr>
+<tr>
+<td><strong>Edge (statement)</strong></td>
+<td><code>e ∈ E</code></td>
+<td>The bare RDF statement <code>{s,p,o,g?}</code> at a pick's core, content-addressed over canonical <code>{s,p,o,g?}</code> <strong>and nothing else</strong> (matching #4 §5.1). The structural <strong>unit of dedup and credence fusion</strong>: identical statements from different authors coalesce to one <code>cid_e</code>.</td>
+</tr>
+<tr>
+<td><strong>Interlacement (knot)</strong></td>
+<td><code>k ∈ K</code></td>
+<td>The content-addressed <em>point</em> where an edge <code>e</code> crosses a warp <code>w</code> in a given role; a deterministic adjacency node derived from <code>cid_e</code>, not from any per-author envelope.</td>
+</tr>
+<tr>
+<td><strong>Fabric / net</strong></td>
+<td><code>F = (W, P, K)</code></td>
+<td>The union of all warps, wefts (with their edges), and interlacements — this <em>is</em> the knowledge graph.</td>
+</tr>
+<tr>
+<td><strong>Selvedge</strong></td>
+<td><code>s ∈ S</code></td>
+<td>The verified <em>edge/index</em> of a sub-weave: a signed, content-addressed index over a coherent region of <code>F</code>, carrying its validation status and frontier.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="411-warp-threads-the-stable-axes">4.1.1 Warp threads — the stable axes</h4>
+<p>A <strong>warp thread</strong> <code>w ∈ W</code> is the long-lived axis of the weave: a persistent entity (e.g. <em>"Acme Steel Slag, batch H2-2026"</em>), a topic, a SHACL schema, or an authority. A warp is not a single record but an <strong>append-only strand of version records</strong> — renames, schema revisions, and authority key-rotations are <em>appended</em> (each carrying <code>supersedes</code> to the prior version), never mutated in place. The warp's stable identity is <code>cid_w</code>, the CID of its genesis record; every later record on the strand carries <code>prev = cid</code> of the record before it (§2.2.1–2.2.2). Because the warp is the thing across which many independent authors weave assertions, it must remain stable and shareable: content-addressing makes two peers that mint the same entity converge on the same <code>cid_w</code> without coordination (W4).</p>
+<h4 id="412-weft-threads-picks-assertions-across-warps">4.1.2 Weft threads (picks) — assertions across warps</h4>
+<p>A <strong>weft thread</strong>, or <strong>pick</strong>, <code>p ∈ P</code> is a single provenance-bearing assertion woven <em>across</em> warps. Structurally a pick is an <strong>envelope</strong> around a bare RDF statement (its <strong>edge</strong>, §4.1.3): the edge <code>{subject, predicate, object, graph?}</code> references warps (or canonical IRIs/literals), and the envelope bundles:</p>
+<ul>
+<li>a <code>[0,1]</code> <strong>credence</strong> — the author's subjective confidence in <em>this</em> assertion;</li>
+<li><strong>PROV-O provenance</strong> (W5): <code>wasAttributedTo</code> (the signing DID/PLS, #1, W9), <code>wasDerivedFrom</code> (source picks or external resources), <code>wasGeneratedBy</code> (e.g. replay-validation, measurement, LLM-extraction), and <code>generatedAtTime</code>;</li>
+<li>the <code>asset</code> bundle CID, if any (§4.2).</li>
+</ul>
+<p>A pick is itself an append on a weft strand, hash-linked by <code>prev</code> and signed (§2.2.1, §2.2.3). The pick CID covers the full envelope (so two authors making the <em>same</em> statement mint <em>different</em> pick CIDs — they are distinct, separately-attributed assertions), but the pick <strong>carries</strong> its edge CID <code>cid_e</code>, computed over the canonical statement only. This is the crucial separation, inherited verbatim from KnitNet §5.1: <strong>the assertion <em>is</em> the edge</strong>, and structural identity lives at the edge, not the envelope. Crucially, a weft is an <em>assertion</em>, not a fact decreed true: contradictory picks over the same warps <strong>coexist</strong> in <code>F</code>, each weighed by its own credence and provenance rather than resolved by the structure (§2.4).</p>
+<h4 id="413-edges-and-interlacements-content-addressed-structure">4.1.3 Edges and interlacements — content-addressed structure</h4>
+<p>The structural core of a pick is its <strong>edge</strong> <code>e ∈ E</code>: the bare statement <code>{s, p, o, g?}</code>, content-addressed over its canonical encoding (§5.1) <strong>and nothing else</strong> — credence, provenance, author, and asset are <em>excluded</em> from the preimage:</p>
+<pre><code>cid_e = CID( canonicalize({ subject, predicate, object, graph? }) )
+</code></pre>
+<p>This rule is taken verbatim from KnitNet (#4 §5.1, W14), and it is what makes cross-author and cross-asset dedup work: <strong>the same statement asserted by two authors, or carried in two Knowledge Assets, yields the identical <code>cid_e</code></strong>, so the edge is held once and the two authors' credences fuse over that shared edge per KnitNet §5.3 — rather than splitting into two unrelated nodes. (Had we content-addressed the structural unit by the pick CID — which folds in credence/provenance/author — this dedup and fusion would silently fail, since no two independently-authored picks would ever coincide.)</p>
+<p>An <strong>interlacement</strong> (knot) <code>k ∈ K</code> is then the point where an <strong>edge</strong> <code>e</code> crosses a warp <code>w</code> in a specific <code>role ∈ {subject, predicate, object}</code> (a fixed enum). Its identity is derived deterministically from the <strong>edge</strong> CID, using the <em>same</em> canonical, domain-separated, length-delimited encoding as every other preimage in this paper (§5.1) — never bare byte-concatenation:</p>
+<pre><code>cid_k = CID( canonicalize({ &quot;knot&quot;: 1, &quot;edge&quot;: cid_e, &quot;warp&quot;: cid_w, &quot;role&quot;: role }) )
+</code></pre>
+<p>Two peers that independently observe the <em>same</em> crossing of the <em>same</em> statement therefore mint the <em>identical</em> <code>cid_k</code>, with no concatenation-ambiguity. Note that <code>cid_k</code> is <strong>fully determined by <code>cid_e</code></strong> (the edge already commits to its subject/predicate/object warps and their roles): the knot adds no new convergence guarantee that edge-level union does not already give. It earns its keep solely as a <strong>materialized adjacency index</strong> — <code>K</code> is the set of content-addressed <code>(warp ↔ edge, role)</code> crossings, letting a peer enumerate "every statement touching warp <code>w</code>" by a CID lookup rather than a scan of <code>P</code>. Where that index is not needed, knots may be omitted and recomputed on demand from <code>E</code>; they are derivative, not load-bearing for convergence.</p>
+<h4 id="414-the-fabric-net-the-knowledge-graph">4.1.4 The fabric / net — the knowledge graph</h4>
+<p>The <strong>fabric</strong> <code>F = (W, P, K)</code> is the componentwise union of all warp threads, weft threads (each carrying its edge <code>e</code>), and interlacements held by a peer. This union <em>is</em> the knowledge graph: warps are its nodes-of-record, edges its labelled edges, picks the provenance-bearing assertions of those edges, and knots the shared crossings that bind edges to warps. A fabric is summarized by a <strong>root manifest</strong> — a CID over the set of strand-head CIDs (a Merkle structure, W4) — which lets two peers diff and reconcile their fabrics cheaply without transferring the whole net. Because membership is by CID and merge is set union, every peer that has exchanged the same strands converges on a <strong>byte-identical fabric</strong> (§2.3.1), and identical edges coalesce regardless of how many distinct picks assert them.</p>
+<h4 id="415-selvedge-the-verified-edge-of-a-sub-weave">4.1.5 Selvedge — the verified edge of a sub-weave</h4>
+<p>The <strong>selvedge</strong> <code>s ∈ S</code> is the finished, verified edge of a sub-weave — the index by which a region of the fabric is offered to and verified by peers. A selvedge is a signed, content-addressed object over <code>{covered strand-heads, version-vector frontier, SHACL-validation report (W6), signer DID (W9)}</code> (§2.1). It lets a peer <strong>verify and request a coherent sub-weave</strong> — one authority's warps, or one Knowledge Asset's picks — and confirm its validation status and frontier <em>without holding all of</em> <code>F</code>. The selvedge is thus both the integrity boundary and the sync handle of a sub-weave.</p>
+<h3 id="42-a-knowledge-asset-as-a-set-of-weft-picks-across-warps">4.2 A Knowledge Asset as a set of weft picks across warps</h3>
+<p>A <strong>KnitNet Knowledge Asset</strong> (#4, W14) is not a new primitive in the weave: it is a <strong>named bundle of weft picks woven across shared warps</strong>. Where KnitNet treats a Knowledge Asset as the unit of proof-of-knowledge, curation, and dispute, KnitWeb treats that same asset as a <em>region of the fabric</em> — a coherent set of picks <code>{p₁, …, pₙ} ⊆ P</code>, each tagged with the asset's CID via the pick's <code>asset</code> field (§2.2.3), each carrying an edge in <code>E_A ⊆ E</code>, all crossing a common set of warps <code>W_A ⊆ W</code> and minting the knots <code>K_A ⊆ K</code> at those crossings.</p>
+<p>Concretely, an asset materializes as:</p>
+<table>
+<thead>
+<tr>
+<th>Asset element</th>
+<th>Weave realization</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Asset identity</td>
+<td><code>cid:bafyKnowledgeAsset</code> — the bundle CID referenced by every member pick's <code>asset</code> field.</td>
+</tr>
+<tr>
+<td>Asset claims</td>
+<td>A set of weft picks <code>{p₁…pₙ}</code>, each enveloping an <strong>edge</strong> <code>cid_e</code> (an RDF statement over warps in <code>W_A</code>, W7) with its own credence + PROV-O provenance (W5).</td>
+</tr>
+<tr>
+<td>Asset entities/topics</td>
+<td>The warps <code>W_A</code> the picks' edges cross (entities, topics, schemas, authorities).</td>
+</tr>
+<tr>
+<td>Asset structure</td>
+<td>The interlacements <code>K_A</code>: the deterministic knots where the asset's <strong>edges</strong> cross its warps (§4.1.3).</td>
+</tr>
+<tr>
+<td>Asset boundary/index</td>
+<td>A <strong>selvedge</strong> <code>s_A</code> over <code>{W_A, P_A, K_A}</code> carrying the SHACL-validation report and frontier — the verifiable handle to fetch and check the asset (§4.1.5).</td>
+</tr>
+</tbody>
+</table>
+<p>Two consequences follow. First, <strong>sharing is automatic at the edge level</strong>: if two assets both assert the <em>same statement</em> about the warp <em>"Acme Steel Slag, batch H2-2026"</em>, that warp and the shared <strong>edge</strong> (and its knots) are held once and shared between the two asset-regions by content-address (§4.1.3) — assets overlap on the fabric rather than copying each other, and the two authors' credences fuse over the one shared edge (#4 §5.3). The two picks remain distinct (each keeps its own provenance and credence envelope), but the structure they assert is deduplicated. Second, <strong>assets compose without merging their meaning</strong>: distributing or merging an asset is a CRDT union of its strands (§2.3.1), so an asset can be replicated, partially fetched (via its selvedge), or woven into a larger fabric with no re-ordering and no consensus step — while any contradiction between two assets' picks is preserved and weighed by credence/provenance/dispute (§2.4), not silently resolved.</p>
+<pre><code class="language-jsonc">// A Knowledge Asset (#4) = a bundle of weft picks (P_A) over shared warps (W_A),
+// indexed by a selvedge (s_A). Each pick ENVELOPES an edge (cid_e) computed over
+// the bare statement {s,p,o,g?} ONLY — credence/prov/asset are envelope, excluded
+// from cid_e — so identical statements dedup + fuse across authors/assets (#4 §5.1, §5.3).
+{
+  &quot;asset&quot;: &quot;cid:bafyKnowledgeAsset&quot;,          // bundle identity (#4)
+  &quot;selvedge&quot;: &quot;cid:bafySelvedge_sA&quot;,          // verified edge/index over this region
+  &quot;warps&quot;:  [&quot;cid:bafyAcmeSlagH2&quot;, &quot;cid:bafyTRL4&quot;, &quot;cid:bafyAssayX&quot;],   // W_A
+  &quot;picks&quot;: [                                  // P_A — each is one weft pick (§2.2.3)
+    { &quot;statement&quot;: { &quot;subject&quot;:&quot;cid:bafyAcmeSlagH2&quot;, &quot;predicate&quot;:&quot;cid:bafyHasTRL&quot;, &quot;object&quot;:&quot;cid:bafyTRL4&quot; },
+      &quot;edge&quot;: &quot;cid:bafyEdgeHasTRL&quot;,            // cid_e = CID(canonicalize({s,p,o})) — dedup/fusion unit
+      &quot;credence&quot;: 0.82, &quot;asset&quot;: &quot;cid:bafyKnowledgeAsset&quot; },   // envelope-only, NOT in cid_e
+    { &quot;statement&quot;: { &quot;subject&quot;:&quot;cid:bafyAcmeSlagH2&quot;, &quot;predicate&quot;:&quot;cid:bafyMeasuredBy&quot;, &quot;object&quot;:&quot;cid:bafyAssayX&quot; },
+      &quot;edge&quot;: &quot;cid:bafyEdgeMeasuredBy&quot;,
+      &quot;credence&quot;: 0.91, &quot;asset&quot;: &quot;cid:bafyKnowledgeAsset&quot; }
+  ]
+}
+</code></pre>
+<h3 id="43-loss-free-metta-projection-interoperable-with-4">4.3 Loss-free MeTTa projection (interoperable with #4)</h3>
+<p>A fabric region projects to MeTTa/Hyperon atoms (W13) using the <strong>same atom shapes as KnitNet §5.2</strong> (#4, W14), so a single pattern-match works identically over both papers' output. Each <strong>edge</strong> becomes a function-style atom <code>(predicate subject object)</code>, and metadata are atoms keyed by the <strong>edge CID</strong> — <em>not</em> the pick CID:</p>
+<pre><code class="language-scheme">; edge cid_e = bafyEdgeHasTRL projects to the SAME atom KnitNet (#4 §5.2) emits:
+(kn:hasTRL kn:entity/AcmeSlagH2 kn:entity/TRL4)
+
+; metadata keyed to the EDGE CID (matching #4 §5.2 verbatim), so credences fuse per #4 §5.3:
+(credence   (edge bafyEdgeHasTRL) 0.82)
+(provenance (edge bafyEdgeHasTRL) (wasAttributedTo did:agt:z6MkAuthorA) (wasGeneratedBy activity:measurement))
+(credence   (edge bafyEdgeHasTRL) 0.79)   ; a SECOND author's pick over the SAME edge — fuses, does not fork
+</code></pre>
+<p>Because the structural atom and its metadata keys are addressed by <code>cid_e</code>, two independently-authored picks of the same statement project to <strong>one</strong> <code>(predicate subject object)</code> atom with <strong>two</strong> credence atoms fusing over it — exactly the cross-author behaviour #4 §5.3 specifies, and byte-for-byte the same atoms a KnitNet projection of the same edge would emit. KnitWeb adds no divergent reification: the pick's envelope (author, <code>prev</code>, signature) is recoverable from the strand but is never the atom key.</p>
+<h3 id="44-a-text-diagram-of-the-fabric">4.4 A text diagram of the fabric</h3>
+<p>The figure below shows warps as <strong>vertical</strong> strands (<code>│</code>), weft-pick edges as <strong>horizontal</strong> threads (<code>═</code>) woven across them, and interlacements as the crossing knots (<code>╪</code>). Two Knowledge Assets share a common warp (<code>W2</code>), illustrating structural sharing; the right margin shows each asset's selvedge as the finished, indexed edge of its sub-weave.</p>
+<pre><code class="language-text">                WARP THREADS (stable axes: entities / topics / schemas / authorities)
+                  W1            W2                W3            W4
+                  │             │                 │             │
+                  │   (Acme     │  (Acme Slag      │  (TRL-4     │ (Assay-X
+                  │   Steel)    │   batch H2-2026) │   stage)    │  method)
+                  │             │                 │             │
+   WEFT picks ┌── │             │                 │             │
+   (edges     │   │             │                 │             │
+   across     │   │             │                 │             │
+   warps)     │   │             │                 │             │
+              │   │             │                 │             │
+   e1  ═══════╪═══════════════════════════════════╪══════════════   asset A ─┐
+   (W1 hasBatch W2)             │                 │             │             │  selvedge sA
+   e2          │   ═════════════╪═════════════════╪══════════════   asset A ──┤  {W1,W2,W3,W4-heads,
+   (W2 hasTRL W3)               │                 │             │             │   frontier, SHACL ✓,
+              │   │             │                 │             │             │   signer DID}
+              │   │             │                 │             │            ─┘
+   e3          │   ═════════════╪═════════════════════════════════   asset B ─┐
+   (W2 measuredBy W4)           │                 │             │             │  selvedge sB
+              │   │             │                 │             │             │  {W2,W4-heads,
+              │   │             │                 │             │             │   frontier, SHACL ✓,
+              │   │             │                 │             │            ─┘   signer DID}
+              │   │             │                 │             │
+                  ▲             ▲                 ▲             ▲
+                  │             │                 │             │
+              cid_w1        cid_w2            cid_w3        cid_w4   (content-addressed warp ids, W4)
+
+   ╪ = interlacement (knot):  cid_k = CID(canonicalize({knot,edge:cid_e,warp:cid_w,role}))
+                              — derived from the EDGE cid_e (not the pick), deterministic, shared, deduped
+   ═ = weft-pick edge:        RDF statement {s,p,o,g?} → cid_e over canonical {s,p,o,g?} ONLY (dedup/fusion unit, #4 §5.1)
+                              the pick envelopes it with credence [0,1] + PROV-O provenance (excluded from cid_e)
+   │ = warp thread (axis):    append-only, hash-linked, content-addressed strand
+
+   Note: warp W2 is SHARED by assets A and B — held once by content-address (W4),
+         woven into both sub-weaves rather than copied. If two assets asserted the
+         SAME statement, its EDGE (cid_e) would also be held once and the two authors'
+         credences would FUSE over it (#4 §5.3). Contradictory picks over the same warps
+         simply coexist as additional ═ threads, each with its own credence and provenance
+         (§2.4) — the fabric grows, it is never forked.
+</code></pre>
+<p>In this fabric, the <strong>union of all <code>│</code>, <code>═</code>, and <code>╪</code></strong> is the knowledge graph <code>F = (W, P, K)</code>; each weft-pick edge is content-addressed by <code>cid_e</code> over its bare statement, so identical statements coalesce and fuse across authors and assets (#4 §5.1, §5.3); each Knowledge Asset (#4, W14) is the bounded sub-weave to the right of its picks, made fetchable and verifiable by its <strong>selvedge</strong>; and the whole structure is reconciled between peers by content-addressed union (§2.3), with no global block, no per-account chain, and no consensus on order.</p>
+<h2 id="5-data-structure-and-encoding">5. Data Structure and Encoding</h2>
+<p>This section instantiates the primitives of §2 as concrete, content-addressed wire/storage objects, defines their append-only causal links, gives a loss-free projection of a weft pick into both RDF (W7) and OpenCog Hyperon MeTTa (W13), and shows how deduplication falls out of content-addressing (W4). All objects are <strong>canonicalized before hashing</strong> (deterministic key order; canonical RDF term encoding per W7), so byte-equality ⇒ CID-equality ⇒ a single stored node.</p>
+<h3 id="51-content-addressing-and-canonical-encoding">5.1 Content-addressing and canonical encoding</h3>
+<p>Every primitive is named by a <strong>CID</strong> (Content IDentifier): a self-describing multihash over the canonicalized bytes of the object (W4). The CID <em>is</em> the identity of the object; there is no separate, mutable key. Two consequences follow directly and are exploited throughout KnitWeb:</p>
+<ul>
+<li><strong>Identity = content.</strong> Any peer that holds the same bytes computes the same CID without coordination. A reference (<code>prev</code>, <code>strand</code>, <code>wasDerivedFrom</code>, <code>subject/object</code> warp) is itself a CID, so the fabric is a Merkle structure (W4) in which every link is verifiable by re-hashing the target.</li>
+<li><strong>Equal content deduplicates.</strong> Because the CID is derived from canonical bytes, two independently authored objects with identical content collapse to one node under merge (see §5.5). This is the structural basis of the CRDT union of §2.3.</li>
+</ul>
+<pre><code>canonicalize(obj)  →  bytes        // deterministic key order, canonical RDF terms (W7)
+cid(obj)           =  multihash(canonicalize(obj))   // self-describing hash (W4)
+</code></pre>
+<p>The <code>cid</code> field of a record is computed over the canonical bytes of <strong>all other fields</strong> and appended last; verifiers strip <code>cid</code>, re-canonicalize, re-hash, and compare.</p>
+<h3 id="52-thread-strand-record-append-only-hash-linked">5.2 Thread strand record (append-only, hash-linked)</h3>
+<p>A <strong>strand</strong> is an append-only, hash-linked, signed log (W10) — used for both warp threads (stable axes) and weft threads (assertion picks). Each record carries <code>prev</code> (the CID of the prior record on <em>this</em> strand), a per-strand monotonic <code>seq</code>, and a Lamport clock (W12), giving every strand a verifiable <strong>total internal order</strong> (§2.3.2).</p>
+<pre><code class="language-jsonc">{
+  &quot;type&quot;: &quot;strand_record&quot;,            // append-only log entry (W10)
+  &quot;strand&quot;: &quot;cid:bafyWarpOrWeftHead&quot;, // stable strand identity = CID of its genesis record
+  &quot;kind&quot;: &quot;warp&quot; | &quot;weft&quot;,            // axis (warp) or assertion-pick (weft)
+  &quot;seq&quot;: 42,                          // per-strand monotonic sequence (total internal order)
+  &quot;prev&quot;: &quot;cid:bafyPrevRecord|null&quot;,  // hash-link to prior record on THIS strand; null at genesis
+  &quot;lamport&quot;: 1187,                    // Lamport clock; total-order-COMPATIBLE timestamp (W12)
+  &quot;author&quot;: &quot;did:agt:z6Mk…&quot;,          // signing identity (W9 / #1 PLS)
+  &quot;payload&quot;: { /* warp_meta | weft_pick — see §5.3, §5.4 */ },
+  &quot;sig&quot;: &quot;ed25519:…&quot;,                 // signature over canonical bytes of this record
+  &quot;cid&quot;: &quot;cid:bafyThisRecord&quot;         // CID of the canonicalized record (self-id, set last)
+}
+</code></pre>
+<p><strong>Causal-link invariants.</strong></p>
+<ul>
+<li><code>seq = 0 ⇔ prev = null</code> (genesis). For <code>seq &gt; 0</code>, <code>prev</code> MUST reference the record with <code>seq − 1</code> on the same <code>strand</code>; this is the hash-chain that makes tampering detectable — any edit changes the record's <code>cid</code>, breaking the successor's <code>prev</code>.</li>
+<li><code>strand</code> equals the <code>cid</code> of the genesis (<code>seq = 0</code>) record and never changes; it is the strand's stable identity.</li>
+<li><code>lamport</code> is non-decreasing along a strand and, on each append, is set past the maximum Lamport value of any record referenced via cross-strand <code>wasDerivedFrom</code> (§5.4) — the standard Lamport update rule (W12).</li>
+</ul>
+<p><strong>Two distinct ordering mechanisms — keep them apart.</strong> The design carries the actual <strong>happens-before</strong> relation in explicit links, and uses Lamport values only as a tie-break-compatible timestamp; the two must not be conflated:</p>
+<ul>
+<li><strong>Happens-before (the real causal order) is carried by explicit edges.</strong> Within a strand it is the <code>prev → prev → … → null</code> hash-chain; across strands it is the explicit <code>prov:wasDerivedFrom</code> edges (§5.4). The transitive closure of these two edge sets <em>is</em> the partial order over the fabric (§2.3.2): record <code>a</code> happens-before record <code>b</code> iff a directed path of <code>prev</code>/<code>wasDerivedFrom</code> edges runs from <code>b</code> back to <code>a</code>. Two records with <strong>no</strong> such path in either direction are <strong>concurrent (incomparable)</strong> — and this is decided by the <em>absence of a causal path</em>, not by any comparison of timestamps. Concurrency/incomparability reported by the query engine (§6.2, §8.4) is therefore read off these explicit edges.</li>
+<li><strong>Lamport clocks provide only a total-order-<em>compatible</em> timestamp.</strong> They satisfy the one-way property <code>a → b ⇒ L(a) &lt; L(b)</code> (W12), which makes them safe for <em>optional</em> deterministic tie-breaking when a caller wants a stable linear presentation of otherwise-incomparable picks. The converse does <strong>not</strong> hold: <code>L(a) &lt; L(b)</code> does <strong>not</strong> imply <code>a → b</code>, so comparing two Lamport values can <strong>never</strong> establish that picks are concurrent or causally related. (Deciding concurrency from timestamps alone would require vector clocks; KnitWeb deliberately uses explicit causal edges instead, which is sufficient and cheaper to store.)</li>
+<li>No order is implied between records on different strands beyond this explicit-edge partial order (§2.3.2); Lamport values impose no causal claim of their own.</li>
+</ul>
+<h3 id="53-warp-payload-stable-axis">5.3 Warp payload (stable axis)</h3>
+<p>A warp strand's payload describes a persistent entity, topic, schema, or authority. Versioning (renames, schema revisions, authority key-rotation) is expressed as a new append whose payload <code>supersedes</code> the prior version's CID — never an in-place mutation.</p>
+<pre><code class="language-jsonc">{
+  &quot;warp_id&quot;: &quot;cid:bafyWarpGenesis&quot;,   // == strand identity; immutable
+  &quot;class&quot;: &quot;entity&quot; | &quot;topic&quot; | &quot;schema&quot; | &quot;authority&quot;,
+  &quot;label&quot;: &quot;Acme Steel Slag, batch H2-2026&quot;,
+  &quot;schema&quot;: &quot;cid:bafyShaclShape|null&quot;,// SHACL shape governing picks on this warp (W6)
+  &quot;supersedes&quot;: &quot;cid:bafyPriorVersion|null&quot; // version chain for renames / key-rotation
+}
+</code></pre>
+<h3 id="54-weft-pick-payload-provenance-bearing-assertion">5.4 Weft pick payload (provenance-bearing assertion)</h3>
+<p>A weft pick is a single RDF triple/quad (W7) woven across warps, carrying PROV-O provenance (W5), a <code>[0,1]</code> credence, and the interlacement (knot) CIDs it mints. Each <code>subject/predicate/object</code> term is either a warp CID or a canonical IRI/literal, so the assertion is fully content-addressed and re-derivable.</p>
+<pre><code class="language-jsonc">{
+  &quot;statement&quot;: {                      // an RDF triple/quad over warps (W7)
+    &quot;subject&quot;:   &quot;cid:bafyWarpS&quot;,
+    &quot;predicate&quot;: &quot;cid:bafyWarpP|iri&quot;, // predicate as warp or canonical IRI
+    &quot;object&quot;:    &quot;cid:bafyWarpO|literal&quot;
+  },
+  &quot;credence&quot;: 0.82,                   // [0,1] subjective credence of THIS author
+  &quot;prov&quot;: {                           // PROV-O provenance (W5)
+    &quot;wasAttributedTo&quot;:  &quot;did:agt:z6Mk…&quot;,
+    &quot;wasDerivedFrom&quot;:   [&quot;cid:bafySourcePick&quot;, &quot;ipfs://…&quot;],
+    &quot;wasGeneratedBy&quot;:   &quot;activity:replay-validation|measurement|llm-extract&quot;,
+    &quot;generatedAtTime&quot;:  &quot;2026-06-16T00:00:00Z&quot;
+  },
+  &quot;asset&quot;: &quot;cid:bafyKnowledgeAsset|null&quot;, // bundle this pick belongs to (#4)
+  &quot;interlaces&quot;: [                     // the knots this pick mints (see §5.4.1)
+    &quot;cid:bafyKnotSubject&quot;, &quot;cid:bafyKnotObject&quot;
+  ]
+}
+</code></pre>
+<p>The entries of <code>wasDerivedFrom</code> are themselves CIDs (of source picks) or content-addressed URIs, so provenance is a <strong>verifiable causal back-link</strong> in the Merkle fabric (W4): it is precisely the explicit cross-strand happens-before edge of §5.2, and it is also what advances the Lamport clock on append.</p>
+<h4 id="541-interlacement-knot-record">5.4.1 Interlacement (knot) record</h4>
+<p>The crossing of a weft pick over a warp at a given role is content-addressed <strong>deterministically</strong> from its three constituents, so two peers that independently observe the same crossing mint the <em>same</em> <code>cid</code> and the knot deduplicates to one stored node (§5.5).</p>
+<pre><code class="language-jsonc">{
+  &quot;type&quot;: &quot;interlacement&quot;,
+  &quot;warp&quot;: &quot;cid:bafyWarp&quot;,             // the crossed axis
+  &quot;weft&quot;: &quot;cid:bafyWeftPick&quot;,         // the crossing assertion
+  &quot;role&quot;: &quot;subject&quot; | &quot;predicate&quot; | &quot;object&quot;, // crossing role
+  // DETERMINISTIC identity — any peer minting this crossing gets the SAME cid:
+  &quot;cid&quot;: &quot;cid:bafyKnot = CID(warp ‖ weft ‖ role)&quot;
+}
+</code></pre>
+<h3 id="55-deduplication-by-content-address">5.5 Deduplication by content address</h3>
+<p>Because identity is derived from canonical content, deduplication is not a separate garbage-collection pass but an <strong>invariant of naming</strong>. It operates at three levels, each a direct consequence of §5.1:</p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>What collapses</th>
+<th>Mechanism</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Record</strong></td>
+<td>Two byte-identical strand records</td>
+<td>Same canonical bytes ⇒ same <code>cid</code> ⇒ one node under union (W4).</td>
+</tr>
+<tr>
+<td><strong>Knot</strong></td>
+<td>The same <code>(warp, weft, role)</code> crossing minted by different peers</td>
+<td>Deterministic <code>cid = CID(warp ‖ weft ‖ role)</code> ⇒ identical CID without coordination (§5.4.1).</td>
+</tr>
+<tr>
+<td><strong>Sub-structure</strong></td>
+<td>Shared warps/sources referenced by many picks</td>
+<td>References are CIDs; a warp or source pick is stored once and pointed to by every <code>subject/object</code>/<code>wasDerivedFrom</code> that names it (Merkle sharing, W4).</td>
+</tr>
+</tbody>
+</table>
+<p>This is exactly the merge operator of §2.3: <code>F₁ ⊔ F₂</code> is componentwise CID-keyed set union, and union over CID keys <em>is</em> dedup. Merging is therefore <strong>idempotent</strong> (re-importing a strand is a no-op) and <strong>commutative</strong> (import order is irrelevant) — convergence with no leader and no consensus on order (§2.3.1). Retraction does not delete a node (which would violate monotonicity); it is a <em>new</em> weft pick asserting <code>prov:wasInvalidatedBy</code> over the target (§2.3.1).</p>
+<h3 id="56-loss-free-rdf-metta-projection-of-a-pick">5.6 Loss-free RDF / MeTTa projection of a pick</h3>
+<p>A weft pick is designed to project <strong>without loss</strong> into (a) RDF (W7) for standard graph tooling and (b) OpenCog Hyperon MeTTa atomspace (W13) for symbolic reasoning. The mapping is total and invertible: the canonical pick is the source of truth, and both projections are recoverable views — re-canonicalizing either projection yields the same <code>cid</code>.</p>
+<p>To stay representationally consistent with the suite, KnitWeb adopts KnitNet's chosen idiom (#4, §4.3 / §5.2): statement-level metadata is keyed to the <strong>content-addressed edge/pick CID</strong>, and where a reifying RDF term is needed it uses an <strong>RDF 1.2 triple-term referenced by <code>rdf:reifies</code></strong> — <em>not</em> the older verbose RDF reification idiom and <em>not</em> an asserting-<code>&lt;&lt;…&gt;&gt;</code> RDF-star quotation, which #4 explicitly supersedes. The pick CID is the single content-addressed handle that both projections hang metadata from, so the two papers share one representation.</p>
+<p><strong>The pick (canonical fields):</strong></p>
+<pre><code class="language-jsonc">{
+  &quot;statement&quot;: { &quot;subject&quot;: &quot;cid:bafyAcmeSlag&quot;,
+                 &quot;predicate&quot;: &quot;ex:hasPhosphorusFraction&quot;,
+                 &quot;object&quot;: &quot;\&quot;0.07\&quot;^^xsd:decimal&quot; },
+  &quot;credence&quot;: 0.82,
+  &quot;prov&quot;: { &quot;wasAttributedTo&quot;: &quot;did:agt:z6MkEdwin&quot;,
+            &quot;wasGeneratedBy&quot;: &quot;activity:replay-validation&quot;,
+            &quot;generatedAtTime&quot;: &quot;2026-06-16T00:00:00Z&quot; },
+  &quot;cid&quot;: &quot;cid:bafyPick77&quot;
+}
+</code></pre>
+<p><strong>(a) RDF projection (W7), provenance keyed to the pick CID.</strong> The asserted base triple stands on its own (W7). The pick CID <code>&lt;cid:bafyPick77&gt;</code> is a first-class resource that carries credence + PROV-O metadata (W5); it identifies the asserted statement via an <strong>RDF 1.2 triple-term</strong> in object position, bound with <code>rdf:reifies</code> per KnitNet §4.3 — superseding the older reification idiom and keeping credence/provenance on the content-addressed edge exactly as #4 §5.2 does:</p>
+<pre><code class="language-turtle"># base triple (the woven assertion over warps, W7) — asserted in the graph
+&lt;cid:bafyAcmeSlag&gt; ex:hasPhosphorusFraction &quot;0.07&quot;^^xsd:decimal .
+
+# the pick as a first-class, content-addressed edge; metadata keyed to its CID.
+# rdf:reifies binds the pick CID to the RDF 1.2 triple-term it describes (KnitNet §4.3),
+# WITHOUT re-asserting it (the base triple above is the assertion).
+&lt;cid:bafyPick77&gt; a kw:WeftPick ;
+    rdf:reifies &lt;&lt;( &lt;cid:bafyAcmeSlag&gt; ex:hasPhosphorusFraction &quot;0.07&quot;^^xsd:decimal )&gt;&gt; ;
+    kw:credence &quot;0.82&quot;^^xsd:decimal ;
+    prov:wasAttributedTo &lt;did:agt:z6MkEdwin&gt; ;
+    prov:wasGeneratedBy  &lt;activity:replay-validation&gt; ;
+    prov:generatedAtTime &quot;2026-06-16T00:00:00Z&quot;^^xsd:dateTime .
+</code></pre>
+<p>(Pure edge-CID keying — dropping the <code>rdf:reifies</code> triple-term and relying on <code>kw:WeftPick</code> fields plus the <code>interlaces</code> knot CIDs to recover the statement — is the leaner variant #4 §5.2 calls "cleaner still"; the <code>rdf:reifies</code> term above is retained only where downstream tooling wants the statement spelled out as an RDF term, and it is the RDF 1.2 form, never <code>&lt;&lt;…&gt;&gt;</code>-asserting RDF-star.)</p>
+<p><strong>(b) MeTTa projection (W13), preserving the same structure as atoms in the atomspace.</strong> The pick CID is the reifying handle; warp CIDs, credence and provenance are carried as nested expressions so no field is dropped:</p>
+<pre><code class="language-metta">; the woven assertion, named by the pick CID (content address, W4)
+(= (pick cid:bafyPick77)
+   (Statement (Subject   cid:bafyAcmeSlag)
+              (Predicate ex:hasPhosphorusFraction)
+              (Object    (Literal &quot;0.07&quot; xsd:decimal))))
+
+; credence and PROV-O provenance (W5) keyed to the same pick CID
+(credence cid:bafyPick77 0.82)
+(prov cid:bafyPick77
+      (wasAttributedTo did:agt:z6MkEdwin)
+      (wasGeneratedBy  activity:replay-validation)
+      (generatedAtTime &quot;2026-06-16T00:00:00Z&quot;))
+</code></pre>
+<p><strong>Round-trip guarantee.</strong> Both projections preserve (i) the warp-CID terms of the statement, (ii) the pick's own CID as the key to which metadata attaches, (iii) credence, and (iv) PROV-O provenance (W5). Because metadata is keyed to the content-addressed pick CID in both views (and any RDF reifying term is the RDF 1.2 <code>rdf:reifies</code> form, matching #4), re-canonicalizing the fields recovered from either projection reproduces the identical byte string and therefore the identical <code>cid</code> (§5.1) — so a pick may round-trip RDF ⇄ canonical ⇄ MeTTa with no information loss and no change of identity.</p>
+<h2 id="6-convergence-without-consensus">6. Convergence Without Consensus</h2>
+<p>KnitWeb converges by <em>replication</em>, not by <em>agreement</em>. Two peers that have observed the same set of strands hold the same fabric — but no peer, quorum, or algorithm ever decides a canonical order of facts. This section gives the formal model from the Canonical Design Spec (§2.3): the fabric as a join-semilattice, reconciliation by union with content-address dedup, the order guarantees that follow, and an explicit statement of the guarantees KnitWeb deliberately withholds — with the argument for why their absence is <em>correct</em> for a knowledge commons rather than a missing feature.</p>
+<h3 id="61-the-fabric-as-a-state-based-crdt">6.1 The fabric as a state-based CRDT</h3>
+<p>A peer's local state is the fabric <code>F = (W, P, K)</code>: three sets of CID-keyed objects — warp threads, weft picks, and interlacements (§2.1). Reconciliation of two peers' states is defined as componentwise set union:</p>
+<pre><code>F₁ ⊔ F₂  =  (W₁ ∪ W₂,  P₁ ∪ P₂,  K₁ ∪ K₂)
+</code></pre>
+<p>Because every element is keyed by a <strong>CID</strong> — a multihash over its canonical bytes (W4) — set union performs <strong>automatic deduplication</strong>: equal content yields an equal CID and therefore one element, regardless of how many peers independently minted it. The pair <code>(𝔉, ⊔)</code> is a <strong>join-semilattice</strong>, and the fabric is a <strong>state-based CRDT</strong> (CvRDT) in the sense of Shapiro et al. (2011) (W3). The merge operation has the three algebraic properties that make replicas converge:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Statement</th>
+<th>Why it holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Commutative</strong></td>
+<td><code>F₁ ⊔ F₂ = F₂ ⊔ F₁</code></td>
+<td>Set union is order-independent; merge order does not matter.</td>
+</tr>
+<tr>
+<td><strong>Associative</strong></td>
+<td><code>(F₁ ⊔ F₂) ⊔ F₃ = F₁ ⊔ (F₂ ⊔ F₃)</code></td>
+<td>Set union is associative; grouping of merges does not matter.</td>
+</tr>
+<tr>
+<td><strong>Idempotent</strong></td>
+<td><code>F ⊔ F = F</code></td>
+<td>Re-merging an already-held strand is a no-op; duplicates collapse on CID.</td>
+</tr>
+</tbody>
+</table>
+<p>To these the model adds <strong>monotonicity</strong>: merging only ever grows the fabric,</p>
+<pre><code>F ⊑ F ⊔ F'      where   F₁ ⊑ F₂  ⟺  F₁ ⊆ F₂  componentwise,
+</code></pre>
+<p>so knowledge is <strong>added, never silently removed</strong>. Retraction is not deletion: to withdraw an assertion an author appends a <em>new</em> weft pick carrying a <code>prov:wasInvalidatedBy</code> link (W5), which is itself monotone state. The fabric is therefore a grow-only structure whose lattice order <code>⊑</code> is exactly subset inclusion.</p>
+<p><strong>Dedup is at the edge/knot level, not the pick level.</strong> A weft <em>pick</em> carries per-author, per-time envelope fields — <code>author</code>, <code>sig</code>, <code>seq</code>, <code>prev</code>, <code>lamport</code>, <code>credence</code>, <code>prov</code>, <code>generatedAtTime</code> (§5.2, §5.4) — so two authors who independently assert the <em>same</em> statement mint <strong>distinct</strong> pick CIDs, and their picks remain distinct strands in <code>P</code>. This is correct: each assertion is its own provenance-bearing act. Structural sharing happens one level down, at the <strong>interlacement (knot)</strong>, whose preimage is taken over the <em>edge/statement</em> CID — the canonical <code>(subject, predicate, object, graph)</code> tuple of warp CIDs (the KnitNet unit, §5.1) — <strong>not</strong> over the pick CID:</p>
+<pre><code>cid_k = CID( cid_w ‖ cid_edge ‖ role )      where  cid_edge = CID(s, p, o, g)
+</code></pre>
+<p>Because <code>cid_edge</code> is independent of which author asserted it or when, two peers observing the same crossing of the same statement over the same warp <strong>mint the identical <code>cid_k</code></strong>, and the knot deduplicates across authors on union. Thus the fabric shares structure at the edge/knot layer while preserving every independent assertion as a separate, attributable pick — the "unit of structural sharing and dedup" claim holds precisely at the knot, and only there.</p>
+<p><strong>Convergence theorem (informal).</strong> Commutativity, associativity and idempotency are precisely the conditions under which a state-based CRDT converges (Shapiro et al., 2011) (W3). Consequently any two peers <strong>that have observed the same set of strands</strong> hold <strong>byte-identical fabrics</strong>, irrespective of message order, duplication, or delay. This is the standard CRDT guarantee — <em>strong eventual consistency</em>: replicas that have delivered the <strong>same set of updates</strong> converge to equal state (Shapiro et al., 2011) (W3). The guarantee is therefore <strong>conditional on the shared update set</strong>, not unconditional.</p>
+<p><strong>Partial replication and shared closure.</strong> This caveat is load-bearing, because partial replication is a headline feature: via <strong>selvedge</strong> sub-weaves (§4.1.5, §8.2) a peer routinely holds only a <em>region</em> of the fabric. Two peers with different subscriptions hold different <strong>sub-fabrics</strong> and are <em>not</em> byte-identical overall. What CRDT convergence guarantees is convergence <strong>on their shared closure</strong>: for the set of strands both peers have observed, the merge is identical down to the byte; the regions only one peer holds simply differ until exchanged. Because merge is monotone and order-independent, every strand a peer <em>later</em> acquires merges in with no conflict and no rework — so partial replicas are always consistent on their overlap and grow monotonically toward fuller agreement as their observed sets converge. The CID Merkle structure makes this reconciliation cheap as well as correct: a peer compares <strong>root manifests</strong> (a CID over its set of strand-head CIDs), descends only where they differ, and requests exactly the missing strands — diff-and-pull over a woven Merkle fabric (W4), never a replay of a global log.</p>
+<h3 id="62-order-guarantees-total-within-a-thread-partial-across-threads">6.2 Order guarantees: total within a thread, partial across threads</h3>
+<p>Convergence on <em>state</em> is distinct from agreement on <em>order</em>. KnitWeb provides order at exactly one scale and refuses it at the other.</p>
+<p><strong>Within a thread — total order.</strong> Every strand (a warp or a weft thread) is an append-only, hash-linked log (§2.1): record <code>n</code> carries <code>prev = cid(n-1)</code>, a per-strand monotone sequence <code>seq</code>, and a Lamport timestamp (W10, W12). The hash-link makes the sequence <strong>cryptographically verifiable and tamper-evident</strong> — any edit to record <code>n</code> changes its CID, breaking the <code>prev</code> pointer of record <code>n+1</code> and every record after it. Records on a single warp or weft are therefore <strong>totally ordered by construction</strong>, and that order is self-authenticating.</p>
+<p><strong>Across threads — partial order only.</strong> Between distinct strands there is no global clock and no imposed sequence. The only order that holds is the <strong>causal partial order</strong> induced by Lamport happens-before (W12) together with explicit <code>prov:wasDerivedFrom</code> provenance links (W5):</p>
+<ul>
+<li>if pick <code>q</code> cites pick <code>p</code> via <code>wasDerivedFrom</code>, then <code>p</code> causally precedes <code>q</code>;</li>
+<li>Lamport clocks give each record a logical timestamp consistent with this happens-before relation (Lamport, 1978) (W12);</li>
+<li>two picks from different authors with no derivation path between them are <strong>concurrent</strong> — incomparable in <code>⊑</code> — and KnitWeb places them in <strong>no</strong> global sequence.</li>
+</ul>
+<p><strong>The frontier summarizes replication progress, not cross-strand causality.</strong> A peer also maintains a <strong>per-strand frontier</strong>: the set of per-strand <code>seq</code> heads it currently holds, keyed by strand CID. This is a <em>replication-progress summary</em> — "how far along each thread the peer has reconciled" — and it is the basis for computing sync deltas (which records another peer is missing). It is deliberately <strong>not</strong> called a version vector: a classic version vector maps actor/replica → counter and supports causal comparison (dominance/concurrency) <em>between</em> replicas, whereas the per-strand frontier records only per-log progress and <strong>does not by itself encode cross-strand causal dependencies</strong>. That cross-strand causality lives elsewhere — in the <strong>Lamport clocks</strong> on each record and the explicit <code>prov:wasDerivedFrom</code> edges (W12, W5) — and the frontier must not be treated as a causality oracle. The frontier tells a peer <em>what to fetch</em>; the Lamport clocks and derivation edges tell it <em>what causally precedes what</em>. Concurrent picks coexist as siblings in the partial order, exactly as concurrent events do in Lamport's model (W12).</p>
+<h3 id="63-what-knitweb-does-not-provide-and-why-that-is-correct">6.3 What KnitWeb does NOT provide — and why that is correct</h3>
+<p>The following are absent <strong>by design</strong>, not by omission. Each is a property a value ledger needs and a knowledge commons does not — and in several cases actively must not have.</p>
+<table>
+<thead>
+<tr>
+<th>Withheld guarantee</th>
+<th>What it would mean</th>
+<th>Why KnitWeb omits it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Total order over the fabric</strong></td>
+<td>A single global sequence of all facts.</td>
+<td>No such sequence is defined or computed. Knowledge is multi-authored and partially ordered; serializing all assertions into one line is meaningless and would impose an arbitrary, centralizing canonical history.</td>
+</tr>
+<tr>
+<td><strong>Objective finality on facts</strong></td>
+<td>A pick becomes "confirmed" / irreversible.</td>
+<td>No pick is ever frozen by the structure. Any assertion may be contradicted, superseded, or re-weighted later; treating a fact as final is epistemically wrong and would prevent correction.</td>
+</tr>
+<tr>
+<td><strong>Consensus-on-order</strong></td>
+<td>A leader/quorum/stake-vote or gossip-about-gossip virtual voting (W2) chooses an ordering.</td>
+<td>The CRDT converges <em>structure</em> without agreeing on <em>order</em>; no ordering needs deciding, so no consensus mechanism is run.</td>
+</tr>
+<tr>
+<td><strong>Structural conflict resolution of meaning</strong></td>
+<td>The structure forks or votes a contradiction away.</td>
+<td>Contradictions are first-class: opposing picks coexist, each with provenance and credence (§7 / §2.4). Meaning is <em>weighed</em>, never erased by the data structure.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why withholding these is the right choice.</strong> A blockchain (W1) or block-lattice (W11) exists to enforce a single agreed history so that value cannot be double-spent; a hashgraph (W2) reaches deterministic finality on a total order of events through all-to-all gossip and virtual voting. Both pay for that history with a single canonical timeline — which is exactly the wrong primitive for knowledge. Knowledge is <strong>partially ordered</strong> (most facts are simply unrelated in time), <strong>multi-authored</strong> (no privileged writer serializes it), and <strong>contradiction-tolerant</strong> (disagreement is information to be weighed, not a fault to be resolved away). Forcing a total order or an objective finality onto such a corpus would (i) destroy concurrency by serializing independent assertions, (ii) make error-correction impossible by freezing facts, and (iii) reintroduce a centralizing pressure — whoever controls the ordering controls the canon.</p>
+<p>KnitWeb therefore keeps only the guarantee a knowledge commons actually needs — <strong>convergence of state under monotone CRDT merge, conditional on the shared update set (W3)</strong> — and pushes total order and objective finality to the layer that genuinely requires them: MeshLattice's block-lattice (#3, §2.6). Structural convergence here means peers that have observed the same strands eventually hold the same <em>fabric</em> (and partial replicas agree on their shared closure); it explicitly does <strong>not</strong> mean they agree on what is <em>true</em>. That separation — same data, weighed meaning — is taken up next.</p>
+<p>I now have all the canonical facts needed. I have full grounding for all three fixes:</p>
+<ol>
+<li><strong>EigenTrust</strong>: proposed/future-work, requires pre-trusted seed + missing trust-edge source; deployed primitive is stake-weighting + economic slashing; freshness via VC expiry/snapshot currency, not "time-decay".</li>
+<li><strong>L2 canonicalization</strong>: contradiction nodes gate promotion to L2; HotStuff BFT seals canonical merges. L0/L1 is append-only/consensus-free.</li>
+<li><strong>Credence fusion</strong>: governed monotone per-edge fusion rule, recomputed deterministically by all nodes (corroboration-by-replay), bounded/capped — not purely a querier-side presentation choice.</li>
+</ol>
+<h2 id="7-meaning-contradiction-and-credence">7. Meaning, Contradiction, and Credence</h2>
+<p>This section is governed by §2.4 (<em>Truth ≠ Structure</em>) and applies it in full. The central claim is a separation that the rest of the design depends on: <strong>structural convergence is not agreement on truth.</strong> KnitWeb's CRDT (§2.3) guarantees that peers who have exchanged the same strands hold a byte-identical fabric <code>F = (W, P, K)</code>; it guarantees nothing about whether the assertions woven into that fabric are <em>correct</em>, <em>mutually consistent</em>, or <em>believed</em>. The weave converges the container, not its meaning.</p>
+<p>One scope note frames the whole section. The weave described in this paper is the <strong>raw, append-only fabric</strong> — the L0/L1-equivalent layer of KnitNet (#4): everything any author has ever woven, retained in full. The CRDT-convergence and contradiction-coexistence claims below are claims about <em>that</em> layer. KnitNet additionally derives a <strong>canonical (L2) view</strong> on top of the raw fabric, and that derivation is <em>not</em> consensus-free: it gates on contradiction and is sealed by BFT finality (§7.5, §7.7). KnitWeb's "no consensus, no finality on facts" is therefore precise rather than universal — it describes how the raw fabric <em>accumulates and reconciles</em>, not how a downstream canonical view is <em>promoted</em>.</p>
+<h3 id="71-two-convergences-deliberately-decoupled">7.1 Two convergences, deliberately decoupled</h3>
+<p>It is useful to name the two notions that a naive design conflates and that KnitWeb keeps strictly apart:</p>
+<ul>
+<li><strong>Structural convergence</strong> — every peer eventually holds the same set of threads and interlacements in the raw fabric. This is achieved by monotone CRDT union + content-address dedup (§2.3.1), with no leader, quorum, or vote (W3, W4).</li>
+<li><strong>Semantic agreement</strong> — peers agree on which assertions are <em>true</em>. This is <strong>never</strong> produced by the raw weave, and KnitWeb does not attempt to manufacture it at the structural layer.</li>
+</ul>
+<p>A blockchain or hashgraph (#3, and the contrast targets of §2.5) couples these two: a fact is "real" once and only once it is in the single canonical, totally-ordered history, and a contradicting fact is therefore <em>invalid by construction</em> — one branch wins, the other is discarded. The raw KnitWeb fabric refuses this coupling. Because knowledge is multi-authored, partially ordered, and frequently contested, forcing a single canonical history <em>over the raw fabric</em> is the wrong primitive (§2.3.3): it would either silently destroy minority assertions or require a centralizing authority to adjudicate truth at write time. The raw weave instead lets the fabric carry <em>all</em> the assertions and weighs them <em>after the fact</em>, separately, and revisably. Where the suite genuinely needs a single canonical answer it derives one as an explicit, finalized L2 view (§7.5) — it does not collapse the raw fabric to produce it.</p>
+<h3 id="72-contradiction-is-first-class-contradictory-picks-coexist">7.2 Contradiction is first-class: contradictory picks coexist</h3>
+<p>In the raw fabric, two weft picks that assert incompatible statements about the same warps are <strong>both</strong> valid fabric members. They are distinct strands with distinct CIDs; union admits both; dedup collapses neither (their canonical bytes differ). Nothing in the structural layer prefers one over the other, and nothing removes the loser — because at the structural layer there is no loser.</p>
+<p>Consider two authors making opposite claims about the same warp (an entity <code>w_S</code>, a predicate, an object warp <code>w_O</code>):</p>
+<pre><code class="language-jsonc">// Pick A — author α asserts the statement, high credence
+{
+  &quot;kind&quot;: &quot;weft&quot;,
+  &quot;statement&quot;: { &quot;subject&quot;: &quot;cid:bafyWarpS&quot;,
+                 &quot;predicate&quot;: &quot;cid:bafyWarpPredicate&quot;,
+                 &quot;object&quot;:    &quot;cid:bafyWarpO&quot; },
+  &quot;credence&quot;: 0.91,
+  &quot;prov&quot;: {
+    &quot;wasAttributedTo&quot;: &quot;did:agt:zAlpha…&quot;,
+    &quot;wasDerivedFrom&quot;:  [&quot;cid:bafyLabReportA&quot;],
+    &quot;wasGeneratedBy&quot;:  &quot;activity:measurement&quot;,
+    &quot;generatedAtTime&quot;: &quot;2026-06-15T09:00:00Z&quot;
+  }
+}
+
+// Pick B — author β asserts the OPPOSITE, also with provenance
+{
+  &quot;kind&quot;: &quot;weft&quot;,
+  &quot;statement&quot;: { &quot;subject&quot;: &quot;cid:bafyWarpS&quot;,
+                 &quot;predicate&quot;: &quot;cid:bafyWarpPredicate&quot;,
+                 &quot;object&quot;:    &quot;cid:bafyWarpO_other&quot; },
+  &quot;credence&quot;: 0.74,
+  &quot;prov&quot;: {
+    &quot;wasAttributedTo&quot;: &quot;did:agt:zBeta…&quot;,
+    &quot;wasDerivedFrom&quot;:  [&quot;cid:bafyLabReportB&quot;],
+    &quot;wasGeneratedBy&quot;:  &quot;activity:measurement&quot;,
+    &quot;generatedAtTime&quot;: &quot;2026-06-15T14:30:00Z&quot;
+  }
+}
+</code></pre>
+<p>After any exchange, both peers hold <strong>both</strong> picks. The disagreement is preserved as data — a recorded, attributable, dated dispute between α and β — rather than erased into the winner's history. A consumer of the raw fabric sees a <em>contested region</em>, not a false certainty.</p>
+<p>This is the design intent of <strong>monotone growth</strong> (§2.3.1): in the raw fabric, knowledge is added, never silently removed. Even <em>retraction</em> is itself a weft pick — a <code>prov:wasInvalidatedBy</code> assertion (W5) — and not a deletion. An author who later disbelieves Pick A weaves a new pick invalidating it; the original remains in the fabric, now visibly superseded, so the audit trail of <em>who believed what, when, and why</em> is never lost. (How KnitNet's L2 canonicalization treats such a contradiction is a <em>derivation</em> step layered on top, not a mutation of the raw strands — §7.5.)</p>
+<h3 id="73-every-pick-carries-provenance-and-credence">7.3 Every pick carries provenance and credence</h3>
+<p>Coexistence is only useful because each pick is <strong>self-describing</strong> about its origin and its author's confidence. Two fields (§2.2.3) carry this:</p>
+<ul>
+<li><strong><code>prov</code> — PROV-O provenance (W5).</strong> Each pick records <code>wasAttributedTo</code> (the signing DID/PLS author), <code>wasDerivedFrom</code> (source picks, documents, or ledger transactions), <code>wasGeneratedBy</code> (the activity — measurement, replay-validation, LLM extraction), and <code>generatedAtTime</code>. Provenance is what makes a contradiction <em>legible</em>: a reader can ask <em>not</em> "which fact won" but "where did each claim come from, and do I trust that path?" Provenance proves <em>who said what, citing what</em> — it does <strong>not</strong> prove the cited source is genuine, independent, or pre-existing (a gap that corroboration alone cannot close; W14, KnitNet §9.3).</li>
+<li><strong><code>credence</code> — a <code>[0,1]</code> value, per attribution.</strong> The value carried <em>on a pick</em> is the <strong>author's own subjective confidence</strong> in the statement, asserted at write time. At the per-attribution level it is explicitly <em>not</em> a network-wide probability of truth, <em>not</em> a vote tally, and <em>not</em> a finality score. It is one attributable datum: "α was 0.91 sure; β was 0.74 sure."</li>
+</ul>
+<p>Because per-attribution credence is per-author and per-pick, it is itself contestable: a third author may weave a pick that derives from both and assigns a <em>lower</em> credence to A's claim.</p>
+<p><strong>Per-attribution vs. fused per-edge credence.</strong> Per-attribution credence is not the whole story. When multiple <em>independent</em> attributions assert the <strong>same edge CID</strong>, KnitNet (#4, W14) combines their credences under a <strong>governed, monotone fusion rule</strong> that every node recomputes identically from the same edge set — <em>corroboration-by-replay</em> (W14, KnitNet §6.5/§9.4). This yields a <strong>fused per-edge credence</strong> that is network-deterministic and fabric-derived, not a per-reader presentation choice. Two properties make the fusion safe rather than sybil-amplifiable (W14, KnitNet §9.4):</p>
+<ul>
+<li><strong>Bounded by claimant weight, not count.</strong> Each attribution's marginal contribution is weighted by the claimant's <strong>stake at risk</strong> and reputation weight, <em>not</em> by the bare number of attributions. N zero-stake, low-reputation Sybils contribute negligibly more than one.</li>
+<li><strong>Capped, sub-certainty ceiling.</strong> The governed rule imposes a hard cap on marginal gain per additional attribution and a ceiling below <code>1.0</code> reachable from corroboration alone; externally-anchored or demonstrably pre-existing sources are weighted strictly above attacker-generable ones.</li>
+</ul>
+<p>The distinction matters for KnitWeb's claims: aggregation is <strong>not</strong> purely querier-side. There are <em>two</em> legitimate aggregates — the deterministic fused per-edge credence above (recomputed by replay, the same for all nodes) and any <em>further</em> querier-side view a consumer chooses to compute (§7.4). Neither overwrites the underlying per-attribution credences, both of which remain in <code>F</code> in full; fusion is monotone and never replaces an existing attribution.</p>
+<h3 id="74-conflicts-are-weighed-in-the-raw-fabric-and-gated-in-canonicalization">7.4 Conflicts are weighed in the raw fabric, and gated in canonicalization</h3>
+<p>When an application or curator must <em>act</em> on a contested region — render a "current best view", answer a query, accept a Knowledge Asset — it <strong>weighs</strong> the coexisting picks. KnitWeb specifies three weighing inputs (§2.4), and explicitly excludes, <em>for the raw fabric</em>, the two mechanisms a ledger would use to rewrite history (forking, voting a fact away — §7.5).</p>
+<table>
+<thead>
+<tr>
+<th>Weighing input</th>
+<th>What it contributes</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Credence (per-attribution + fused per-edge)</strong></td>
+<td>The author's <code>[0,1]</code> self-asserted confidence on each pick, plus the network-deterministic fused per-edge aggregate recomputed by replay under the governed monotone rule.</td>
+<td>§2.2.3, §7.3, W14 (KnitNet §6.5/§9.4)</td>
+</tr>
+<tr>
+<td><strong>SHACL validation-by-replay (W6)</strong></td>
+<td>Re-executes a pick's generating activity against the warp's SHACL shape to confirm the assertion <em>still validates</em> against its declared constraints. A pick whose replay fails is down-weighted regardless of its credence.</td>
+<td>§2.4, W6</td>
+</tr>
+<tr>
+<td><strong>KnitNet dispute / curation (#4)</strong></td>
+<td>Explicit disputes plus stake-weighted curation from the KnitNet layer (W14). Reputation biases this weighting where available; the operative anti-Sybil guarantee today is economic (stake + slashing), not reputational (§7.6).</td>
+<td>§2.4, W14</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Validation-by-replay</strong> (W6) deserves emphasis because it is the weave's check that is <em>intrinsic to the data</em> rather than to the social layer. Each warp may declare a SHACL shape governing the picks woven onto it (§2.2.2, <code>schema</code>). A pick that claims to have been <code>wasGeneratedBy</code> a measurement or replay activity (W5) can be re-validated: replay the declared activity, re-check the result against the shape (W6). A pick that no longer validates — stale source, malformed value, violated cardinality — is structurally suspect and weighed down, <em>independently of how confident its author was or how reputable they are</em>. Credence and reputation answer "do we trust this author?"; replay answers "does this assertion still hold up against its own declared constraints?" — and both feed the weighing.</p>
+<p><strong>Weighing a raw region produces a view, not an edit.</strong> A curator who concludes that Pick A outweighs Pick B does not delete B, does not fork the raw fabric, and does not record a vote that rewrites the raw strands. They produce (or update) a <em>selvedge</em> (§2.1) — a signed, content-addressed index over the region recording its current validation status and frontier — which downstream consumers may adopt or ignore. The underlying picks, including the down-weighted one, remain in <code>F</code>. A later author with new evidence can re-weigh the region and publish a different selvedge. <strong>The raw fabric is never the casualty of a disagreement; only a particular reader's selvedge over it changes.</strong></p>
+<p>This is distinct from KnitNet's <strong>canonical (L2) derivation</strong>, where weighing is not merely advisory: a SHACL functional-property or cardinality conflict materializes a content-addressed <strong>contradiction node</strong> that <em>withholds promotion of the affected cluster to L2</em> until the conflict resolves (W14, KnitNet §6.4/§9.7). The contradiction node does not delete or reorder the raw edges — they remain present and queryable at L0/L1 — but it does <strong>gate derivation</strong>: in the suite, canonicalization <em>is</em> contradiction-gated. KnitWeb's "no structural resolution of meaning" claim is therefore exact for the raw fabric and explicitly <em>does not</em> extend to the L2 view, which is a gated, finalized derivation (§7.5).</p>
+<h3 id="75-what-the-raw-weave-does-not-do-and-what-canonicalization-adds">7.5 What the raw weave does NOT do — and what canonicalization adds</h3>
+<p>Two resolution mechanisms common to ledger and DAG systems are <strong>prohibited in the raw weave by design</strong>:</p>
+<ul>
+<li><strong>No forking the raw fabric to resolve a fact.</strong> A contradiction does not split <code>F</code> into competing chains/branches one of which must be orphaned. Both picks live in the <em>same</em> monotone fabric; there is nothing to orphan. (Contrast the longest-chain / one-branch-wins resolution of W1 and the per-account block-lattice of W11, §2.5.)</li>
+<li><strong>No voting a fact away in the raw fabric.</strong> No quorum, stake-weighted ballot, or gossip-about-gossip virtual voting (the contrast target W2) removes a raw pick or rewrites its order. Stake and reputation <em>inform weighing</em>; they never <em>delete</em> a raw strand.</li>
+</ul>
+<p>The reason is the same as §2.3.3: imposing total order or objective finality on <em>raw facts</em> is a centralizing pressure and the wrong primitive for a contradiction-tolerant knowledge commons.</p>
+<p>The suite is not, however, consensus-free <em>end to end</em> — and this paper states that plainly rather than overclaiming. KnitNet's <strong>L2 canonicalization</strong> is a derivation layered on top of the raw fabric, and it <em>does</em> use both gating and finality (W14, KnitNet §6.4/§9.7):</p>
+<ul>
+<li><strong>Contradiction-gating.</strong> A <code>sameAs</code> merge or a functional-property/cardinality conflict materializes a contradiction node that withholds L2 promotion until the conflict is resolved by corroboration shift, retraction, or juror verdict.</li>
+<li><strong>BFT finality on the canonical commit.</strong> When a <code>sameAs</code> merge or contradiction resolution is committed to L2, that commit is sealed by the suite's HotStuff two-phase BFT (#3): a PREPARE quorum certificate followed by a COMMIT quorum certificate at threshold <code>⌊2n/3⌋ + 1</code>.</li>
+</ul>
+<p>The crucial scoping: <strong>L0/L1 raw writes need no consensus</strong> — they are append-only and self-certifying, and that is the layer KnitWeb's CRDT model governs — <strong>while the canonical (L2) view pays BFT cost exactly where a single agreed answer is semantically required.</strong> So "no consensus on facts" is true of how the raw fabric accumulates; it is <em>not</em> a claim that the derived canonical view avoids consensus. Where an application needs total order or objective finality over <em>value</em> — token transfer, irreversible commitment — it uses the block-lattice (#3, §2.6); where it needs a finalized <em>canonical knowledge</em> answer, KnitNet's L2 derivation supplies one. The raw weave underlies both and competes with neither.</p>
+<h3 id="76-reputation-and-sybil-resistance-are-external-to-the-weave">7.6 Reputation and Sybil resistance are external to the weave</h3>
+<p>A natural objection: if anyone can weave any pick into the raw fabric and nothing is ever removed, what stops an attacker from drowning it in false or Sybil-authored assertions? The answer is deliberate and is stated once, here, to close the loop with §2.4: <strong>Sybil resistance and abuse handling are the responsibility of KnitNet (#4, W14), not of the weave structure, and KnitWeb adds no new token and no new consensus mechanism to provide them.</strong></p>
+<p>The controls KnitNet (#4) specifies apply unchanged, and it is important to name the one that is <em>actually load-bearing today</em> versus the one that is <em>proposed</em>:</p>
+<ul>
+<li><strong>Stake + economic slashing — the operative defence today.</strong> Asserting or disputing carries an economic bond at the KnitNet layer, and abuse is punished by slashing. Per KnitNet §10.5, the system's anti-Sybil guarantee currently <strong>rests on stake-weighting and slashing, not on transitive trust</strong>: a Sybil cohort gains weight only by putting capital at risk, and loses it when slashed. The marginal credence of an additional Sybil attribution is bounded by its stake, not by its count (§7.3).</li>
+<li><strong>Reputation freshness via Verifiable-Credential currency.</strong> Reputation in KnitNet is carried as a Verifiable Credential bound to the author's <code>did:key</code>; freshness is handled by <strong>VC validity/expiry and snapshot currency</strong> (a stale snapshot lapses and a fresh one supersedes it; a relying party checks both signature and currency), <em>not</em> by a continuous time-decay function. We therefore make no "time-decayed reputation" claim.</li>
+<li><strong>Transitive trust (EigenTrust, W8) — proposed, not deployed; conditional.</strong> KnitNet <em>proposes</em> EigenTrust (W8) over an attribution graph as future work, and is explicit (KnitNet §10.2.2) that it is <strong>not implemented</strong>: it lacks a persisted trust-edge source, and its Sybil-cluster-isolation property is <strong>conditional</strong> on (a) that trust-edge source existing and being itself Sybil-resistant, and (b) a governed set of <strong>pre-trusted peers</strong> to seed the computation. Until then it must not be relied upon. We cite EigenTrust (W8) only in this proposed-future-work sense and do <strong>not</strong> treat normalized transitive trust as an available weighing input.</li>
+<li><strong>Dispute.</strong> Explicit, attributable challenges (themselves weft picks with provenance) drive curation and feed the reputational signal.</li>
+</ul>
+<p>These controls act <strong>on the weighing and on KnitNet's derived layers</strong>, not on the raw structure. A Sybil flood enlarges <code>F</code> (monotone growth admits the picks) but does not corrupt the raw fabric: the picks arrive carrying little or no stake, fail SHACL replay (W6) where applicable, contribute only bounded-and-capped fused credence (§7.3), and are weighed to nothing by honest selvedges and, in canonicalization, gated by contradiction nodes (§7.5). The attacker pays stake to add data that no curator credits. This is exactly the §2.4 division of labour — <strong>the raw weave converges structure; KnitNet (#4) supplies the economic and (where built) reputational defence; neither borrows the other's mechanism.</strong> The clean consequence is that the weave's correctness argument (commutativity, idempotence, monotonicity, §2.3.1) is entirely independent of, and unburdened by, the adversarial-trust argument — and is independent, too, of whether the <em>proposed</em> transitive-trust layer ever ships, because the operative Sybil bound today is economic, not reputational.</p>
+<h2 id="8-querying-the-weave">8. Querying the Weave</h2>
+<p>Querying KnitWeb is the inverse of weaving: a reader traverses the woven fabric <code>F = (W, P, K)</code> (§2.1) to recover assertions, extracts a verifiable sub-weave, and surfaces answers that are <strong>proof-bearing</strong> and <strong>contradiction-aware</strong>. Because the fabric is a content-addressed CRDT and not a totally-ordered ledger, a query never returns "the" canonical answer; it returns a partially-ordered, credence-weighted, provenance-stamped <em>view</em> that the querier — human or agent — can verify offline. This section specifies the query surface used by KnitNet (#4) and by autonomous agents (#1, #2, #5) running over the same knitweb mesh transport (#3).</p>
+<h3 id="81-traversal-along-warp-and-weft">8.1 Traversal along warp and weft</h3>
+<p>A query walks the two-axis structure directly: <strong>down a warp</strong> (the version history and all picks woven across a stable axis) and <strong>across a weft</strong> (the warps an assertion links). Because every primitive is CID-keyed (W4), every traversal step is a content-addressed dereference, and the same step on two peers resolves to byte-identical objects.</p>
+<table>
+<thead>
+<tr>
+<th>Traversal</th>
+<th>Start</th>
+<th>Step</th>
+<th>Yields</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Warp-walk (vertical)</strong></td>
+<td><code>cid_w</code></td>
+<td>Follow <code>prev</code>/<code>supersedes</code> down the warp strand; collect all knots <code>k ∈ K</code> with <code>k.warp == cid_w</code></td>
+<td>The full version history of an axis + every pick interlaced on it (all statements <em>about</em> an entity/topic).</td>
+</tr>
+<tr>
+<td><strong>Weft-walk (horizontal)</strong></td>
+<td><code>cid_p</code></td>
+<td>Read <code>p.statement.{subject,predicate,object}</code> warp CIDs and <code>p.interlaces</code> knots</td>
+<td>The warps a single assertion crosses (the entities/topics one statement <em>relates</em>).</td>
+</tr>
+<tr>
+<td><strong>Knot-join (pivot)</strong></td>
+<td><code>cid_k</code></td>
+<td>From a knot, pivot warp→weft→warp to reach co-interlaced warps</td>
+<td>Multi-hop graph paths: "entities related to <code>w</code> via predicate <code>π</code>," etc.</td>
+</tr>
+<tr>
+<td><strong>Causal-walk</strong></td>
+<td>any record</td>
+<td>Follow <code>prev</code> (intra-strand, total) then <code>prov:wasDerivedFrom</code> / Lamport <code>happens-before</code> (inter-strand, partial) (W5, W12)</td>
+<td>The causal/derivation lineage of an assertion across strands.</td>
+</tr>
+</tbody>
+</table>
+<p>Two order regimes (§2.3.2) are exposed to the querier as distinct guarantees:</p>
+<ul>
+<li><strong>Intra-strand traversal is totally ordered and cryptographically verifiable</strong>: a warp-walk or the version history of one weft is a hash-linked sequence (<code>prev</code> + <code>seq</code>), so the reader can replay it deterministically.</li>
+<li><strong>Inter-strand traversal is partially ordered</strong>: a knot-join across independently-authored strands yields a set of <em>incomparable</em> picks. The query engine MUST NOT impose a synthetic total order on them; it returns them as a concurrent set, optionally ranked by credence (§8.4), with the ranking marked as a <em>presentation</em> choice rather than a fact about the fabric.</li>
+</ul>
+<pre><code class="language-jsonc">// A traversal query: &quot;all picks about warp W, predicate=processYield, with their lineage&quot;
+{
+  &quot;op&quot;: &quot;warp_walk&quot;,
+  &quot;warp&quot;: &quot;cid:bafyWarpAcmeSlagH2&quot;,
+  &quot;filter&quot;: { &quot;predicate&quot;: &quot;cid:bafyWarpProcessYield&quot; },
+  &quot;include&quot;: [&quot;statement&quot;, &quot;credence&quot;, &quot;prov&quot;, &quot;knots&quot;],
+  &quot;order&quot;: &quot;partial&quot;                  // engine returns a concurrent set, not a sequence
+}
+</code></pre>
+<h3 id="82-sub-weave-extraction-with-selvedge-merkle-proofs">8.2 Sub-weave extraction with selvedge / Merkle proofs</h3>
+<p>A querier rarely wants all of <code>F</code>; it wants a <strong>coherent sub-weave</strong> — one authority's warps, one Knowledge Asset's picks (#4), or the neighbourhood of an entity — together with a proof that the returned strands are exactly the strands the provider claims, <strong>verifiable without holding the rest of the fabric</strong>.</p>
+<p>The proof carrier is the <strong>selvedge</strong> <code>s ∈ S</code> (§2.1): a signed, content-addressed index over a region of the fabric that names the covered strand-heads, the version-vector frontier, and the SHACL validation report (W6), all under a signer DID (W9). Combined with the fabric's Merkle structure (the root manifest is a CID over the set of strand-head CIDs, W4), this gives an <strong>offline-verifiable</strong> extraction:</p>
+<ol>
+<li><strong>Inclusion.</strong> Each returned strand-head is proven to be a member of the selvedge's covered set by a Merkle path against the selvedge's manifest CID (W4) — the standard Merkle-proof construction: a logarithmic-size sibling path, no need for the full set.</li>
+<li><strong>Integrity.</strong> Each strand record is self-verifying: its <code>cid</code> is the multihash of its own canonical bytes, and its <code>prev</code> links the record to its predecessor, so any tampering changes a CID and breaks the chain (§2.1 strand invariant).</li>
+<li><strong>Validation status.</strong> The selvedge carries the SHACL validation report (W6) for its region, so the querier learns <em>which</em> picks currently validate against their warp's shape without re-running validation itself (it MAY re-run by replay — §8.4).</li>
+<li><strong>Frontier / freshness.</strong> The version-vector frontier tells the querier exactly which <code>seq</code> heads the sub-weave reflects, so it can detect staleness and request a delta (only the records past its own frontier) rather than re-fetching. The frontier is a per-strand <code>seq</code>-head <strong>summary</strong>: it flags <em>that</em> the sub-weave may have advanced or that an incoming record collides with a position already filled, but it does not itself carry the bodies needed to prove a fork (§8.5).</li>
+<li><strong>Authenticity.</strong> The signer DID (W9) binds the selvedge to an authority; the signature covers the manifest CID, so the whole sub-weave inherits one verifiable provenance anchor.</li>
+</ol>
+<pre><code class="language-jsonc">// Sub-weave response: a selvedge-anchored, offline-verifiable extract
+{
+  &quot;selvedge&quot;: &quot;cid:bafySelvedgeAcmeAuthority&quot;,
+  &quot;manifest&quot;: &quot;cid:bafyRootManifest&quot;,        // Merkle root over covered strand-heads (W4)
+  &quot;signer&quot;:   &quot;did:agt:z6MkAuthority…&quot;,
+  &quot;sig&quot;:      &quot;ed25519:…&quot;,                    // over the manifest CID
+  &quot;frontier&quot;: { &quot;cid:bafyWarp…&quot;: 42, &quot;cid:bafyWeft…&quot;: 17 }, // version-vector heads
+  &quot;validation&quot;: &quot;cid:bafyShaclReport&quot;,        // SHACL status for the region (W6)
+  &quot;strands&quot;: [
+    {
+      &quot;head&quot;: &quot;cid:bafyWarpAcmeSlagH2&quot;,
+      &quot;proof&quot;: [&quot;cid:bafySib1&quot;, &quot;cid:bafySib2&quot;], // Merkle inclusion path (W4)
+      &quot;records&quot;: [ /* hash-linked strand_record list, self-verifying */ ]
+    }
+  ]
+}
+</code></pre>
+<p>Verification is purely local: recompute each record's CID, check <code>prev</code> linkage, replay each Merkle path to the <code>manifest</code> CID, and check <code>sig</code> against <code>signer</code>. No network round-trip, no trusted index, no consensus — the sub-weave proves itself. This is the query-side dual of the merge-side guarantee in §2.3: union converges structure; selvedge proofs let a reader take a <em>slice</em> of that structure and trust it standalone.</p>
+<h3 id="83-graphrag-over-the-fabric-for-agents">8.3 GraphRAG over the fabric for agents</h3>
+<p>Autonomous agents (#1 PLS identity, #2 Context Capsules, #5 VirtualPC) consume the weave through <strong>GraphRAG</strong>: graph-structured retrieval-augmented generation in which retrieval is a <em>typed traversal</em> over <code>F</code> rather than flat vector lookup. The fabric is already a knowledge graph (RDF statements over warps, W7), so GraphRAG here is native rather than bolted on.</p>
+<p>The retrieval pipeline:</p>
+<ol>
+<li><strong>Anchor.</strong> Resolve the agent's query terms to warp CIDs (entity/topic/schema axes) — the content-addressed entry points.</li>
+<li><strong>Expand.</strong> Warp-walk and knot-join (§8.1) outward to a bounded neighbourhood (k-hop, credence-thresholded), pulling the relevant weft picks and their provenance.</li>
+<li><strong>Extract.</strong> Package the neighbourhood as a selvedge-anchored sub-weave (§8.2) so the retrieved context is itself proof-bearing — the agent receives not just facts but verifiable facts.</li>
+<li><strong>Ground.</strong> Hand the sub-weave to the agent's context window as a <strong>Context Capsule (#2)</strong>: each retrieved pick enters the prompt with its <code>credence</code>, <code>prov</code> (W5), and selvedge proof attached, so the model can cite, weigh, and (critically) distinguish high- from low-credence and corroborated- from disputed inputs.</li>
+</ol>
+<p>This composition matters for agent safety: because every retrieved assertion arrives with provenance and credence, an agent can be instructed to act only on picks above a credence floor, or to require independent <code>wasDerivedFrom</code> corroboration, or to flag contradictions for a human (#4 curation) — policies expressible <em>because the retrieval layer preserves provenance end-to-end</em>. A flat RAG store that discards provenance cannot offer this; the weave's per-pick PROV-O (W5) and credence are exactly what GraphRAG surfaces to the agent.</p>
+<pre><code class="language-jsonc">// GraphRAG retrieval request from an agent
+{
+  &quot;op&quot;: &quot;graphrag_retrieve&quot;,
+  &quot;anchors&quot;: [&quot;cid:bafyWarpAcmeSlagH2&quot;, &quot;cid:bafyWarpBiostimulant&quot;],
+  &quot;expand&quot;: { &quot;hops&quot;: 2, &quot;min_credence&quot;: 0.6 },
+  &quot;as_capsule&quot;: true,                 // package as a Context Capsule (#2)
+  &quot;with_proofs&quot;: true                 // selvedge + Merkle proofs inline (§8.2)
+}
+</code></pre>
+<h3 id="84-partial-order-and-credence-at-the-query-surface">8.4 Partial order and credence at the query surface</h3>
+<p>The defining property of a KnitWeb answer is that it does <strong>not</strong> collapse the fabric's partial order and contradiction-tolerance into a single asserted fact (§2.3.3, §2.4). When a query touches a region where independently-authored picks disagree, the response surfaces the disagreement explicitly.</p>
+<p>An answer is a <strong>proof-bearing, contradiction-aware</strong> object with three layers:</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Content</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Claims</strong></td>
+<td>The set of weft picks matching the query — <em>including mutually contradictory ones</em> — each with its <code>statement</code>, <code>credence</code>, and <code>prov</code> (W5).</td>
+<td>§2.2.3 weft picks</td>
+</tr>
+<tr>
+<td><strong>Order</strong></td>
+<td>The partial order over those claims: intra-strand edges (total, verifiable) and inter-strand causal edges (<code>wasDerivedFrom</code>, Lamport); concurrent claims marked incomparable.</td>
+<td>§2.3.2</td>
+</tr>
+<tr>
+<td><strong>Proof</strong></td>
+<td>The selvedge + Merkle inclusion paths (W4) and SHACL validation status (W6) for every returned pick, so the whole answer is offline-verifiable.</td>
+<td>§8.2</td>
+</tr>
+</tbody>
+</table>
+<p>How the three surface together:</p>
+<ul>
+<li><strong>Contradictions coexist, ranked not erased.</strong> If picks <code>p₁: (w, hasYield, "12%")</code> and <code>p₂: (w, hasYield, "18%")</code> both exist, <em>both</em> are returned. The engine MAY order them by credence and by <strong>SHACL validation-by-replay</strong> (W6) — re-executing each pick's generating activity against the warp's shape to confirm it still validates — and MAY annotate each with its author's time-decayed EigenTrust reputation and any open disputes (#4). But ranking is a <em>presentation</em> over an unchanged fabric: the query never deletes, forks, or votes away the loser (§2.4). A querier that wants only the top claim asks for it explicitly and is told it is a credence-ranked selection, not a consensus fact.</li>
+<li><strong>Credence is a first-class output, not a hidden score.</strong> Every returned claim carries its author's <code>[0,1]</code> credence; aggregate views (e.g. a credence-weighted summary) are computed <em>by the querier</em> from these values, never baked into the fabric. Two queriers with different trust policies legitimately get different rankings from the same byte-identical sub-weave.</li>
+<li><strong>Partial order is honoured, not flattened.</strong> Concurrent picks are returned as an incomparable set; the querier learns <em>that</em> they are concurrent (no <code>happens-before</code> between them) rather than being shown a fabricated sequence. Only where a real causal edge exists (<code>prev</code>, <code>wasDerivedFrom</code>) does the answer assert ordering — and there it carries the cryptographic proof of that edge.</li>
+</ul>
+<pre><code class="language-jsonc">// A contradiction-aware answer to &quot;what is the process yield of warp W?&quot;
+{
+  &quot;query&quot;: { &quot;warp&quot;: &quot;cid:bafyWarpAcmeSlagH2&quot;, &quot;predicate&quot;: &quot;cid:bafyWarpProcessYield&quot; },
+  &quot;claims&quot;: [
+    { &quot;pick&quot;: &quot;cid:bafyPickA&quot;, &quot;object&quot;: &quot;12%&quot;, &quot;credence&quot;: 0.82,
+      &quot;prov&quot;: { &quot;wasAttributedTo&quot;: &quot;did:agt:zLab…&quot;, &quot;wasGeneratedBy&quot;: &quot;activity:measurement&quot; },
+      &quot;shacl&quot;: &quot;valid&quot;, &quot;disputes&quot;: 0 },
+    { &quot;pick&quot;: &quot;cid:bafyPickB&quot;, &quot;object&quot;: &quot;18%&quot;, &quot;credence&quot;: 0.55,
+      &quot;prov&quot;: { &quot;wasAttributedTo&quot;: &quot;did:agt:zEstim…&quot;, &quot;wasGeneratedBy&quot;: &quot;activity:llm-extract&quot; },
+      &quot;shacl&quot;: &quot;valid&quot;, &quot;disputes&quot;: 1 }            // contradicts A — BOTH returned
+  ],
+  &quot;order&quot;: &quot;concurrent&quot;,                            // no happens-before between A and B
+  &quot;ranking&quot;: &quot;by_credence&quot;,                         // a PRESENTATION choice, not a fact
+  &quot;proof&quot;: { &quot;selvedge&quot;: &quot;cid:bafySelvedge…&quot;, &quot;manifest&quot;: &quot;cid:bafyRoot…&quot;,
+             &quot;merkle&quot;: [&quot;cid:bafySib…&quot;] }           // offline-verifiable (W4, W6)
+}
+</code></pre>
+<h3 id="85-detecting-equivocation-at-query-time">8.5 Detecting equivocation at query time</h3>
+<p>A querier reading a sub-weave must be able to detect a <strong>forked strand</strong> — an author who has signed two different records at the same position (the append-only-log analogue of a double-spend). The detection mechanism is <em>not</em> the version-vector frontier: a frontier stores only the highest <code>seq</code> per strand (a single integer per strand), so by construction it discards the record bodies. It can therefore only <strong>flag</strong> that an incoming record carries a <code>seq</code> already filled for that strand — it is a <em>trigger</em>, not <em>evidence</em>.</p>
+<p>The non-repudiable proof of equivocation is a property of the <strong>append-only signed log plus gossip</strong> (W10, §2.1), not of the frontier. Detection-with-proof requires that some honest peer <em>retains both signed records</em> — two valid author signatures over the same <code>(strand, seq)</code>, or two records sharing the same <code>prev</code> but with different <code>cid</code> — and can exhibit them together:</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Mechanism</th>
+<th>What it provides</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Trigger</strong></td>
+<td>Version-vector frontier: incoming <code>seq</code> collides with a position already consumed for that strand.</td>
+<td>A signal that a fork <em>may</em> exist; no proof, since the frontier holds no bodies.</td>
+</tr>
+<tr>
+<td><strong>Capture</strong></td>
+<td>The append-only log retains the conflicting signed records; gossip (W10) propagates a record to peers who already hold the rival.</td>
+<td>Two concrete records <code>r₁, r₂</code> with the same author and same <code>(strand, seq)</code> (or same <code>prev</code>, different <code>cid</code>).</td>
+</tr>
+<tr>
+<td><strong>Proof</strong></td>
+<td>Exhibit <code>{r₁, r₂}</code>: both signatures verify against the author DID (W9), both name the same strand position.</td>
+<td>A compact, <strong>offline-verifiable, non-repudiable</strong> fork proof — the author cannot deny either signature.</td>
+</tr>
+</tbody>
+</table>
+<p>A fork proof is itself content-addressable and can be woven back as a weft pick (<code>prov:wasInvalidatedBy</code>, §2.3.1) or escalated to KnitNet dispute/curation (#4); the equivocating author's time-decayed EigenTrust reputation (W8, #4) absorbs the penalty. Crucially, equivocation detection adds <strong>no consensus</strong>: it does not order the fabric or pick a "winner" — it surfaces <em>both</em> records with proof and lets credence, dispute, and reputation (#4) weigh them, exactly as with any other contradiction (§8.4). The frontier accelerates detection; the signed log makes it provable.</p>
+<h2 id="9-integration-with-the-suite">9. Integration with the Suite</h2>
+<p>KnitWeb is not a standalone system: it is the <strong>knowledge data structure underneath KnitNet (#4)</strong>, woven on the same knitweb mesh and signed with the same identity as the rest of the suite (W14). This section states precisely how the weave composes with each companion paper and — critically — what it does <strong>not</strong> add.</p>
+<h3 id="91-the-one-line-contract">9.1 The one-line contract</h3>
+<blockquote>
+<p><strong>KnitWeb is the weave-for-knowledge; MeshLattice's block-lattice (#3) is the lattice-for-value.</strong> Knowledge converges by CRDT union + content-address dedup with no total order and no finality on facts (§2.3); value gets total order and objective finality on the block-lattice (§2.6). The two compose over one transport and one identity, and neither imposes its ordering on the other.</p>
+</blockquote>
+<p>This is the clean separation mandated by the spec (§2.6): where an application needs an open, contradiction-tolerant, partially-ordered knowledge commons it writes weft picks into the fabric; where it needs an irreversible, totally-ordered commitment (a token transfer, a stake, a settlement) it writes to the ledger (#3). KnitWeb never tries to give a fact objective finality, and the ledger never tries to totally-order knowledge.</p>
+<h3 id="92-how-a-knowledge-asset-a-capsule-and-the-weave-line-up">9.2 How a Knowledge Asset, a Capsule, and the weave line up</h3>
+<p>To avoid any layering ambiguity with KnitNet (#4) and Context Capsules (#2), the suite fixes one relationship verbatim:</p>
+<blockquote>
+<p><strong>A KnitNet Knowledge Asset (#4) IS a Context Capsule (#2)</strong> whose payload is the bundle of weft picks (§2.2.3), signed by the contributor's PLS (#1, W9) and content-addressed by its capsule root CID (per #4 §5.4 and the #4 glossary).</p>
+</blockquote>
+<p>So the three terms are not three parallel objects but one nested identity:</p>
+<ul>
+<li><strong>A weft pick</strong> (<code>p ∈ P</code>, §2.1) is a single provenance-bearing assertion across warps.</li>
+<li><strong>A Knowledge Asset</strong> is a Merkle-rooted <em>bundle</em> of such picks — and that bundle, signed by its author's PLS, <strong>is</strong> the payload of a Context Capsule (#2). The Capsule's root CID is therefore the Knowledge Asset's identity; there is no second identifier.</li>
+<li><strong>A Context Capsule (#2)</strong> is thus the <em>envelope</em> in which a Knowledge Asset travels and is anchored into the fabric: capsule-as-payload, not capsule-as-mere-citation.</li>
+</ul>
+<p>This corrects two readings that would otherwise diverge from #4. First, a Capsule is <strong>not</strong> merely something cited in a pick's <code>prov:wasDerivedFrom</code>; that citation pattern still applies to <em>external source</em> capsules a pick derives from, but the Knowledge Asset's <em>own</em> picks are carried <strong>inside</strong> its Capsule, not pointed at from outside. Second, <strong>"selvedge" is not a new, parallel index</strong>: a selvedge over a Knowledge Asset's region (§2.1) is the <em>verified-edge view</em> of that asset — the Capsule/Merkle root CID that #4 already defines, <strong>plus</strong> the SHACL-validation report (W6) and the version-vector frontier needed for sub-weave sync. The covered-strand-heads field of a selvedge (§2.1) over one asset reduces to that asset's existing capsule root; the selvedge adds verification status and a sync frontier, and introduces <strong>no competing content-address</strong> for the asset itself.</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Object</th>
+<th>Identity (CID)</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Assertion</td>
+<td><strong>Weft pick</strong> <code>p</code> (§2.1)</td>
+<td><code>cid_p</code> over canonical pick</td>
+<td>One provenance-bearing statement across warps</td>
+</tr>
+<tr>
+<td>Bundle</td>
+<td><strong>Knowledge Asset = Context Capsule (#2, #4 §5.4)</strong></td>
+<td><strong>Capsule root CID</strong> (the KA's identity; no second id)</td>
+<td>Merkle-rooted, PLS-signed bundle of picks; the unit KnitNet curates</td>
+</tr>
+<tr>
+<td>Verified view</td>
+<td><strong>Selvedge</strong> <code>s</code> (§2.1)</td>
+<td DID="DID" SHACL="SHACL" capsule="capsule" report_="report," root_="root," signer="signer" vv-frontier_="vv-frontier,"><code>cid_s</code> over</td>
+<td>Index/edge over the asset's region for verify + sync — <strong>wraps</strong> the capsule root, does not replace it</td>
+</tr>
+</tbody>
+</table>
+<h3 id="93-per-paper-integration">9.3 Per-paper integration</h3>
+<table>
+<thead>
+<tr>
+<th>Companion (W14)</th>
+<th>What it provides to KnitWeb</th>
+<th>What KnitWeb provides to it</th>
+<th>Coupling point</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>#1 PLS</strong></td>
+<td>Signing identity for every strand: each warp/weft record is authored by a <code>did:agt:…</code> (W9) and signed (§2.2.1).</td>
+<td>A content-addressed, provenance-bearing record of what each agent has asserted, with credence.</td>
+<td><code>author</code> + <code>sig</code> fields on every <code>strand_record</code>; <code>prov:wasAttributedTo</code> on every pick (§2.2.3).</td>
+</tr>
+<tr>
+<td><strong>#2 Context Capsules</strong></td>
+<td>The <strong>envelope for a Knowledge Asset</strong> (§9.2): a Capsule whose payload is a bundle of weft picks — and, separately, source capsules a pick derives from.</td>
+<td>Durable, content-addressed, provenance-linked anchoring of capsules into the knowledge graph.</td>
+<td>A KA's picks are carried <strong>inside</strong> its Capsule (Capsule root = KA identity, §9.2); external source capsules appear in <code>prov:wasDerivedFrom</code> (§2.2.3).</td>
+</tr>
+<tr>
+<td><strong>#3 MeshLattice — knitweb mesh transport</strong></td>
+<td>The <strong>mesh overlay</strong> (the knitweb mesh) that ships strands peer-to-peer; the WARP/WEFT token transport.</td>
+<td>An application of the knitweb mesh that requires no new transport — strands are just content-addressed objects gossiped/synced over it.</td>
+<td>Strand sync (root-manifest diff, §2.1) runs over the knitweb mesh; same mesh as the ledger.</td>
+</tr>
+<tr>
+<td><strong>#3 MeshLattice — block-lattice</strong></td>
+<td><strong>Total order + objective finality for value</strong> (W11) — the complement KnitWeb deliberately lacks.</td>
+<td>An off-ledger, contradiction-tolerant knowledge state a ledger commitment can anchor.</td>
+<td>A pick MAY cite a ledger tx CID via <code>prov:wasDerivedFrom</code>; a ledger commitment MAY anchor a fabric root manifest CID (§2.6).</td>
+</tr>
+<tr>
+<td><strong>#4 KnitNet</strong></td>
+<td><strong>Knowledge Assets</strong> (Capsules whose payload is a bundle of weft picks, §9.2), <strong>proof-of-knowledge</strong>, and the curation economy: stake + time-decayed EigenTrust (W8) + dispute.</td>
+<td>The underlying weave data structure — the fabric (<code>F = (W,P,K)</code>) that KnitNet's assets are bundles within.</td>
+<td><code>asset</code> field on each pick = the KA's capsule root CID (§2.2.3, §9.2); Sybil/abuse handled by #4, <strong>not</strong> by the weave (§2.4).</td>
+</tr>
+<tr>
+<td><strong>#5 VirtualPC / #7 Capstone</strong></td>
+<td>Execution and application context that produces and consumes picks (e.g. validation-by-replay activities, W6).</td>
+<td>A shared, verifiable knowledge substrate those environments read from and write to.</td>
+<td><code>prov:wasGeneratedBy</code> activities (§2.2.3); selvedge indices (§2.1) for sub-weave access.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="94-composition-diagram">9.4 Composition diagram</h3>
+<p>The weave and the ledger are siblings over one transport and one identity — not layers of one stack, and not competitors:</p>
+<pre><code>                         ┌──────────────────────────────────────────┐
+                         │            Applications (#5, #7)           │
+                         │   produce / consume picks; commit value    │
+                         └───────────────┬───────────────┬───────────┘
+                                         │               │
+                  KNOWLEDGE  (open,      │               │  VALUE  (total order,
+                  partial order,         │               │  objective finality,
+                  contradiction-OK)      ▼               ▼  no double-spend)
+        ┌────────────────────────────────────────┐ ┌──────────────────────────────┐
+        │        KnitNet (#4)                     │ │   MeshLattice block-lattice  │
+        │  Knowledge Asset = Context Capsule (#2) │ │           (#3, W11)          │
+        │   whose payload = bundle of weft picks  │ │  total order + FINALITY      │
+        │  proof-of-knowledge · stake · EigenTrust│ │  for token transfers / stake │
+        │  dispute / curation (Sybil handled HERE)│ │                              │
+        └───────────────────┬─────────────────────┘ └───────────────┬──────────────┘
+                            │  (capsule payload =                    │
+                            ▼   bundle of picks)                     │
+        ┌────────────────────────────────────────┐                  │
+        │           KnitWeb  WEAVE  (#8)          │   prov:wasDerivedFrom (tx CID)
+        │   F = (W warps, P weft picks, K knots)  │◄────────────────►│  root-manifest anchor
+        │   CRDT merge:  F₁ ⊔ F₂  (union + dedup)  │   (mutual reference, NEITHER     )
+        │   NO total order · NO finality on facts │   (imposes its order on the other)
+        │   NO new token · NO new consensus       │                  │
+        └───────────────────┬─────────────────────┘                  │
+                            │  carries (as Capsule payload,           │
+                            ▼   + cites source capsules)              │
+        ┌────────────────────────────────────────┐                  │
+        │   Context Capsules (#2)  —  envelope for a Knowledge Asset │
+        │   (payload = bundle of picks); source capsules cited via   │
+        │   prov:wasDerivedFrom                                      │
+        └────────────────────────────────────────┘                  │
+                            │                                        │
+   ═════════════════════════╪════════════════════════════════════════╪═══════════════
+        ┌───────────────────▼────────────────────────────────────────▼──────────────┐
+        │        knitweb mesh transport (#3)  —  ONE p2p overlay for both layers         │
+        ├────────────────────────────────────────────────────────────────────────────┤
+        │   PLS / DID identity (#1, W9)  —  ONE signing identity for every strand &amp; tx │
+        └────────────────────────────────────────────────────────────────────────────┘
+</code></pre>
+<p>Read vertically, the diagram shows the <strong>separation of concerns</strong>: the left column is the knowledge path (KnitNet over the KnitWeb weave, where a Knowledge Asset is a Context Capsule whose payload is a bundle of picks), the right column is the value path (the block-lattice). Read horizontally at the bottom, it shows the <strong>shared foundation</strong>: a single knitweb mesh transport and a single PLS/DID identity serve both. The only link between the two columns is <strong>mutual citation</strong> — a pick may reference a ledger tx, and a ledger commitment may anchor a fabric root manifest — with the explicit invariant that <strong>neither layer imposes its ordering on the other</strong> (§2.6).</p>
+<h3 id="95-what-knitweb-adds-and-deliberately-does-not-add">9.5 What KnitWeb adds — and, deliberately, does not add</h3>
+<p>To make the separation unambiguous:</p>
+<ul>
+<li><strong>KnitWeb adds NO new token.</strong> Identity and value use PLS (#1) and the block-lattice (#3); the weave introduces no coin, no fee token, and no staking asset of its own. Stake used in disputes is KnitNet's (#4), settled on the ledger (#3).</li>
+<li><strong>KnitWeb adds NO new consensus.</strong> The fabric converges by CRDT union + content-address dedup (§2.3, W3, W4) — a join-semilattice merge, not an agreement protocol. There is no leader, no quorum, no virtual voting (contrast W1, W2, W11) introduced by this layer.</li>
+<li><strong>KnitWeb adds NO new transport.</strong> Strands ship over the existing knitweb mesh mesh (#3).</li>
+<li><strong>KnitWeb adds NO new Sybil mechanism.</strong> Abuse on the open weave is handled exactly as in KnitNet (#4) — stake + time-decayed EigenTrust (W8) + dispute — not by the weave structure (§2.4).</li>
+<li><strong>KnitWeb adds NO new identifier for a Knowledge Asset.</strong> A KA is identified by its Context Capsule root CID (§9.2, #4 §5.4); the selvedge wraps that root with a validation report and sync frontier — it does <strong>not</strong> mint a competing content-address for the asset.</li>
+</ul>
+<p>What KnitWeb <strong>does</strong> add is the missing primitive the rest of the suite needed: a <strong>2-D woven, content-addressed, append-only, CRDT-convergent knowledge fabric</strong> (§2.1) on which KnitNet's Knowledge Assets — each a Context Capsule (#2) whose payload is a bundle of weft picks — are the curated unit, giving the suite an open, multi-authored, contradiction-tolerant knowledge commons <strong>without</strong> the centralizing pressure of a single canonical history (W14). Value and finality remain, by design, on the block-lattice (#3).</p>
+<h2 id="10-comparison-blockchain-vs-hashgraph-vs-weave">10. Comparison: Blockchain vs Hashgraph vs Weave</h2>
+<p>This section consolidates the three-way comparison of §2.5 into a single rigorous table across eight axes, then states honestly what each model sacrifices. The thesis is unchanged: KnitWeb is <strong>not a blockchain and not a hashgraph</strong>. It converges <em>structure</em> by content-addressing and CRDT merge (W3, W4), and it deliberately declines the one thing both of the others are built to deliver — a single canonical total order over all events with objective finality, decided by a <strong>known set of weighted participants</strong>. The deepest systems-level distinction is therefore not only <em>ordering/finality</em> but <em>membership</em>: hashgraph's aBFT finality (W2) and a BFT-quorum ledger (W11) are <strong>closed-membership</strong> constructions whose correctness depends on a knowable weighted participant set, whereas KnitWeb's CRDT convergence (W3) is <strong>open and permissionless</strong> and holds for arbitrary, churning membership.</p>
+<h3 id="101-three-way-comparison-table">10.1 Three-way comparison table</h3>
+<table>
+<thead>
+<tr>
+<th>Axis</th>
+<th>Blockchain (W1; block-lattice W11)</th>
+<th>Hashgraph (W2)</th>
+<th><strong>KnitWeb weave (this paper)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ordering</strong></td>
+<td>Global total order of transactions in blocks (W1); block-lattice imposes a per-account total order plus inter-account ordering on spends (W11).</td>
+<td>Global total order of <em>all</em> events, derived from the gossip-about-gossip DAG by virtual voting (W2).</td>
+<td><strong>Within a thread: total order</strong> (append-only, hash-linked <code>prev</code> + per-strand <code>seq</code> + Lamport clock, W12). <strong>Across threads: partial order only</strong> — the causal order from happens-before and explicit <code>wasDerivedFrom</code> (W5, W12). No global sequence is computed.</td>
+</tr>
+<tr>
+<td><strong>Finality</strong></td>
+<td>Nakamoto/longest-chain is probabilistic (W1). The block-lattice this suite contrasts with (#3) is <strong>not</strong> probabilistic: ORV is layered with a <strong>HotStuff-style BFT quorum requiring &gt;⅔ of total bonded WARP weight</strong> (a <em>fixed</em> denominator, not a variable online set, W11/#3). A transaction confirms only when that quorum is reachable; under a minority partition blocks <strong>do not confirm</strong> — liveness is sacrificed, safety preserved. Either way, confirmation is <strong>objective and irreversible</strong> for value.</td>
+<td>Objective, deterministic finality on <em>every</em> event once its order is decided by virtual voting over the known weighted membership (W2).</td>
+<td><strong>No finality on facts, by design.</strong> A weft pick is never "confirmed" or made irreversible by the structure; it can be contradicted, superseded, or re-weighted at any time. Finality is not a weave concept (it is pushed to #3 where an app needs it).</td>
+</tr>
+<tr>
+<td><strong>Membership model</strong></td>
+<td>Block-lattice BFT quorum is <strong>closed/known-weight</strong>: the &gt;⅔ denominator is the <em>total bonded WARP weight</em>, a known stake set (W11/#3). Open-PoW (W1) is permissionless but pays for it with probabilistic finality and hash-power cost.</td>
+<td><strong>Closed / known-membership.</strong> The aBFT guarantee requires a knowable set of weighted participants for the &gt;⅔ honest-stake bound, plus an eventual-delivery (synchrony) assumption for liveness (W2).</td>
+<td><strong>Open / permissionless.</strong> CRDT convergence (W3) requires <em>no</em> membership knowledge: it holds for an arbitrary, open, churning set of peers. There is no denominator to know, no quorum to assemble, and correctness does not degrade as members join or leave.</td>
+</tr>
+<tr>
+<td><strong>Multi-author</strong></td>
+<td>Single canonical history; concurrent writers are serialized into one chain (or one per account); competing branches are pruned (one wins).</td>
+<td>Single canonical history; all events from all known members are folded into one total order.</td>
+<td><strong>Natively multi-author.</strong> Every author writes their own append-only strands; concurrent picks from different authors are <strong>incomparable and coexist</strong>, never serialized into one history.</td>
+</tr>
+<tr>
+<td><strong>Contradiction-tolerance</strong></td>
+<td>None. A conflicting transaction (e.g. double-spend) is <em>invalid</em>; at most one branch survives.</td>
+<td>None. One ordered history; contradictory events cannot both be canonical.</td>
+<td><strong>First-class.</strong> Contradictory weft picks <strong>coexist</strong> in the fabric, each carrying PROV-O provenance (W5) and a <code>[0,1]</code> credence; conflicts are <em>weighed</em>, not erased (§2.4).</td>
+</tr>
+<tr>
+<td><strong>Consensus mechanism</strong></td>
+<td>Leader + quorum: proof-of-work (W1) or, for the block-lattice (#3), ORV layered with a <strong>HotStuff-style BFT quorum over &gt;⅔ of total bonded WARP weight</strong> (W11).</td>
+<td>Gossip-about-gossip + virtual voting over the event DAG, against the known weighted membership (W2).</td>
+<td><strong>No consensus on order.</strong> Convergence is <strong>CRDT state-merge = componentwise CID-keyed set union + content-address dedup</strong> (W3, W4): commutative, associative, idempotent, monotone (§2.3). No leader, no quorum, no virtual voting, no membership set.</td>
+</tr>
+<tr>
+<td><strong>Sybil handling</strong></td>
+<td>Cost-to-attack is <em>intrinsic to consensus</em>: hash power (PoW, W1) or <strong>bonded stake forming the BFT-quorum weight</strong> (ORV, W11) — identity-free but resource-gated, and the stake set must be known to compute the &gt;⅔ bound.</td>
+<td>Sybil-resistance is delegated to <strong>closed membership</strong>: the &gt;⅔ bound only holds because the weighted participant set is known and admission is controlled (W2).</td>
+<td><strong>External to the structure.</strong> The weave itself is identity-gated only by PLS/DID signatures (W9); Sybil/spam is handled <strong>exactly as in KnitNet (#4)</strong> — stake + time-decayed <strong>EigenTrust</strong> reputation (W8) + dispute/curation. The weave adds <em>no</em> new token and <em>no</em> new consensus, and needs <em>no</em> membership set.</td>
+</tr>
+<tr>
+<td><strong>Query model</strong></td>
+<td>Replay the ordered chain to a single canonical world-state (UTXO/account set); queries answer "the" current balance/state.</td>
+<td>Replay the totally-ordered event stream to a single canonical state, as for a blockchain.</td>
+<td><strong>Graph query over the fabric <code>F = (W, P, K)</code></strong> (RDF triples/quads, W7): traverse warps and weft picks, filter/rank by credence, provenance, SHACL-validity (W6) and reputation (W8). Queries return <strong>a credence-weighted set of possibly-contradictory answers with provenance</strong>, not one canonical value.</td>
+</tr>
+<tr>
+<td><strong>What it sacrifices</strong></td>
+<td>Openness, partial order, multi-author concurrency, and contradiction-tolerance — everything is forced into one history (a centralizing pressure); the BFT-quorum variant additionally sacrifices liveness under partition to preserve safety (W11).</td>
+<td>The same single-history sacrifice <strong>plus</strong> all-to-all gossip cost <strong>plus</strong> a hard known-weighted-membership requirement (W2).</td>
+<td><strong>Total order and objective finality on facts</strong> — given up <em>intentionally</em>. Apps that genuinely need a single agreed history or irreversible commitment use the block-lattice ledger (#3, §2.6), not the weave.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="102-reading-the-table">10.2 Reading the table</h3>
+<p>Four rows carry the argument. <strong>Ordering</strong> and <strong>finality</strong> show that blockchains (W1, W11) and hashgraph (W2) exist <em>to produce</em> a global total order with finality, whereas KnitWeb produces total order only <em>within</em> a strand and leaves the cross-strand relation partial. <strong>Membership model</strong> is the sharpest distinction and the strongest form of the "no consensus needed" thesis: hashgraph's aBFT (W2) and the block-lattice's BFT quorum (W11) are correct <em>only</em> relative to a <strong>known weighted participant set</strong> — hashgraph for its &gt;⅔ honest-stake bound, the block-lattice for its &gt;⅔-of-total-bonded-WARP-weight quorum — and both additionally assume eventual delivery for liveness. KnitWeb's CRDT merge (W3) carries <strong>no such assumption</strong>: it converges for an open, permissionless, churning population with no denominator to know and no quorum to assemble. <strong>Consensus mechanism</strong> shows the cost of the alternative: PoW/ORV+BFT-quorum (W1, W11) or gossip-about-gossip plus virtual voting (W2) — machinery KnitWeb does not run, because CRDT union (W3) already converges the <em>structure</em> without agreeing on order or knowing the membership. <strong>Contradiction-tolerance</strong> and <strong>query model</strong> show <em>why</em> that is the right trade for a knowledge commons: knowledge is multi-authored and partially ordered, so the correct answer to a query is a credence-weighted, provenance-bearing <em>set</em>, not a single canonical world-state. Forcing knowledge into one ordered history over a closed membership is the wrong primitive — and a centralizing pressure — which is the design error KnitWeb refuses.</p>
+<hr />
+<h2 id="11-security-and-limitations">11. Security and Limitations</h2>
+<p>KnitWeb inherits the security posture of its parts (content-addressing W4, append-only signed strands W10/W9, KnitNet's economic layer #4) and adds <strong>no</strong> new consensus surface and <strong>no</strong> membership assumption. This section is deliberately candid: it separates threats the design <em>does</em> mitigate from limitations that are <strong>intentional trade-offs</strong>, not bugs.</p>
+<h3 id="111-threats-and-mitigations">11.1 Threats and mitigations</h3>
+<p><strong>11.1.1 Sybil and spam.</strong>
+An open weave lets anyone mint strands, so an attacker can flood <code>F</code> with low-value or adversarial weft picks. The <strong>structure does not defend against this</strong> — and is not asked to. Unlike a BFT or aBFT system (W2, W11), KnitWeb cannot fall back on a known weighted membership to bound Sybil identities, because it deliberately has none; Sybil/spam is instead handled <strong>exactly as in KnitNet (#4)</strong>: writes are anchored to <strong>PLS/DID</strong> identity (W9), admission and weighting are gated by <strong>stake</strong> and <strong>time-decayed EigenTrust reputation</strong> (W8), and bad content is down-weighted or removed from <em>views</em> via <strong>dispute/curation</strong>. Crucially, because merge is <strong>monotone</strong> (§2.3), spam is never silently injected into another peer's accepted state: a peer <em>unions</em> strands but <em>ranks and filters</em> them by credence, provenance and reputation at query time (§10.1, query model). The economic cost of identity (stake) plus the reputational cost of being disputed is the Sybil bound — the same EigenTrust trust-propagation argument as in (W8) — <strong>not</strong> a hash-power or virtual-voting bound, and <strong>not</strong> a closed-membership bound (contrast W1, W2).</p>
+<p><strong>11.1.2 Eclipse.</strong>
+A peer that an adversary can fully surround at the transport layer can be fed a <em>partial</em> fabric (withholding strands) — eclipse is a liveness/visibility attack, not a safety one. Two structural properties limit the damage. First, <strong>content-addressing makes withheld data detectable but not forgeable</strong>: an eclipsing peer can hide a strand but cannot fabricate a different strand under the same CID (W4), nor forge an author's signature (W9). Second, <strong>merge is monotone and order-independent</strong> (§2.3): once the victim re-connects to <em>any</em> honest peer, the missing strands union in and the fabric heals to the same state — there is no "wrong fork" to unwind, because there is no canonical fork to begin with. Mitigation is therefore the standard one: <strong>path diversity</strong> — peer with multiple independent neighbours over the knitweb mesh transport (#3) and compare <strong>root manifests / selvedge frontiers</strong> (§2.1) to detect a peer that is persistently behind.</p>
+<p><strong>11.1.3 Thread equivocation / author forking, and its detection.</strong>
+The sharpest structural attack is <strong>equivocation</strong>: an author publishes <strong>two different records claiming the same strand position</strong> — same <code>strand</code>, same <code>seq</code>, different content and <code>cid</code> (a "forked feed", W10). This is the weave analogue of a double-spend. It is <strong>detectable, not preventable</strong>, and the append-only design makes detection cheap and <em>non-repudiable</em>:</p>
+<ul>
+<li>Each strand is an append-only hash-linked log: record <code>n</code> carries <code>prev = cid(n-1)</code> and a monotonic <code>seq</code> (§2.1, §2.2.1).</li>
+<li>A <strong>version vector / selvedge frontier</strong> records, per strand, the highest <code>seq</code> a peer holds (§2.7). When a peer receives a second, signed record with a <code>seq</code> it has already filled — or two records with the same <code>prev</code> — it holds <strong>two author-signed strand records at the same position</strong>: cryptographic, self-incriminating proof of equivocation (the author signed both, W9/W10).</li>
+<li>That proof is itself published as a weft pick (<code>prov:wasInvalidatedBy</code> / dispute, §2.3, #4), which <strong>collapses the equivocator's EigenTrust reputation</strong> (W8) and slashes stake (#4). The fork does not corrupt other strands: a forked weft only affects picks woven <em>on that strand</em>, and the conflicting versions simply <strong>coexist</strong> as contradictory picks until disputed (§2.4).</li>
+</ul>
+<p>So equivocation cannot silently rewrite the fabric (CIDs and signatures pin every record); it can at most inject a contradiction that the dispute/reputation layer is designed to weigh and punish. Note the contrast: a BFT/aBFT system (W2) <em>prevents</em> equivocation a priori by refusing to finalize against a known membership, whereas KnitWeb — having no membership to vote — <em>tolerates and exposes</em> it, then penalizes economically.</p>
+<p><strong>11.1.4 Poisoning (adversarial / low-quality knowledge).</strong>
+An attacker may publish <em>well-formed but false</em> picks — schema-valid statements with fabricated provenance or inflated credence. The structure cannot adjudicate truth (§2.4: structure ≠ meaning). Defences are <strong>semantic and economic</strong>, layered: <strong>SHACL validation-by-replay</strong> (W6) rejects picks that do not satisfy their warp's shape or whose generating activity fails to reproduce; <strong>provenance scrutiny</strong> (W5) exposes derivation chains (<code>wasDerivedFrom</code>) so a claim grounded only in other disputed claims is visibly weak; and <strong>credence + EigenTrust reputation</strong> (W8) plus <strong>KnitNet dispute/curation</strong> (#4) down-weight authors who repeatedly publish picks that fail replay or lose disputes. Poison coexists in <code>F</code> but is <em>ranked to the bottom</em>, not accepted as fact.</p>
+<h3 id="112-honest-limitations-deliberate-trade-offs">11.2 Honest limitations (deliberate trade-offs)</h3>
+<p>These are not deficiencies to be fixed later; they are the <strong>price of the chosen primitive</strong>, and applications that need the opposite property are explicitly directed to the block-lattice ledger (#3, §2.6).</p>
+<table>
+<thead>
+<tr>
+<th>Limitation</th>
+<th>Why it is intentional</th>
+<th>What to use instead</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>No total order over facts.</strong> The weave never computes a single global sequence of all assertions.</td>
+<td>Knowledge is multi-authored and partially ordered; a global order is the wrong primitive and a centralizing pressure (§2.3, §10).</td>
+<td>Where an app genuinely needs total order (token transfers, irreversible commitments), use the <strong>MeshLattice block-lattice (#3)</strong>, whose ORV + HotStuff-style BFT quorum (&gt;⅔ of total bonded WARP weight) provides total order + objective finality (W11).</td>
+</tr>
+<tr>
+<td><strong>Convergence ≠ agreement on meaning.</strong> Two peers can hold a <strong>byte-identical fabric</strong> and still disagree on what is true.</td>
+<td>Structural CRDT convergence (W3) only guarantees everyone holds the <em>same set</em> of strands; contradictory picks coexist by design (§2.4).</td>
+<td>Resolve meaning <em>above</em> the structure: credence weighting, SHACL replay (W6), EigenTrust reputation (W8), and KnitNet dispute/curation (#4).</td>
+</tr>
+<tr>
+<td><strong>No objective finality on facts.</strong> A pick is never irreversibly "confirmed"; it can always be contradicted, superseded, or re-weighted.</td>
+<td>Facts in an open commons must remain revisable; freezing them would re-introduce the single-canonical-history pressure the weave rejects (§2.3, §10).</td>
+<td>For irreversible commitments, anchor to a block-lattice transaction (#3), which confirms under its BFT quorum (W11); a pick may reference that ledger CID as <code>prov:wasDerivedFrom</code> (§2.6).</td>
+</tr>
+<tr>
+<td><strong>Open membership shifts Sybil cost off-structure.</strong> The CRDT converges for any population, but precisely because it knows no membership it cannot itself bound identities.</td>
+<td>The weave adds no token and no consensus by design; pushing Sybil cost into the structure would re-create a closed-membership consensus mechanism (§10.1). The openness is the feature — it buys permissionless, churn-tolerant convergence a BFT/aBFT system (W2, W11) cannot offer.</td>
+<td>Rely on KnitNet's stake + time-decayed EigenTrust (W8) + dispute (#4); this is a deliberate reuse, not a gap.</td>
+</tr>
+<tr>
+<td><strong>Unbounded growth (monotone, append-only).</strong> Merge only grows <code>F</code>; retraction is itself an appended pick, never a deletion.</td>
+<td>Monotonicity is what makes merge conflict-free and eclipse-healing (§2.3, §11.1.2); silent deletion would break the CRDT guarantees (W3).</td>
+<td>Manage size operationally with <strong>selvedge sub-weaves</strong> and root-manifest scoping (§2.1) so peers hold and sync only the regions they need — not by mutating history.</td>
+</tr>
+</tbody>
+</table>
+<p>In short: KnitWeb gives <strong>structural convergence without consensus on order and without a membership set</strong> (W3, W4) and pays for it by giving up total order and objective finality on facts (W1, W2) — a trade chosen because knowledge is partially ordered, multi-authored, and contradiction-tolerant, while value and finality remain the job of the block-lattice ledger (#3), whose ORV + BFT-quorum finality (W11) is exactly the closed-membership guarantee the weave does not attempt.</p>
+<p>SUITE_PLAN.md is updated. Now I'll output the corrected sections. The scoped sections (§12 and Appendix A) contain no <code>#7</code>/<code>#8</code> Capstone references — the only suite numbers present are <code>#4</code> (KnitNet), <code>#3</code> (MeshLattice/block-lattice), and <code>#1</code> (PLS), all of which match the canonical suite. Per the FIX directive, I make KnitWeb's slot explicit (#7) and confirm Capstone is #6. I add one explicit slot-statement sentence to the conclusion opening so a reader holding the actual papers can place KnitWeb correctly.</p>
+<h2 id="12-conclusion">12. Conclusion</h2>
+<p>KnitWeb is whitepaper <strong>#7</strong> in the suite — the new companion that sits <em>beneath</em> KnitNet (#4) and after the Capstone (#6) — and it specifies the data structure on which peers collaboratively fill and share a knowledge graph: the <strong>woven fabric</strong>. Its single defining claim is negative as much as positive — KnitWeb is <strong>not a blockchain and not a hashgraph</strong>. There is no global block, no per-account chain race (W1, W11), no gossip-about-gossip event-DAG, and no virtual voting on order (W2). Knowledge converges instead by <strong>content-addressing (W4) plus CRDT merge (W3)</strong>: the monotone, commutative, idempotent union of a woven fabric of append-only, content-addressed strands (W10, W12).</p>
+<h3 id="121-what-the-weave-buys">12.1 What the weave buys</h3>
+<ul>
+<li><strong>Convergence without consensus.</strong> Because the fabric <code>F = (W, P, K)</code> is a join-semilattice under componentwise CID-keyed union (§2.3.1), any two peers that have exchanged the same strands hold <strong>byte-identical fabrics</strong> — regardless of message order, duplication, or delay — with no leader, quorum, stake-weighted vote, or virtual voting. Convergence is a property of the <em>structure</em>, not of an agreement protocol.</li>
+<li><strong>Native multi-authorship and contradiction-tolerance.</strong> Concurrent picks from different authors are incomparable and <strong>coexist</strong> (§2.3.2, §2.4). Contradictory weft picks live side by side in the fabric, each carrying its own PROV-O provenance (W5) and <code>[0,1]</code> credence. Disagreement is <strong>weighed, not erased</strong> — by credence, SHACL validation-by-replay (W6), and KnitNet dispute/curation with stake and time-decayed EigenTrust reputation (W8, #4).</li>
+<li><strong>Structural sharing and cheap reconciliation.</strong> Content-addressing makes identity <em>be</em> content: equal content deduplicates to one node, interlacement knots are minted deterministically by any peer (§2.2.4), and a fabric is summarized by a <strong>root manifest</strong> (a Merkle structure over strand-head CIDs, W4) enabling cheap diff and delta-sync against a version-vector frontier.</li>
+<li><strong>Verifiable provenance and partial verification.</strong> Every strand is an append-only, hash-linked, signed log under an PLS/DID identity (#1, W9); tampering breaks a CID and is detectable. A <strong>selvedge</strong> lets a peer verify and request a coherent sub-weave — with its SHACL status and frontier — without holding all of <code>F</code>.</li>
+<li><strong>No new token, no new consensus.</strong> The weave adds neither. Sybil resistance and abuse handling are inherited wholesale from KnitNet (#4); the weave structure itself stays minimal.</li>
+</ul>
+<h3 id="122-what-the-weave-deliberately-gives-up">12.2 What the weave deliberately gives up</h3>
+<ul>
+<li><strong>No total order over the fabric.</strong> There is no global sequence of all facts, and none is computed. Order is <strong>total <em>within</em> a thread</strong> (append-only <code>prev</code> + per-strand <code>seq</code> + Lamport clock, W10, W12) but <strong>partial <em>across</em> threads</strong> — only causal happens-before and explicit <code>wasDerivedFrom</code> links (W5, W12).</li>
+<li><strong>No objective finality on facts.</strong> A weft pick is never "confirmed" or made irreversible by the structure. It may be contradicted, superseded, or re-weighted at any time; retraction is itself a pick (<code>prov:wasInvalidatedBy</code>), never a deletion. Finality is simply not a weave concept.</li>
+<li><strong>No structural resolution of meaning.</strong> Structural convergence (everyone holds the same fabric) is <strong>not</strong> semantic agreement. The weave never forks the fabric or votes a fact away; meaning is adjudicated by credence, validation, and curation — not by the data structure.</li>
+</ul>
+<p>These are not omissions but <strong>design choices</strong>. Knowledge is multi-authored, partially ordered, and contradiction-tolerant; forcing a single canonical history onto it is the wrong primitive and a centralizing pressure. Where an application genuinely needs total order or objective finality — token transfers, irreversible commitments — that requirement is <strong>pushed to MeshLattice's block-lattice (#3)</strong>, which provides exactly one agreed history and no-double-spend (W11).</p>
+<h3 id="123-clean-separation-one-substrate">12.3 Clean separation, one substrate</h3>
+<p><strong>KnitWeb is for KNOWLEDGE; value and finality stay on the block-lattice (#3).</strong> The two layers compose over the <strong>same knitweb mesh transport</strong> and share <strong>PLS/DID identity</strong> (#1, W9): a weft pick may cite a ledger transaction as <code>prov:wasDerivedFrom</code>, and a ledger commitment may anchor a fabric root manifest CID — yet neither layer imposes its ordering on the other. The ledger never totally-orders knowledge; the weave never grants value objective finality. KnitWeb is the block-lattice's <strong>complement, not its competitor</strong>: an open, contradiction-tolerant, partially-ordered knowledge commons woven on the same mesh that carries the suite's value.</p>
+<hr />
+<h2 id="appendix-a-weave-schema-and-notation">Appendix A — Weave Schema and Notation</h2>
+<h3 id="a1-canonical-schemas-jsonc">A.1 Canonical schemas (jsonc)</h3>
+<p>All objects are canonicalized (deterministic key order, canonical RDF term encoding per W7) <strong>before</strong> hashing, so byte-equality ⇒ CID-equality ⇒ dedup. Fields marked <code>cid:</code> are multihash CIDs (W4).</p>
+<p><strong>A.1.1 Thread strand record</strong> (one append; used for both warp and weft strands)</p>
+<pre><code class="language-jsonc">{
+  &quot;type&quot;: &quot;strand_record&quot;,            // append-only log entry (W10)
+  &quot;strand&quot;: &quot;cid:bafyWarpOrWeftHead&quot;, // stable strand identity = CID of its genesis record
+  &quot;kind&quot;: &quot;warp&quot; | &quot;weft&quot;,            // axis (warp) or assertion-pick (weft)
+  &quot;seq&quot;: 42,                          // per-strand monotonic sequence (total internal order)
+  &quot;prev&quot;: &quot;cid:bafyPrevRecord|null&quot;,  // hash-link to prior record on THIS strand; null at genesis
+  &quot;lamport&quot;: 1187,                    // Lamport clock for causal order (W12)
+  &quot;author&quot;: &quot;did:agt:z6Mk…&quot;,          // signing identity (W9 / #1 PLS)
+  &quot;payload&quot;: { /* warp_meta | weft_pick — see below */ },
+  &quot;sig&quot;: &quot;ed25519:…&quot;,                 // signature over canonical bytes of this record
+  &quot;cid&quot;: &quot;cid:bafyThisRecord&quot;         // CID of the canonicalized record (self-id, set last)
+}
+</code></pre>
+<p><strong>A.1.2 Warp payload</strong> (<code>kind:"warp"</code> — a stable axis)</p>
+<pre><code class="language-jsonc">{
+  &quot;warp_id&quot;: &quot;cid:bafyWarpGenesis&quot;,   // == strand identity; immutable
+  &quot;class&quot;: &quot;entity&quot; | &quot;topic&quot; | &quot;schema&quot; | &quot;authority&quot;,
+  &quot;label&quot;: &quot;Acme Steel Slag, batch H2-2026&quot;,
+  &quot;schema&quot;: &quot;cid:bafyShaclShape|null&quot;,// SHACL shape governing picks on this warp (W6)
+  &quot;supersedes&quot;: &quot;cid:bafyPriorVersion|null&quot; // version chain for renames / key-rotation
+}
+</code></pre>
+<p><strong>A.1.3 Weft pick payload</strong> (<code>kind:"weft"</code> — a provenance-bearing assertion across warps)</p>
+<pre><code class="language-jsonc">{
+  &quot;statement&quot;: {                      // an RDF triple/quad over warps (W7)
+    &quot;subject&quot;:   &quot;cid:bafyWarpS&quot;,
+    &quot;predicate&quot;: &quot;cid:bafyWarpP|iri&quot;, // predicate as warp or canonical IRI
+    &quot;object&quot;:    &quot;cid:bafyWarpO|literal&quot;
+  },
+  &quot;credence&quot;: 0.82,                   // [0,1] subjective credence of THIS author
+  &quot;prov&quot;: {                           // PROV-O provenance (W5)
+    &quot;wasAttributedTo&quot;:  &quot;did:agt:z6Mk…&quot;,
+    &quot;wasDerivedFrom&quot;:   [&quot;cid:bafySourcePick&quot;, &quot;ipfs://…&quot;],
+    &quot;wasGeneratedBy&quot;:   &quot;activity:replay-validation|measurement|llm-extract&quot;,
+    &quot;generatedAtTime&quot;:  &quot;2026-06-16T00:00:00Z&quot;
+  },
+  &quot;asset&quot;: &quot;cid:bafyKnowledgeAsset|null&quot;, // bundle this pick belongs to (#4)
+  &quot;interlaces&quot;: [                     // the knots this pick mints (see A.1.4)
+    &quot;cid:bafyKnotSubject&quot;, &quot;cid:bafyKnotObject&quot;
+  ]
+}
+</code></pre>
+<p><strong>A.1.4 Interlacement (knot) record</strong></p>
+<pre><code class="language-jsonc">{
+  &quot;type&quot;: &quot;interlacement&quot;,
+  &quot;warp&quot;: &quot;cid:bafyWarp&quot;,             // the crossed axis
+  &quot;weft&quot;: &quot;cid:bafyWeftPick&quot;,         // the crossing assertion
+  &quot;role&quot;: &quot;subject&quot; | &quot;predicate&quot; | &quot;object&quot;, // crossing role
+  // DETERMINISTIC identity — any peer minting this crossing gets the SAME cid:
+  &quot;cid&quot;: &quot;cid:bafyKnot = CID(warp ‖ weft ‖ role)&quot;
+}
+</code></pre>
+<h3 id="a2-notation-glossary">A.2 Notation / glossary</h3>
+<table>
+<thead>
+<tr>
+<th>Term / symbol</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Warp thread</strong> <code>w ∈ W</code></td>
+<td>Stable axis: persistent entity/topic/schema/authority; append-only versioned strand.</td>
+</tr>
+<tr>
+<td><strong>Weft thread / pick</strong> <code>p ∈ P</code></td>
+<td>Provenance-bearing assertion (RDF triple/quad) woven across warps, with credence.</td>
+</tr>
+<tr>
+<td><strong>Interlacement / knot</strong> <code>k ∈ K</code></td>
+<td>Content-addressed (warp, weft, role) crossing; unit of structural sharing/dedup.</td>
+</tr>
+<tr>
+<td><strong>Fabric / net</strong> <code>F = (W,P,K)</code></td>
+<td>Union of all threads + interlacements = the knowledge graph.</td>
+</tr>
+<tr>
+<td><strong>Selvedge</strong> <code>s ∈ S</code></td>
+<td>Signed, content-addressed verified edge/index of a sub-weave (validation + frontier).</td>
+</tr>
+<tr>
+<td><strong>Strand</strong></td>
+<td>An append-only, hash-linked, signed log (a warp or a weft thread); totally ordered internally.</td>
+</tr>
+<tr>
+<td><strong>CID</strong></td>
+<td>Content IDentifier: multihash over canonical bytes (W4); identity = content; drives dedup.</td>
+</tr>
+<tr>
+<td><strong><code>⊔</code></strong></td>
+<td>Join (merge) = componentwise CID-keyed set union; the CRDT merge operation (W3).</td>
+</tr>
+<tr>
+<td><strong><code>⊑</code></strong></td>
+<td>Lattice partial order: <code>F₁ ⊑ F₂</code> iff <code>F₁ ⊆ F₂</code> componentwise (monotone growth).</td>
+</tr>
+<tr>
+<td><strong>Credence</strong></td>
+<td>Per-pick subjective <code>[0,1]</code> confidence carried by its author.</td>
+</tr>
+<tr>
+<td><strong>Provenance</strong></td>
+<td>PROV-O attribution/derivation/generation metadata on each pick (W5).</td>
+</tr>
+<tr>
+<td><strong>Root manifest</strong></td>
+<td>CID over the set of strand-head CIDs; summarizes a fabric for cheap diff/reconcile.</td>
+</tr>
+<tr>
+<td><strong>Lamport clock</strong></td>
+<td>Per-record logical timestamp giving causal (happens-before) order (W12).</td>
+</tr>
+<tr>
+<td><strong>Version vector / frontier</strong></td>
+<td>Set of per-strand <code>seq</code> heads a peer holds; basis for sync deltas.</td>
+</tr>
+<tr>
+<td><strong>PLS / DID</strong></td>
+<td>PLS (#1) / Decentralized Identifier (W9) signing identity of a strand author.</td>
+</tr>
+<tr>
+<td><strong>Block-lattice (#3)</strong></td>
+<td>MeshLattice's value ledger providing total order + objective finality; the weave's complement, not its competitor.</td>
+</tr>
+<tr>
+<td><strong>Companion suite</strong></td>
+<td>#1 PLS, #2 Context Capsules, #3 MeshLattice, #4 KnitNet, #5 VirtualPC, #6 Capstone; <strong>KnitWeb is #7</strong> (this paper).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="a4-projection-to-metta-hyperon-and-validation-by-replay">A.4 Projection to MeTTa / Hyperon (and validation-by-replay)</h3>
+<p>A KnitWeb sub-weave projects losslessly to MeTTa as a set of <strong>flat, typed, reified atoms</strong> — one atom per (predicate, subject, object) — so a weft pick and its provenance become S-expressions in an OpenCog Hyperon Atomspace (Goertzel et al., 2023). The projection is <strong>deterministic</strong> (stable content-addressed ids; atoms restricted to <code>[A-Za-z0-9_./:-]</code>; literals JSON-quoted), so two peers projecting the same sub-weave emit byte-identical MeTTa — the projection is itself content-addressable and dedups under the CRDT merge (§6).</p>
+<pre><code>(Pick pick:bafy...)
+(PickWarp pick:bafy... warp:entity:acme)
+(PickWarp pick:bafy... warp:topic:emissions)
+(PickStatement pick:bafy... &quot;acme reported 1.2 Mt CO2e in 2025&quot;)
+(PickProvenance pick:bafy... did:key:z6Mk...)
+(PickCredence pick:bafy... 0.82)
+</code></pre>
+<p><strong>Validation-by-replay (§7) maps onto Hyperon directly:</strong> an exported sub-weave is validated by loading it into a stock Hyperon container (<code>trueagi/hyperon:latest</code>) and, for live experiments, an on-demand <code>opencog/atomspace:latest</code> CogServer — any peer recomputes the same verdict over the same content-addressed bytes, no authority required. This mirrors a deployed reference design (the <em>RLM</em> MeTTa/Atomspace bridge in the ClaudeClaw system), where MeTTa is treated as a <strong>deterministic export/bridge, not a canonical store</strong>: the canonical state remains the content-addressed weave.</p>
+<h2 id="appendix-b-heritage-full-vocabulary-transport-governance">Appendix B — Heritage, Full Vocabulary, Transport &amp; Governance</h2>
+<h3 id="b1-etymological-heritage">B.1 Etymological heritage</h3>
+<p><code>knit</code> (OE <em>cnyttan</em>, "to knot") and <code>web</code> (OE <em>webb</em>, "woven fabric") map onto Dutch <em>breien/weefsel</em> and onto the body: synapses "knit" memory; Sherrington likened the waking brain to a self-weaving fabric of "flashing shuttles"; skin is a crossed collagen weave that <em>knits</em> shut as it heals. Proto-Germanic splits the act (<em>bregdaną</em>, braid) from the mass (<em>bragną</em>, brain). Chinese fuses them — tissue = 组织 <em>zǔzhī</em> ("woven &amp; organized like silk"), a network of threads/nerves = 络 <em>luò</em> (as in 网络, internet) — all carrying the silk radical 纟. KnitWeb is built to that shape: order woven from loose threads by knotting and braiding.</p>
+<h3 id="b2-precedent-the-textus-receptus-stephanus-1550">B.2 Precedent: the Textus Receptus (Stephanus, 1550)</h3>
+<p>Estienne's <em>Editio Regia</em> wove 16 manuscripts into one main text plus a <strong>critical margin</strong> of variants, and invented <strong>verse numbering</strong> — the first addressable data-nodes. KnitWeb mechanises the same discipline: each source is a Fiber, the synthesized main text is the Braid, the <strong>margin of variants is the contradiction-tolerant knowledge graph</strong> (§7), and verse-IDs are content-addresses (CIDs). Consensus is derived from thread-tension, not dictated — exactly the credence/CRDT model of §6–§7.</p>
+<h3 id="b3-full-vocabulary-crosswalk">B.3 Full vocabulary crosswalk</h3>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+<th>KnitWeb mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Blob</strong></td>
+<td>a node's raw, unstructured local mass (unspun fleece)</td>
+<td>pre-ingest local store</td>
+</tr>
+<tr>
+<td><strong>Spinning</strong></td>
+<td>turning Blob mass into ordered threads (replaces "mining")</td>
+<td>assertion authoring</td>
+</tr>
+<tr>
+<td><strong>Fiber</strong></td>
+<td>the SHA-256 thread/token (length = mass = value)</td>
+<td>value unit (MeshLattice WARP/WEFT); a signed strand</td>
+</tr>
+<tr>
+<td><strong>Knit</strong></td>
+<td>interlock two Fibers → a new mutually-signed hash</td>
+<td>a transaction / weft-pick contribution</td>
+</tr>
+<tr>
+<td><strong>Braid</strong></td>
+<td>a node's internal chronological thread-history</td>
+<td>per-strand causal order (§6) + lineage</td>
+</tr>
+<tr>
+<td><strong>knitweb mesh</strong></td>
+<td>local validation rules (tension, mass-balance)</td>
+<td>the protocol / SHACL + conservation</td>
+</tr>
+<tr>
+<td><strong>Node / Mesh / Net</strong></td>
+<td>actor / flat p2p links / rigid IP grid</td>
+<td>participants &amp; transport (B.5)</td>
+</tr>
+<tr>
+<td><strong>Web</strong></td>
+<td>organic semantic growth</td>
+<td>the knowledge graph itself</td>
+</tr>
+<tr>
+<td><strong>Plexus / Textus</strong></td>
+<td>the living 3-D fabric of all knit Fibers</td>
+<td>the whole weave (this paper's subject)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="b4-net-vs-web-epistemology">B.4 Net vs Web (epistemology)</h3>
+<p>A <em>net</em> is a man-made grid that <strong>captures and holds</strong> (rationalist, syntactic, rigid — blockchain logic). A <em>web</em> grows from a centre and <strong>feels and connects</strong> (hermeneutic, semantic, elastic). KnitWeb is deliberately a <em>web</em>: a fact has no meaning sitting in a cell, only through the threads run through it.</p>
+<h3 id="b5-transport-the-weave-is-transport-agnostic">B.5 Transport (the weave is transport-agnostic)</h3>
+<p>The weave converges by content-address + CRDT merge regardless of how strands arrive. Strands ride a <strong>Multi-Port Fabric Stack</strong>: Bluetooth-LE Air-Mesh (off-grid, à la BitChat), mDNS <code>udp/5353</code> (local discovery), QUIC <code>4242</code> / WSS <code>443</code> (WAN Knits), and DNS <code>udp/53</code> only as a stealth fallback. Discovery uses <strong>Spatial Fibers</strong> (geo-hash) and <strong>Visual Fibers</strong> (on-device YOLO) for AR. Full design: <code>TECHNICAL_WEAVE_AND_GOVERNANCE.md</code> §5.</p>
+<h3 id="b6-enterprise-data-governance">B.6 Enterprise data governance</h3>
+<p>Because every node/edge is content-addressed and provenance-bearing, the weave is a <strong>federated governance surface with no central catalog</strong>: Communities = brand domains, Business Terms = Warps (+ master-data synonyms), Lineage = the Braid, Policies/DQ-rules = the knitweb weave (SHACL + conservation), Stewardship = reputation-gated authorship, and issue-management = the Stephanus margin (variants kept with credence, never overwritten). Mapping: <code>TECHNICAL_WEAVE_AND_GOVERNANCE.md</code> §8 + <code>BUSINESS_GLOSSARY_AND_DATA_MODEL.md</code>.</p>
+<h2 id="references">References</h2>
+<p>[1] Nakamoto, 2008, Bitcoin: A Peer-to-Peer Electronic Cash System (blockchain total order, contrast), https://bitcoin.org/bitcoin.pdf</p>
+<p>[2] Baird, 2016, The Swirlds Hashgraph Consensus Algorithm (gossip-about-gossip + virtual voting, contrast), https://www.swirlds.com/downloads/SWIRLDS-TR-2016-01.pdf</p>
+<p>[3] Shapiro, Preguica, Baquero, Zawirski, 2011, Conflict-free Replicated Data Types, https://inria.hal.science/inria-00609399</p>
+<p>[4] Benet, 2014, IPFS / IPLD content-addressing (Merkle DAG), https://arxiv.org/abs/1407.3561</p>
+<p>[5] W3C, PROV-O: The PROV Ontology, https://www.w3.org/TR/prov-o/</p>
+<p>[6] W3C, Shapes Constraint Language (SHACL), https://www.w3.org/TR/shacl/</p>
+<p>[7] W3C, RDF 1.1 Concepts, https://www.w3.org/TR/rdf11-concepts/</p>
+<p>[8] Kamvar et al., 2003, EigenTrust, https://nlp.stanford.edu/pubs/eigentrust.pdf</p>
+<p>[9] W3C, 2022, Decentralized Identifiers (DIDs) v1.0, https://www.w3.org/TR/did-core/</p>
+<p>[10] Secure Scuttlebutt Protocol Guide (append-only feeds), https://ssbc.github.io/scuttlebutt-protocol-guide/</p>
+<p>[11] Nano, Open Representative Voting / block-lattice (contrast), https://docs.nano.org/protocol-design/orv-consensus/</p>
+<p>[12] Lamport, 1978, Time, Clocks, and the Ordering of Events, https://lamport.azurewebsites.net/pubs/time-clocks.pdf</p>
+<p>[13] Goertzel et al., 2023, OpenCog Hyperon (MeTTa), https://arxiv.org/abs/2310.18318</p>
+<p>[14] Companion suite: #1 PLS, #2 Context Capsules, #3 MeshLattice, #4 KnitNet, #5 VirtualPC, #7 Capstone.</p>
+<hr />
+<p><em>Disclaimer: technical reference design for a lawful decentralized knowledge commons. Not financial advice.</em></p></body></html>
