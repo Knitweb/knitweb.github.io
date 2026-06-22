@@ -82,6 +82,7 @@ def test_readme_links_public_weave_graph_route() -> None:
 def test_weave_graph_loads_public_data() -> None:
     html = (ROOT / "graph.html").read_text(encoding="utf-8")
 
+    assert "<title>KnitWeb — Shared-Fabric Knowledge Graph</title>" in html
     assert "weave_public" in html
     # no inline event handlers (CSP-friendly, matches kennisgraaf discipline)
     assert 'onclick="' not in html
@@ -92,8 +93,10 @@ def test_weave_public_data_is_knit_safe() -> None:
     """Privacy regression guard: only publish-allowed nodes may ship to the public repo."""
     data = json.loads((ROOT / "data" / "weave_public.json").read_text(encoding="utf-8"))
     nodes = data["nodes"]
+    meta = data["meta"]
 
     assert len(nodes) >= 100
+    assert meta["knitted_nodes"] == len(nodes)
     # every shipped node must be publish-allowed (the private warp never leaves the source machine)
     assert all(node.get("publish") for node in nodes), "private node leaked into public weave data"
 
