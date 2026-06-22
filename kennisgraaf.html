@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Knitweb — 3D kennisgraaf (drill-down + Lens-zoek)</title>
+<style>
+  html,body{margin:0;height:100%;background:#0e1117;color:#e8edf4;font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;overflow:hidden}
+  #graph{position:fixed;inset:0;width:100vw;height:100vh;z-index:1}
+  .bar{position:fixed;top:10px;left:14px;right:14px;z-index:10000;display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:#161b22ee;border:1px solid #2a3340;border-radius:12px;padding:8px 14px}
+  .bar .t{font-weight:700;white-space:nowrap}
+  #back{background:#1b212b;color:#caa64a;border:1px solid #3a4150;border-radius:8px;padding:6px 12px;font-size:13px;cursor:pointer;display:none}
+  #q{flex:1;min-width:160px;background:#0e1117;border:1px solid #2a3340;color:#e8edf4;border-radius:8px;padding:7px 11px;font-size:13.5px}
+  .lensbtn{background:#a05bd0;color:#fff;border:0;border-radius:8px;padding:7px 12px;font-size:13px;cursor:pointer;font-weight:600}
+  .tg{display:flex;align-items:center;gap:7px;font-size:13px;color:#c5cfdb}
+  .sw{position:relative;display:inline-block;width:40px;height:22px}.sw input{opacity:0;width:0;height:0}
+  .sl{position:absolute;cursor:pointer;inset:0;background:#39414e;border-radius:22px;transition:.2s}.sl:before{content:"";position:absolute;height:16px;width:16px;left:3px;bottom:3px;background:#cfd8e3;border-radius:50%;transition:.2s}
+  input:checked+.sl{background:#a05bd0}input:checked+.sl:before{transform:translateX(18px)}
+  .hint{font-size:12px;color:#7f8b9c}
+  #panel{position:fixed;top:70px;right:18px;width:320px;max-height:80vh;overflow:auto;z-index:10000;background:#161b22f6;border:1px solid #2a3340;border-radius:12px;padding:14px 16px;box-shadow:0 6px 24px #0009}
+  #panel .k{color:#ffd479;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+  #panel h3{margin:3px 0 0;font-size:17px}
+  #panel .mv{margin-top:11px;border-left:2px solid #2a3340;padding-left:10px}
+  #panel .mv .lab{font-size:10.5px;font-weight:700;text-transform:uppercase}
+  #panel .mv.mission .lab{color:#ffd479}#panel .mv.vision .lab{color:#7ee0ff}
+  #panel .mv p{margin:3px 0 0;font-size:12.5px;line-height:1.5;color:#c8d2de}
+  #panel p.desc{margin:8px 0 0;font-size:13px;line-height:1.5;color:#c5cfdb}
+  .chips{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
+  .chip{background:#222b36;border:1px solid #313c4a;color:#aebccd;font:inherit;font-size:11.5px;padding:3px 8px;border-radius:20px;cursor:pointer}
+  .chip:hover{border-color:#caa64a;color:#ffd479}
+  .drillcta{margin-top:12px;background:#caa64a;color:#16130a;border:0;border-radius:8px;padding:7px 12px;font-size:13px;font-weight:700;cursor:pointer;width:100%}
+  .ans{margin-top:10px;font-size:12.5px;line-height:1.55;color:#dce5f0;white-space:pre-wrap}
+  .src{margin-top:8px;font-size:11px;color:#7f8b9c}
+  @media (max-width:720px){#panel{left:10px;right:10px;top:auto;bottom:10px;width:auto;max-height:42vh}}
+</style>
+</head>
+<body>
+<div id="graph"></div>
+<div class="bar">
+  <span class="t">Knitweb · 3D</span>
+  <button id="back">← terug</button>
+  <input id="q" placeholder="zoek concept of stel een vraag…  (Enter)">
+  <button class="lensbtn" id="ask">Vraag</button>
+  <label class="tg"><span class="sw"><input type="checkbox" id="vialens"><span class="sl"></span></span>via Lens</label>
+  <span class="hint">klik node = inzoomen op missie/visie · Enter = zoek/vraag</span>
+</div>
+<div id="panel">
+  <span class="k" id="pk">start</span>
+  <h3 id="pt">P2P kennisgraaf</h3>
+  <div id="pbody">
+    <p class="desc">Klik een knitweb-repo om in te zoomen op zijn <b>missie</b>, <b>visie</b> en rol.
+    Typ een term om te filteren, of zet <b>via Lens</b> aan en stel een vraag — agenten kunnen dezelfde
+    graaf + Lens-endpoint bevragen.</p>
+  </div>
+</div>
+
+<script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+<script src="https://unpkg.com/3d-force-graph@1.73.4/dist/3d-force-graph.min.js"></script>
+<script>
+// ── config: where Lens (the reasoning lobe) answers natural-language queries ──
+// Lens (Knitweb/lens) serves `POST /interpret` ({query} -> {text, citations[]}).
+// Run `knitweb-lens serve --host 0.0.0.0 --port 8765` and proxy /interpret on the
+// host, or set window.LENS_ENDPOINT to the full URL. Falls back to a local keyword
+// search over the graph's search_index when Lens is unreachable, so the page always works.
+window.LENS_ENDPOINT = window.LENS_ENDPOINT || '/interpret';
+
+const esc = s => String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const attr = s => esc(s).replace(/"/g, '&quot;');
+let G, DATA = null, level = 'core', curRepo = null;
+
+const el = id => document.getElementById(id);
+const pk = el('pk'), pt = el('pt'), pbody = el('pbody'), panel = el('panel'), back = el('back');
+
+function resetPanelScroll() { panel.scrollTop = 0; }
+
+function panelNode(n) {
+  pk.textContent = n.group || '';
+  pt.textContent = n.name || n.id;
+  let h = '';
+  if (n.mission) h += `<div class="mv mission"><div class="lab">Missie</div><p>${esc(n.mission)}</p></div>`;
+  if (n.vision)  h += `<div class="mv vision"><div class="lab">Visie</div><p>${esc(n.vision)}</p></div>`;
+  if (n.desc && !n.mission && !n.vision) h += `<p class="desc">${esc(n.desc)}</p>`;
+  else if (n.desc) h += `<p class="desc">${esc(n.desc)}</p>`;
+  if (n.kw) h += `<div class="chips">${n.kw.split('|').map(k => `<button type="button" class="chip" data-term="${attr(k)}">${esc(k)}</button>`).join('')}</div>`;
+  if (n.hasDrill && level === 'core') h += `<button class="drillcta" data-drill="${attr(n.id)}">↳ Zoom in op ${esc(n.name)} (missie · visie · rol)</button>`;
+  pbody.innerHTML = h;
+  resetPanelScroll();
+}
+
+function render(graph) {
+  G.graphData(graph);
+  setTimeout(() => { try { G.zoomToFit(700, 60); } catch (e) {} }, 350);
+}
+
+function drillInto(repo) {
+  if (!DATA.drill[repo]) return;
+  level = 'drill'; curRepo = repo;
+  back.style.display = 'inline-block';
+  render(DATA.drill[repo]);
+  const core = DATA.core.nodes.find(n => n.id === repo);
+  if (core) panelNode(core);
+}
+function toCore() {
+  level = 'core'; curRepo = null; back.style.display = 'none';
+  render(DATA.core);
+}
+back.onclick = toCore;
+document.addEventListener('click', e => {
+  const chip = e.target.closest('.chip[data-term]');
+  if (chip) searchTerm(chip.dataset.term);
+  const drill = e.target.closest('.drillcta[data-drill]');
+  if (drill) drillInto(drill.dataset.drill);
+});
+
+// ── search: client filter/highlight + optional Lens query ──
+function searchTerm(term) { el('q').value = term; runSearch(false); }
+
+function clientSearch(query, noticeHtml = '') {
+  const ql = query.toLowerCase();
+  const hits = (DATA.search_index || []).filter(r => r.text.toLowerCase().includes(ql) || r.id.toLowerCase().includes(ql));
+  // highlight matching repos on the core graph
+  toCore();
+  const repos = [...new Set(hits.map(h => h.repo))];
+  G.nodeColor(n => repos.includes(n.id) ? '#ffd479' : (n.color || '#445'));
+  pk.textContent = 'zoekresultaat (lokaal)';
+  pt.textContent = `"${query}"`;
+  pbody.innerHTML = noticeHtml + (hits.length
+    ? `<p class="desc">${hits.length} treffer(s) in ${repos.length} repo('s):</p>` +
+      hits.slice(0, 12).map(h => `<div class="mv ${h.kind === 'mission' ? 'mission' : h.kind === 'vision' ? 'vision' : ''}">
+        <div class="lab">${esc(h.repo)} · ${esc(h.kind)}</div><p>${esc(h.text.slice(0, 200))}</p></div>`).join('')
+    : `<p class="desc">Geen lokale treffer. Zet <b>via Lens</b> aan voor een semantische vraag.</p>`);
+  resetPanelScroll();
+}
+
+async function lensQuery(query) {
+  pk.textContent = 'Lens'; pt.textContent = `"${query}"`;
+  pbody.innerHTML = `<p class="desc">Lens denkt na…</p>`;
+  resetPanelScroll();
+  try {
+    const r = await fetch(window.LENS_ENDPOINT, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query })
+    });
+    if (!r.ok) throw new Error('Lens ' + r.status);
+    const d = await r.json();
+    const ans = d.text || d.answer || JSON.stringify(d);               // Lens answer is .text
+    const srcs = (d.citations || d.sources || [])                      // citations are objects
+      .map(c => (typeof c === 'string' ? c : (c.source_uri || c.source_id || c.node_id || '')))
+      .filter(Boolean);
+    const R = d.reliability || {};
+    const rel = R.status ? (R.status + (R.confidence != null ? ' · vertrouwen ' + R.confidence : '') + (R.abstained ? ' · onthouden' : '')) : '';
+    pbody.innerHTML = `<div class="ans">${esc(ans)}</div>` +
+      (rel ? `<div class="src">Lens: ${esc(rel)}${R.reason ? ' — ' + esc(R.reason) : ''}</div>` : '') +
+      (srcs.length ? `<div class="src">bronnen: ${srcs.map(esc).join(' · ')}</div>` : '');
+    resetPanelScroll();
+    // highlight cited repos if any match
+    const reposCited = DATA.core.nodes.filter(n => srcs.some(s => String(s).toLowerCase().includes(n.id.toLowerCase()))).map(n => n.id);
+    if (reposCited.length) { toCore(); G.nodeColor(n => reposCited.includes(n.id) ? '#a05bd0' : (n.color || '#445')); }
+  } catch (e) {
+    clientSearch(query, `<p class="desc">⚠ Lens-endpoint onbereikbaar (${esc(e.message)}). Terugval op lokale zoek:</p>`);
+  }
+}
+
+function runSearch(forceLens) {
+  const query = el('q').value.trim();
+  if (!query) { G.nodeColor(n => n.color || '#445'); return; }
+  if (forceLens || el('vialens').checked) lensQuery(query);
+  else clientSearch(query);
+}
+el('ask').onclick = () => runSearch(true);
+el('q').addEventListener('keydown', e => { if (e.key === 'Enter') runSearch(false); });
+
+// ── boot ──
+fetch('knitweb_graph_drill.json').then(r => r.json()).then(d => {
+  DATA = d; window.KNITWEB_GRAPH = d;   // agents can read window.KNITWEB_GRAPH or fetch the json
+  G = ForceGraph3D()(el('graph'))
+    .width(window.innerWidth).height(window.innerHeight).backgroundColor('#0e1117')
+    .nodeColor(n => n.color || '#445').nodeVal(n => n.val || 5).nodeOpacity(0.95).nodeResolution(16)
+    .nodeLabel(n => `<b>${esc(n.name || n.id)}</b>`)
+    .linkColor(() => '#3a4762').linkOpacity(0.5).linkWidth(0.8)
+    .linkLabel(l => l.rel ? `<b style="color:#ffd479">${esc(l.rel)}</b>` : '')
+    .onNodeHover(n => { if (n) panelNode(n); })
+    .onNodeClick(n => {
+      if (level === 'core' && n.hasDrill) { drillInto(n.id); return; }
+      panelNode(n);
+      const dst = 150, r = 1 + dst / Math.hypot(n.x || 1, n.y || 1, n.z || 1);
+      G.cameraPosition({ x: (n.x || 0) * r, y: (n.y || 0) * r, z: (n.z || 0) * r || dst }, n, 1200);
+    });
+  render(DATA.core);
+  window.addEventListener('resize', () => G.width(window.innerWidth).height(window.innerHeight));
+  // deep links so agents/users can share a drill or a query:
+  //   #<repo> auto-drills (e.g. #pulse), ?q=term pre-fills the search
+  const qp = new URLSearchParams(location.search).get('q');
+  if (qp) { el('q').value = qp; runSearch(false); }
+  const hash = decodeURIComponent(location.hash.slice(1));
+  if (hash && DATA.drill[hash]) drillInto(hash);
+}).catch(e => { pbody.innerHTML = '⚠ kon knitweb_graph_drill.json niet laden: ' + esc(e.message); });
+</script>
+</body>
+</html>

@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 
@@ -21,3 +22,42 @@ def test_landing_links_dev_and_core_repositories() -> None:
         "https://github.com/Knitweb/molgang",
     ):
         assert text in html
+
+
+def test_readme_links_public_kennisgraaf_route() -> None:
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+
+    assert "https://knitweb.github.io/kennisgraaf.html" in readme
+    assert "KENNISGRAAF.md" in readme
+
+
+def test_kennisgraaf_page_exposes_agent_queryable_graph() -> None:
+    html = (ROOT / "kennisgraaf.html").read_text(encoding="utf-8")
+
+    assert "knitweb_graph_drill.json" in html
+    assert "window.KNITWEB_GRAPH" in html
+    assert "data-drill" in html
+    assert "data-term" in html
+    assert 'onclick="' not in html
+    assert "onclick='" not in html
+
+
+def test_kennisgraaf_graph_data_integrity() -> None:
+    data = json.loads((ROOT / "knitweb_graph_drill.json").read_text(encoding="utf-8"))
+    nodes = data["core"]["nodes"]
+    node_ids = {node["id"] for node in nodes}
+
+    assert len(nodes) >= 20
+    assert "Knitweb" in node_ids
+    assert len(node_ids) == len(nodes)
+
+    for link in data["core"]["links"]:
+        assert link["source"] in node_ids
+        assert link["target"] in node_ids
+
+    indexed = {(row["repo"], row["kind"]) for row in data["search_index"]}
+    for repo in data["repos"]:
+        assert repo in data["drill"]
+        assert data["drill"][repo]["nodes"]
+        assert (repo, "mission") in indexed
+        assert (repo, "vision") in indexed
