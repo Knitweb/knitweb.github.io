@@ -10,8 +10,9 @@ The canonical project repos: [pulse](https://github.com/Knitweb/pulse) (engine),
 - **3D kennisgraaf (drill-down + Lens-zoek):** https://knitweb.github.io/kennisgraaf.html — the repos with
   mission/vision drill-down and a search/query box (agent-queryable; see [KENNISGRAAF.md](KENNISGRAAF.md))
 - **3D Shared-Fabric weave:** https://knitweb.github.io/graph.html — the knit-safe knowledge fabric (the union
-  of publishable sub-weaves a KnitWeb peer receives on knit). Every node is publish-allowed; the private warp
-  stays on the source machine. Search + Lens query; data in `data/weave_public.json`.
+  of publishable sub-weave slices a KnitWeb peer may receive on knit). Publishable slices may ship; non-publish
+  and private nodes stay on the source machine and are withheld from `data/weave_public.json`. Search + Lens
+  query; data in `data/weave_public.json`.
 - Professions workflow artifact: https://knitweb.github.io/professions/
 - Workflow/art gallery: https://knitweb.art/ and https://knitweb.github.io/k.nitweb.art/
 - Developer workflow label: `knitweb.dev`, currently linked to https://5mart.ml/knitweb/dev

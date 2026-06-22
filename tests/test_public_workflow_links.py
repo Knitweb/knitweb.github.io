@@ -84,6 +84,13 @@ def test_weave_graph_loads_public_data() -> None:
 
     assert "<title>KnitWeb — Shared-Fabric Knowledge Graph</title>" in html
     assert "weave_public" in html
+    assert "publishable slices may ship" in html.lower()
+    assert "maskPriv" not in html
+    assert "onlyPriv" not in html
+    assert "private masked" not in html
+    assert "private only" not in html
+    assert "innerHTML" not in html
+    assert "http://localhost:8765/interpret" not in html
     # no inline event handlers (CSP-friendly, matches kennisgraaf discipline)
     assert 'onclick="' not in html
     assert "onclick='" not in html
