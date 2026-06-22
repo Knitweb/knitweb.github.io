@@ -11,6 +11,7 @@ def test_landing_promotes_agentic_workflow() -> None:
     assert "Agentic engineering workflow" in html
     assert "issue, plan, isolated worktree, tests, visual evidence" in html
     assert "https://knitweb.github.io/k.nitweb.art/docs/AGENTIC_WORKFLOW.md" in html
+    assert 'href="professions/"' in html
 
 
 def test_landing_links_dev_and_core_repositories() -> None:
@@ -20,9 +21,9 @@ def test_landing_links_dev_and_core_repositories() -> None:
         "https://5mart.ml/knitweb/dev",
         "https://github.com/Knitweb/pulse",
         "https://github.com/Knitweb/molgang",
+        "professions/",
     ):
         assert text in html
-
 
 def test_readme_links_public_kennisgraaf_route() -> None:
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
@@ -61,3 +62,11 @@ def test_kennisgraaf_graph_data_integrity() -> None:
         assert data["drill"][repo]["nodes"]
         assert (repo, "mission") in indexed
         assert (repo, "vision") in indexed
+
+
+def test_professions_artifact_is_published() -> None:
+    html = (ROOT / "professions" / "index.html").read_text(encoding="utf-8")
+
+    assert "The Ideal Workflow for 100 Professions" in html
+    assert "Those 490 requests, deduplicated, become the product backlog" in html
+    assert (ROOT / "professions" / "The_Ideal_Workflow_for_100_Professions.pdf").exists()
