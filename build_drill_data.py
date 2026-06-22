@@ -13,8 +13,13 @@ dedicated mission + vision sub-node in its drill graph.
 """
 import json, re, os
 
-KP = "/media/knight2/EDS2/root-offload/home/knight2/knowledge_pit"
-OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "knitweb_graph_drill.json")
+HERE = os.path.dirname(os.path.abspath(__file__))
+OUT = os.path.join(HERE, "knitweb_graph_drill.json")
+
+# Charters live in-repo (knitweb_charters.jsonl) so the build is portable and
+# leaks no local machine paths. KNITWEB_CHARTERS can point at a richer local
+# source (e.g. the LightRAG facts dump) when rebuilding from the knowledge pit.
+CHARTERS = os.environ.get("KNITWEB_CHARTERS", os.path.join(HERE, "knitweb_charters.jsonl"))
 
 # colour per repo (matches the live 5mart viewer palette feel)
 COLOR = {"pulse": "#4a90d9", "lens": "#a05bd0", "molgang": "#3fa66a", "vbank": "#2e9e5b",
@@ -52,7 +57,7 @@ def keywords(text, n=8):
 
 
 def main():
-    rows = [json.loads(l) for l in open(f"{KP}/lightrag/knitweb_github_io_facts.jsonl") if l.strip()]
+    rows = [json.loads(l) for l in open(CHARTERS) if l.strip()]
     charters = {r["name"].replace(" charter", "").split("/")[-1]: parse(r["content"])
                 for r in rows if r.get("kind") == "repo_charter"}
 
