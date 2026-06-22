@@ -26,7 +26,7 @@
   #panel .mv p{margin:3px 0 0;font-size:12.5px;line-height:1.5;color:#c8d2de}
   #panel p.desc{margin:8px 0 0;font-size:13px;line-height:1.5;color:#c5cfdb}
   .chips{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
-  .chip{background:#222b36;border:1px solid #313c4a;color:#aebccd;font-size:11.5px;padding:3px 8px;border-radius:20px;cursor:pointer}
+  .chip{background:#222b36;border:1px solid #313c4a;color:#aebccd;font:inherit;font-size:11.5px;padding:3px 8px;border-radius:20px;cursor:pointer}
   .chip:hover{border-color:#caa64a;color:#ffd479}
   .drillcta{margin-top:12px;background:#caa64a;color:#16130a;border:0;border-radius:8px;padding:7px 12px;font-size:13px;font-weight:700;cursor:pointer;width:100%}
   .ans{margin-top:10px;font-size:12.5px;line-height:1.55;color:#dce5f0;white-space:pre-wrap}
@@ -64,11 +64,14 @@
 // search over the graph's search_index when Lens is unreachable, so the page always works.
 window.LENS_ENDPOINT = window.LENS_ENDPOINT || '/interpret';
 
-const esc = s => (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;');
+const esc = s => String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const attr = s => esc(s).replace(/"/g, '&quot;');
 let G, DATA = null, level = 'core', curRepo = null;
 
 const el = id => document.getElementById(id);
-const pk = el('pk'), pt = el('pt'), pbody = el('pbody'), back = el('back');
+const pk = el('pk'), pt = el('pt'), pbody = el('pbody'), panel = el('panel'), back = el('back');
+
+function resetPanelScroll() { panel.scrollTop = 0; }
 
 function panelNode(n) {
   pk.textContent = n.group || '';
@@ -78,9 +81,10 @@ function panelNode(n) {
   if (n.vision)  h += `<div class="mv vision"><div class="lab">Visie</div><p>${esc(n.vision)}</p></div>`;
   if (n.desc && !n.mission && !n.vision) h += `<p class="desc">${esc(n.desc)}</p>`;
   else if (n.desc) h += `<p class="desc">${esc(n.desc)}</p>`;
-  if (n.kw) h += `<div class="chips">${n.kw.split('|').map(k => `<span class="chip" onclick="searchTerm('${esc(k)}')">${esc(k)}</span>`).join('')}</div>`;
-  if (n.hasDrill && level === 'core') h += `<button class="drillcta" onclick="drillInto('${n.id}')">↳ Zoom in op ${esc(n.name)} (missie · visie · rol)</button>`;
+  if (n.kw) h += `<div class="chips">${n.kw.split('|').map(k => `<button type="button" class="chip" data-term="${attr(k)}">${esc(k)}</button>`).join('')}</div>`;
+  if (n.hasDrill && level === 'core') h += `<button class="drillcta" data-drill="${attr(n.id)}">↳ Zoom in op ${esc(n.name)} (missie · visie · rol)</button>`;
   pbody.innerHTML = h;
+  resetPanelScroll();
 }
 
 function render(graph) {
@@ -101,11 +105,17 @@ function toCore() {
   render(DATA.core);
 }
 back.onclick = toCore;
+document.addEventListener('click', e => {
+  const chip = e.target.closest('.chip[data-term]');
+  if (chip) searchTerm(chip.dataset.term);
+  const drill = e.target.closest('.drillcta[data-drill]');
+  if (drill) drillInto(drill.dataset.drill);
+});
 
 // ── search: client filter/highlight + optional Lens query ──
 function searchTerm(term) { el('q').value = term; runSearch(false); }
 
-function clientSearch(query) {
+function clientSearch(query, noticeHtml = '') {
   const ql = query.toLowerCase();
   const hits = (DATA.search_index || []).filter(r => r.text.toLowerCase().includes(ql) || r.id.toLowerCase().includes(ql));
   // highlight matching repos on the core graph
@@ -114,16 +124,18 @@ function clientSearch(query) {
   G.nodeColor(n => repos.includes(n.id) ? '#ffd479' : (n.color || '#445'));
   pk.textContent = 'zoekresultaat (lokaal)';
   pt.textContent = `"${query}"`;
-  pbody.innerHTML = hits.length
+  pbody.innerHTML = noticeHtml + (hits.length
     ? `<p class="desc">${hits.length} treffer(s) in ${repos.length} repo('s):</p>` +
       hits.slice(0, 12).map(h => `<div class="mv ${h.kind === 'mission' ? 'mission' : h.kind === 'vision' ? 'vision' : ''}">
         <div class="lab">${esc(h.repo)} · ${esc(h.kind)}</div><p>${esc(h.text.slice(0, 200))}</p></div>`).join('')
-    : `<p class="desc">Geen lokale treffer. Zet <b>via Lens</b> aan voor een semantische vraag.</p>`;
+    : `<p class="desc">Geen lokale treffer. Zet <b>via Lens</b> aan voor een semantische vraag.</p>`);
+  resetPanelScroll();
 }
 
 async function lensQuery(query) {
   pk.textContent = 'Lens'; pt.textContent = `"${query}"`;
   pbody.innerHTML = `<p class="desc">Lens denkt na…</p>`;
+  resetPanelScroll();
   try {
     const r = await fetch(window.LENS_ENDPOINT, {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -140,12 +152,12 @@ async function lensQuery(query) {
     pbody.innerHTML = `<div class="ans">${esc(ans)}</div>` +
       (rel ? `<div class="src">Lens: ${esc(rel)}${R.reason ? ' — ' + esc(R.reason) : ''}</div>` : '') +
       (srcs.length ? `<div class="src">bronnen: ${srcs.map(esc).join(' · ')}</div>` : '');
+    resetPanelScroll();
     // highlight cited repos if any match
     const reposCited = DATA.core.nodes.filter(n => srcs.some(s => String(s).toLowerCase().includes(n.id.toLowerCase()))).map(n => n.id);
     if (reposCited.length) { toCore(); G.nodeColor(n => reposCited.includes(n.id) ? '#a05bd0' : (n.color || '#445')); }
   } catch (e) {
-    pbody.innerHTML = `<p class="desc">⚠ Lens-endpoint onbereikbaar (${esc(e.message)}). Terugval op lokale zoek:</p>`;
-    clientSearch(query);
+    clientSearch(query, `<p class="desc">⚠ Lens-endpoint onbereikbaar (${esc(e.message)}). Terugval op lokale zoek:</p>`);
   }
 }
 
