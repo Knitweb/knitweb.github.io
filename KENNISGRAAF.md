@@ -5,7 +5,7 @@
 query** box so people *and agents* can find and ask.
 
 ## What it does
-- **Top level** — the knitweb repos (Pulse, Lens, Molgang, vBank, Monitor, VirtualPC,
+- **Top level** — the knitweb repos (Pulse, Lens, Molgang, Vank, Monitor, VirtualPC,
   Docs, News) around the **Knitweb** platform hub. Data: `knitweb_graph_drill.json`.
 - **Drill-down** — click a repo (or open `kennisgraaf.html#pulse`) to zoom into its
   sub-graph: **Mission**, **Vision**, **Role**, and its key concepts. The panel shows

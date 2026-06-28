@@ -22,7 +22,7 @@ OUT = os.path.join(HERE, "knitweb_graph_drill.json")
 CHARTERS = os.environ.get("KNITWEB_CHARTERS", os.path.join(HERE, "knitweb_charters.jsonl"))
 
 # colour per repo (matches the live 5mart viewer palette feel)
-COLOR = {"pulse": "#4a90d9", "lens": "#a05bd0", "molgang": "#3fa66a", "vbank": "#2e9e5b",
+COLOR = {"pulse": "#4a90d9", "lens": "#a05bd0", "molgang": "#3fa66a", "vank": "#2e9e5b",
          "monitor": "#2aa39a", "virtualpc": "#d98a2b", "docs": "#2aa39a", "news": "#c0653a"}
 ROLE_KW = {"mission": "#ffd479", "vision": "#7ee0ff", "role": "#9fb4c8"}
 
