@@ -1,0 +1,1116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KnitWeb - Quantum Machine Index</title>
+<style>
+:root{
+  color-scheme:light dark;
+  --bg:#f7f9fb;
+  --panel:#ffffff;
+  --ink:#17202a;
+  --mut:#596775;
+  --line:#d8e0e7;
+  --accent:#0969da;
+  --accent-2:#0f766e;
+  --warn:#9a6700;
+  --good:#1a7f37;
+  --bad:#b42318;
+  --chip:#eef4fb;
+  --code:#0f1720;
+  --code-ink:#d9e7f3;
+  --shadow:0 14px 32px rgba(15,23,32,.08);
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0d1117;
+    --panel:#151b23;
+    --ink:#e6edf3;
+    --mut:#95a1ad;
+    --line:#303946;
+    --accent:#58a6ff;
+    --accent-2:#2dd4bf;
+    --warn:#d29922;
+    --good:#3fb950;
+    --bad:#ff7b72;
+    --chip:#1d2630;
+    --code:#090d12;
+    --code-ink:#d9e7f3;
+    --shadow:none;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);
+font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+button,input,select,textarea{font:inherit}
+a{color:var(--accent)}
+header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--panel) 92%,transparent);
+backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar{display:flex;align-items:center;gap:14px;min-height:58px;padding:10px 18px}
+.brand{font-size:16px;font-weight:720;white-space:nowrap}
+.brand span{color:var(--accent-2)}
+.toplinks{display:flex;gap:10px;margin-left:auto;flex-wrap:wrap}
+.toplinks a{text-decoration:none;color:var(--mut);font-weight:620;font-size:13px}
+.shell{display:grid;grid-template-columns:minmax(280px,420px) 1fr;gap:16px;max-width:1500px;margin:0 auto;padding:16px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow)}
+.left{display:flex;flex-direction:column;min-height:calc(100vh - 90px)}
+.searchbox{padding:14px;border-bottom:1px solid var(--line)}
+.field{display:flex;flex-direction:column;gap:5px;margin-bottom:10px}
+label{color:var(--mut);font-weight:650;font-size:12px}
+input,select,textarea{width:100%;color:var(--ink);background:var(--bg);border:1px solid var(--line);
+border-radius:7px;padding:9px 10px}
+textarea{min-height:72px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid color-mix(in srgb,var(--accent) 35%,transparent);border-color:var(--accent)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.scoreline{display:flex;align-items:center;justify-content:space-between;gap:10px;color:var(--mut);font-size:12px}
+.scoreline b{color:var(--ink)}
+.filters{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.visibility{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 10px;
+background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:9px 10px}
+.visibility input{width:auto;margin:0}
+.visibility span{font-weight:650}
+.visibility small{display:block;color:var(--mut);font-size:11px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;padding:12px 14px;border-bottom:1px solid var(--line);align-items:stretch}
+.stat{min-width:0;min-height:78px;background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:8px;
+display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center}
+.stat .n{display:block;width:100%;min-height:24px;font-size:20px;font-weight:760;line-height:1.1;font-variant-numeric:tabular-nums;
+white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.stat .n.long{font-size:13px;line-height:1.2}
+.stat .k{display:block;min-height:28px;color:var(--mut);font-size:11px;font-weight:650;line-height:1.25}
+.results{overflow:auto;padding:8px;display:flex;flex-direction:column;gap:7px}
+.result{width:100%;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px;
+display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px}
+.result:hover,.result.active{border-color:var(--accent);background:color-mix(in srgb,var(--chip) 72%,var(--panel))}
+.result-main{display:block;width:100%;text-align:left;border:0;background:transparent;color:inherit;border-radius:0;padding:0;
+font-weight:inherit}
+.result-main:hover,.result-main:focus{outline:none}
+.result-remove{align-self:center;padding:6px 8px}
+.result .name{font-weight:720;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.result .sub{color:var(--mut);font-size:12px;margin-top:2px}
+.empty-state{color:var(--mut);border:1px dashed var(--line);border-radius:8px;padding:12px;background:var(--bg)}
+.badge{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:2px 7px;font-size:11px;font-weight:720;border:1px solid var(--line);white-space:nowrap}
+.badge.good{color:var(--good);background:color-mix(in srgb,var(--good) 10%,transparent)}
+.badge.warn{color:var(--warn);background:color-mix(in srgb,var(--warn) 10%,transparent)}
+.badge.bad{color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,transparent)}
+.content{display:grid;grid-template-columns:minmax(320px,1fr) minmax(320px,460px);gap:16px;align-items:start}
+.intel{grid-column:1 / -1;padding:16px}
+.intel-head{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:start;margin-bottom:12px}
+.intel h1{margin:0;font-size:22px;line-height:1.2}
+.intel p{margin:6px 0 0;color:var(--mut)}
+.layer-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:12px 0}
+.layer-card{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:10px;min-width:0}
+.layer-card h3{margin:0 0 5px;font-size:13px}
+.layer-card p{margin:0;color:var(--mut);font-size:12px}
+.layer-card .layer-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.intent-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) minmax(230px,1fr);gap:10px;align-items:end}
+.estimate{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:10px;min-height:76px}
+.estimate .big{font-size:20px;font-weight:760;line-height:1.1}
+.estimate .sub{color:var(--mut);font-size:12px;margin-top:4px}
+.detail,.record,.editor{padding:16px}
+.detail h1{margin:0;font-size:25px;line-height:1.16}
+.mut{color:var(--mut)}
+.meta{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0}
+.kv{border:1px solid var(--line);background:var(--bg);border-radius:7px;padding:10px;min-width:0}
+.kv .k{color:var(--mut);font-size:11px;font-weight:720;text-transform:uppercase}
+.kv .v{margin-top:3px;word-break:break-word}
+.section{border-top:1px solid var(--line);padding-top:13px;margin-top:13px}
+.section h2,.record h2,.editor h2{margin:0 0 9px;font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:3px 8px;color:var(--ink);font-size:12px}
+.source-list{display:flex;flex-direction:column;gap:5px}
+.source-list a{overflow-wrap:anywhere}
+pre{margin:0;background:var(--code);color:var(--code-ink);border-radius:8px;padding:12px;overflow:auto;max-height:560px;
+font:12px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+button{border:1px solid var(--line);background:var(--chip);color:var(--ink);border-radius:7px;padding:8px 10px;cursor:pointer;font-weight:650}
+button.primary{background:var(--accent);border-color:var(--accent);color:white}
+button.danger{color:var(--bad);background:color-mix(in srgb,var(--bad) 9%,var(--panel))}
+button:disabled{opacity:.55;cursor:not-allowed}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.full{grid-column:1 / -1}
+.toast{position:fixed;right:16px;bottom:16px;background:var(--code);color:var(--code-ink);border:1px solid var(--line);
+border-radius:8px;padding:10px 12px;box-shadow:var(--shadow);display:none;max-width:420px}
+.toast.show{display:block}
+@media (max-width:1050px){
+  .shell,.content{grid-template-columns:1fr}
+  .layer-grid,.intent-grid{grid-template-columns:1fr 1fr}
+  .left{min-height:auto}
+  .results{max-height:420px}
+}
+@media (max-width:640px){
+  .topbar{align-items:flex-start;flex-direction:column}
+  .toplinks{margin-left:0}
+  .shell{padding:10px}
+  .row,.filters,.grid,.form-grid,.layer-grid,.intent-grid{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(auto-fit,minmax(120px,1fr))}
+  .detail h1{font-size:21px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="topbar">
+    <div class="brand">Knit<span>Web</span> Quantum Machines</div>
+    <nav class="toplinks" aria-label="site">
+      <a href="https://knitweb.github.io/">Whitepaper</a>
+      <a href="https://knitweb.github.io/graph.html">Shared Fabric</a>
+      <a href="https://knitweb.github.io/kennisgraaf.html">Kennisgraaf</a>
+      <a href="https://knitweb.github.io/professions/">Professions</a>
+    </nav>
+  </div>
+</header>
+<main class="shell">
+  <aside class="panel left">
+    <div class="searchbox">
+      <div class="field">
+        <label for="q">Search machine</label>
+        <input id="q" type="search" list="machineNames" autocomplete="off" placeholder="Heron, Aquila, Forte, Willow">
+        <datalist id="machineNames"></datalist>
+      </div>
+      <div class="field">
+        <label for="machineSelect">Dropdown</label>
+        <select id="machineSelect"></select>
+      </div>
+      <div class="filters">
+        <div class="field">
+          <label for="archFilter">Architecture</label>
+          <select id="archFilter"></select>
+        </div>
+        <div class="field">
+          <label for="statusFilter">Status</label>
+          <select id="statusFilter"></select>
+        </div>
+      </div>
+      <label class="visibility" for="showPublicMachines">
+        <span>
+          Show shared spider machines
+          <small>Turn off to see only machines saved in this browser.</small>
+        </span>
+        <input id="showPublicMachines" type="checkbox" checked>
+      </label>
+      <div class="scoreline">
+        <span id="closest">Closest: none</span>
+        <span id="matchCount">0 matches</span>
+      </div>
+    </div>
+    <div class="stats" id="stats"></div>
+    <div class="results" id="results" aria-label="search results"></div>
+  </aside>
+  <section class="content">
+    <section class="panel intel" aria-labelledby="intelTitle">
+      <div class="intel-head">
+        <div>
+          <h1 id="intelTitle">WNW Quantum Systems Intel</h1>
+          <p id="intelCopy">Specify the machine, intent, access path, and proof budget before broad retrieval.</p>
+        </div>
+        <span class="badge warn" id="coverageBadge">seed</span>
+      </div>
+      <div class="layer-grid" id="wnwLayers" aria-label="WNW layers"></div>
+      <div class="intent-grid">
+        <div class="field">
+          <label for="intentMode">Intent</label>
+          <select id="intentMode">
+            <option value="catalog">catalog sweep</option>
+            <option value="detail">machine detail</option>
+            <option value="compare">compare machines</option>
+            <option value="procurement">access planning</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="intentAccess">Access path</label>
+          <select id="intentAccess">
+            <option value="all">all access paths</option>
+            <option value="public-cloud">public cloud</option>
+            <option value="commercial">commercial/direct</option>
+            <option value="research">research only</option>
+            <option value="historical">historical systems</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="intentProof">Proof budget</label>
+          <select id="intentProof">
+            <option value="lean">lean</option>
+            <option value="balanced" selected>balanced</option>
+            <option value="full">full provenance</option>
+          </select>
+        </div>
+        <div class="estimate" id="queryEstimate" aria-live="polite"></div>
+      </div>
+    </section>
+    <article class="panel detail" id="detail"></article>
+    <div>
+      <section class="panel record">
+        <h2>KnitWeb Machine Record</h2>
+        <pre id="recordJson">{}</pre>
+        <div class="actions">
+          <button id="copyRecord">Copy record</button>
+          <button id="downloadRecord">Download JSON</button>
+          <button id="loadSelected">Load selected into editor</button>
+        </div>
+      </section>
+      <section class="panel editor" style="margin-top:16px">
+        <h2>Specify Machine</h2>
+        <form id="machineForm">
+          <div class="form-grid">
+            <div class="field"><label for="f-name">Name</label><input id="f-name" required></div>
+            <div class="field"><label for="f-provider">Provider</label><input id="f-provider"></div>
+            <div class="field"><label for="f-country">Country</label><input id="f-country"></div>
+            <div class="field"><label for="f-site">Site</label><input id="f-site"></div>
+            <div class="field"><label for="f-year">Year</label><input id="f-year" inputmode="numeric"></div>
+            <div class="field"><label for="f-qubits">Qubits</label><input id="f-qubits"></div>
+            <div class="field"><label for="f-architecture">Architecture</label><input id="f-architecture"></div>
+            <div class="field"><label for="f-modality">Modality</label><input id="f-modality"></div>
+            <div class="field"><label for="f-status">Status</label><input id="f-status"></div>
+            <div class="field"><label for="f-access">Access</label><input id="f-access"></div>
+            <div class="field full"><label for="f-aliases">Aliases</label><textarea id="f-aliases"></textarea></div>
+            <div class="field full"><label for="f-use-cases">Use cases</label><textarea id="f-use-cases"></textarea></div>
+            <div class="field full"><label for="f-processor">Processor details</label><textarea id="f-processor"></textarea></div>
+            <div class="field full"><label for="f-connectivity">Connectivity</label><textarea id="f-connectivity"></textarea></div>
+            <div class="field full"><label for="f-benchmark">Benchmark</label><textarea id="f-benchmark"></textarea></div>
+            <div class="field full"><label for="f-software">Software</label><textarea id="f-software"></textarea></div>
+            <div class="field full"><label for="f-caveats">Caveats</label><textarea id="f-caveats"></textarea></div>
+            <div class="field full"><label for="f-sources">Source URLs</label><textarea id="f-sources"></textarea></div>
+          </div>
+          <div class="actions">
+            <button class="primary" type="submit">Save local record</button>
+            <button type="button" id="clearForm">Clear form</button>
+            <button type="button" class="danger" id="clearLocal">Clear local records</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </section>
+</main>
+<div class="toast" id="toast" role="status"></div>
+<script>
+const DATA_URL = 'data/quantum_machines.json';
+const LOCAL_KEY = 'knitweb.quantum-machines.local.v1';
+const PREF_KEY = 'knitweb.quantum-machines.preferences.v1';
+const OWNER_KEY = 'knitweb.quantum-machines.owner.v1';
+
+const els = {
+  q: document.getElementById('q'),
+  machineNames: document.getElementById('machineNames'),
+  machineSelect: document.getElementById('machineSelect'),
+  archFilter: document.getElementById('archFilter'),
+  statusFilter: document.getElementById('statusFilter'),
+  showPublicMachines: document.getElementById('showPublicMachines'),
+  closest: document.getElementById('closest'),
+  matchCount: document.getElementById('matchCount'),
+  stats: document.getElementById('stats'),
+  results: document.getElementById('results'),
+  coverageBadge: document.getElementById('coverageBadge'),
+  wnwLayers: document.getElementById('wnwLayers'),
+  intentMode: document.getElementById('intentMode'),
+  intentAccess: document.getElementById('intentAccess'),
+  intentProof: document.getElementById('intentProof'),
+  queryEstimate: document.getElementById('queryEstimate'),
+  detail: document.getElementById('detail'),
+  recordJson: document.getElementById('recordJson'),
+  copyRecord: document.getElementById('copyRecord'),
+  downloadRecord: document.getElementById('downloadRecord'),
+  loadSelected: document.getElementById('loadSelected'),
+  machineForm: document.getElementById('machineForm'),
+  clearForm: document.getElementById('clearForm'),
+  clearLocal: document.getElementById('clearLocal'),
+  toast: document.getElementById('toast')
+};
+
+const fieldIds = {
+  name: 'f-name',
+  provider: 'f-provider',
+  country: 'f-country',
+  site: 'f-site',
+  year: 'f-year',
+  qubits: 'f-qubits',
+  architecture: 'f-architecture',
+  modality: 'f-modality',
+  status: 'f-status',
+  access: 'f-access',
+  aliases: 'f-aliases',
+  use_cases: 'f-use-cases',
+  processor: 'f-processor',
+  connectivity: 'f-connectivity',
+  benchmark: 'f-benchmark',
+  software: 'f-software',
+  caveats: 'f-caveats',
+  source_urls: 'f-sources'
+};
+
+let seedMeta = {};
+let seedMachines = [];
+let localMachines = [];
+let machines = [];
+let selected = null;
+let currentMatches = [];
+let ownerId = '';
+let preferences = {showPublicMachines: true};
+
+function textNode(value) {
+  return document.createTextNode(String(value == null ? '' : value));
+}
+
+function el(tag, className, text) {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (text !== undefined) node.textContent = String(text);
+  return node;
+}
+
+function norm(value) {
+  return String(value || '')
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim();
+}
+
+function tokenize(value) {
+  return norm(value).split(/\s+/).filter(Boolean);
+}
+
+function slug(value) {
+  const out = norm(value).replace(/\s+/g, '-').replace(/^-|-$/g, '');
+  return out || 'quantum-machine';
+}
+
+function listFromText(value) {
+  return String(value || '')
+    .split(/[\n,]+/)
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
+function makeOwnerId() {
+  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') return 'owner-' + crypto.randomUUID();
+  return 'owner-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
+}
+
+function loadOwner() {
+  ownerId = localStorage.getItem(OWNER_KEY);
+  if (!ownerId) {
+    ownerId = makeOwnerId();
+    localStorage.setItem(OWNER_KEY, ownerId);
+  }
+}
+
+function loadPreferences() {
+  try {
+    const raw = localStorage.getItem(PREF_KEY);
+    preferences = raw ? {...preferences, ...JSON.parse(raw)} : preferences;
+  } catch (error) {
+    preferences = {showPublicMachines: true};
+  }
+  preferences.showPublicMachines = preferences.showPublicMachines !== false;
+  els.showPublicMachines.checked = preferences.showPublicMachines;
+}
+
+function savePreferences() {
+  localStorage.setItem(PREF_KEY, JSON.stringify(preferences, null, 2));
+}
+
+function bigrams(value) {
+  const compact = norm(value).replace(/\s+/g, '');
+  const grams = new Set();
+  if (compact.length < 2) {
+    if (compact) grams.add(compact);
+    return grams;
+  }
+  for (let i = 0; i < compact.length - 1; i += 1) grams.add(compact.slice(i, i + 2));
+  return grams;
+}
+
+function dice(a, b) {
+  const ga = bigrams(a);
+  const gb = bigrams(b);
+  if (!ga.size || !gb.size) return 0;
+  let overlap = 0;
+  for (const item of ga) if (gb.has(item)) overlap += 1;
+  return (2 * overlap) / (ga.size + gb.size);
+}
+
+function levenshtein(a, b) {
+  const aa = norm(a);
+  const bb = norm(b);
+  if (aa === bb) return 0;
+  if (!aa) return bb.length;
+  if (!bb) return aa.length;
+  let prev = Array.from({length: bb.length + 1}, (_, i) => i);
+  for (let i = 0; i < aa.length; i += 1) {
+    const row = [i + 1];
+    for (let j = 0; j < bb.length; j += 1) {
+      const cost = aa[i] === bb[j] ? 0 : 1;
+      row.push(Math.min(row[j] + 1, prev[j + 1] + 1, prev[j] + cost));
+    }
+    prev = row;
+  }
+  return prev[bb.length];
+}
+
+function acronym(machine) {
+  return [machine.provider, machine.name]
+    .join(' ')
+    .split(/[^A-Za-z0-9]+/)
+    .filter(Boolean)
+    .map((part) => part[0])
+    .join('')
+    .toLowerCase();
+}
+
+function searchableText(machine) {
+  return [
+    machine.name,
+    machine.provider,
+    machine.country,
+    machine.site,
+    machine.year,
+    machine.architecture,
+    machine.modality,
+    machine.qubits,
+    machine.status,
+    machine.access,
+    ...(machine.aliases || []),
+    ...(machine.use_cases || []),
+    machine.caveats,
+    machine.details && machine.details.processor,
+    machine.details && machine.details.connectivity,
+    machine.details && machine.details.benchmark,
+    machine.details && machine.details.software
+  ].filter(Boolean).join(' ');
+}
+
+function scoreMachine(machine, query) {
+  const clean = norm(query);
+  if (!clean) return {score: 1, reason: 'browse'};
+  const names = [machine.name, ...(machine.aliases || [])].filter(Boolean);
+  const corpus = searchableText(machine);
+  const corpusNorm = norm(corpus);
+  const queryTokens = tokenize(clean);
+  const corpusTokens = tokenize(corpus);
+  const corpusSet = new Set(corpusTokens);
+  let score = 0;
+  let reason = 'fuzzy';
+
+  for (const name of names) {
+    const n = norm(name);
+    if (n === clean) {
+      score += 95;
+      reason = 'exact';
+    } else if (n.startsWith(clean)) {
+      score += 46;
+      reason = 'prefix';
+    } else if (n.includes(clean) || clean.includes(n)) {
+      score += 36;
+      reason = 'name';
+    }
+    score += dice(clean, name) * 22;
+    const dist = levenshtein(clean, name);
+    const maxLen = Math.max(clean.length, norm(name).length, 1);
+    score += Math.max(0, 1 - dist / maxLen) * 20;
+  }
+
+  if (acronym(machine) === clean.replace(/\s+/g, '')) {
+    score += 28;
+    reason = 'acronym';
+  }
+
+  for (const qt of queryTokens) {
+    if (corpusSet.has(qt)) score += 8;
+    else if (corpusTokens.some((token) => token.startsWith(qt))) score += 5;
+    else if (corpusNorm.includes(qt)) score += 2;
+  }
+
+  if (corpusNorm.includes(clean)) score += 14;
+  if (machine._local) score += 1.5;
+  return {score: Math.round(score * 10) / 10, reason};
+}
+
+function statusClass(status) {
+  const s = norm(status);
+  if (s.includes('operational') || s.includes('commercial')) return 'good';
+  if (s.includes('historical') || s.includes('roadmap') || s.includes('research')) return 'warn';
+  if (s.includes('contested')) return 'bad';
+  return '';
+}
+
+function machineSort(a, b) {
+  return String(a.name).localeCompare(String(b.name));
+}
+
+function loadLocal() {
+  try {
+    const raw = localStorage.getItem(LOCAL_KEY);
+    localMachines = raw ? JSON.parse(raw) : [];
+    if (!Array.isArray(localMachines)) localMachines = [];
+  } catch (error) {
+    localMachines = [];
+  }
+  localMachines = localMachines.map((machine) => ({
+    ...machine,
+    owner_id: machine.owner_id || ownerId,
+    visibility: machine.visibility || 'private-local',
+    _local: true
+  }));
+  saveLocal();
+}
+
+function saveLocal() {
+  const clean = localMachines.map(({_local, ...machine}) => machine);
+  localStorage.setItem(LOCAL_KEY, JSON.stringify(clean, null, 2));
+}
+
+function rebuildMachines() {
+  const publicMachines = preferences.showPublicMachines ? seedMachines : [];
+  machines = [...publicMachines, ...localMachines].sort(machineSort);
+}
+
+function option(select, value, label) {
+  const item = document.createElement('option');
+  item.value = value;
+  item.textContent = label;
+  select.append(item);
+}
+
+function renderControls() {
+  els.machineNames.replaceChildren();
+  machines.forEach((machine) => {
+    const item = document.createElement('option');
+    item.value = machine.name;
+    els.machineNames.append(item);
+  });
+
+  els.machineSelect.replaceChildren();
+  if (machines.length) {
+    machines.forEach((machine) => option(els.machineSelect, machine.id, machine.name));
+  } else {
+    option(els.machineSelect, '', 'No machines visible');
+  }
+
+  const archs = [...new Set(machines.map((machine) => machine.architecture).filter(Boolean))].sort();
+  const statuses = [...new Set(machines.map((machine) => machine.status).filter(Boolean))].sort();
+  els.archFilter.replaceChildren();
+  els.statusFilter.replaceChildren();
+  option(els.archFilter, '', 'All architectures');
+  option(els.statusFilter, '', 'All statuses');
+  archs.forEach((value) => option(els.archFilter, value, value));
+  statuses.forEach((value) => option(els.statusFilter, value, value));
+}
+
+function renderStats() {
+  const archCount = new Set(machines.map((machine) => machine.architecture).filter(Boolean)).size;
+  const providers = new Set(machines.map((machine) => machine.provider).filter(Boolean)).size;
+  const stats = [
+    [machines.length, 'visible'],
+    [providers, 'providers'],
+    [archCount, 'architectures'],
+    [preferences.showPublicMachines ? seedMachines.length : 0, 'shared shown'],
+    [localMachines.length, 'mine'],
+    [seedMeta.coverage || 'seed', 'coverage']
+  ];
+  els.stats.replaceChildren();
+  for (const [num, label] of stats) {
+    const value = String(num);
+    const isLongValue = value.length > 8 || /[^0-9.,]/.test(value);
+    const cell = el('div', 'stat');
+    const valueNode = el('span', 'n' + (isLongValue ? ' long' : ''), value);
+    if (isLongValue) valueNode.title = value;
+    cell.append(valueNode, el('span', 'k', label));
+    els.stats.append(cell);
+  }
+}
+
+function renderWnwIntel() {
+  const intel = seedMeta.wnw_intel || {};
+  els.coverageBadge.textContent = seedMeta.coverage || 'seed';
+  els.wnwLayers.replaceChildren();
+  (intel.layers || []).forEach((layer) => {
+    const card = el('div', 'layer-card');
+    card.append(el('h3', '', layer.name || layer.id || 'WNW layer'));
+    card.append(el('p', '', layer.purpose || '-'));
+    const meta = el('div', 'layer-meta');
+    [layer.small_device_budget, layer.quantum_mapping].filter(Boolean).forEach((value) => {
+      meta.append(el('span', 'chip', value));
+    });
+    card.append(meta);
+    els.wnwLayers.append(card);
+  });
+  if (!(intel.layers || []).length) {
+    els.wnwLayers.append(el('div', 'empty-state', 'WNW intel layers are not available in the seed data.'));
+  }
+}
+
+function accessBucket(machine) {
+  const text = norm([machine.access, machine.status, machine.modality, machine.provider].filter(Boolean).join(' '));
+  if (text.includes('historical')) return 'historical';
+  if (text.includes('research') || text.includes('publication') || text.includes('prototype')) return 'research';
+  if (text.includes('cloud') || text.includes('platform') || text.includes('braket') || text.includes('azure') || text.includes('leap')) return 'public-cloud';
+  if (text.includes('commercial') || text.includes('customer') || text.includes('dedicated') || text.includes('partner')) return 'commercial';
+  return 'all';
+}
+
+function intentCandidates() {
+  const source = currentMatches.length ? currentMatches.map((item) => item.machine) : machines.filter(passesFilters);
+  const access = els.intentAccess.value;
+  if (access === 'all') return source;
+  return source.filter((machine) => accessBucket(machine) === access);
+}
+
+function renderQueryEstimate() {
+  const candidates = intentCandidates();
+  const providerCount = new Set(candidates.map((machine) => machine.provider).filter(Boolean)).size;
+  const archCount = new Set(candidates.map((machine) => machine.architecture).filter(Boolean)).size;
+  const mode = els.intentMode.value;
+  const proof = els.intentProof.value;
+  const modeWeight = {catalog: 0.65, detail: 1, compare: 2.2, procurement: 1.45}[mode] || 1;
+  const proofWeight = {lean: 0.7, balanced: 1, full: 1.75}[proof] || 1;
+  const rows = Math.max(candidates.length ? 1 : 0, Math.ceil(candidates.length * modeWeight));
+  const relations = Math.ceil((rows * 8 + providerCount * 3 + archCount * 2) * proofWeight);
+  const proofBytes = relations * 96;
+  const kb = Math.max(1, Math.ceil(proofBytes / 1024));
+  const rating = proofBytes < 48000 ? 'small-device friendly'
+    : proofBytes < 160000 ? 'edge cache friendly'
+      : 'broad retrieval';
+  els.queryEstimate.replaceChildren(
+    el('div', 'big', rows + ' rows / ' + relations + ' links'),
+    el('div', 'sub', kb + ' KB estimated proof payload - ' + rating),
+    el('div', 'sub', providerCount + ' providers, ' + archCount + ' architectures')
+  );
+}
+
+function passesFilters(machine) {
+  return (!els.archFilter.value || machine.architecture === els.archFilter.value)
+    && (!els.statusFilter.value || machine.status === els.statusFilter.value);
+}
+
+function updateSearch() {
+  const query = els.q.value;
+  currentMatches = machines
+    .filter(passesFilters)
+    .map((machine) => ({machine, ...scoreMachine(machine, query)}))
+    .filter((item) => !norm(query) || item.score > 5)
+    .sort((a, b) => b.score - a.score || machineSort(a.machine, b.machine));
+
+  if (!currentMatches.length && machines.length) {
+    currentMatches = machines.filter(passesFilters).map((machine) => ({machine, score: 0, reason: 'filter'}));
+  }
+  renderResults();
+
+  const best = currentMatches[0];
+  els.matchCount.textContent = currentMatches.length + (currentMatches.length === 1 ? ' match' : ' matches');
+  els.closest.textContent = best ? 'Closest: ' + best.machine.name + ' (' + best.reason + ', ' + best.score + ')' : 'Closest: none';
+  renderQueryEstimate();
+  if (best && (!selected || !machines.some((machine) => machine.id === selected.id))) selectMachine(best.machine.id, false);
+}
+
+function renderResults() {
+  els.results.replaceChildren();
+  if (!currentMatches.length) {
+    const message = preferences.showPublicMachines
+      ? 'No machines match the current search and filters.'
+      : 'Shared spider machines are hidden. Save a local machine or turn the shared view back on.';
+    els.results.append(el('div', 'empty-state', message));
+    return;
+  }
+  currentMatches.slice(0, 80).forEach((item) => {
+    const machine = item.machine;
+    const row = el('div', 'result' + (selected && selected.id === machine.id ? ' active' : ''));
+    row.dataset.id = machine.id;
+    const btn = el('button', 'result-main');
+    btn.type = 'button';
+    const name = el('div', 'name');
+    name.append(el('span', '', machine.name));
+    const badge = el('span', 'badge ' + statusClass(machine.status), item.score ? String(item.score) : machine.status || 'record');
+    name.append(badge);
+    const sub = el('div', 'sub', [machine.provider, machine.architecture, machine.qubits].filter(Boolean).join(' / '));
+    btn.append(name, sub);
+    btn.addEventListener('click', () => selectMachine(machine.id, true));
+    row.append(btn);
+    if (machine._local) {
+      const remove = el('button', 'result-remove danger', 'Delete');
+      remove.type = 'button';
+      remove.title = 'Delete this local machine';
+      remove.addEventListener('click', () => deleteLocalMachine(machine.id));
+      row.append(remove);
+    }
+    els.results.append(row);
+  });
+}
+
+function detailRow(label, value) {
+  const node = el('div', 'kv');
+  node.append(el('div', 'k', label), el('div', 'v', value || '-'));
+  return node;
+}
+
+function renderList(title, values) {
+  const section = el('div', 'section');
+  section.append(el('h2', '', title));
+  const chips = el('div', 'chips');
+  (values || []).forEach((value) => chips.append(el('span', 'chip', value)));
+  if (!(values || []).length) chips.append(el('span', 'mut', '-'));
+  section.append(chips);
+  return section;
+}
+
+function renderSources(urls) {
+  const section = el('div', 'section');
+  section.append(el('h2', '', 'Sources'));
+  const list = el('div', 'source-list');
+  (urls || []).forEach((url) => {
+    const a = document.createElement('a');
+    a.href = url;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.textContent = url;
+    list.append(a);
+  });
+  if (!(urls || []).length) list.append(el('span', 'mut', '-'));
+  section.append(list);
+  return section;
+}
+
+function renderNoSelection() {
+  selected = null;
+  els.machineSelect.value = '';
+  els.detail.replaceChildren(el('p', 'mut', preferences.showPublicMachines
+    ? 'No machine is selected.'
+    : 'Shared spider machines are hidden. Add a local machine or turn the shared view back on.'));
+  els.recordJson.textContent = '{}';
+  els.loadSelected.disabled = true;
+  els.downloadRecord.disabled = true;
+}
+
+function renderDetail(machine) {
+  els.detail.replaceChildren();
+  els.loadSelected.disabled = false;
+  els.downloadRecord.disabled = false;
+  const title = el('h1', '', machine.name);
+  const subtitle = el('div', 'mut', [machine.provider, machine.country, machine.site].filter(Boolean).join(' / '));
+  const meta = el('div', 'meta');
+  [
+    machine.status,
+    machine.modality,
+    machine.year,
+    machine._local ? 'local' : seedMeta.coverage
+  ].filter(Boolean).forEach((value) => meta.append(el('span', 'badge ' + statusClass(value), value)));
+  const grid = el('div', 'grid');
+  grid.append(
+    detailRow('Qubits', machine.qubits),
+    detailRow('Architecture', machine.architecture),
+    detailRow('Access', machine.access),
+    detailRow('Machine ID', machine.id)
+  );
+  els.detail.append(title, subtitle, meta, grid);
+
+  if (machine._local) {
+    const actions = el('div', 'actions');
+    const remove = el('button', 'danger', 'Delete local machine');
+    remove.type = 'button';
+    remove.addEventListener('click', () => deleteLocalMachine(machine.id));
+    actions.append(remove);
+    els.detail.append(actions);
+  }
+
+  const details = machine.details || {};
+  const detailGrid = el('div', 'grid');
+  detailGrid.append(
+    detailRow('Processor', details.processor),
+    detailRow('Connectivity', details.connectivity),
+    detailRow('Benchmark', details.benchmark),
+    detailRow('Software', details.software)
+  );
+  const detailSection = el('div', 'section');
+  detailSection.append(el('h2', '', 'Details'), detailGrid);
+  els.detail.append(detailSection);
+
+  els.detail.append(renderList('Aliases', machine.aliases || []));
+  els.detail.append(renderList('Use cases', machine.use_cases || []));
+  if (machine.caveats) {
+    const caveat = el('div', 'section');
+    caveat.append(el('h2', '', 'Caveats'), el('p', 'mut', machine.caveats));
+    els.detail.append(caveat);
+  }
+  els.detail.append(renderSources(machine.source_urls || []));
+}
+
+function makeWeaveRecord(machine) {
+  const base = 'kwqm:' + machine.id;
+  const node = {
+    id: base,
+    kind: 'quantum_machine',
+    label: machine.name,
+    provider: machine.provider || null,
+    architecture: machine.architecture || null,
+    modality: machine.modality || null,
+    qubits: machine.qubits || null,
+    status: machine.status || null,
+    access: machine.access || null,
+    site: machine.site || null,
+    country: machine.country || null,
+    year: machine.year || null,
+    aliases: machine.aliases || [],
+    use_cases: machine.use_cases || [],
+    caveats: machine.caveats || null,
+    details: machine.details || {},
+    source_urls: machine.source_urls || [],
+    provenance: {
+      source: machine._local ? 'local_browser_record' : 'public_seed_index',
+      owner_id: machine._local ? machine.owner_id || ownerId : null,
+      visibility: machine._local ? machine.visibility || 'private-local' : 'shared-index',
+      updated_at: seedMeta.updated_at || new Date().toISOString().slice(0, 10),
+      schema: seedMeta.schema || 'knitweb.quantum-machine-index.v1'
+    },
+    wnw: {
+      warp_axes: ['machine', 'provider', 'architecture', 'modality', 'access', 'country', 'time'],
+      coordinal_position: {
+        architecture: machine.architecture || null,
+        modality: machine.modality || null,
+        access_bucket: accessBucket(machine),
+        status: machine.status || null,
+        country: machine.country || null,
+        year: machine.year || null
+      },
+      narrow_query_hint: {
+        primary_key: base,
+        estimated_relation_count: 8 + (machine.source_urls || []).length,
+        fallback: 'Use broad-web retrieval only when source_urls or calibration data are insufficient.'
+      }
+    }
+  };
+  const edges = [
+    ['HAS_PROVIDER', machine.provider && 'kwqm:provider:' + slug(machine.provider)],
+    ['USES_ARCHITECTURE', machine.architecture && 'kwqm:architecture:' + slug(machine.architecture)],
+    ['HAS_MODALITY', machine.modality && 'kwqm:modality:' + slug(machine.modality)],
+    ['LOCATED_IN', machine.country && 'kwqm:country:' + slug(machine.country)]
+  ].filter((edge) => edge[1]).map(([kind, target]) => ({source: base, target, kind}));
+  return {
+    '@context': {
+      kwqm: 'https://knitweb.github.io/quantum-machines#',
+      schema: 'https://schema.org/'
+    },
+    type: 'KnitWebQuantumMachineRecord',
+    node,
+    edges
+  };
+}
+
+function renderRecord(machine) {
+  const record = makeWeaveRecord(machine);
+  els.recordJson.textContent = JSON.stringify(record, null, 2);
+}
+
+function selectMachine(id, syncSearch) {
+  const machine = machines.find((item) => item.id === id) || machines[0];
+  if (!machine) {
+    renderNoSelection();
+    renderResults();
+    return;
+  }
+  selected = machine;
+  els.machineSelect.value = machine.id;
+  if (syncSearch) els.q.value = machine.name;
+  renderDetail(machine);
+  renderRecord(machine);
+  renderResults();
+}
+
+function fillForm(machine) {
+  document.getElementById(fieldIds.name).value = machine.name || '';
+  document.getElementById(fieldIds.provider).value = machine.provider || '';
+  document.getElementById(fieldIds.country).value = machine.country || '';
+  document.getElementById(fieldIds.site).value = machine.site || '';
+  document.getElementById(fieldIds.year).value = machine.year || '';
+  document.getElementById(fieldIds.qubits).value = machine.qubits || '';
+  document.getElementById(fieldIds.architecture).value = machine.architecture || '';
+  document.getElementById(fieldIds.modality).value = machine.modality || '';
+  document.getElementById(fieldIds.status).value = machine.status || '';
+  document.getElementById(fieldIds.access).value = machine.access || '';
+  document.getElementById(fieldIds.aliases).value = (machine.aliases || []).join('\n');
+  document.getElementById(fieldIds.use_cases).value = (machine.use_cases || []).join('\n');
+  const details = machine.details || {};
+  document.getElementById(fieldIds.processor).value = details.processor || '';
+  document.getElementById(fieldIds.connectivity).value = details.connectivity || '';
+  document.getElementById(fieldIds.benchmark).value = details.benchmark || '';
+  document.getElementById(fieldIds.software).value = details.software || '';
+  document.getElementById(fieldIds.caveats).value = machine.caveats || '';
+  document.getElementById(fieldIds.source_urls).value = (machine.source_urls || []).join('\n');
+}
+
+function formMachine() {
+  const name = document.getElementById(fieldIds.name).value.trim();
+  const provider = document.getElementById(fieldIds.provider).value.trim();
+  const yearRaw = document.getElementById(fieldIds.year).value.trim();
+  const idBase = [provider, name].filter(Boolean).join(' ') || name;
+  return {
+    id: 'local-' + slug(idBase),
+    name,
+    provider,
+    country: document.getElementById(fieldIds.country).value.trim(),
+    site: document.getElementById(fieldIds.site).value.trim(),
+    year: yearRaw && /^\d+$/.test(yearRaw) ? Number(yearRaw) : yearRaw,
+    architecture: document.getElementById(fieldIds.architecture).value.trim(),
+    modality: document.getElementById(fieldIds.modality).value.trim(),
+    qubits: document.getElementById(fieldIds.qubits).value.trim(),
+    status: document.getElementById(fieldIds.status).value.trim() || 'local draft',
+    access: document.getElementById(fieldIds.access).value.trim(),
+    aliases: listFromText(document.getElementById(fieldIds.aliases).value),
+    use_cases: listFromText(document.getElementById(fieldIds.use_cases).value),
+    details: {
+      processor: document.getElementById(fieldIds.processor).value.trim(),
+      connectivity: document.getElementById(fieldIds.connectivity).value.trim(),
+      benchmark: document.getElementById(fieldIds.benchmark).value.trim(),
+      software: document.getElementById(fieldIds.software).value.trim()
+    },
+    caveats: document.getElementById(fieldIds.caveats).value.trim(),
+    source_urls: listFromText(document.getElementById(fieldIds.source_urls).value),
+    owner_id: ownerId,
+    visibility: 'private-local',
+    updated_at: new Date().toISOString(),
+    _local: true
+  };
+}
+
+function toast(message) {
+  els.toast.textContent = message;
+  els.toast.classList.add('show');
+  clearTimeout(toast._timer);
+  toast._timer = setTimeout(() => els.toast.classList.remove('show'), 2600);
+}
+
+async function copyRecord() {
+  const text = els.recordJson.textContent;
+  try {
+    await navigator.clipboard.writeText(text);
+    toast('Record copied');
+  } catch (error) {
+    toast('Clipboard blocked; select the JSON instead');
+  }
+}
+
+function downloadRecord() {
+  if (!selected) return;
+  const blob = new Blob([els.recordJson.textContent], {type: 'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = selected.id + '.knitweb-quantum-machine.json';
+  document.body.append(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+function refreshVisibleState(preferredId) {
+  renderControls();
+  renderStats();
+  updateSearch();
+  const preferred = preferredId && machines.find((machine) => machine.id === preferredId);
+  if (preferred) {
+    selectMachine(preferred.id, false);
+  } else if (selected && machines.some((machine) => machine.id === selected.id)) {
+    selectMachine(selected.id, false);
+  } else if (currentMatches[0]) {
+    selectMachine(currentMatches[0].machine.id, false);
+  } else {
+    renderNoSelection();
+  }
+}
+
+function deleteLocalMachine(id) {
+  const machine = localMachines.find((item) => item.id === id);
+  if (!machine) return;
+  if (!window.confirm('Delete local machine "' + machine.name + '"?')) return;
+  localMachines = localMachines.filter((item) => item.id !== id);
+  saveLocal();
+  rebuildMachines();
+  if (selected && selected.id === id) selected = null;
+  refreshVisibleState();
+  toast('Local machine deleted');
+}
+
+function wireEvents() {
+  els.q.addEventListener('input', updateSearch);
+  els.archFilter.addEventListener('change', updateSearch);
+  els.statusFilter.addEventListener('change', updateSearch);
+  els.intentMode.addEventListener('change', renderQueryEstimate);
+  els.intentAccess.addEventListener('change', renderQueryEstimate);
+  els.intentProof.addEventListener('change', renderQueryEstimate);
+  els.showPublicMachines.addEventListener('change', () => {
+    preferences.showPublicMachines = els.showPublicMachines.checked;
+    savePreferences();
+    rebuildMachines();
+    if (selected && !machines.some((machine) => machine.id === selected.id)) selected = null;
+    refreshVisibleState();
+    toast(preferences.showPublicMachines ? 'Shared spider machines shown' : 'Showing only your local machines');
+  });
+  els.machineSelect.addEventListener('change', () => selectMachine(els.machineSelect.value, true));
+  els.copyRecord.addEventListener('click', copyRecord);
+  els.downloadRecord.addEventListener('click', downloadRecord);
+  els.loadSelected.addEventListener('click', () => {
+    if (selected) {
+      fillForm(selected);
+      toast('Selected record loaded');
+    }
+  });
+  els.clearForm.addEventListener('click', () => {
+    els.machineForm.reset();
+  });
+  els.clearLocal.addEventListener('click', () => {
+    localMachines = [];
+    saveLocal();
+    rebuildMachines();
+    if (selected && selected._local) selected = null;
+    refreshVisibleState();
+    toast('Local records cleared');
+  });
+  els.machineForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const machine = formMachine();
+    if (!machine.name) return;
+    localMachines = localMachines.filter((item) => item.id !== machine.id);
+    localMachines.push(machine);
+    saveLocal();
+    rebuildMachines();
+    els.q.value = machine.name;
+    refreshVisibleState(machine.id);
+    toast('Local record saved');
+  });
+}
+
+async function init() {
+  try {
+    const data = await fetch(DATA_URL).then((response) => {
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+      return response.json();
+    });
+    seedMeta = data.meta || {};
+    seedMachines = (data.machines || []).map((machine) => ({...machine}));
+  } catch (error) {
+    seedMeta = {coverage: 'load_failed'};
+    seedMachines = [];
+    els.detail.replaceChildren(el('p', 'mut', 'Quantum machine data could not be loaded.'));
+  }
+  loadOwner();
+  loadPreferences();
+  loadLocal();
+  rebuildMachines();
+  renderControls();
+  renderStats();
+  renderWnwIntel();
+  wireEvents();
+  const params = new URLSearchParams(location.search);
+  const initial = params.get('q') || location.hash.slice(1).replace(/-/g, ' ');
+  if (initial) els.q.value = initial;
+  updateSearch();
+  const first = currentMatches[0] && currentMatches[0].machine;
+  if (first) selectMachine(first.id, false);
+  else renderNoSelection();
+}
+
+init();
+</script>
+</body>
+</html>

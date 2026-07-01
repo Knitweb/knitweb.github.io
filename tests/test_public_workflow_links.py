@@ -22,6 +22,7 @@ def test_landing_links_dev_and_core_repositories() -> None:
         "https://github.com/Knitweb/pulse",
         "https://github.com/Knitweb/molgang",
         "professions/",
+        "quantum-machines.html",
     ):
         assert text in html
 
@@ -117,3 +118,61 @@ def test_weave_public_data_is_knit_safe() -> None:
     for edge in data["edges"]:
         assert edge["source"] in node_ids
         assert edge["target"] in node_ids
+
+
+def test_readme_links_quantum_machine_route() -> None:
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+
+    assert "https://knitweb.github.io/quantum-machines.html" in readme
+    assert "https://5mart.ml/intel/" in readme
+    assert "data/quantum_machines.json" in readme
+
+
+def test_quantum_machine_page_exposes_search_and_record_gui() -> None:
+    html = (ROOT / "quantum-machines.html").read_text(encoding="utf-8")
+
+    assert "<title>KnitWeb - Quantum Machine Index</title>" in html
+    assert "data/quantum_machines.json" in html
+    assert "WNW Quantum Systems Intel" in html
+    assert "renderWnwIntel" in html
+    assert "renderQueryEstimate" in html
+    assert "scoreMachine" in html
+    assert "levenshtein" in html
+    assert "KnitWeb Machine Record" in html
+    assert "grid-template-columns:repeat(auto-fit,minmax(120px,1fr))" in html
+    assert "min-height:78px" in html
+    assert ".stat .n.long" in html
+    assert "valueNode.title = value" in html
+    assert "localStorage" in html
+    assert "innerHTML" not in html
+    assert 'onclick="' not in html
+    assert "onclick='" not in html
+
+
+def test_quantum_machine_seed_data_integrity() -> None:
+    data = json.loads((ROOT / "data" / "quantum_machines.json").read_text(encoding="utf-8"))
+    machines = data["machines"]
+    ids = {machine["id"] for machine in machines}
+
+    assert data["meta"]["schema"] == "knitweb.quantum-machine-index.v1"
+    assert data["meta"]["coverage"] == "curated_seed_not_exhaustive"
+    assert len(machines) >= 45
+    assert len(ids) == len(machines)
+    assert len(data["meta"]["wnw_intel"]["layers"]) >= 6
+
+    for required in (
+        "ibm-quantum-system-two-heron",
+        "google-willow",
+        "quantinuum-h2",
+        "quera-aquila",
+        "intel-tunnel-falls",
+        "origin-quantum-wukong",
+        "riken-64-qubit-superconducting",
+    ):
+        assert required in ids
+
+    for machine in machines:
+        for field in ("id", "name", "provider", "architecture", "modality", "status", "source_urls"):
+            assert machine.get(field), f"{machine.get('id', '<missing>')} missing {field}"
+        assert isinstance(machine["source_urls"], list)
+        assert all(str(url).startswith("https://") for url in machine["source_urls"])
