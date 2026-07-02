@@ -1,0 +1,8616 @@
+{
+  "circuits": [
+    {
+      "classical_bits": 0,
+      "description": "One-qubit id gate template.",
+      "family": "single-qubit",
+      "id": "bafyreidxomcfblbwrqoclngjpupikqyvcxcs5m25j4vei27s7wqip4nbq4",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "single qubit id",
+      "operation_count": 1,
+      "operations": [
+        {
+          "gate": "id",
+          "targets": [
+            0
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 0,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 1,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "gate",
+        "id",
+        "seed",
+        "single-qubit"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "One-qubit h gate template.",
+      "family": "single-qubit",
+      "id": "bafyreihm4ov4geqpmhtws4xajkva2fbpbyv6jdoezzmpvzn5iwdesrbuoa",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "single qubit h",
+      "operation_count": 1,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 1,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 1,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "gate",
+        "h",
+        "seed",
+        "single-qubit"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "One-qubit x gate template.",
+      "family": "single-qubit",
+      "id": "bafyreig74mjdm4cwj7y5u2pj4jqn3plfsnb5etfk7jp56k744ky4it4i54",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "single qubit x",
+      "operation_count": 1,
+      "operations": [
+        {
+          "gate": "x",
+          "targets": [
+            0
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 2,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 1,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "gate",
+        "seed",
+        "single-qubit",
+        "x"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "One-qubit y gate template.",
+      "family": "single-qubit",
+      "id": "bafyreiaxhwqctbrnpmhu5sljjde6dbk6gjg3lcc2pb7kp5yxx3ko5px23i",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "single qubit y",
+      "operation_count": 1,
+      "operations": [
+        {
+          "gate": "y",
+          "targets": [
+            0
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 3,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 1,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "gate",
+        "seed",
+        "single-qubit",
+        "y"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "One-qubit z gate template.",
+      "family": "single-qubit",
+      "id": "bafyreic2b6y6frdyt3tpgddqc2lwmpsev3c5fg5eafxdyfe4ecxx4zwl7u",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "single qubit z",
+      "operation_count": 1,
+      "operations": [
+        {
+          "gate": "z",
+          "targets": [
+            0
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 4,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 1,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "gate",
+        "seed",
+        "single-qubit",
+        "z"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "One-qubit s gate template.",
+      "family": "single-qubit",
+      "id": "bafyreiblw42frzp3jqkjrqrpt52lquxc7fgj7z6nkvsipfb5d5ocmervkm",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "single qubit s",
+      "operation_count": 1,
+      "operations": [
+        {
+          "gate": "s",
+          "targets": [
+            0
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 5,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 1,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "gate",
+        "s",
+        "seed",
+        "single-qubit"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "One-qubit sdg gate template.",
+      "family": "single-qubit",
+      "id": "bafyreih4qqxbt3vea2xp5bohkf5krem2vyraiq3v7fbwlnfl4uefy4lwna",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "single qubit sdg",
+      "operation_count": 1,
+      "operations": [
+        {
+          "gate": "sdg",
+          "targets": [
+            0
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 6,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 1,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "gate",
+        "sdg",
+        "seed",
+        "single-qubit"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "One-qubit t gate template.",
+      "family": "single-qubit",
+      "id": "bafyreihjetg6cggo7legzrgcwouhqrr3xd6zmn4l3atkaptuekozg75xqq",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "single qubit t",
+      "operation_count": 1,
+      "operations": [
+        {
+          "gate": "t",
+          "targets": [
+            0
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 7,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 1,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "gate",
+        "seed",
+        "single-qubit",
+        "t"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "One-qubit tdg gate template.",
+      "family": "single-qubit",
+      "id": "bafyreicxcyt4tdp2fioq37cbvzngpgbvf6nhhiquuegdb744jf2r7fmgna",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "single qubit tdg",
+      "operation_count": 1,
+      "operations": [
+        {
+          "gate": "tdg",
+          "targets": [
+            0
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 8,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 1,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "gate",
+        "seed",
+        "single-qubit",
+        "tdg"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "One-qubit sx gate template.",
+      "family": "single-qubit",
+      "id": "bafyreiccn7k6fhgdvc2m7xtep3zcir2zau72g2fknpxofn6x5t7were66m",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "single qubit sx",
+      "operation_count": 1,
+      "operations": [
+        {
+          "gate": "sx",
+          "targets": [
+            0
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 9,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 1,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "gate",
+        "seed",
+        "single-qubit",
+        "sx"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "One-qubit rx gate template.",
+      "family": "single-qubit",
+      "id": "bafyreidgklzwqmelaehtf6ap6d6y4l2mucj7dxygf6fvul3oj56tjjycum",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "single qubit rx",
+      "operation_count": 1,
+      "operations": [
+        {
+          "gate": "rx",
+          "params": [
+            "theta"
+          ],
+          "targets": [
+            0
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 10,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 1,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "gate",
+        "rx",
+        "seed",
+        "single-qubit"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "One-qubit ry gate template.",
+      "family": "single-qubit",
+      "id": "bafyreiaozbbek2o5ilzvgbt5kljzyz4jua5gvb2grua6sbuscdock3ivb4",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "single qubit ry",
+      "operation_count": 1,
+      "operations": [
+        {
+          "gate": "ry",
+          "params": [
+            "theta"
+          ],
+          "targets": [
+            0
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 11,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 1,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "gate",
+        "ry",
+        "seed",
+        "single-qubit"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "One-qubit rz gate template.",
+      "family": "single-qubit",
+      "id": "bafyreickkxy43ra6gtjxk6blqsahh2u3av3wssag3y3oqremfztmhe5nbu",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "single qubit rz",
+      "operation_count": 1,
+      "operations": [
+        {
+          "gate": "rz",
+          "params": [
+            "theta"
+          ],
+          "targets": [
+            0
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 12,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 1,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "gate",
+        "rz",
+        "seed",
+        "single-qubit"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "Two-qubit cx interaction template.",
+      "family": "two-qubit",
+      "id": "bafyreiffba6njtvklnmvq4r6e6aso7kjek22oguktkqevczsdmf6n6akcy",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "two qubit cx",
+      "operation_count": 1,
+      "operations": [
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 13,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 2,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "cx",
+        "entangling",
+        "gate",
+        "seed",
+        "two-qubit"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "Two-qubit cz interaction template.",
+      "family": "two-qubit",
+      "id": "bafyreigqn3wsjg5nmsbedhuuaffgxyrxlcf6pqumpnbflrbsc2x436kf5y",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "two qubit cz",
+      "operation_count": 1,
+      "operations": [
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cz",
+          "targets": [
+            1
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 14,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 2,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "cz",
+        "entangling",
+        "gate",
+        "seed",
+        "two-qubit"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "Two-qubit cy interaction template.",
+      "family": "two-qubit",
+      "id": "bafyreicjchbl3uddfd3b6f753aaulytmpywpwgxbgate52lhuf2h7d7dwu",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "two qubit cy",
+      "operation_count": 1,
+      "operations": [
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cy",
+          "targets": [
+            1
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 15,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 2,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "cy",
+        "entangling",
+        "gate",
+        "seed",
+        "two-qubit"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "Two-qubit ch interaction template.",
+      "family": "two-qubit",
+      "id": "bafyreibs5wfxhof2vv37h5ulgnn65ktjldxrwf6rthuyeyvvw2anwxloaq",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "two qubit ch",
+      "operation_count": 1,
+      "operations": [
+        {
+          "controls": [
+            0
+          ],
+          "gate": "ch",
+          "targets": [
+            1
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 16,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 2,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "ch",
+        "entangling",
+        "gate",
+        "seed",
+        "two-qubit"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "Two-qubit swap interaction template.",
+      "family": "two-qubit",
+      "id": "bafyreiee2rehxlp4ufplxmx2etgbb3ldg2ibejvyvs7jemgqnqclj3h3ky",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "two qubit swap",
+      "operation_count": 1,
+      "operations": [
+        {
+          "gate": "swap",
+          "targets": [
+            0,
+            1
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 17,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 2,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "entangling",
+        "gate",
+        "seed",
+        "swap",
+        "two-qubit"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "Two-qubit iswap interaction template.",
+      "family": "two-qubit",
+      "id": "bafyreihlmq7waplzoabbwobtu3wd2digc4minvz24m5jqzuli2ffhjwyy4",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "two qubit iswap",
+      "operation_count": 1,
+      "operations": [
+        {
+          "gate": "iswap",
+          "targets": [
+            0,
+            1
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 18,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 2,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "entangling",
+        "gate",
+        "iswap",
+        "seed",
+        "two-qubit"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "Two-qubit crx interaction template.",
+      "family": "two-qubit",
+      "id": "bafyreie55e5b6yzoovufo6lznlhjg2irfegvgx7m2x4i7xdgow4dywpbee",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "two qubit crx",
+      "operation_count": 1,
+      "operations": [
+        {
+          "controls": [
+            0
+          ],
+          "gate": "crx",
+          "params": [
+            "theta"
+          ],
+          "targets": [
+            1
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 19,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 2,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "crx",
+        "entangling",
+        "gate",
+        "seed",
+        "two-qubit"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "Two-qubit cry interaction template.",
+      "family": "two-qubit",
+      "id": "bafyreifq3awltrhgefzcgxmmjupkjrd32ksdwsz7ymmizncjmetx2xpxq4",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "two qubit cry",
+      "operation_count": 1,
+      "operations": [
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cry",
+          "params": [
+            "theta"
+          ],
+          "targets": [
+            1
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 20,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 2,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "cry",
+        "entangling",
+        "gate",
+        "seed",
+        "two-qubit"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "Two-qubit crz interaction template.",
+      "family": "two-qubit",
+      "id": "bafyreie5peovltxujexqhwixnwhctthnu6aah4xq7kr7j7d5he2kxlb3bq",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "two qubit crz",
+      "operation_count": 1,
+      "operations": [
+        {
+          "controls": [
+            0
+          ],
+          "gate": "crz",
+          "params": [
+            "theta"
+          ],
+          "targets": [
+            1
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 21,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 2,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "crz",
+        "entangling",
+        "gate",
+        "seed",
+        "two-qubit"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "Two-qubit cp interaction template.",
+      "family": "two-qubit",
+      "id": "bafyreibpwfsj2bfcxspmtiwxgihkzhbwpqg6lyrugubpspcnwqps2irgrq",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "two qubit cp",
+      "operation_count": 1,
+      "operations": [
+        {
+          "gate": "cp",
+          "params": [
+            "theta"
+          ],
+          "targets": [
+            0,
+            1
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 22,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 2,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "cp",
+        "entangling",
+        "gate",
+        "seed",
+        "two-qubit"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "Bell-pair preparation for phi plus.",
+      "family": "bell",
+      "id": "bafyreihjef7ayetkoaehclpnb4hq3mawsqluhbpoz5i54ozk6hl24xagzu",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "bell state phi plus",
+      "operation_count": 2,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 23,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 2,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "bell",
+        "entanglement",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "Bell-pair preparation for phi minus.",
+      "family": "bell",
+      "id": "bafyreie33e2uqkydsl6mion4oo7tz23cqny5gzazwffvszri6mttsidxxy",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "bell state phi minus",
+      "operation_count": 3,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "z",
+          "targets": [
+            0
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 24,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 2,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "bell",
+        "entanglement",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "Bell-pair preparation for psi plus.",
+      "family": "bell",
+      "id": "bafyreigp2czkbmk4mjnkoks7ihywkylj7gyfkkhz3bmpsp4mn3v7bamjae",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "bell state psi plus",
+      "operation_count": 3,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            1
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 25,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 2,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "bell",
+        "entanglement",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "Bell-pair preparation for psi minus.",
+      "family": "bell",
+      "id": "bafyreib6wmug3y4zo7zxz5e5lfoo6uulkbbtaknp7vfi6cfncynjqiya2q",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "bell state psi minus",
+      "operation_count": 4,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "z",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            1
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 26,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 2,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "bell",
+        "entanglement",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "GHZ state preparation over 3 qubits.",
+      "family": "ghz",
+      "id": "bafyreif2kdzgwimmjppwzeeec6i4m5y3432ipcdu7bobqzaefuu7vvl2d4",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "ghz 3 qubits",
+      "operation_count": 3,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            2
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 27,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 3,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "entanglement",
+        "ghz",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "GHZ state preparation over 4 qubits.",
+      "family": "ghz",
+      "id": "bafyreifbnr63cskfl7zxsldysb4ftbdlpkvgpt2v6qvx4mo63y6q7qek7m",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "ghz 4 qubits",
+      "operation_count": 4,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            3
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 28,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 4,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "entanglement",
+        "ghz",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "GHZ state preparation over 5 qubits.",
+      "family": "ghz",
+      "id": "bafyreigknejsvefo7fdhsgmasownqjesi2jtxqzxcbo2xba3dhq7fbf5ri",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "ghz 5 qubits",
+      "operation_count": 5,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            3
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 29,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 5,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "entanglement",
+        "ghz",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "GHZ state preparation over 6 qubits.",
+      "family": "ghz",
+      "id": "bafyreifjl3nctmsflgzbso6e6hjoo2yf5dy53ljmhkfsnoi6rmy543bh2i",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "ghz 6 qubits",
+      "operation_count": 6,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            3
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            5
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 30,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 6,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "entanglement",
+        "ghz",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "GHZ state preparation over 7 qubits.",
+      "family": "ghz",
+      "id": "bafyreigrz4yvyyumvok3txskpan7o2eauqecjketd3cvehxis5ld7hk4xy",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "ghz 7 qubits",
+      "operation_count": 7,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            3
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            5
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            6
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 31,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 7,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "entanglement",
+        "ghz",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "GHZ state preparation over 8 qubits.",
+      "family": "ghz",
+      "id": "bafyreibmcsf3cbt7d2cduj6fb5yn5skxtzznady5cw5yihtofph6dnqo2e",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "ghz 8 qubits",
+      "operation_count": 8,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            3
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            5
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            6
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            7
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 32,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 8,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "entanglement",
+        "ghz",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "Quantum Fourier transform template over 2 qubits.",
+      "family": "qft",
+      "id": "bafyreihfanmu6s2vsvxanmvad5wqkrsqr4bnt7xrlzdbbo5s6bqdx6nrsa",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "qft 2 qubits",
+      "operation_count": 4,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/2"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "swap",
+          "targets": [
+            0,
+            1
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 33,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 2,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "fourier",
+        "qft",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "Quantum Fourier transform template over 3 qubits.",
+      "family": "qft",
+      "id": "bafyreiessviib64svjiw4g7apsa2765k6wdexg4ze2zhb524frch7q6yxa",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "qft 3 qubits",
+      "operation_count": 7,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/2"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            2
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/4"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            2
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/2"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "swap",
+          "targets": [
+            0,
+            2
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 34,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 3,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "fourier",
+        "qft",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "Quantum Fourier transform template over 4 qubits.",
+      "family": "qft",
+      "id": "bafyreif27wgqolmshwgb3fz4o3qety4y2bsszcjs2dzoyxcvq4c2a2oeim",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "qft 4 qubits",
+      "operation_count": 12,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/2"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            2
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/4"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            3
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/8"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            2
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/2"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            3
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/4"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            3
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/2"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            3
+          ]
+        },
+        {
+          "gate": "swap",
+          "targets": [
+            0,
+            3
+          ]
+        },
+        {
+          "gate": "swap",
+          "targets": [
+            1,
+            2
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 35,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 4,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "fourier",
+        "qft",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "Quantum Fourier transform template over 5 qubits.",
+      "family": "qft",
+      "id": "bafyreib3cmcz3nqk6ziotibdufr6ilmpxafjzxdsbi7kulgoepy2etj5hq",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "qft 5 qubits",
+      "operation_count": 17,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/2"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            2
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/4"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            3
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/8"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            4
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/16"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            2
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/2"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            3
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/4"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            4
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/8"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            3
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/2"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            4
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/4"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            3
+          ]
+        },
+        {
+          "controls": [
+            4
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/2"
+          ],
+          "targets": [
+            3
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "swap",
+          "targets": [
+            0,
+            4
+          ]
+        },
+        {
+          "gate": "swap",
+          "targets": [
+            1,
+            3
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 36,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 5,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "fourier",
+        "qft",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "Quantum Fourier transform template over 6 qubits.",
+      "family": "qft",
+      "id": "bafyreido3jcplrkap5wen2ao65y5ftvbfbupxq4qeqafqc2njpo27mexrq",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "qft 6 qubits",
+      "operation_count": 24,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/2"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            2
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/4"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            3
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/8"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            4
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/16"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            5
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/32"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            2
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/2"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            3
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/4"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            4
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/8"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            5
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/16"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            3
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/2"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            4
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/4"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            5
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/8"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            3
+          ]
+        },
+        {
+          "controls": [
+            4
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/2"
+          ],
+          "targets": [
+            3
+          ]
+        },
+        {
+          "controls": [
+            5
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/4"
+          ],
+          "targets": [
+            3
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            5
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/2"
+          ],
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            5
+          ]
+        },
+        {
+          "gate": "swap",
+          "targets": [
+            0,
+            5
+          ]
+        },
+        {
+          "gate": "swap",
+          "targets": [
+            1,
+            4
+          ]
+        },
+        {
+          "gate": "swap",
+          "targets": [
+            2,
+            3
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 37,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 6,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "fourier",
+        "qft",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "Quantum Fourier transform template over 7 qubits.",
+      "family": "qft",
+      "id": "bafyreibyrwbpcir76hbuqhzlbrirhs2m6l462ty343lpdd6fw5zfgqhgxe",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "qft 7 qubits",
+      "operation_count": 31,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/2"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            2
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/4"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            3
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/8"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            4
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/16"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            5
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/32"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            6
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/64"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            2
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/2"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            3
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/4"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            4
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/8"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            5
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/16"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            6
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/32"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            3
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/2"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            4
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/4"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            5
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/8"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            6
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/16"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            3
+          ]
+        },
+        {
+          "controls": [
+            4
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/2"
+          ],
+          "targets": [
+            3
+          ]
+        },
+        {
+          "controls": [
+            5
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/4"
+          ],
+          "targets": [
+            3
+          ]
+        },
+        {
+          "controls": [
+            6
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/8"
+          ],
+          "targets": [
+            3
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            5
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/2"
+          ],
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            6
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/4"
+          ],
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            5
+          ]
+        },
+        {
+          "controls": [
+            6
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/2"
+          ],
+          "targets": [
+            5
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            6
+          ]
+        },
+        {
+          "gate": "swap",
+          "targets": [
+            0,
+            6
+          ]
+        },
+        {
+          "gate": "swap",
+          "targets": [
+            1,
+            5
+          ]
+        },
+        {
+          "gate": "swap",
+          "targets": [
+            2,
+            4
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 38,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 7,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "fourier",
+        "qft",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "Quantum Fourier transform template over 8 qubits.",
+      "family": "qft",
+      "id": "bafyreibqrs6udea43zlta2w7qfzvrr6ioktpunadkiimynf4cu6ngwlkqq",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "qft 8 qubits",
+      "operation_count": 40,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/2"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            2
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/4"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            3
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/8"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            4
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/16"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            5
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/32"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            6
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/64"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            7
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/128"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            2
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/2"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            3
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/4"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            4
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/8"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            5
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/16"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            6
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/32"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            7
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/64"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            3
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/2"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            4
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/4"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            5
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/8"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            6
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/16"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            7
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/32"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            3
+          ]
+        },
+        {
+          "controls": [
+            4
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/2"
+          ],
+          "targets": [
+            3
+          ]
+        },
+        {
+          "controls": [
+            5
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/4"
+          ],
+          "targets": [
+            3
+          ]
+        },
+        {
+          "controls": [
+            6
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/8"
+          ],
+          "targets": [
+            3
+          ]
+        },
+        {
+          "controls": [
+            7
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/16"
+          ],
+          "targets": [
+            3
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            5
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/2"
+          ],
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            6
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/4"
+          ],
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            7
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/8"
+          ],
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            5
+          ]
+        },
+        {
+          "controls": [
+            6
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/2"
+          ],
+          "targets": [
+            5
+          ]
+        },
+        {
+          "controls": [
+            7
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/4"
+          ],
+          "targets": [
+            5
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            6
+          ]
+        },
+        {
+          "controls": [
+            7
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/2"
+          ],
+          "targets": [
+            6
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            7
+          ]
+        },
+        {
+          "gate": "swap",
+          "targets": [
+            0,
+            7
+          ]
+        },
+        {
+          "gate": "swap",
+          "targets": [
+            1,
+            6
+          ]
+        },
+        {
+          "gate": "swap",
+          "targets": [
+            2,
+            5
+          ]
+        },
+        {
+          "gate": "swap",
+          "targets": [
+            3,
+            4
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 39,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 8,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "fourier",
+        "qft",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 2,
+      "description": "Superdense coding message 00.",
+      "family": "superdense-coding",
+      "id": "bafyreihldmi4jyudyvof75z7zecnwlyles5iyn4slcu3nw5erjihqpsxca",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "superdense coding 00",
+      "operation_count": 4,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 40,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 2,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "bell",
+        "communication",
+        "seed",
+        "superdense-coding"
+      ]
+    },
+    {
+      "classical_bits": 2,
+      "description": "Superdense coding message 01.",
+      "family": "superdense-coding",
+      "id": "bafyreiam4zzioooxbbwe6c56dwv6miiwvb5otutslxsxge6qozrzsq3qze",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "superdense coding 01",
+      "operation_count": 5,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 41,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 2,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "bell",
+        "communication",
+        "seed",
+        "superdense-coding"
+      ]
+    },
+    {
+      "classical_bits": 2,
+      "description": "Superdense coding message 10.",
+      "family": "superdense-coding",
+      "id": "bafyreieo2jpkmpcnxq6qz3acq4nkbi5n52hxpi2x355lrjudtvy53zan7a",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "superdense coding 10",
+      "operation_count": 5,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "z",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 42,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 2,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "bell",
+        "communication",
+        "seed",
+        "superdense-coding"
+      ]
+    },
+    {
+      "classical_bits": 2,
+      "description": "Superdense coding message 11.",
+      "family": "superdense-coding",
+      "id": "bafyreidd5z6paebl3eczg24kzrmtnwgl5mwpfpgwekacvlzu6q52rdiqj4",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "superdense coding 11",
+      "operation_count": 6,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "z",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 43,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 2,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "bell",
+        "communication",
+        "seed",
+        "superdense-coding"
+      ]
+    },
+    {
+      "classical_bits": 4,
+      "description": "Bernstein-Vazirani oracle for secret 0000.",
+      "family": "bernstein-vazirani",
+      "id": "bafyreihpqfakettfskrwrrfetuzz5rm2kulogzlqgimr52kmksnpddw76u",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "bernstein vazirani 0000",
+      "operation_count": 6,
+      "operations": [
+        {
+          "gate": "x",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            3
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 44,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 5,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "bernstein-vazirani",
+        "learning",
+        "oracle",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 4,
+      "description": "Bernstein-Vazirani oracle for secret 0001.",
+      "family": "bernstein-vazirani",
+      "id": "bafyreicrcbpo27qao24g57wxb5rfdxivtcvbacavzdhaug2vimeccsr3fe",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "bernstein vazirani 0001",
+      "operation_count": 7,
+      "operations": [
+        {
+          "gate": "x",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "controls": [
+            3
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            3
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 45,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 5,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "bernstein-vazirani",
+        "learning",
+        "oracle",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 4,
+      "description": "Bernstein-Vazirani oracle for secret 0010.",
+      "family": "bernstein-vazirani",
+      "id": "bafyreibiz3ytkngefn2vgbmt64gyq5yrnqars6wv4ky3gfbhy7ik6nifii",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "bernstein vazirani 0010",
+      "operation_count": 7,
+      "operations": [
+        {
+          "gate": "x",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "controls": [
+            2
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            3
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 46,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 5,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "bernstein-vazirani",
+        "learning",
+        "oracle",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 4,
+      "description": "Bernstein-Vazirani oracle for secret 0011.",
+      "family": "bernstein-vazirani",
+      "id": "bafyreieycdzjyup3n52f7tg34eddt32f2gtegw3kfv7qwp6cuwm2a7hsvy",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "bernstein vazirani 0011",
+      "operation_count": 8,
+      "operations": [
+        {
+          "gate": "x",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "controls": [
+            2
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            3
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            3
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 47,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 5,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "bernstein-vazirani",
+        "learning",
+        "oracle",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 4,
+      "description": "Bernstein-Vazirani oracle for secret 0100.",
+      "family": "bernstein-vazirani",
+      "id": "bafyreiawgsmp6v5lilqxfdag4umlqssedexwfgejk6ued4oxfwfftuhpza",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "bernstein vazirani 0100",
+      "operation_count": 7,
+      "operations": [
+        {
+          "gate": "x",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            3
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 48,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 5,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "bernstein-vazirani",
+        "learning",
+        "oracle",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 4,
+      "description": "Bernstein-Vazirani oracle for secret 0101.",
+      "family": "bernstein-vazirani",
+      "id": "bafyreihe5qyuf243ijbat2lf6r53s4ba35ldtd55h5z327hfcfvi4oyxru",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "bernstein vazirani 0101",
+      "operation_count": 8,
+      "operations": [
+        {
+          "gate": "x",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            3
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            3
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 49,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 5,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "bernstein-vazirani",
+        "learning",
+        "oracle",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 4,
+      "description": "Bernstein-Vazirani oracle for secret 0110.",
+      "family": "bernstein-vazirani",
+      "id": "bafyreigec7nyyladbdts7gynpr7ghkx23a3aekfjmwmlme2mdctkez63ju",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "bernstein vazirani 0110",
+      "operation_count": 8,
+      "operations": [
+        {
+          "gate": "x",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            2
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            3
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 50,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 5,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "bernstein-vazirani",
+        "learning",
+        "oracle",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 4,
+      "description": "Bernstein-Vazirani oracle for secret 0111.",
+      "family": "bernstein-vazirani",
+      "id": "bafyreict5zxlrfp7wl7zakpe3xoidtzub6actmllajhjygir7djtltvrjq",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "bernstein vazirani 0111",
+      "operation_count": 9,
+      "operations": [
+        {
+          "gate": "x",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            2
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            3
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            3
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 51,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 5,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "bernstein-vazirani",
+        "learning",
+        "oracle",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 4,
+      "description": "Bernstein-Vazirani oracle for secret 1000.",
+      "family": "bernstein-vazirani",
+      "id": "bafyreiga2ca3lcioqtsz3ks2xuv66ukz66x7c6e3wtxatjapzjvpje444e",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "bernstein vazirani 1000",
+      "operation_count": 7,
+      "operations": [
+        {
+          "gate": "x",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            3
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 52,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 5,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "bernstein-vazirani",
+        "learning",
+        "oracle",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 4,
+      "description": "Bernstein-Vazirani oracle for secret 1001.",
+      "family": "bernstein-vazirani",
+      "id": "bafyreig6csqrgt4mtxjdgtomsx3bcq7zb5zk7p5mftfmwxozlhpq3kz34i",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "bernstein vazirani 1001",
+      "operation_count": 8,
+      "operations": [
+        {
+          "gate": "x",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            3
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            3
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 53,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 5,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "bernstein-vazirani",
+        "learning",
+        "oracle",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 4,
+      "description": "Bernstein-Vazirani oracle for secret 1010.",
+      "family": "bernstein-vazirani",
+      "id": "bafyreidtjkn6ucwabdsp7g57klr3cg3g6ejnzvq2k2pixei6juvmmm6iru",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "bernstein vazirani 1010",
+      "operation_count": 8,
+      "operations": [
+        {
+          "gate": "x",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            2
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            3
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 54,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 5,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "bernstein-vazirani",
+        "learning",
+        "oracle",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 4,
+      "description": "Bernstein-Vazirani oracle for secret 1011.",
+      "family": "bernstein-vazirani",
+      "id": "bafyreigepyy3z4rp2jixqdqfozho76hopdocpjhvcg2ucjzjt6mwfdg2a4",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "bernstein vazirani 1011",
+      "operation_count": 9,
+      "operations": [
+        {
+          "gate": "x",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            2
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            3
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            3
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 55,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 5,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "bernstein-vazirani",
+        "learning",
+        "oracle",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 4,
+      "description": "Bernstein-Vazirani oracle for secret 1100.",
+      "family": "bernstein-vazirani",
+      "id": "bafyreic6iuvdknum62aqf4q4ajljfm7wheyh63a3jgyglqorb5bdrpzw54",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "bernstein vazirani 1100",
+      "operation_count": 8,
+      "operations": [
+        {
+          "gate": "x",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            3
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 56,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 5,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "bernstein-vazirani",
+        "learning",
+        "oracle",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 4,
+      "description": "Bernstein-Vazirani oracle for secret 1101.",
+      "family": "bernstein-vazirani",
+      "id": "bafyreibxweomg3yaz6pc2warmear2zheh4dnovpi3nfh5vsnzjfr56j4s4",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "bernstein vazirani 1101",
+      "operation_count": 9,
+      "operations": [
+        {
+          "gate": "x",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            3
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            3
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 57,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 5,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "bernstein-vazirani",
+        "learning",
+        "oracle",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 4,
+      "description": "Bernstein-Vazirani oracle for secret 1110.",
+      "family": "bernstein-vazirani",
+      "id": "bafyreibkuhzngo5ptqrghmc4ahd6zpvqmmeprfb3vg7ip3irdi6tzapskm",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "bernstein vazirani 1110",
+      "operation_count": 9,
+      "operations": [
+        {
+          "gate": "x",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            2
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            3
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 58,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 5,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "bernstein-vazirani",
+        "learning",
+        "oracle",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 4,
+      "description": "Bernstein-Vazirani oracle for secret 1111.",
+      "family": "bernstein-vazirani",
+      "id": "bafyreiffm5r3dov63trdqh2mb4fsxuil42cavdiat4dqic4azd7veu4ct4",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "bernstein vazirani 1111",
+      "operation_count": 10,
+      "operations": [
+        {
+          "gate": "x",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            2
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            3
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            3
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 59,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 5,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "bernstein-vazirani",
+        "learning",
+        "oracle",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 2,
+      "description": "Grover toy search marking state 00.",
+      "family": "grover",
+      "id": "bafyreic2sw6uwpvlfoxqs6dh3jlvcxoyrkoqxqlcyhowss55jnjbfwgpz4",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "grover mark 00",
+      "operation_count": 8,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0,
+            1
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cz",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 60,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 2,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "grover",
+        "oracle",
+        "search",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 2,
+      "description": "Grover toy search marking state 01.",
+      "family": "grover",
+      "id": "bafyreidvscwaijd72pt2vidvgvvka6zgkd6ffrumql34mqgpbtt6uwq7km",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "grover mark 01",
+      "operation_count": 6,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0,
+            1
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cz",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 61,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 2,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "grover",
+        "oracle",
+        "search",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 2,
+      "description": "Grover toy search marking state 10.",
+      "family": "grover",
+      "id": "bafyreih45yd5sro3nzsymibv76ctblcptptn6maeey7mmivhk3o2zuisfu",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "grover mark 10",
+      "operation_count": 6,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0,
+            1
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cz",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 62,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 2,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "grover",
+        "oracle",
+        "search",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 2,
+      "description": "Grover toy search marking state 11.",
+      "family": "grover",
+      "id": "bafyreidsrclf35a27rj6pxk3pyatclfbi22zytsyxrkg5tyynzjauu42ua",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "grover mark 11",
+      "operation_count": 4,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0,
+            1
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cz",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 63,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 2,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "grover",
+        "oracle",
+        "search",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 3,
+      "description": "Grover toy search marking state 000.",
+      "family": "grover",
+      "id": "bafyreigs5eb3ex4zwibcn6njaer7lft4kd426bu3hhsfqxauxcf4ravjce",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "grover mark 000",
+      "operation_count": 11,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cz",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            2
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 64,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 3,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "grover",
+        "oracle",
+        "search",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 3,
+      "description": "Grover toy search marking state 001.",
+      "family": "grover",
+      "id": "bafyreigvamvr5pjzto5augyyopimom37sntdna2vrru7x73itpcc6hiyq4",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "grover mark 001",
+      "operation_count": 9,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cz",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            2
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 65,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 3,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "grover",
+        "oracle",
+        "search",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 3,
+      "description": "Grover toy search marking state 010.",
+      "family": "grover",
+      "id": "bafyreiavyzmhh7mfjfhmlxd4mbhp6y4by46ymke5tmuktgoovevmef2tra",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "grover mark 010",
+      "operation_count": 9,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cz",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            2
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 66,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 3,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "grover",
+        "oracle",
+        "search",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 3,
+      "description": "Grover toy search marking state 011.",
+      "family": "grover",
+      "id": "bafyreidmvlbzew4behdhnsfjmdi3x6mswonpeqslp44o52kgdjfs3uktye",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "grover mark 011",
+      "operation_count": 7,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cz",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            2
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 67,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 3,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "grover",
+        "oracle",
+        "search",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 3,
+      "description": "Grover toy search marking state 100.",
+      "family": "grover",
+      "id": "bafyreiesrbksxlfvoic3emelp6qqsbhp6wlr2tm2gaqbhj27e4hnbeskru",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "grover mark 100",
+      "operation_count": 9,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cz",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            2
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 68,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 3,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "grover",
+        "oracle",
+        "search",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 3,
+      "description": "Grover toy search marking state 101.",
+      "family": "grover",
+      "id": "bafyreibofqgy5d4aga5bmwpedty6egwztr5r4acv7zw4bo3eiu3e7rj22i",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "grover mark 101",
+      "operation_count": 7,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cz",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            2
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 69,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 3,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "grover",
+        "oracle",
+        "search",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 3,
+      "description": "Grover toy search marking state 110.",
+      "family": "grover",
+      "id": "bafyreictx57hjmbpip3oljjnqzk7u574wxrhrttdu7gd45xigv46ulhyva",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "grover mark 110",
+      "operation_count": 7,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cz",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            2
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 70,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 3,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "grover",
+        "oracle",
+        "search",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 3,
+      "description": "Grover toy search marking state 111.",
+      "family": "grover",
+      "id": "bafyreiciacbydyawszxtc23kvuu76ddrgw46sm4lfazc6ymuwcmacgfyna",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "grover mark 111",
+      "operation_count": 5,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cz",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            2
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 71,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 3,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "grover",
+        "oracle",
+        "search",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 1,
+      "description": "Deutsch-Jozsa constant zero oracle template.",
+      "family": "deutsch-jozsa",
+      "id": "bafyreienmtmbphjxdlni4g2z4b3pueqo76eqww54s5tqdzhg6dftz23d3m",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "deutsch jozsa constant zero",
+      "operation_count": 3,
+      "operations": [
+        {
+          "gate": "x",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0,
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 72,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 2,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "classification",
+        "deutsch-jozsa",
+        "oracle",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 1,
+      "description": "Deutsch-Jozsa constant one oracle template.",
+      "family": "deutsch-jozsa",
+      "id": "bafyreicfbm3uj5w2lknzktqdzayy2t5szfrovlfcgyh6jelxx46trdiiby",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "deutsch jozsa constant one",
+      "operation_count": 4,
+      "operations": [
+        {
+          "gate": "x",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0,
+            1
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 73,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 2,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "classification",
+        "deutsch-jozsa",
+        "oracle",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 1,
+      "description": "Deutsch-Jozsa balanced identity oracle template.",
+      "family": "deutsch-jozsa",
+      "id": "bafyreictyazielod664hdbgmlrk3u4fakmuzlyrb3paxjz622bsqum3kgu",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "deutsch jozsa balanced identity",
+      "operation_count": 4,
+      "operations": [
+        {
+          "gate": "x",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0,
+            1
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 74,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 2,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "classification",
+        "deutsch-jozsa",
+        "oracle",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 1,
+      "description": "Deutsch-Jozsa balanced not oracle template.",
+      "family": "deutsch-jozsa",
+      "id": "bafyreiftti4e72x7a5zvqrddsjq2ghprme45lkmg5uxzfdnbq5s2xkszvm",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "deutsch jozsa balanced not",
+      "operation_count": 5,
+      "operations": [
+        {
+          "gate": "x",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0,
+            1
+          ]
+        },
+        {
+          "gate": "x",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 75,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 2,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "classification",
+        "deutsch-jozsa",
+        "oracle",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 2,
+      "description": "Small phase-estimation template for phase pi/2.",
+      "family": "phase-estimation",
+      "id": "bafyreia7qubfcgqs6lwon4w3xpsyky57ne5b5s2d7ubyt42m6m45kebkii",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "phase estimation pi/2",
+      "operation_count": 5,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/2"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cp",
+          "params": [
+            "2*pi/2"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "iqft",
+          "targets": [
+            0,
+            1
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 76,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 3,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "estimation",
+        "phase",
+        "phase-estimation",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 2,
+      "description": "Small phase-estimation template for phase pi/4.",
+      "family": "phase-estimation",
+      "id": "bafyreibn7czewvkdjtq3e5hnc47ce3g2cgsazjdhsueg6sttoo4ysj457m",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "phase estimation pi/4",
+      "operation_count": 5,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/4"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cp",
+          "params": [
+            "2*pi/4"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "iqft",
+          "targets": [
+            0,
+            1
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 77,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 3,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "estimation",
+        "phase",
+        "phase-estimation",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 2,
+      "description": "Small phase-estimation template for phase pi/8.",
+      "family": "phase-estimation",
+      "id": "bafyreibx7i5jfnkr4su5tiiygc7bduy4y6k2ppf2nddhnk3rnnt4vfi4sa",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "phase estimation pi/8",
+      "operation_count": 5,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cp",
+          "params": [
+            "pi/8"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cp",
+          "params": [
+            "2*pi/8"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "iqft",
+          "targets": [
+            0,
+            1
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 78,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 3,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "estimation",
+        "phase",
+        "phase-estimation",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 2,
+      "description": "Small phase-estimation template for phase theta.",
+      "family": "phase-estimation",
+      "id": "bafyreigqyrg6bkvb7vi47p4qqddfp52q53ha5p4jhz3vwngcnclhj5y2d4",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "phase estimation theta",
+      "operation_count": 5,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cp",
+          "params": [
+            "theta"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cp",
+          "params": [
+            "2*theta"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "iqft",
+          "targets": [
+            0,
+            1
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 79,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 3,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "estimation",
+        "phase",
+        "phase-estimation",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 2,
+      "description": "Small phase-estimation template for phase 2*pi/3.",
+      "family": "phase-estimation",
+      "id": "bafyreihi57ayotnn3mnxgabt2t7d52wegffl7vd57vycbdanxrkuxww5wa",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "phase estimation 2*pi/3",
+      "operation_count": 5,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cp",
+          "params": [
+            "2*pi/3"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cp",
+          "params": [
+            "2*2*pi/3"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "iqft",
+          "targets": [
+            0,
+            1
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 80,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 3,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "estimation",
+        "phase",
+        "phase-estimation",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 2,
+      "description": "Basic bit flip encode error-correction template.",
+      "family": "error-correction",
+      "id": "bafyreibjffzyk5hcv2eqzxatabyzm5auyviewmdjm2dmecfo7wb3nvjp5m",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "error correction bit flip encode",
+      "operation_count": 2,
+      "operations": [
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            2
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 81,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 3,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "error-correction",
+        "qec",
+        "seed",
+        "stabilizer"
+      ]
+    },
+    {
+      "classical_bits": 2,
+      "description": "Basic bit flip syndrome error-correction template.",
+      "family": "error-correction",
+      "id": "bafyreifxffm2w7lj466nfmqwz63ihphmpmt42de5aigfjnjhklcs46epeq",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "error correction bit flip syndrome",
+      "operation_count": 4,
+      "operations": [
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            3
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cx",
+          "targets": [
+            3
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            2
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 82,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 5,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "error-correction",
+        "qec",
+        "seed",
+        "stabilizer"
+      ]
+    },
+    {
+      "classical_bits": 2,
+      "description": "Basic phase flip encode error-correction template.",
+      "family": "error-correction",
+      "id": "bafyreib7esma4fvfuiiapze6c7mrco5k3eqfruceh3h6egyyle55gd5tpa",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "error correction phase flip encode",
+      "operation_count": 3,
+      "operations": [
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            0,
+            1,
+            2
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 83,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 3,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "error-correction",
+        "qec",
+        "seed",
+        "stabilizer"
+      ]
+    },
+    {
+      "classical_bits": 2,
+      "description": "Basic repetition decode error-correction template.",
+      "family": "error-correction",
+      "id": "bafyreifkpkkfw45phvwfkybee2u4xwyyitaykeymh3m7fxbfcexrgetq4a",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "error correction repetition decode",
+      "operation_count": 2,
+      "operations": [
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            2
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 84,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 3,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "error-correction",
+        "qec",
+        "seed",
+        "stabilizer"
+      ]
+    },
+    {
+      "classical_bits": 2,
+      "description": "Basic parity check error-correction template.",
+      "family": "error-correction",
+      "id": "bafyreibeyfnh46nwl2xqmexd5to2bstold5io5ckahw6eg2ydpdoyumz44",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "error correction parity check",
+      "operation_count": 2,
+      "operations": [
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cx",
+          "targets": [
+            2
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 85,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 3,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "error-correction",
+        "qec",
+        "seed",
+        "stabilizer"
+      ]
+    },
+    {
+      "classical_bits": 2,
+      "description": "Basic stabilizer sample error-correction template.",
+      "family": "error-correction",
+      "id": "bafyreiaues6gdawufdz3est7uwpbjgwi52f2ftcivlduyutrt7dob55wha",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "error correction stabilizer sample",
+      "operation_count": 3,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "classical_targets": [
+            0,
+            1
+          ],
+          "gate": "measure",
+          "targets": [
+            0,
+            1
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 86,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 3,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "error-correction",
+        "qec",
+        "seed",
+        "stabilizer"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "Two-layer hardware-efficient ansatz over 2 qubits.",
+      "family": "vqe",
+      "id": "bafyreici3idjys4nk4p4v7qhjrea3vim7abiykqjsavrbcb5xlirtlwtau",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "hardware efficient ansatz 2",
+      "operation_count": 10,
+      "operations": [
+        {
+          "gate": "ry",
+          "params": [
+            "theta_0_0"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_0_0"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_0_1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_0_1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_1_0"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_1_0"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_1_1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_1_1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 87,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 2,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "ansatz",
+        "basic",
+        "seed",
+        "vqe"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "Two-layer hardware-efficient ansatz over 3 qubits.",
+      "family": "vqe",
+      "id": "bafyreiecrqeinspexcs7dzm3fy4ynd5oojhusx7uylpuenvvlyrony7gsa",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "hardware efficient ansatz 3",
+      "operation_count": 16,
+      "operations": [
+        {
+          "gate": "ry",
+          "params": [
+            "theta_0_0"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_0_0"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_0_1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_0_1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_0_2"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_0_2"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cx",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_1_0"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_1_0"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_1_1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_1_1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_1_2"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_1_2"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cx",
+          "targets": [
+            2
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 88,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 3,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "ansatz",
+        "basic",
+        "seed",
+        "vqe"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "Two-layer hardware-efficient ansatz over 4 qubits.",
+      "family": "vqe",
+      "id": "bafyreicyl2rkp4ixrvwlw5ntgapqpi752flr4vwiodnubrfpkpvp6vheru",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "hardware efficient ansatz 4",
+      "operation_count": 22,
+      "operations": [
+        {
+          "gate": "ry",
+          "params": [
+            "theta_0_0"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_0_0"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_0_1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_0_1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_0_2"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_0_2"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_0_3"
+          ],
+          "targets": [
+            3
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_0_3"
+          ],
+          "targets": [
+            3
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cx",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            2
+          ],
+          "gate": "cx",
+          "targets": [
+            3
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_1_0"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_1_0"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_1_1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_1_1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_1_2"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_1_2"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_1_3"
+          ],
+          "targets": [
+            3
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_1_3"
+          ],
+          "targets": [
+            3
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cx",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            2
+          ],
+          "gate": "cx",
+          "targets": [
+            3
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 89,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 4,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "ansatz",
+        "basic",
+        "seed",
+        "vqe"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "Two-layer hardware-efficient ansatz over 5 qubits.",
+      "family": "vqe",
+      "id": "bafyreihebx55jqrc6hmuatrm4rqzefdotkpw2ipgkinpam3exkogsadf7u",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "hardware efficient ansatz 5",
+      "operation_count": 28,
+      "operations": [
+        {
+          "gate": "ry",
+          "params": [
+            "theta_0_0"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_0_0"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_0_1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_0_1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_0_2"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_0_2"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_0_3"
+          ],
+          "targets": [
+            3
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_0_3"
+          ],
+          "targets": [
+            3
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_0_4"
+          ],
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_0_4"
+          ],
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cx",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            2
+          ],
+          "gate": "cx",
+          "targets": [
+            3
+          ]
+        },
+        {
+          "controls": [
+            3
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_1_0"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_1_0"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_1_1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_1_1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_1_2"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_1_2"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_1_3"
+          ],
+          "targets": [
+            3
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_1_3"
+          ],
+          "targets": [
+            3
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_1_4"
+          ],
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_1_4"
+          ],
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cx",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            2
+          ],
+          "gate": "cx",
+          "targets": [
+            3
+          ]
+        },
+        {
+          "controls": [
+            3
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 90,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 5,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "ansatz",
+        "basic",
+        "seed",
+        "vqe"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "Two-layer hardware-efficient ansatz over 6 qubits.",
+      "family": "vqe",
+      "id": "bafyreiand5hpbdm34pyfdvj4haozi3qwt75d2fitgd7fuyq4l5gvnefy6q",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "hardware efficient ansatz 6",
+      "operation_count": 34,
+      "operations": [
+        {
+          "gate": "ry",
+          "params": [
+            "theta_0_0"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_0_0"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_0_1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_0_1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_0_2"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_0_2"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_0_3"
+          ],
+          "targets": [
+            3
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_0_3"
+          ],
+          "targets": [
+            3
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_0_4"
+          ],
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_0_4"
+          ],
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_0_5"
+          ],
+          "targets": [
+            5
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_0_5"
+          ],
+          "targets": [
+            5
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cx",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            2
+          ],
+          "gate": "cx",
+          "targets": [
+            3
+          ]
+        },
+        {
+          "controls": [
+            3
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            4
+          ],
+          "gate": "cx",
+          "targets": [
+            5
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_1_0"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_1_0"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_1_1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_1_1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_1_2"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_1_2"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_1_3"
+          ],
+          "targets": [
+            3
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_1_3"
+          ],
+          "targets": [
+            3
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_1_4"
+          ],
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_1_4"
+          ],
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "theta_1_5"
+          ],
+          "targets": [
+            5
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "phi_1_5"
+          ],
+          "targets": [
+            5
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cx",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            2
+          ],
+          "gate": "cx",
+          "targets": [
+            3
+          ]
+        },
+        {
+          "controls": [
+            3
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            4
+          ],
+          "gate": "cx",
+          "targets": [
+            5
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 91,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 6,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "ansatz",
+        "basic",
+        "seed",
+        "vqe"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "ZZ-style quantum machine-learning feature map over 2 qubits.",
+      "family": "qml-feature-map",
+      "id": "bafyreicrcfhw4zpfudxec4ozzeyeq6puesrhfeeypiwld23prlcbxxdvca",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "zz feature map 2",
+      "operation_count": 7,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_0"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_0*x_1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 92,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 2,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "feature-map",
+        "qml",
+        "qml-feature-map",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "ZZ-style quantum machine-learning feature map over 3 qubits.",
+      "family": "qml-feature-map",
+      "id": "bafyreifir6odca7rtdinquz7krqnnsmu5y3kvvrqwj5yeex6mwne7hk4mi",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "zz feature map 3",
+      "operation_count": 12,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_0"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_2"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_0*x_1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cx",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_1*x_2"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cx",
+          "targets": [
+            2
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 93,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 3,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "feature-map",
+        "qml",
+        "qml-feature-map",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "ZZ-style quantum machine-learning feature map over 4 qubits.",
+      "family": "qml-feature-map",
+      "id": "bafyreiau3rtrgmhwtxhwfsr6yjljutbtaddx6akmpyy6beb4cxancuc3b4",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "zz feature map 4",
+      "operation_count": 17,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            3
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_0"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_2"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_3"
+          ],
+          "targets": [
+            3
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_0*x_1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cx",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_1*x_2"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cx",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            2
+          ],
+          "gate": "cx",
+          "targets": [
+            3
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_2*x_3"
+          ],
+          "targets": [
+            3
+          ]
+        },
+        {
+          "controls": [
+            2
+          ],
+          "gate": "cx",
+          "targets": [
+            3
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 94,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 4,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "feature-map",
+        "qml",
+        "qml-feature-map",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "ZZ-style quantum machine-learning feature map over 5 qubits.",
+      "family": "qml-feature-map",
+      "id": "bafyreicw72coa4iz6p6s5yfaghcskp5hd7xnt5d65hmrzsafw4rabwo67i",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "zz feature map 5",
+      "operation_count": 22,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            3
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_0"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_2"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_3"
+          ],
+          "targets": [
+            3
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_4"
+          ],
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_0*x_1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cx",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_1*x_2"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cx",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            2
+          ],
+          "gate": "cx",
+          "targets": [
+            3
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_2*x_3"
+          ],
+          "targets": [
+            3
+          ]
+        },
+        {
+          "controls": [
+            2
+          ],
+          "gate": "cx",
+          "targets": [
+            3
+          ]
+        },
+        {
+          "controls": [
+            3
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_3*x_4"
+          ],
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            3
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 95,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 5,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "feature-map",
+        "qml",
+        "qml-feature-map",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "ZZ-style quantum machine-learning feature map over 6 qubits.",
+      "family": "qml-feature-map",
+      "id": "bafyreib3mm6j3qm4yeteyxvyyidibu76pf4ksfjcehtphet3n4if4d5oae",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "zz feature map 6",
+      "operation_count": 27,
+      "operations": [
+        {
+          "gate": "h",
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            3
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "h",
+          "targets": [
+            5
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_0"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_2"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_3"
+          ],
+          "targets": [
+            3
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_4"
+          ],
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_5"
+          ],
+          "targets": [
+            5
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_0*x_1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cx",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_1*x_2"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cx",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            2
+          ],
+          "gate": "cx",
+          "targets": [
+            3
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_2*x_3"
+          ],
+          "targets": [
+            3
+          ]
+        },
+        {
+          "controls": [
+            2
+          ],
+          "gate": "cx",
+          "targets": [
+            3
+          ]
+        },
+        {
+          "controls": [
+            3
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_3*x_4"
+          ],
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            3
+          ],
+          "gate": "cx",
+          "targets": [
+            4
+          ]
+        },
+        {
+          "controls": [
+            4
+          ],
+          "gate": "cx",
+          "targets": [
+            5
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "x_4*x_5"
+          ],
+          "targets": [
+            5
+          ]
+        },
+        {
+          "controls": [
+            4
+          ],
+          "gate": "cx",
+          "targets": [
+            5
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 96,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 6,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "feature-map",
+        "qml",
+        "qml-feature-map",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "Parameterized local rotation and entangling chain.",
+      "family": "qml-layer",
+      "id": "bafyreigr7vbgqdezzg76tmagiyd2cf7hulud36v2if2qsgn7bltkv3gi3a",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "layered rotation chain 1",
+      "operation_count": 5,
+      "operations": [
+        {
+          "gate": "ry",
+          "params": [
+            "x0"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "x1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "w0_0"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "w0_1"
+          ],
+          "targets": [
+            1
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 97,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 2,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "parameterized",
+        "qml",
+        "qml-layer",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "Parameterized local rotation and entangling chain.",
+      "family": "qml-layer",
+      "id": "bafyreifbxbny7stnis553hys2iepwjazns5rp7qpllmsfxxpl2ytkw6qie",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "layered rotation chain 2",
+      "operation_count": 8,
+      "operations": [
+        {
+          "gate": "ry",
+          "params": [
+            "x0"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "x1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "x2"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cx",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "w1_0"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "w1_1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "w1_2"
+          ],
+          "targets": [
+            2
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 98,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 3,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "parameterized",
+        "qml",
+        "qml-layer",
+        "seed"
+      ]
+    },
+    {
+      "classical_bits": 0,
+      "description": "Parameterized local rotation and entangling chain.",
+      "family": "qml-layer",
+      "id": "bafyreifcwrgx45au4nts6qkj7cpbqiqhidu7gpytvujsn46c437xu42d3y",
+      "kind": "quantum-circuit",
+      "language": "lens-json",
+      "name": "layered rotation chain 3",
+      "operation_count": 11,
+      "operations": [
+        {
+          "gate": "ry",
+          "params": [
+            "x0"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "x1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "x2"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "ry",
+          "params": [
+            "x3"
+          ],
+          "targets": [
+            3
+          ]
+        },
+        {
+          "controls": [
+            0
+          ],
+          "gate": "cx",
+          "targets": [
+            1
+          ]
+        },
+        {
+          "controls": [
+            1
+          ],
+          "gate": "cx",
+          "targets": [
+            2
+          ]
+        },
+        {
+          "controls": [
+            2
+          ],
+          "gate": "cx",
+          "targets": [
+            3
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "w2_0"
+          ],
+          "targets": [
+            0
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "w2_1"
+          ],
+          "targets": [
+            1
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "w2_2"
+          ],
+          "targets": [
+            2
+          ]
+        },
+        {
+          "gate": "rz",
+          "params": [
+            "w2_3"
+          ],
+          "targets": [
+            3
+          ]
+        }
+      ],
+      "provenance": {
+        "generator": "seed_basic_circuits",
+        "index": 99,
+        "source": "knitweb-lens-seed"
+      },
+      "qubits": 4,
+      "schema": "knitweb.lens.quantum-circuit.v1",
+      "source": "",
+      "tags": [
+        "basic",
+        "parameterized",
+        "qml",
+        "qml-layer",
+        "seed"
+      ]
+    }
+  ],
+  "meta": {
+    "count": 100,
+    "coverage": "seed_catalog_plus_local_imports",
+    "query_fields": [
+      "name",
+      "family",
+      "tags",
+      "language",
+      "operations.gate"
+    ],
+    "routes": {
+      "gither_manifest": "artifacts/quantum_circuits.gither.json",
+      "intelfield": "/intel/data/quantum_circuits.json",
+      "knitweb_cli": "knitweb lens circuits query --query <text>"
+    },
+    "schema": "knitweb.lens.quantum-circuit-index.v1",
+    "title": "Knitweb Lens Quantum Circuit Index"
+  }
+}

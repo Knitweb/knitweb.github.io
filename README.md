@@ -18,6 +18,8 @@ The canonical project repos: [pulse](https://github.com/Knitweb/pulse) (engine),
   layer model, query-size/proof-payload estimator, local machine-entry form, detail cards, and exportable
   KnitWeb machine records. Seed data lives in `data/quantum_machines.json`. Display mirror:
   https://5mart.ml/intel/
+- **Lens quantum circuit catalog:** public seed circuit data for the intelfield route lives in
+  `data/quantum_circuits.json` and mirrors to `/intel/data/quantum_circuits.json`.
 - Professions workflow artifact: https://knitweb.github.io/professions/
 - Workflow/art gallery: https://knitweb.art/ and https://knitweb.github.io/k.nitweb.art/
 - Developer workflow label: `knitweb.dev`, currently linked to https://5mart.ml/knitweb/dev
