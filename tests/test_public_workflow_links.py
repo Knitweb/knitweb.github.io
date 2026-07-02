@@ -197,6 +197,10 @@ def test_chemistry_mineral_page_exposes_search_and_enrichment_gui() -> None:
     assert "levenshtein" in html
     assert "renderEnrichment" in html
     assert "renderIsotopeTable" in html
+    assert "containsSelect" in html
+    assert "electronShellSummary" in html
+    assert "outer_shell_electron_count" in html
+    assert "visible records" in html
     assert "ideal_formula_mass_percent" in html
     assert "Photons, photos, and sources" in html
     assert "grid-template-columns:repeat(auto-fit,minmax(120px,1fr))" in html
@@ -227,9 +231,22 @@ def test_chemistry_mineral_seed_data_integrity() -> None:
 
     silicon = next(element for element in elements if element["symbol"] == "Si")
     assert silicon["neutral_electron_count"] == 14
+    assert silicon["electron_shells"] == [
+        {"electrons": 2, "shell": 1},
+        {"electrons": 8, "shell": 2},
+        {"electrons": 4, "shell": 3},
+    ]
+    assert silicon["outer_shell_number"] == 3
+    assert silicon["outer_shell_electron_count"] == 4
     assert {"Si-28", "Si-29", "Si-30", "Si-31"}.issubset(
         {isotope["isotope"] for isotope in silicon["isotope_variants"]}
     )
+
+    for element in elements:
+        shell_total = sum(shell["electrons"] for shell in element["electron_shells"])
+        assert shell_total == element["atomic_number"], element["symbol"]
+        assert element["outer_shell_number"] == element["electron_shells"][-1]["shell"]
+        assert element["outer_shell_electron_count"] == element["electron_shells"][-1]["electrons"]
 
     required_minerals = {
         "mineral:quartz",

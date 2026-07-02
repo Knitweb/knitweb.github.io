@@ -19,6 +19,17 @@ PUBCHEM_PERIODIC_TABLE_URL = "https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodic
 COMPOSITION_BASIS = "ideal_formula_mass_percent_from_formula"
 
 
+NOBLE_GAS_SHELLS = {
+    "He": {1: 2},
+    "Ne": {1: 2, 2: 8},
+    "Ar": {1: 2, 2: 8, 3: 8},
+    "Kr": {1: 2, 2: 8, 3: 18, 4: 8},
+    "Xe": {1: 2, 2: 8, 3: 18, 4: 18, 5: 8},
+    "Rn": {1: 2, 2: 8, 3: 18, 4: 32, 5: 18, 6: 8},
+    "Og": {1: 2, 2: 8, 3: 18, 4: 32, 5: 32, 6: 18, 7: 8},
+}
+
+
 ISOTOPE_VARIANTS = {
     "H": [
         {"isotope": "H-1", "mass_number": 1, "abundance_percent": 99.985, "stability": "stable"},
@@ -547,6 +558,26 @@ def ion_label(symbol: str, charge: int) -> str:
     return f"{symbol}{suffix}"
 
 
+def parse_electron_shells(configuration: object, atomic_number: int) -> list[dict]:
+    text = str(configuration or "").replace("(predicted)", "").strip()
+    shells: dict[int, int] = {}
+    noble_match = re.search(r"\[([A-Z][a-z]?)\]", text)
+    if noble_match:
+        noble_shells = NOBLE_GAS_SHELLS.get(noble_match.group(1), {})
+        shells.update(noble_shells)
+        text = text.replace(noble_match.group(0), "", 1)
+
+    for shell, _subshell, count in re.findall(r"(\d+)([spdfg])(\d+)", text):
+        shell_number = int(shell)
+        shells[shell_number] = shells.get(shell_number, 0) + int(count)
+
+    total = sum(shells.values())
+    if total != atomic_number:
+        raise ValueError(f"electron shell total {total} does not match Z={atomic_number}: {configuration!r}")
+
+    return [{"shell": shell, "electrons": shells[shell]} for shell in sorted(shells)]
+
+
 def build_elements(raw_table: dict) -> tuple[list[dict], dict[str, Decimal]]:
     table = raw_table["Table"]
     columns = table["Columns"]["Column"]
@@ -558,6 +589,8 @@ def build_elements(raw_table: dict) -> tuple[list[dict], dict[str, Decimal]]:
         symbol = values["Symbol"]
         atomic_number = int(values["AtomicNumber"])
         oxidation_states, charges = parse_oxidation_states(values.get("OxidationStates"))
+        electron_shells = parse_electron_shells(values.get("ElectronConfiguration"), atomic_number)
+        outer_shell = electron_shells[-1]
         mass = first_decimal(values.get("AtomicMass"))
         if mass is not None:
             masses[symbol] = mass
@@ -572,6 +605,10 @@ def build_elements(raw_table: dict) -> tuple[list[dict], dict[str, Decimal]]:
                 "cpk_hex_color": values.get("CPKHexColor") or None,
                 "electron_configuration": values.get("ElectronConfiguration") or None,
                 "neutral_electron_count": atomic_number,
+                "electron_shells": electron_shells,
+                "outer_shell_number": outer_shell["shell"],
+                "outer_shell_electron_count": outer_shell["electrons"],
+                "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
                 "electronegativity_pauling": json_number(values.get("Electronegativity")),
                 "atomic_radius_pm": json_number(values.get("AtomicRadius")),
                 "ionization_energy_ev": json_number(values.get("IonizationEnergy")),
