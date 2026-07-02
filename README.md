@@ -18,6 +18,11 @@ The canonical project repos: [pulse](https://github.com/Knitweb/pulse) (engine),
   layer model, query-size/proof-payload estimator, local machine-entry form, detail cards, and exportable
   KnitWeb machine records. Seed data lives in `data/quantum_machines.json`. Display mirror:
   https://5mart.ml/intel/
+- **Chemistry + mineral enrichment index:** https://knitweb.github.io/chemistry-minerals.html —
+  all 118 PubChem periodic-table elements plus a curated mineral seed graph with formula-derived
+  mass percentages, ions, isotope variants, photon/photo hooks, element-mineral edges, fuzzy search,
+  and target-element enrichment ranking. Seed data lives in `data/chemistry_minerals.json`.
+  Display mirror: https://5mart.ml/intel/chemistry-minerals.html
 - **Lens quantum circuit catalog:** public seed circuit data for the intelfield route lives in
   `data/quantum_circuits.json` and mirrors to `/intel/data/quantum_circuits.json`.
 - Professions workflow artifact: https://knitweb.github.io/professions/

@@ -23,6 +23,7 @@ def test_landing_links_dev_and_core_repositories() -> None:
         "https://github.com/Knitweb/molgang",
         "professions/",
         "quantum-machines.html",
+        "chemistry-minerals.html",
     ):
         assert text in html
 
@@ -128,6 +129,14 @@ def test_readme_links_quantum_machine_route() -> None:
     assert "data/quantum_machines.json" in readme
 
 
+def test_readme_links_chemistry_mineral_route() -> None:
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+
+    assert "https://knitweb.github.io/chemistry-minerals.html" in readme
+    assert "https://5mart.ml/intel/chemistry-minerals.html" in readme
+    assert "data/chemistry_minerals.json" in readme
+
+
 def test_quantum_machine_page_exposes_search_and_record_gui() -> None:
     html = (ROOT / "quantum-machines.html").read_text(encoding="utf-8")
 
@@ -176,6 +185,74 @@ def test_quantum_machine_seed_data_integrity() -> None:
             assert machine.get(field), f"{machine.get('id', '<missing>')} missing {field}"
         assert isinstance(machine["source_urls"], list)
         assert all(str(url).startswith("https://") for url in machine["source_urls"])
+
+
+def test_chemistry_mineral_page_exposes_search_and_enrichment_gui() -> None:
+    html = (ROOT / "chemistry-minerals.html").read_text(encoding="utf-8")
+
+    assert "<title>KnitWeb - Chemistry Mineral Index</title>" in html
+    assert "data/chemistry_minerals.json" in html
+    assert "scoreItem" in html
+    assert "levenshtein" in html
+    assert "renderEnrichment" in html
+    assert "renderIsotopeTable" in html
+    assert "ideal_formula_mass_percent" in html
+    assert "Photons, photos, and sources" in html
+    assert "grid-template-columns:repeat(auto-fit,minmax(120px,1fr))" in html
+    assert "min-height:82px" in html
+    assert ".stat .n.long" in html
+    assert "valueNode.title = value" in html
+    assert "innerHTML" not in html
+    assert 'onclick="' not in html
+    assert "onclick='" not in html
+
+
+def test_chemistry_mineral_seed_data_integrity() -> None:
+    data = json.loads((ROOT / "data" / "chemistry_minerals.json").read_text(encoding="utf-8"))
+    elements = data["elements"]
+    minerals = data["minerals"]
+    edges = data["edges"]
+    element_ids = {element["id"] for element in elements}
+    mineral_ids = {mineral["id"] for mineral in minerals}
+    element_symbols = {element["symbol"] for element in elements}
+
+    assert data["meta"]["schema"] == "knitweb.chemistry-mineral-index.v1"
+    assert data["meta"]["coverage"] == "pubchem_all_118_elements_curated_mineral_seed_not_exhaustive"
+    assert data["meta"]["routes"]["display_mirror"] == "https://5mart.ml/intel/chemistry-minerals.html"
+    assert len(elements) == 118
+    assert len(minerals) >= 35
+    assert len(element_ids) == len(elements)
+    assert len(mineral_ids) == len(minerals)
+
+    silicon = next(element for element in elements if element["symbol"] == "Si")
+    assert silicon["neutral_electron_count"] == 14
+    assert {"Si-28", "Si-29", "Si-30", "Si-31"}.issubset(
+        {isotope["isotope"] for isotope in silicon["isotope_variants"]}
+    )
+
+    required_minerals = {
+        "mineral:quartz",
+        "mineral:spodumene",
+        "mineral:hematite",
+        "mineral:vanadinite",
+        "mineral:carnotite",
+    }
+    assert required_minerals.issubset(mineral_ids)
+
+    for mineral in minerals:
+        assert set(mineral["element_symbols"]).issubset(element_symbols)
+        assert sum(row["mass_percent_bps"] for row in mineral["ideal_formula_mass_percent"]) == 10000
+        assert mineral["composition_basis"] == "ideal_formula_mass_percent_from_formula"
+
+    for edge in edges:
+        assert edge["source"] in mineral_ids
+        assert edge["target"] in element_ids
+        assert edge["rel"] == "contains-element"
+        assert 0 < edge["weight_bps"] <= 10000
+
+    profile_symbols = {profile["symbol"] for profile in data["enrichment_profiles"]}
+    for symbol in ("Si", "Li", "V", "U", "Fe"):
+        assert symbol in profile_symbols
 
 
 def test_quantum_circuit_catalog_is_public_and_queryable() -> None:
