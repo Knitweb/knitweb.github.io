@@ -176,3 +176,24 @@ def test_quantum_machine_seed_data_integrity() -> None:
             assert machine.get(field), f"{machine.get('id', '<missing>')} missing {field}"
         assert isinstance(machine["source_urls"], list)
         assert all(str(url).startswith("https://") for url in machine["source_urls"])
+
+
+def test_quantum_circuit_catalog_is_public_and_queryable() -> None:
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    data = json.loads((ROOT / "data" / "quantum_circuits.json").read_text(encoding="utf-8"))
+    circuits = data["circuits"]
+    ids = {circuit["id"] for circuit in circuits}
+
+    assert "data/quantum_circuits.json" in readme
+    assert data["meta"]["schema"] == "knitweb.lens.quantum-circuit-index.v1"
+    assert data["meta"]["count"] == len(circuits)
+    assert data["meta"]["routes"]["intelfield"] == "/intel/data/quantum_circuits.json"
+    assert len(circuits) >= 100
+    assert len(ids) == len(circuits)
+
+    for circuit in circuits:
+        for field in ("id", "name", "family", "language", "operations", "qubits", "schema", "tags"):
+            assert circuit.get(field), f"{circuit.get('id', '<missing>')} missing {field}"
+        assert circuit["schema"] == "knitweb.lens.quantum-circuit.v1"
+        assert isinstance(circuit["operations"], list)
+        assert all(operation.get("gate") for operation in circuit["operations"])
