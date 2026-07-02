@@ -143,6 +143,7 @@ def test_quantum_machine_page_exposes_search_and_record_gui() -> None:
     assert "<title>KnitWeb - Quantum Machine Index</title>" in html
     assert "data/quantum_machines.json" in html
     assert "WNW Quantum Systems Intel" in html
+    assert "chemistry-minerals.html" in html
     assert "renderWnwIntel" in html
     assert "renderQueryEstimate" in html
     assert "scoreMachine" in html
