@@ -875,6 +875,13 @@
       "density_g_cm3": 8.988e-05,
       "electron_affinity_ev": 0.754,
       "electron_configuration": "1s1",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 1,
+          "shell": 1
+        }
+      ],
       "electronegativity_pauling": 2.2,
       "group_block": "Nonmetal",
       "id": "element:H",
@@ -904,6 +911,8 @@
       "melting_point_k": 13.81,
       "name": "Hydrogen",
       "neutral_electron_count": 1,
+      "outer_shell_electron_count": 1,
+      "outer_shell_number": 1,
       "oxidation_states": [
         "+1",
         "-1"
@@ -935,6 +944,13 @@
       "density_g_cm3": 0.0001785,
       "electron_affinity_ev": null,
       "electron_configuration": "1s2",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        }
+      ],
       "electronegativity_pauling": null,
       "group_block": "Noble gas",
       "id": "element:He",
@@ -943,6 +959,8 @@
       "melting_point_k": 0.95,
       "name": "Helium",
       "neutral_electron_count": 2,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 1,
       "oxidation_states": [
         "0"
       ],
@@ -978,6 +996,17 @@
       "density_g_cm3": 0.534,
       "electron_affinity_ev": 0.618,
       "electron_configuration": "[He]2s1",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 1,
+          "shell": 2
+        }
+      ],
       "electronegativity_pauling": 0.98,
       "group_block": "Alkali metal",
       "id": "element:Li",
@@ -999,6 +1028,8 @@
       "melting_point_k": 453.65,
       "name": "Lithium",
       "neutral_electron_count": 3,
+      "outer_shell_electron_count": 1,
+      "outer_shell_number": 2,
       "oxidation_states": [
         "+1"
       ],
@@ -1034,6 +1065,17 @@
       "density_g_cm3": 1.85,
       "electron_affinity_ev": null,
       "electron_configuration": "[He]2s2",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 2,
+          "shell": 2
+        }
+      ],
       "electronegativity_pauling": 1.57,
       "group_block": "Alkaline earth metal",
       "id": "element:Be",
@@ -1042,6 +1084,8 @@
       "melting_point_k": 1560,
       "name": "Beryllium",
       "neutral_electron_count": 4,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 2,
       "oxidation_states": [
         "+2"
       ],
@@ -1077,6 +1121,17 @@
       "density_g_cm3": 2.37,
       "electron_affinity_ev": 0.277,
       "electron_configuration": "[He]2s2 2p1",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 3,
+          "shell": 2
+        }
+      ],
       "electronegativity_pauling": 2.04,
       "group_block": "Metalloid",
       "id": "element:B",
@@ -1085,6 +1140,8 @@
       "melting_point_k": 2348,
       "name": "Boron",
       "neutral_electron_count": 5,
+      "outer_shell_electron_count": 3,
+      "outer_shell_number": 2,
       "oxidation_states": [
         "+3"
       ],
@@ -1128,6 +1185,17 @@
       "density_g_cm3": 2.267,
       "electron_affinity_ev": 1.263,
       "electron_configuration": "[He]2s2 2p2",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 4,
+          "shell": 2
+        }
+      ],
       "electronegativity_pauling": 2.55,
       "group_block": "Nonmetal",
       "id": "element:C",
@@ -1156,6 +1224,8 @@
       "melting_point_k": 3823,
       "name": "Carbon",
       "neutral_electron_count": 6,
+      "outer_shell_electron_count": 4,
+      "outer_shell_number": 2,
       "oxidation_states": [
         "+4",
         "+2",
@@ -1221,6 +1291,17 @@
       "density_g_cm3": 0.0012506,
       "electron_affinity_ev": null,
       "electron_configuration": "[He] 2s2 2p3",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 5,
+          "shell": 2
+        }
+      ],
       "electronegativity_pauling": 3.04,
       "group_block": "Nonmetal",
       "id": "element:N",
@@ -1229,6 +1310,8 @@
       "melting_point_k": 63.15,
       "name": "Nitrogen",
       "neutral_electron_count": 7,
+      "outer_shell_electron_count": 5,
+      "outer_shell_number": 2,
       "oxidation_states": [
         "+5",
         "+4",
@@ -1271,6 +1354,17 @@
       "density_g_cm3": 0.001429,
       "electron_affinity_ev": 1.461,
       "electron_configuration": "[He]2s2 2p4",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 6,
+          "shell": 2
+        }
+      ],
       "electronegativity_pauling": 3.44,
       "group_block": "Nonmetal",
       "id": "element:O",
@@ -1298,6 +1392,8 @@
       "melting_point_k": 54.36,
       "name": "Oxygen",
       "neutral_electron_count": 8,
+      "outer_shell_electron_count": 6,
+      "outer_shell_number": 2,
       "oxidation_states": [
         "-2"
       ],
@@ -1333,6 +1429,17 @@
       "density_g_cm3": 0.001696,
       "electron_affinity_ev": 3.339,
       "electron_configuration": "[He]2s2 2p5",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 7,
+          "shell": 2
+        }
+      ],
       "electronegativity_pauling": 3.98,
       "group_block": "Halogen",
       "id": "element:F",
@@ -1341,6 +1448,8 @@
       "melting_point_k": 53.53,
       "name": "Fluorine",
       "neutral_electron_count": 9,
+      "outer_shell_electron_count": 7,
+      "outer_shell_number": 2,
       "oxidation_states": [
         "-1"
       ],
@@ -1371,6 +1480,17 @@
       "density_g_cm3": 0.0008999,
       "electron_affinity_ev": null,
       "electron_configuration": "[He]2s2 2p6",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        }
+      ],
       "electronegativity_pauling": null,
       "group_block": "Noble gas",
       "id": "element:Ne",
@@ -1379,6 +1499,8 @@
       "melting_point_k": 24.56,
       "name": "Neon",
       "neutral_electron_count": 10,
+      "outer_shell_electron_count": 8,
+      "outer_shell_number": 2,
       "oxidation_states": [
         "0"
       ],
@@ -1414,6 +1536,21 @@
       "density_g_cm3": 0.97,
       "electron_affinity_ev": 0.548,
       "electron_configuration": "[Ne]3s1",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 1,
+          "shell": 3
+        }
+      ],
       "electronegativity_pauling": 0.93,
       "group_block": "Alkali metal",
       "id": "element:Na",
@@ -1422,6 +1559,8 @@
       "melting_point_k": 370.95,
       "name": "Sodium",
       "neutral_electron_count": 11,
+      "outer_shell_electron_count": 1,
+      "outer_shell_number": 3,
       "oxidation_states": [
         "+1"
       ],
@@ -1457,6 +1596,21 @@
       "density_g_cm3": 1.74,
       "electron_affinity_ev": null,
       "electron_configuration": "[Ne]3s2",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 2,
+          "shell": 3
+        }
+      ],
       "electronegativity_pauling": 1.31,
       "group_block": "Alkaline earth metal",
       "id": "element:Mg",
@@ -1484,6 +1638,8 @@
       "melting_point_k": 923,
       "name": "Magnesium",
       "neutral_electron_count": 12,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 3,
       "oxidation_states": [
         "+2"
       ],
@@ -1519,6 +1675,21 @@
       "density_g_cm3": 2.7,
       "electron_affinity_ev": 0.441,
       "electron_configuration": "[Ne]3s2 3p1",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 3,
+          "shell": 3
+        }
+      ],
       "electronegativity_pauling": 1.61,
       "group_block": "Post-transition metal",
       "id": "element:Al",
@@ -1534,6 +1705,8 @@
       "melting_point_k": 933.437,
       "name": "Aluminum",
       "neutral_electron_count": 13,
+      "outer_shell_electron_count": 3,
+      "outer_shell_number": 3,
       "oxidation_states": [
         "+3"
       ],
@@ -1577,6 +1750,21 @@
       "density_g_cm3": 2.3296,
       "electron_affinity_ev": 1.385,
       "electron_configuration": "[Ne]3s2 3p2",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 4,
+          "shell": 3
+        }
+      ],
       "electronegativity_pauling": 1.9,
       "group_block": "Metalloid",
       "id": "element:Si",
@@ -1611,6 +1799,8 @@
       "melting_point_k": 1687,
       "name": "Silicon",
       "neutral_electron_count": 14,
+      "outer_shell_electron_count": 4,
+      "outer_shell_number": 3,
       "oxidation_states": [
         "+4",
         "+2",
@@ -1656,6 +1846,21 @@
       "density_g_cm3": 1.82,
       "electron_affinity_ev": 0.746,
       "electron_configuration": "[Ne]3s2 3p3",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 5,
+          "shell": 3
+        }
+      ],
       "electronegativity_pauling": 2.19,
       "group_block": "Nonmetal",
       "id": "element:P",
@@ -1664,6 +1869,8 @@
       "melting_point_k": 317.3,
       "name": "Phosphorus",
       "neutral_electron_count": 15,
+      "outer_shell_electron_count": 5,
+      "outer_shell_number": 3,
       "oxidation_states": [
         "+5",
         "+3",
@@ -1709,6 +1916,21 @@
       "density_g_cm3": 2.067,
       "electron_affinity_ev": 2.077,
       "electron_configuration": "[Ne]3s2 3p4",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 6,
+          "shell": 3
+        }
+      ],
       "electronegativity_pauling": 2.58,
       "group_block": "Nonmetal",
       "id": "element:S",
@@ -1742,6 +1964,8 @@
       "melting_point_k": 388.36,
       "name": "Sulfur",
       "neutral_electron_count": 16,
+      "outer_shell_electron_count": 6,
+      "outer_shell_number": 3,
       "oxidation_states": [
         "+6",
         "+4",
@@ -1791,6 +2015,21 @@
       "density_g_cm3": 0.003214,
       "electron_affinity_ev": 3.617,
       "electron_configuration": "[Ne]3s2 3p5",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 7,
+          "shell": 3
+        }
+      ],
       "electronegativity_pauling": 3.16,
       "group_block": "Halogen",
       "id": "element:Cl",
@@ -1812,6 +2051,8 @@
       "melting_point_k": 171.65,
       "name": "Chlorine",
       "neutral_electron_count": 17,
+      "outer_shell_electron_count": 7,
+      "outer_shell_number": 3,
       "oxidation_states": [
         "+7",
         "+5",
@@ -1845,6 +2086,21 @@
       "density_g_cm3": 0.0017837,
       "electron_affinity_ev": null,
       "electron_configuration": "[Ne]3s2 3p6",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 8,
+          "shell": 3
+        }
+      ],
       "electronegativity_pauling": null,
       "group_block": "Noble gas",
       "id": "element:Ar",
@@ -1853,6 +2109,8 @@
       "melting_point_k": 83.8,
       "name": "Argon",
       "neutral_electron_count": 18,
+      "outer_shell_electron_count": 8,
+      "outer_shell_number": 3,
       "oxidation_states": [
         "0"
       ],
@@ -1888,6 +2146,25 @@
       "density_g_cm3": 0.89,
       "electron_affinity_ev": 0.501,
       "electron_configuration": "[Ar]4s1",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 8,
+          "shell": 3
+        },
+        {
+          "electrons": 1,
+          "shell": 4
+        }
+      ],
       "electronegativity_pauling": 0.82,
       "group_block": "Alkali metal",
       "id": "element:K",
@@ -1915,6 +2192,8 @@
       "melting_point_k": 336.53,
       "name": "Potassium",
       "neutral_electron_count": 19,
+      "outer_shell_electron_count": 1,
+      "outer_shell_number": 4,
       "oxidation_states": [
         "+1"
       ],
@@ -1950,6 +2229,25 @@
       "density_g_cm3": 1.54,
       "electron_affinity_ev": null,
       "electron_configuration": "[Ar]4s2",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 8,
+          "shell": 3
+        },
+        {
+          "electrons": 2,
+          "shell": 4
+        }
+      ],
       "electronegativity_pauling": 1,
       "group_block": "Alkaline earth metal",
       "id": "element:Ca",
@@ -1995,6 +2293,8 @@
       "melting_point_k": 1115,
       "name": "Calcium",
       "neutral_electron_count": 20,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 4,
       "oxidation_states": [
         "+2"
       ],
@@ -2030,6 +2330,25 @@
       "density_g_cm3": 2.99,
       "electron_affinity_ev": 0.188,
       "electron_configuration": "[Ar]4s2 3d1",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 9,
+          "shell": 3
+        },
+        {
+          "electrons": 2,
+          "shell": 4
+        }
+      ],
       "electronegativity_pauling": 1.36,
       "group_block": "Transition metal",
       "id": "element:Sc",
@@ -2038,6 +2357,8 @@
       "melting_point_k": 1814,
       "name": "Scandium",
       "neutral_electron_count": 21,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 4,
       "oxidation_states": [
         "+3"
       ],
@@ -2081,6 +2402,25 @@
       "density_g_cm3": 4.5,
       "electron_affinity_ev": 0.079,
       "electron_configuration": "[Ar]4s2 3d2",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 10,
+          "shell": 3
+        },
+        {
+          "electrons": 2,
+          "shell": 4
+        }
+      ],
       "electronegativity_pauling": 1.54,
       "group_block": "Transition metal",
       "id": "element:Ti",
@@ -2120,6 +2460,8 @@
       "melting_point_k": 1941,
       "name": "Titanium",
       "neutral_electron_count": 22,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 4,
       "oxidation_states": [
         "+4",
         "+3",
@@ -2169,6 +2511,25 @@
       "density_g_cm3": 6,
       "electron_affinity_ev": 0.525,
       "electron_configuration": "[Ar]4s2 3d3",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 11,
+          "shell": 3
+        },
+        {
+          "electrons": 2,
+          "shell": 4
+        }
+      ],
       "electronegativity_pauling": 1.63,
       "group_block": "Transition metal",
       "id": "element:V",
@@ -2190,6 +2551,8 @@
       "melting_point_k": 2183,
       "name": "Vanadium",
       "neutral_electron_count": 23,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 4,
       "oxidation_states": [
         "+5",
         "+4",
@@ -2236,6 +2599,25 @@
       "density_g_cm3": 7.15,
       "electron_affinity_ev": 0.666,
       "electron_configuration": "[Ar]3d5 4s1",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 13,
+          "shell": 3
+        },
+        {
+          "electrons": 1,
+          "shell": 4
+        }
+      ],
       "electronegativity_pauling": 1.66,
       "group_block": "Transition metal",
       "id": "element:Cr",
@@ -2244,6 +2626,8 @@
       "melting_point_k": 2180,
       "name": "Chromium",
       "neutral_electron_count": 24,
+      "outer_shell_electron_count": 1,
+      "outer_shell_number": 4,
       "oxidation_states": [
         "+6",
         "+3",
@@ -2293,6 +2677,25 @@
       "density_g_cm3": 7.3,
       "electron_affinity_ev": null,
       "electron_configuration": "[Ar]4s2 3d5",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 13,
+          "shell": 3
+        },
+        {
+          "electrons": 2,
+          "shell": 4
+        }
+      ],
       "electronegativity_pauling": 1.55,
       "group_block": "Transition metal",
       "id": "element:Mn",
@@ -2301,6 +2704,8 @@
       "melting_point_k": 1519,
       "name": "Manganese",
       "neutral_electron_count": 25,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 4,
       "oxidation_states": [
         "+7",
         "+4",
@@ -2343,6 +2748,25 @@
       "density_g_cm3": 7.874,
       "electron_affinity_ev": 0.163,
       "electron_configuration": "[Ar]4s2 3d6",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 14,
+          "shell": 3
+        },
+        {
+          "electrons": 2,
+          "shell": 4
+        }
+      ],
       "electronegativity_pauling": 1.83,
       "group_block": "Transition metal",
       "id": "element:Fe",
@@ -2376,6 +2800,8 @@
       "melting_point_k": 1811,
       "name": "Iron",
       "neutral_electron_count": 26,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 4,
       "oxidation_states": [
         "+3",
         "+2"
@@ -2416,6 +2842,25 @@
       "density_g_cm3": 8.86,
       "electron_affinity_ev": 0.661,
       "electron_configuration": "[Ar]4s2 3d7",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 15,
+          "shell": 3
+        },
+        {
+          "electrons": 2,
+          "shell": 4
+        }
+      ],
       "electronegativity_pauling": 1.88,
       "group_block": "Transition metal",
       "id": "element:Co",
@@ -2424,6 +2869,8 @@
       "melting_point_k": 1768,
       "name": "Cobalt",
       "neutral_electron_count": 27,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 4,
       "oxidation_states": [
         "+3",
         "+2"
@@ -2464,6 +2911,25 @@
       "density_g_cm3": 8.912,
       "electron_affinity_ev": 1.156,
       "electron_configuration": "[Ar]4s2 3d8",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 16,
+          "shell": 3
+        },
+        {
+          "electrons": 2,
+          "shell": 4
+        }
+      ],
       "electronegativity_pauling": 1.91,
       "group_block": "Transition metal",
       "id": "element:Ni",
@@ -2503,6 +2969,8 @@
       "melting_point_k": 1728,
       "name": "Nickel",
       "neutral_electron_count": 28,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 4,
       "oxidation_states": [
         "+3",
         "+2"
@@ -2543,6 +3011,25 @@
       "density_g_cm3": 8.933,
       "electron_affinity_ev": 1.228,
       "electron_configuration": "[Ar]4s1 3d10",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 1,
+          "shell": 4
+        }
+      ],
       "electronegativity_pauling": 1.9,
       "group_block": "Transition metal",
       "id": "element:Cu",
@@ -2564,6 +3051,8 @@
       "melting_point_k": 1357.77,
       "name": "Copper",
       "neutral_electron_count": 29,
+      "outer_shell_electron_count": 1,
+      "outer_shell_number": 4,
       "oxidation_states": [
         "+2",
         "+1"
@@ -2600,6 +3089,25 @@
       "density_g_cm3": 7.134,
       "electron_affinity_ev": null,
       "electron_configuration": "[Ar]4s2 3d10",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 2,
+          "shell": 4
+        }
+      ],
       "electronegativity_pauling": 1.65,
       "group_block": "Transition metal",
       "id": "element:Zn",
@@ -2639,6 +3147,8 @@
       "melting_point_k": 692.68,
       "name": "Zinc",
       "neutral_electron_count": 30,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 4,
       "oxidation_states": [
         "+2"
       ],
@@ -2674,6 +3184,25 @@
       "density_g_cm3": 5.91,
       "electron_affinity_ev": 0.3,
       "electron_configuration": "[Ar]4s2 3d10 4p1",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 3,
+          "shell": 4
+        }
+      ],
       "electronegativity_pauling": 1.81,
       "group_block": "Post-transition metal",
       "id": "element:Ga",
@@ -2682,6 +3211,8 @@
       "melting_point_k": 302.91,
       "name": "Gallium",
       "neutral_electron_count": 31,
+      "outer_shell_electron_count": 3,
+      "outer_shell_number": 4,
       "oxidation_states": [
         "+3"
       ],
@@ -2721,6 +3252,25 @@
       "density_g_cm3": 5.323,
       "electron_affinity_ev": 1.35,
       "electron_configuration": "[Ar]4s2 3d10 4p2",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 4,
+          "shell": 4
+        }
+      ],
       "electronegativity_pauling": 2.01,
       "group_block": "Metalloid",
       "id": "element:Ge",
@@ -2729,6 +3279,8 @@
       "melting_point_k": 1211.4,
       "name": "Germanium",
       "neutral_electron_count": 32,
+      "outer_shell_electron_count": 4,
+      "outer_shell_number": 4,
       "oxidation_states": [
         "+4",
         "+2"
@@ -2773,6 +3325,25 @@
       "density_g_cm3": 5.776,
       "electron_affinity_ev": 0.81,
       "electron_configuration": "[Ar]4s2 3d10 4p3",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 5,
+          "shell": 4
+        }
+      ],
       "electronegativity_pauling": 2.18,
       "group_block": "Metalloid",
       "id": "element:As",
@@ -2781,6 +3352,8 @@
       "melting_point_k": 1090,
       "name": "Arsenic",
       "neutral_electron_count": 33,
+      "outer_shell_electron_count": 5,
+      "outer_shell_number": 4,
       "oxidation_states": [
         "+5",
         "+3",
@@ -2826,6 +3399,25 @@
       "density_g_cm3": 4.809,
       "electron_affinity_ev": 2.021,
       "electron_configuration": "[Ar]4s2 3d10 4p4",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 6,
+          "shell": 4
+        }
+      ],
       "electronegativity_pauling": 2.55,
       "group_block": "Nonmetal",
       "id": "element:Se",
@@ -2834,6 +3426,8 @@
       "melting_point_k": 493.65,
       "name": "Selenium",
       "neutral_electron_count": 34,
+      "outer_shell_electron_count": 6,
+      "outer_shell_number": 4,
       "oxidation_states": [
         "+6",
         "+4",
@@ -2879,6 +3473,25 @@
       "density_g_cm3": 3.11,
       "electron_affinity_ev": 3.365,
       "electron_configuration": "[Ar]4s2 3d10 4p5",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 7,
+          "shell": 4
+        }
+      ],
       "electronegativity_pauling": 2.96,
       "group_block": "Halogen",
       "id": "element:Br",
@@ -2887,6 +3500,8 @@
       "melting_point_k": 265.95,
       "name": "Bromine",
       "neutral_electron_count": 35,
+      "outer_shell_electron_count": 7,
+      "outer_shell_number": 4,
       "oxidation_states": [
         "+5",
         "+1",
@@ -2919,6 +3534,25 @@
       "density_g_cm3": 0.003733,
       "electron_affinity_ev": null,
       "electron_configuration": "[Ar]4s2 3d10 4p6",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 8,
+          "shell": 4
+        }
+      ],
       "electronegativity_pauling": 3,
       "group_block": "Noble gas",
       "id": "element:Kr",
@@ -2927,6 +3561,8 @@
       "melting_point_k": 115.79,
       "name": "Krypton",
       "neutral_electron_count": 36,
+      "outer_shell_electron_count": 8,
+      "outer_shell_number": 4,
       "oxidation_states": [
         "0"
       ],
@@ -2962,6 +3598,29 @@
       "density_g_cm3": 1.53,
       "electron_affinity_ev": 0.468,
       "electron_configuration": "[Kr]5s1",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 8,
+          "shell": 4
+        },
+        {
+          "electrons": 1,
+          "shell": 5
+        }
+      ],
       "electronegativity_pauling": 0.82,
       "group_block": "Alkali metal",
       "id": "element:Rb",
@@ -2970,6 +3629,8 @@
       "melting_point_k": 312.46,
       "name": "Rubidium",
       "neutral_electron_count": 37,
+      "outer_shell_electron_count": 1,
+      "outer_shell_number": 5,
       "oxidation_states": [
         "+1"
       ],
@@ -3005,6 +3666,29 @@
       "density_g_cm3": 2.64,
       "electron_affinity_ev": null,
       "electron_configuration": "[Kr]5s2",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 8,
+          "shell": 4
+        },
+        {
+          "electrons": 2,
+          "shell": 5
+        }
+      ],
       "electronegativity_pauling": 0.95,
       "group_block": "Alkaline earth metal",
       "id": "element:Sr",
@@ -3013,6 +3697,8 @@
       "melting_point_k": 1050,
       "name": "Strontium",
       "neutral_electron_count": 38,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 5,
       "oxidation_states": [
         "+2"
       ],
@@ -3048,6 +3734,29 @@
       "density_g_cm3": 4.47,
       "electron_affinity_ev": 0.307,
       "electron_configuration": "[Kr]5s2 4d1",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 9,
+          "shell": 4
+        },
+        {
+          "electrons": 2,
+          "shell": 5
+        }
+      ],
       "electronegativity_pauling": 1.22,
       "group_block": "Transition metal",
       "id": "element:Y",
@@ -3056,6 +3765,8 @@
       "melting_point_k": 1795,
       "name": "Yttrium",
       "neutral_electron_count": 39,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 5,
       "oxidation_states": [
         "+3"
       ],
@@ -3091,6 +3802,29 @@
       "density_g_cm3": 6.52,
       "electron_affinity_ev": 0.426,
       "electron_configuration": "[Kr]5s2 4d2",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 10,
+          "shell": 4
+        },
+        {
+          "electrons": 2,
+          "shell": 5
+        }
+      ],
       "electronegativity_pauling": 1.33,
       "group_block": "Transition metal",
       "id": "element:Zr",
@@ -3099,6 +3833,8 @@
       "melting_point_k": 2128,
       "name": "Zirconium",
       "neutral_electron_count": 40,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 5,
       "oxidation_states": [
         "+4"
       ],
@@ -3138,6 +3874,29 @@
       "density_g_cm3": 8.57,
       "electron_affinity_ev": 0.893,
       "electron_configuration": "[Kr]5s1 4d4",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 12,
+          "shell": 4
+        },
+        {
+          "electrons": 1,
+          "shell": 5
+        }
+      ],
       "electronegativity_pauling": 1.6,
       "group_block": "Transition metal",
       "id": "element:Nb",
@@ -3146,6 +3905,8 @@
       "melting_point_k": 2750,
       "name": "Niobium",
       "neutral_electron_count": 41,
+      "outer_shell_electron_count": 1,
+      "outer_shell_number": 5,
       "oxidation_states": [
         "+5",
         "+3"
@@ -3182,6 +3943,29 @@
       "density_g_cm3": 10.2,
       "electron_affinity_ev": 0.746,
       "electron_configuration": "[Kr]5s1 4d5",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 13,
+          "shell": 4
+        },
+        {
+          "electrons": 1,
+          "shell": 5
+        }
+      ],
       "electronegativity_pauling": 2.16,
       "group_block": "Transition metal",
       "id": "element:Mo",
@@ -3190,6 +3974,8 @@
       "melting_point_k": 2896,
       "name": "Molybdenum",
       "neutral_electron_count": 42,
+      "outer_shell_electron_count": 1,
+      "outer_shell_number": 5,
       "oxidation_states": [
         "+6"
       ],
@@ -3233,6 +4019,29 @@
       "density_g_cm3": 11,
       "electron_affinity_ev": 0.55,
       "electron_configuration": "[Kr]5s2 4d5",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 13,
+          "shell": 4
+        },
+        {
+          "electrons": 2,
+          "shell": 5
+        }
+      ],
       "electronegativity_pauling": 1.9,
       "group_block": "Transition metal",
       "id": "element:Tc",
@@ -3241,6 +4050,8 @@
       "melting_point_k": 2430,
       "name": "Technetium",
       "neutral_electron_count": 43,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 5,
       "oxidation_states": [
         "+7",
         "+6",
@@ -3278,6 +4089,29 @@
       "density_g_cm3": 12.1,
       "electron_affinity_ev": 1.05,
       "electron_configuration": "[Kr]5s1 4d7",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 15,
+          "shell": 4
+        },
+        {
+          "electrons": 1,
+          "shell": 5
+        }
+      ],
       "electronegativity_pauling": 2.2,
       "group_block": "Transition metal",
       "id": "element:Ru",
@@ -3286,6 +4120,8 @@
       "melting_point_k": 2607,
       "name": "Ruthenium",
       "neutral_electron_count": 44,
+      "outer_shell_electron_count": 1,
+      "outer_shell_number": 5,
       "oxidation_states": [
         "+3"
       ],
@@ -3321,6 +4157,29 @@
       "density_g_cm3": 12.4,
       "electron_affinity_ev": 1.137,
       "electron_configuration": "[Kr]5s1 4d8",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 16,
+          "shell": 4
+        },
+        {
+          "electrons": 1,
+          "shell": 5
+        }
+      ],
       "electronegativity_pauling": 2.28,
       "group_block": "Transition metal",
       "id": "element:Rh",
@@ -3329,6 +4188,8 @@
       "melting_point_k": 2237,
       "name": "Rhodium",
       "neutral_electron_count": 45,
+      "outer_shell_electron_count": 1,
+      "outer_shell_number": 5,
       "oxidation_states": [
         "+3"
       ],
@@ -3368,6 +4229,25 @@
       "density_g_cm3": 12,
       "electron_affinity_ev": 0.557,
       "electron_configuration": "[Kr]4d10",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 18,
+          "shell": 4
+        }
+      ],
       "electronegativity_pauling": 2.2,
       "group_block": "Transition metal",
       "id": "element:Pd",
@@ -3376,6 +4256,8 @@
       "melting_point_k": 1828.05,
       "name": "Palladium",
       "neutral_electron_count": 46,
+      "outer_shell_electron_count": 18,
+      "outer_shell_number": 4,
       "oxidation_states": [
         "+3",
         "+2"
@@ -3412,6 +4294,29 @@
       "density_g_cm3": 10.501,
       "electron_affinity_ev": 1.302,
       "electron_configuration": "[Kr]5s1 4d10",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 18,
+          "shell": 4
+        },
+        {
+          "electrons": 1,
+          "shell": 5
+        }
+      ],
       "electronegativity_pauling": 1.93,
       "group_block": "Transition metal",
       "id": "element:Ag",
@@ -3420,6 +4325,8 @@
       "melting_point_k": 1234.93,
       "name": "Silver",
       "neutral_electron_count": 47,
+      "outer_shell_electron_count": 1,
+      "outer_shell_number": 5,
       "oxidation_states": [
         "+1"
       ],
@@ -3455,6 +4362,29 @@
       "density_g_cm3": 8.69,
       "electron_affinity_ev": null,
       "electron_configuration": "[Kr]5s2 4d10",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 18,
+          "shell": 4
+        },
+        {
+          "electrons": 2,
+          "shell": 5
+        }
+      ],
       "electronegativity_pauling": 1.69,
       "group_block": "Transition metal",
       "id": "element:Cd",
@@ -3463,6 +4393,8 @@
       "melting_point_k": 594.22,
       "name": "Cadmium",
       "neutral_electron_count": 48,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 5,
       "oxidation_states": [
         "+2"
       ],
@@ -3498,6 +4430,29 @@
       "density_g_cm3": 7.31,
       "electron_affinity_ev": 0.3,
       "electron_configuration": "[Kr]5s2 4d10 5p1",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 18,
+          "shell": 4
+        },
+        {
+          "electrons": 3,
+          "shell": 5
+        }
+      ],
       "electronegativity_pauling": 1.78,
       "group_block": "Post-transition metal",
       "id": "element:In",
@@ -3506,6 +4461,8 @@
       "melting_point_k": 429.75,
       "name": "Indium",
       "neutral_electron_count": 49,
+      "outer_shell_electron_count": 3,
+      "outer_shell_number": 5,
       "oxidation_states": [
         "+3"
       ],
@@ -3545,6 +4502,29 @@
       "density_g_cm3": 7.287,
       "electron_affinity_ev": 1.2,
       "electron_configuration": "[Kr]5s2 4d10 5p2",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 18,
+          "shell": 4
+        },
+        {
+          "electrons": 4,
+          "shell": 5
+        }
+      ],
       "electronegativity_pauling": 1.96,
       "group_block": "Post-transition metal",
       "id": "element:Sn",
@@ -3553,6 +4533,8 @@
       "melting_point_k": 505.08,
       "name": "Tin",
       "neutral_electron_count": 50,
+      "outer_shell_electron_count": 4,
+      "outer_shell_number": 5,
       "oxidation_states": [
         "+4",
         "+2"
@@ -3597,6 +4579,29 @@
       "density_g_cm3": 6.685,
       "electron_affinity_ev": 1.07,
       "electron_configuration": "[Kr]5s2 4d10 5p3",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 18,
+          "shell": 4
+        },
+        {
+          "electrons": 5,
+          "shell": 5
+        }
+      ],
       "electronegativity_pauling": 2.05,
       "group_block": "Metalloid",
       "id": "element:Sb",
@@ -3605,6 +4610,8 @@
       "melting_point_k": 903.78,
       "name": "Antimony",
       "neutral_electron_count": 51,
+      "outer_shell_electron_count": 5,
+      "outer_shell_number": 5,
       "oxidation_states": [
         "+5",
         "+3",
@@ -3650,6 +4657,29 @@
       "density_g_cm3": 6.232,
       "electron_affinity_ev": 1.971,
       "electron_configuration": "[Kr]5s2 4d10 5p4",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 18,
+          "shell": 4
+        },
+        {
+          "electrons": 6,
+          "shell": 5
+        }
+      ],
       "electronegativity_pauling": 2.1,
       "group_block": "Metalloid",
       "id": "element:Te",
@@ -3658,6 +4688,8 @@
       "melting_point_k": 722.66,
       "name": "Tellurium",
       "neutral_electron_count": 52,
+      "outer_shell_electron_count": 6,
+      "outer_shell_number": 5,
       "oxidation_states": [
         "+6",
         "+4",
@@ -3707,6 +4739,29 @@
       "density_g_cm3": 4.93,
       "electron_affinity_ev": 3.059,
       "electron_configuration": "[Kr]5s2 4d10 5p5",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 18,
+          "shell": 4
+        },
+        {
+          "electrons": 7,
+          "shell": 5
+        }
+      ],
       "electronegativity_pauling": 2.66,
       "group_block": "Halogen",
       "id": "element:I",
@@ -3715,6 +4770,8 @@
       "melting_point_k": 386.85,
       "name": "Iodine",
       "neutral_electron_count": 53,
+      "outer_shell_electron_count": 7,
+      "outer_shell_number": 5,
       "oxidation_states": [
         "+7",
         "+5",
@@ -3748,6 +4805,29 @@
       "density_g_cm3": 0.005887,
       "electron_affinity_ev": null,
       "electron_configuration": "[Kr]5s2 4d10 5p6",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 18,
+          "shell": 4
+        },
+        {
+          "electrons": 8,
+          "shell": 5
+        }
+      ],
       "electronegativity_pauling": 2.6,
       "group_block": "Noble gas",
       "id": "element:Xe",
@@ -3756,6 +4836,8 @@
       "melting_point_k": 161.36,
       "name": "Xenon",
       "neutral_electron_count": 54,
+      "outer_shell_electron_count": 8,
+      "outer_shell_number": 5,
       "oxidation_states": [
         "0"
       ],
@@ -3791,6 +4873,33 @@
       "density_g_cm3": 1.93,
       "electron_affinity_ev": 0.472,
       "electron_configuration": "[Xe]6s1",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 18,
+          "shell": 4
+        },
+        {
+          "electrons": 8,
+          "shell": 5
+        },
+        {
+          "electrons": 1,
+          "shell": 6
+        }
+      ],
       "electronegativity_pauling": 0.79,
       "group_block": "Alkali metal",
       "id": "element:Cs",
@@ -3799,6 +4908,8 @@
       "melting_point_k": 301.59,
       "name": "Cesium",
       "neutral_electron_count": 55,
+      "outer_shell_electron_count": 1,
+      "outer_shell_number": 6,
       "oxidation_states": [
         "+1"
       ],
@@ -3834,6 +4945,33 @@
       "density_g_cm3": 3.62,
       "electron_affinity_ev": null,
       "electron_configuration": "[Xe]6s2",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 18,
+          "shell": 4
+        },
+        {
+          "electrons": 8,
+          "shell": 5
+        },
+        {
+          "electrons": 2,
+          "shell": 6
+        }
+      ],
       "electronegativity_pauling": 0.89,
       "group_block": "Alkaline earth metal",
       "id": "element:Ba",
@@ -3842,6 +4980,8 @@
       "melting_point_k": 1000,
       "name": "Barium",
       "neutral_electron_count": 56,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 6,
       "oxidation_states": [
         "+2"
       ],
@@ -3877,6 +5017,33 @@
       "density_g_cm3": 6.15,
       "electron_affinity_ev": 0.5,
       "electron_configuration": "[Xe]6s2 5d1",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 18,
+          "shell": 4
+        },
+        {
+          "electrons": 9,
+          "shell": 5
+        },
+        {
+          "electrons": 2,
+          "shell": 6
+        }
+      ],
       "electronegativity_pauling": 1.1,
       "group_block": "Lanthanide",
       "id": "element:La",
@@ -3885,6 +5052,8 @@
       "melting_point_k": 1191,
       "name": "Lanthanum",
       "neutral_electron_count": 57,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 6,
       "oxidation_states": [
         "+3"
       ],
@@ -3924,6 +5093,33 @@
       "density_g_cm3": 6.77,
       "electron_affinity_ev": 0.5,
       "electron_configuration": "[Xe]6s2 4f1 5d1",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 19,
+          "shell": 4
+        },
+        {
+          "electrons": 9,
+          "shell": 5
+        },
+        {
+          "electrons": 2,
+          "shell": 6
+        }
+      ],
       "electronegativity_pauling": 1.12,
       "group_block": "Lanthanide",
       "id": "element:Ce",
@@ -3932,6 +5128,8 @@
       "melting_point_k": 1071,
       "name": "Cerium",
       "neutral_electron_count": 58,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 6,
       "oxidation_states": [
         "+4",
         "+3"
@@ -3968,6 +5166,33 @@
       "density_g_cm3": 6.77,
       "electron_affinity_ev": null,
       "electron_configuration": "[Xe]6s2 4f3",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 21,
+          "shell": 4
+        },
+        {
+          "electrons": 8,
+          "shell": 5
+        },
+        {
+          "electrons": 2,
+          "shell": 6
+        }
+      ],
       "electronegativity_pauling": 1.13,
       "group_block": "Lanthanide",
       "id": "element:Pr",
@@ -3976,6 +5201,8 @@
       "melting_point_k": 1204,
       "name": "Praseodymium",
       "neutral_electron_count": 59,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 6,
       "oxidation_states": [
         "+3"
       ],
@@ -4011,6 +5238,33 @@
       "density_g_cm3": 7.01,
       "electron_affinity_ev": null,
       "electron_configuration": "[Xe]6s2 4f4",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 22,
+          "shell": 4
+        },
+        {
+          "electrons": 8,
+          "shell": 5
+        },
+        {
+          "electrons": 2,
+          "shell": 6
+        }
+      ],
       "electronegativity_pauling": 1.14,
       "group_block": "Lanthanide",
       "id": "element:Nd",
@@ -4019,6 +5273,8 @@
       "melting_point_k": 1294,
       "name": "Neodymium",
       "neutral_electron_count": 60,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 6,
       "oxidation_states": [
         "+3"
       ],
@@ -4054,6 +5310,33 @@
       "density_g_cm3": 7.26,
       "electron_affinity_ev": null,
       "electron_configuration": "[Xe]6s2 4f5",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 23,
+          "shell": 4
+        },
+        {
+          "electrons": 8,
+          "shell": 5
+        },
+        {
+          "electrons": 2,
+          "shell": 6
+        }
+      ],
       "electronegativity_pauling": null,
       "group_block": "Lanthanide",
       "id": "element:Pm",
@@ -4062,6 +5345,8 @@
       "melting_point_k": 1315,
       "name": "Promethium",
       "neutral_electron_count": 61,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 6,
       "oxidation_states": [
         "+3"
       ],
@@ -4101,6 +5386,33 @@
       "density_g_cm3": 7.52,
       "electron_affinity_ev": null,
       "electron_configuration": "[Xe]6s2 4f6",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 24,
+          "shell": 4
+        },
+        {
+          "electrons": 8,
+          "shell": 5
+        },
+        {
+          "electrons": 2,
+          "shell": 6
+        }
+      ],
       "electronegativity_pauling": 1.17,
       "group_block": "Lanthanide",
       "id": "element:Sm",
@@ -4109,6 +5421,8 @@
       "melting_point_k": 1347,
       "name": "Samarium",
       "neutral_electron_count": 62,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 6,
       "oxidation_states": [
         "+3",
         "+2"
@@ -4149,6 +5463,33 @@
       "density_g_cm3": 5.24,
       "electron_affinity_ev": null,
       "electron_configuration": "[Xe]6s2 4f7",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 25,
+          "shell": 4
+        },
+        {
+          "electrons": 8,
+          "shell": 5
+        },
+        {
+          "electrons": 2,
+          "shell": 6
+        }
+      ],
       "electronegativity_pauling": null,
       "group_block": "Lanthanide",
       "id": "element:Eu",
@@ -4157,6 +5498,8 @@
       "melting_point_k": 1095,
       "name": "Europium",
       "neutral_electron_count": 63,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 6,
       "oxidation_states": [
         "+3",
         "+2"
@@ -4193,6 +5536,33 @@
       "density_g_cm3": 7.9,
       "electron_affinity_ev": null,
       "electron_configuration": "[Xe]6s2 4f7 5d1",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 25,
+          "shell": 4
+        },
+        {
+          "electrons": 9,
+          "shell": 5
+        },
+        {
+          "electrons": 2,
+          "shell": 6
+        }
+      ],
       "electronegativity_pauling": 1.2,
       "group_block": "Lanthanide",
       "id": "element:Gd",
@@ -4201,6 +5571,8 @@
       "melting_point_k": 1586,
       "name": "Gadolinium",
       "neutral_electron_count": 64,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 6,
       "oxidation_states": [
         "+3"
       ],
@@ -4236,6 +5608,33 @@
       "density_g_cm3": 8.23,
       "electron_affinity_ev": null,
       "electron_configuration": "[Xe]6s2 4f9",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 27,
+          "shell": 4
+        },
+        {
+          "electrons": 8,
+          "shell": 5
+        },
+        {
+          "electrons": 2,
+          "shell": 6
+        }
+      ],
       "electronegativity_pauling": null,
       "group_block": "Lanthanide",
       "id": "element:Tb",
@@ -4244,6 +5643,8 @@
       "melting_point_k": 1629,
       "name": "Terbium",
       "neutral_electron_count": 65,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 6,
       "oxidation_states": [
         "+3"
       ],
@@ -4279,6 +5680,33 @@
       "density_g_cm3": 8.55,
       "electron_affinity_ev": null,
       "electron_configuration": "[Xe]6s2 4f10",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 28,
+          "shell": 4
+        },
+        {
+          "electrons": 8,
+          "shell": 5
+        },
+        {
+          "electrons": 2,
+          "shell": 6
+        }
+      ],
       "electronegativity_pauling": 1.22,
       "group_block": "Lanthanide",
       "id": "element:Dy",
@@ -4287,6 +5715,8 @@
       "melting_point_k": 1685,
       "name": "Dysprosium",
       "neutral_electron_count": 66,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 6,
       "oxidation_states": [
         "+3"
       ],
@@ -4322,6 +5752,33 @@
       "density_g_cm3": 8.8,
       "electron_affinity_ev": null,
       "electron_configuration": "[Xe]6s2 4f11",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 29,
+          "shell": 4
+        },
+        {
+          "electrons": 8,
+          "shell": 5
+        },
+        {
+          "electrons": 2,
+          "shell": 6
+        }
+      ],
       "electronegativity_pauling": 1.23,
       "group_block": "Lanthanide",
       "id": "element:Ho",
@@ -4330,6 +5787,8 @@
       "melting_point_k": 1747,
       "name": "Holmium",
       "neutral_electron_count": 67,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 6,
       "oxidation_states": [
         "+3"
       ],
@@ -4365,6 +5824,33 @@
       "density_g_cm3": 9.07,
       "electron_affinity_ev": null,
       "electron_configuration": "[Xe]6s2 4f12",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 30,
+          "shell": 4
+        },
+        {
+          "electrons": 8,
+          "shell": 5
+        },
+        {
+          "electrons": 2,
+          "shell": 6
+        }
+      ],
       "electronegativity_pauling": 1.24,
       "group_block": "Lanthanide",
       "id": "element:Er",
@@ -4373,6 +5859,8 @@
       "melting_point_k": 1802,
       "name": "Erbium",
       "neutral_electron_count": 68,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 6,
       "oxidation_states": [
         "+3"
       ],
@@ -4408,6 +5896,33 @@
       "density_g_cm3": 9.32,
       "electron_affinity_ev": null,
       "electron_configuration": "[Xe]6s2 4f13",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 31,
+          "shell": 4
+        },
+        {
+          "electrons": 8,
+          "shell": 5
+        },
+        {
+          "electrons": 2,
+          "shell": 6
+        }
+      ],
       "electronegativity_pauling": 1.25,
       "group_block": "Lanthanide",
       "id": "element:Tm",
@@ -4416,6 +5931,8 @@
       "melting_point_k": 1818,
       "name": "Thulium",
       "neutral_electron_count": 69,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 6,
       "oxidation_states": [
         "+3"
       ],
@@ -4455,6 +5972,33 @@
       "density_g_cm3": 6.9,
       "electron_affinity_ev": null,
       "electron_configuration": "[Xe]6s2 4f14",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 8,
+          "shell": 5
+        },
+        {
+          "electrons": 2,
+          "shell": 6
+        }
+      ],
       "electronegativity_pauling": null,
       "group_block": "Lanthanide",
       "id": "element:Yb",
@@ -4463,6 +6007,8 @@
       "melting_point_k": 1092,
       "name": "Ytterbium",
       "neutral_electron_count": 70,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 6,
       "oxidation_states": [
         "+3",
         "+2"
@@ -4499,6 +6045,33 @@
       "density_g_cm3": 9.84,
       "electron_affinity_ev": null,
       "electron_configuration": "[Xe]6s2 4f14 5d1",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 9,
+          "shell": 5
+        },
+        {
+          "electrons": 2,
+          "shell": 6
+        }
+      ],
       "electronegativity_pauling": 1.27,
       "group_block": "Lanthanide",
       "id": "element:Lu",
@@ -4507,6 +6080,8 @@
       "melting_point_k": 1936,
       "name": "Lutetium",
       "neutral_electron_count": 71,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 6,
       "oxidation_states": [
         "+3"
       ],
@@ -4542,6 +6117,33 @@
       "density_g_cm3": 13.3,
       "electron_affinity_ev": null,
       "electron_configuration": "[Xe]6s2 4f14 5d2",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 10,
+          "shell": 5
+        },
+        {
+          "electrons": 2,
+          "shell": 6
+        }
+      ],
       "electronegativity_pauling": 1.3,
       "group_block": "Transition metal",
       "id": "element:Hf",
@@ -4550,6 +6152,8 @@
       "melting_point_k": 2506,
       "name": "Hafnium",
       "neutral_electron_count": 72,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 6,
       "oxidation_states": [
         "+4"
       ],
@@ -4585,6 +6189,33 @@
       "density_g_cm3": 16.4,
       "electron_affinity_ev": 0.322,
       "electron_configuration": "[Xe]6s2 4f14 5d3",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 11,
+          "shell": 5
+        },
+        {
+          "electrons": 2,
+          "shell": 6
+        }
+      ],
       "electronegativity_pauling": 1.5,
       "group_block": "Transition metal",
       "id": "element:Ta",
@@ -4593,6 +6224,8 @@
       "melting_point_k": 3290,
       "name": "Tantalum",
       "neutral_electron_count": 73,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 6,
       "oxidation_states": [
         "+5"
       ],
@@ -4628,6 +6261,33 @@
       "density_g_cm3": 19.3,
       "electron_affinity_ev": 0.815,
       "electron_configuration": "[Xe]6s2 4f14 5d4",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 12,
+          "shell": 5
+        },
+        {
+          "electrons": 2,
+          "shell": 6
+        }
+      ],
       "electronegativity_pauling": 2.36,
       "group_block": "Transition metal",
       "id": "element:W",
@@ -4636,6 +6296,8 @@
       "melting_point_k": 3695,
       "name": "Tungsten",
       "neutral_electron_count": 74,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 6,
       "oxidation_states": [
         "+6"
       ],
@@ -4679,6 +6341,33 @@
       "density_g_cm3": 20.8,
       "electron_affinity_ev": 0.15,
       "electron_configuration": "[Xe]6s2 4f14 5d5",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 13,
+          "shell": 5
+        },
+        {
+          "electrons": 2,
+          "shell": 6
+        }
+      ],
       "electronegativity_pauling": 1.9,
       "group_block": "Transition metal",
       "id": "element:Re",
@@ -4687,6 +6376,8 @@
       "melting_point_k": 3459,
       "name": "Rhenium",
       "neutral_electron_count": 75,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 6,
       "oxidation_states": [
         "+7",
         "+6",
@@ -4728,6 +6419,33 @@
       "density_g_cm3": 22.57,
       "electron_affinity_ev": 1.1,
       "electron_configuration": "[Xe]6s2 4f14 5d6",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 14,
+          "shell": 5
+        },
+        {
+          "electrons": 2,
+          "shell": 6
+        }
+      ],
       "electronegativity_pauling": 2.2,
       "group_block": "Transition metal",
       "id": "element:Os",
@@ -4736,6 +6454,8 @@
       "melting_point_k": 3306,
       "name": "Osmium",
       "neutral_electron_count": 76,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 6,
       "oxidation_states": [
         "+4",
         "+3"
@@ -4776,6 +6496,33 @@
       "density_g_cm3": 22.42,
       "electron_affinity_ev": 1.565,
       "electron_configuration": "[Xe]6s2 4f14 5d7",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 15,
+          "shell": 5
+        },
+        {
+          "electrons": 2,
+          "shell": 6
+        }
+      ],
       "electronegativity_pauling": 2.2,
       "group_block": "Transition metal",
       "id": "element:Ir",
@@ -4784,6 +6531,8 @@
       "melting_point_k": 2719,
       "name": "Iridium",
       "neutral_electron_count": 77,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 6,
       "oxidation_states": [
         "+4",
         "+3"
@@ -4824,6 +6573,33 @@
       "density_g_cm3": 21.46,
       "electron_affinity_ev": 2.128,
       "electron_configuration": "[Xe]6s1 4f14 5d9",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 17,
+          "shell": 5
+        },
+        {
+          "electrons": 1,
+          "shell": 6
+        }
+      ],
       "electronegativity_pauling": 2.28,
       "group_block": "Transition metal",
       "id": "element:Pt",
@@ -4832,6 +6608,8 @@
       "melting_point_k": 2041.55,
       "name": "Platinum",
       "neutral_electron_count": 78,
+      "outer_shell_electron_count": 1,
+      "outer_shell_number": 6,
       "oxidation_states": [
         "+4",
         "+2"
@@ -4872,6 +6650,33 @@
       "density_g_cm3": 19.282,
       "electron_affinity_ev": 2.309,
       "electron_configuration": "[Xe]6s1 4f14 5d10",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 18,
+          "shell": 5
+        },
+        {
+          "electrons": 1,
+          "shell": 6
+        }
+      ],
       "electronegativity_pauling": 2.54,
       "group_block": "Transition metal",
       "id": "element:Au",
@@ -4880,6 +6685,8 @@
       "melting_point_k": 1337.33,
       "name": "Gold",
       "neutral_electron_count": 79,
+      "outer_shell_electron_count": 1,
+      "outer_shell_number": 6,
       "oxidation_states": [
         "+3",
         "+1"
@@ -4920,6 +6727,33 @@
       "density_g_cm3": 13.5336,
       "electron_affinity_ev": null,
       "electron_configuration": "[Xe]6s2 4f14 5d10",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 18,
+          "shell": 5
+        },
+        {
+          "electrons": 2,
+          "shell": 6
+        }
+      ],
       "electronegativity_pauling": 2,
       "group_block": "Transition metal",
       "id": "element:Hg",
@@ -4928,6 +6762,8 @@
       "melting_point_k": 234.32,
       "name": "Mercury",
       "neutral_electron_count": 80,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 6,
       "oxidation_states": [
         "+2",
         "+1"
@@ -4968,6 +6804,33 @@
       "density_g_cm3": 11.8,
       "electron_affinity_ev": 0.2,
       "electron_configuration": "[Xe]6s2 4f14 5d10 6p1",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 18,
+          "shell": 5
+        },
+        {
+          "electrons": 3,
+          "shell": 6
+        }
+      ],
       "electronegativity_pauling": 1.62,
       "group_block": "Post-transition metal",
       "id": "element:Tl",
@@ -4976,6 +6839,8 @@
       "melting_point_k": 577,
       "name": "Thallium",
       "neutral_electron_count": 81,
+      "outer_shell_electron_count": 3,
+      "outer_shell_number": 6,
       "oxidation_states": [
         "+3",
         "+1"
@@ -5016,6 +6881,33 @@
       "density_g_cm3": 11.342,
       "electron_affinity_ev": 0.36,
       "electron_configuration": "[Xe]6s2 4f14 5d10 6p2",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 18,
+          "shell": 5
+        },
+        {
+          "electrons": 4,
+          "shell": 6
+        }
+      ],
       "electronegativity_pauling": 2.33,
       "group_block": "Post-transition metal",
       "id": "element:Pb",
@@ -5049,6 +6941,8 @@
       "melting_point_k": 600.61,
       "name": "Lead",
       "neutral_electron_count": 82,
+      "outer_shell_electron_count": 4,
+      "outer_shell_number": 6,
       "oxidation_states": [
         "+4",
         "+2"
@@ -5089,6 +6983,33 @@
       "density_g_cm3": 9.807,
       "electron_affinity_ev": 0.946,
       "electron_configuration": "[Xe]6s2 4f14 5d10 6p3",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 18,
+          "shell": 5
+        },
+        {
+          "electrons": 5,
+          "shell": 6
+        }
+      ],
       "electronegativity_pauling": 2.02,
       "group_block": "Post-transition metal",
       "id": "element:Bi",
@@ -5097,6 +7018,8 @@
       "melting_point_k": 544.55,
       "name": "Bismuth",
       "neutral_electron_count": 83,
+      "outer_shell_electron_count": 5,
+      "outer_shell_number": 6,
       "oxidation_states": [
         "+5",
         "+3"
@@ -5137,6 +7060,33 @@
       "density_g_cm3": 9.32,
       "electron_affinity_ev": 1.9,
       "electron_configuration": "[Xe]6s2 4f14 5d10 6p4",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 18,
+          "shell": 5
+        },
+        {
+          "electrons": 6,
+          "shell": 6
+        }
+      ],
       "electronegativity_pauling": 2,
       "group_block": "Metalloid",
       "id": "element:Po",
@@ -5145,6 +7095,8 @@
       "melting_point_k": 527,
       "name": "Polonium",
       "neutral_electron_count": 84,
+      "outer_shell_electron_count": 6,
+      "outer_shell_number": 6,
       "oxidation_states": [
         "+4",
         "+2"
@@ -5197,6 +7149,33 @@
       "density_g_cm3": 7,
       "electron_affinity_ev": 2.8,
       "electron_configuration": "[Xe]6s2 4f14 5d10 6p5",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 18,
+          "shell": 5
+        },
+        {
+          "electrons": 7,
+          "shell": 6
+        }
+      ],
       "electronegativity_pauling": 2.2,
       "group_block": "Halogen",
       "id": "element:At",
@@ -5205,6 +7184,8 @@
       "melting_point_k": 575,
       "name": "Astatine",
       "neutral_electron_count": 85,
+      "outer_shell_electron_count": 7,
+      "outer_shell_number": 6,
       "oxidation_states": [
         "+7",
         "+5",
@@ -5239,6 +7220,33 @@
       "density_g_cm3": 0.00973,
       "electron_affinity_ev": null,
       "electron_configuration": "[Xe]6s2 4f14 5d10 6p6",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 18,
+          "shell": 5
+        },
+        {
+          "electrons": 8,
+          "shell": 6
+        }
+      ],
       "electronegativity_pauling": null,
       "group_block": "Noble gas",
       "id": "element:Rn",
@@ -5247,6 +7255,8 @@
       "melting_point_k": 202,
       "name": "Radon",
       "neutral_electron_count": 86,
+      "outer_shell_electron_count": 8,
+      "outer_shell_number": 6,
       "oxidation_states": [
         "0"
       ],
@@ -5282,6 +7292,37 @@
       "density_g_cm3": null,
       "electron_affinity_ev": 0.47,
       "electron_configuration": "[Rn]7s1",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 18,
+          "shell": 5
+        },
+        {
+          "electrons": 8,
+          "shell": 6
+        },
+        {
+          "electrons": 1,
+          "shell": 7
+        }
+      ],
       "electronegativity_pauling": 0.7,
       "group_block": "Alkali metal",
       "id": "element:Fr",
@@ -5290,6 +7331,8 @@
       "melting_point_k": 300,
       "name": "Francium",
       "neutral_electron_count": 87,
+      "outer_shell_electron_count": 1,
+      "outer_shell_number": 7,
       "oxidation_states": [
         "+1"
       ],
@@ -5325,6 +7368,37 @@
       "density_g_cm3": 5,
       "electron_affinity_ev": null,
       "electron_configuration": "[Rn]7s2",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 18,
+          "shell": 5
+        },
+        {
+          "electrons": 8,
+          "shell": 6
+        },
+        {
+          "electrons": 2,
+          "shell": 7
+        }
+      ],
       "electronegativity_pauling": 0.9,
       "group_block": "Alkaline earth metal",
       "id": "element:Ra",
@@ -5333,6 +7407,8 @@
       "melting_point_k": 973,
       "name": "Radium",
       "neutral_electron_count": 88,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 7,
       "oxidation_states": [
         "+2"
       ],
@@ -5368,6 +7444,37 @@
       "density_g_cm3": 10.07,
       "electron_affinity_ev": null,
       "electron_configuration": "[Rn]7s2 6d1",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 18,
+          "shell": 5
+        },
+        {
+          "electrons": 9,
+          "shell": 6
+        },
+        {
+          "electrons": 2,
+          "shell": 7
+        }
+      ],
       "electronegativity_pauling": 1.1,
       "group_block": "Actinide",
       "id": "element:Ac",
@@ -5376,6 +7483,8 @@
       "melting_point_k": 1324,
       "name": "Actinium",
       "neutral_electron_count": 89,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 7,
       "oxidation_states": [
         "+3"
       ],
@@ -5411,6 +7520,37 @@
       "density_g_cm3": 11.72,
       "electron_affinity_ev": null,
       "electron_configuration": "[Rn]7s2 6d2",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 18,
+          "shell": 5
+        },
+        {
+          "electrons": 10,
+          "shell": 6
+        },
+        {
+          "electrons": 2,
+          "shell": 7
+        }
+      ],
       "electronegativity_pauling": 1.3,
       "group_block": "Actinide",
       "id": "element:Th",
@@ -5419,6 +7559,8 @@
       "melting_point_k": 2023,
       "name": "Thorium",
       "neutral_electron_count": 90,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 7,
       "oxidation_states": [
         "+4"
       ],
@@ -5458,6 +7600,37 @@
       "density_g_cm3": 15.37,
       "electron_affinity_ev": null,
       "electron_configuration": "[Rn]7s2 5f2 6d1",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 20,
+          "shell": 5
+        },
+        {
+          "electrons": 9,
+          "shell": 6
+        },
+        {
+          "electrons": 2,
+          "shell": 7
+        }
+      ],
       "electronegativity_pauling": 1.5,
       "group_block": "Actinide",
       "id": "element:Pa",
@@ -5466,6 +7639,8 @@
       "melting_point_k": 1845,
       "name": "Protactinium",
       "neutral_electron_count": 91,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 7,
       "oxidation_states": [
         "+5",
         "+4"
@@ -5514,6 +7689,37 @@
       "density_g_cm3": 18.95,
       "electron_affinity_ev": null,
       "electron_configuration": "[Rn]7s2 5f3 6d1",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 21,
+          "shell": 5
+        },
+        {
+          "electrons": 9,
+          "shell": 6
+        },
+        {
+          "electrons": 2,
+          "shell": 7
+        }
+      ],
       "electronegativity_pauling": 1.38,
       "group_block": "Actinide",
       "id": "element:U",
@@ -5541,6 +7747,8 @@
       "melting_point_k": 1408,
       "name": "Uranium",
       "neutral_electron_count": 92,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 7,
       "oxidation_states": [
         "+6",
         "+5",
@@ -5591,6 +7799,37 @@
       "density_g_cm3": 20.25,
       "electron_affinity_ev": null,
       "electron_configuration": "[Rn]7s2 5f4 6d1",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 22,
+          "shell": 5
+        },
+        {
+          "electrons": 9,
+          "shell": 6
+        },
+        {
+          "electrons": 2,
+          "shell": 7
+        }
+      ],
       "electronegativity_pauling": 1.36,
       "group_block": "Actinide",
       "id": "element:Np",
@@ -5599,6 +7838,8 @@
       "melting_point_k": 917,
       "name": "Neptunium",
       "neutral_electron_count": 93,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 7,
       "oxidation_states": [
         "+6",
         "+5",
@@ -5649,6 +7890,37 @@
       "density_g_cm3": 19.84,
       "electron_affinity_ev": null,
       "electron_configuration": "[Rn]7s2 5f6",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 24,
+          "shell": 5
+        },
+        {
+          "electrons": 8,
+          "shell": 6
+        },
+        {
+          "electrons": 2,
+          "shell": 7
+        }
+      ],
       "electronegativity_pauling": 1.28,
       "group_block": "Actinide",
       "id": "element:Pu",
@@ -5657,6 +7929,8 @@
       "melting_point_k": 913,
       "name": "Plutonium",
       "neutral_electron_count": 94,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 7,
       "oxidation_states": [
         "+6",
         "+5",
@@ -5707,6 +7981,37 @@
       "density_g_cm3": 13.69,
       "electron_affinity_ev": null,
       "electron_configuration": "[Rn]7s2 5f7",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 25,
+          "shell": 5
+        },
+        {
+          "electrons": 8,
+          "shell": 6
+        },
+        {
+          "electrons": 2,
+          "shell": 7
+        }
+      ],
       "electronegativity_pauling": 1.3,
       "group_block": "Actinide",
       "id": "element:Am",
@@ -5715,6 +8020,8 @@
       "melting_point_k": 1449,
       "name": "Americium",
       "neutral_electron_count": 95,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 7,
       "oxidation_states": [
         "+6",
         "+5",
@@ -5753,6 +8060,37 @@
       "density_g_cm3": 13.51,
       "electron_affinity_ev": null,
       "electron_configuration": "[Rn]7s2 5f7 6d1",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 25,
+          "shell": 5
+        },
+        {
+          "electrons": 9,
+          "shell": 6
+        },
+        {
+          "electrons": 2,
+          "shell": 7
+        }
+      ],
       "electronegativity_pauling": 1.3,
       "group_block": "Actinide",
       "id": "element:Cm",
@@ -5761,6 +8099,8 @@
       "melting_point_k": 1618,
       "name": "Curium",
       "neutral_electron_count": 96,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 7,
       "oxidation_states": [
         "+3"
       ],
@@ -5800,6 +8140,37 @@
       "density_g_cm3": 14,
       "electron_affinity_ev": null,
       "electron_configuration": "[Rn]7s2 5f9",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 27,
+          "shell": 5
+        },
+        {
+          "electrons": 8,
+          "shell": 6
+        },
+        {
+          "electrons": 2,
+          "shell": 7
+        }
+      ],
       "electronegativity_pauling": 1.3,
       "group_block": "Actinide",
       "id": "element:Bk",
@@ -5808,6 +8179,8 @@
       "melting_point_k": 1323,
       "name": "Berkelium",
       "neutral_electron_count": 97,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 7,
       "oxidation_states": [
         "+4",
         "+3"
@@ -5844,6 +8217,37 @@
       "density_g_cm3": null,
       "electron_affinity_ev": null,
       "electron_configuration": "[Rn]7s2 5f10",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 28,
+          "shell": 5
+        },
+        {
+          "electrons": 8,
+          "shell": 6
+        },
+        {
+          "electrons": 2,
+          "shell": 7
+        }
+      ],
       "electronegativity_pauling": 1.3,
       "group_block": "Actinide",
       "id": "element:Cf",
@@ -5852,6 +8256,8 @@
       "melting_point_k": 1173,
       "name": "Californium",
       "neutral_electron_count": 98,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 7,
       "oxidation_states": [
         "+3"
       ],
@@ -5887,6 +8293,37 @@
       "density_g_cm3": null,
       "electron_affinity_ev": null,
       "electron_configuration": "[Rn]7s2 5f11",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 29,
+          "shell": 5
+        },
+        {
+          "electrons": 8,
+          "shell": 6
+        },
+        {
+          "electrons": 2,
+          "shell": 7
+        }
+      ],
       "electronegativity_pauling": 1.3,
       "group_block": "Actinide",
       "id": "element:Es",
@@ -5895,6 +8332,8 @@
       "melting_point_k": 1133,
       "name": "Einsteinium",
       "neutral_electron_count": 99,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 7,
       "oxidation_states": [
         "+3"
       ],
@@ -5930,6 +8369,37 @@
       "density_g_cm3": null,
       "electron_affinity_ev": null,
       "electron_configuration": "[Rn] 5f12 7s2",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 30,
+          "shell": 5
+        },
+        {
+          "electrons": 8,
+          "shell": 6
+        },
+        {
+          "electrons": 2,
+          "shell": 7
+        }
+      ],
       "electronegativity_pauling": 1.3,
       "group_block": "Actinide",
       "id": "element:Fm",
@@ -5938,6 +8408,8 @@
       "melting_point_k": 1800,
       "name": "Fermium",
       "neutral_electron_count": 100,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 7,
       "oxidation_states": [
         "+3"
       ],
@@ -5977,6 +8449,37 @@
       "density_g_cm3": null,
       "electron_affinity_ev": null,
       "electron_configuration": "[Rn]7s2 5f13",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 31,
+          "shell": 5
+        },
+        {
+          "electrons": 8,
+          "shell": 6
+        },
+        {
+          "electrons": 2,
+          "shell": 7
+        }
+      ],
       "electronegativity_pauling": 1.3,
       "group_block": "Actinide",
       "id": "element:Md",
@@ -5985,6 +8488,8 @@
       "melting_point_k": 1100,
       "name": "Mendelevium",
       "neutral_electron_count": 101,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 7,
       "oxidation_states": [
         "+3",
         "+2"
@@ -6025,6 +8530,37 @@
       "density_g_cm3": null,
       "electron_affinity_ev": null,
       "electron_configuration": "[Rn]7s2 5f14",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 32,
+          "shell": 5
+        },
+        {
+          "electrons": 8,
+          "shell": 6
+        },
+        {
+          "electrons": 2,
+          "shell": 7
+        }
+      ],
       "electronegativity_pauling": 1.3,
       "group_block": "Actinide",
       "id": "element:No",
@@ -6033,6 +8569,8 @@
       "melting_point_k": 1100,
       "name": "Nobelium",
       "neutral_electron_count": 102,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 7,
       "oxidation_states": [
         "+3",
         "+2"
@@ -6069,6 +8607,37 @@
       "density_g_cm3": null,
       "electron_affinity_ev": null,
       "electron_configuration": "[Rn]7s2 5f14 6d1",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 32,
+          "shell": 5
+        },
+        {
+          "electrons": 9,
+          "shell": 6
+        },
+        {
+          "electrons": 2,
+          "shell": 7
+        }
+      ],
       "electronegativity_pauling": 1.3,
       "group_block": "Actinide",
       "id": "element:Lr",
@@ -6077,6 +8646,8 @@
       "melting_point_k": 1900,
       "name": "Lawrencium",
       "neutral_electron_count": 103,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 7,
       "oxidation_states": [
         "+3"
       ],
@@ -6112,6 +8683,37 @@
       "density_g_cm3": null,
       "electron_affinity_ev": null,
       "electron_configuration": "[Rn]7s2 5f14 6d2",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 32,
+          "shell": 5
+        },
+        {
+          "electrons": 10,
+          "shell": 6
+        },
+        {
+          "electrons": 2,
+          "shell": 7
+        }
+      ],
       "electronegativity_pauling": null,
       "group_block": "Transition metal",
       "id": "element:Rf",
@@ -6120,6 +8722,8 @@
       "melting_point_k": null,
       "name": "Rutherfordium",
       "neutral_electron_count": 104,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 7,
       "oxidation_states": [
         "+4"
       ],
@@ -6163,6 +8767,37 @@
       "density_g_cm3": null,
       "electron_affinity_ev": null,
       "electron_configuration": "[Rn]7s2 5f14 6d3",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 32,
+          "shell": 5
+        },
+        {
+          "electrons": 11,
+          "shell": 6
+        },
+        {
+          "electrons": 2,
+          "shell": 7
+        }
+      ],
       "electronegativity_pauling": null,
       "group_block": "Transition metal",
       "id": "element:Db",
@@ -6171,6 +8806,8 @@
       "melting_point_k": null,
       "name": "Dubnium",
       "neutral_electron_count": 105,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 7,
       "oxidation_states": [
         "+5",
         "+4",
@@ -6220,6 +8857,37 @@
       "density_g_cm3": null,
       "electron_affinity_ev": null,
       "electron_configuration": "[Rn]7s2 5f14 6d4",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 32,
+          "shell": 5
+        },
+        {
+          "electrons": 12,
+          "shell": 6
+        },
+        {
+          "electrons": 2,
+          "shell": 7
+        }
+      ],
       "electronegativity_pauling": null,
       "group_block": "Transition metal",
       "id": "element:Sg",
@@ -6228,6 +8896,8 @@
       "melting_point_k": null,
       "name": "Seaborgium",
       "neutral_electron_count": 106,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 7,
       "oxidation_states": [
         "+6",
         "+5",
@@ -6279,6 +8949,37 @@
       "density_g_cm3": null,
       "electron_affinity_ev": null,
       "electron_configuration": "[Rn]7s2 5f14 6d5",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 32,
+          "shell": 5
+        },
+        {
+          "electrons": 13,
+          "shell": 6
+        },
+        {
+          "electrons": 2,
+          "shell": 7
+        }
+      ],
       "electronegativity_pauling": null,
       "group_block": "Transition metal",
       "id": "element:Bh",
@@ -6287,6 +8988,8 @@
       "melting_point_k": null,
       "name": "Bohrium",
       "neutral_electron_count": 107,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 7,
       "oxidation_states": [
         "+7",
         "+5",
@@ -6345,6 +9048,37 @@
       "density_g_cm3": null,
       "electron_affinity_ev": null,
       "electron_configuration": "[Rn]7s2 5f14 6d6",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 32,
+          "shell": 5
+        },
+        {
+          "electrons": 14,
+          "shell": 6
+        },
+        {
+          "electrons": 2,
+          "shell": 7
+        }
+      ],
       "electronegativity_pauling": null,
       "group_block": "Transition metal",
       "id": "element:Hs",
@@ -6353,6 +9087,8 @@
       "melting_point_k": null,
       "name": "Hassium",
       "neutral_electron_count": 108,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 7,
       "oxidation_states": [
         "+8",
         "+6",
@@ -6413,6 +9149,37 @@
       "density_g_cm3": null,
       "electron_affinity_ev": null,
       "electron_configuration": "[Rn]7s2 5f14 6d7 (calculated)",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 32,
+          "shell": 5
+        },
+        {
+          "electrons": 15,
+          "shell": 6
+        },
+        {
+          "electrons": 2,
+          "shell": 7
+        }
+      ],
       "electronegativity_pauling": null,
       "group_block": "Transition metal",
       "id": "element:Mt",
@@ -6421,6 +9188,8 @@
       "melting_point_k": null,
       "name": "Meitnerium",
       "neutral_electron_count": 109,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 7,
       "oxidation_states": [
         "+9",
         "+8",
@@ -6473,6 +9242,37 @@
       "density_g_cm3": null,
       "electron_affinity_ev": null,
       "electron_configuration": "[Rn]7s2 5f14 6d8 (predicted)",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 32,
+          "shell": 5
+        },
+        {
+          "electrons": 16,
+          "shell": 6
+        },
+        {
+          "electrons": 2,
+          "shell": 7
+        }
+      ],
       "electronegativity_pauling": null,
       "group_block": "Transition metal",
       "id": "element:Ds",
@@ -6481,6 +9281,8 @@
       "melting_point_k": null,
       "name": "Darmstadtium",
       "neutral_electron_count": 110,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 7,
       "oxidation_states": [
         "+8",
         "+6",
@@ -6532,6 +9334,37 @@
       "density_g_cm3": null,
       "electron_affinity_ev": null,
       "electron_configuration": "[Rn]7s2 5f14 6d9 (predicted)",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 32,
+          "shell": 5
+        },
+        {
+          "electrons": 17,
+          "shell": 6
+        },
+        {
+          "electrons": 2,
+          "shell": 7
+        }
+      ],
       "electronegativity_pauling": null,
       "group_block": "Transition metal",
       "id": "element:Rg",
@@ -6540,6 +9373,8 @@
       "melting_point_k": null,
       "name": "Roentgenium",
       "neutral_electron_count": 111,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 7,
       "oxidation_states": [
         "+5",
         "+3",
@@ -6582,6 +9417,37 @@
       "density_g_cm3": null,
       "electron_affinity_ev": null,
       "electron_configuration": "[Rn]7s2 5f14 6d10 (predicted)",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 32,
+          "shell": 5
+        },
+        {
+          "electrons": 18,
+          "shell": 6
+        },
+        {
+          "electrons": 2,
+          "shell": 7
+        }
+      ],
       "electronegativity_pauling": null,
       "group_block": "Transition metal",
       "id": "element:Cn",
@@ -6590,6 +9456,8 @@
       "melting_point_k": null,
       "name": "Copernicium",
       "neutral_electron_count": 112,
+      "outer_shell_electron_count": 2,
+      "outer_shell_number": 7,
       "oxidation_states": [
         "+2",
         "+1",
@@ -6622,6 +9490,37 @@
       "density_g_cm3": null,
       "electron_affinity_ev": null,
       "electron_configuration": "[Rn]5f14 6d10 7s2 7p1 (predicted)",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 32,
+          "shell": 5
+        },
+        {
+          "electrons": 18,
+          "shell": 6
+        },
+        {
+          "electrons": 3,
+          "shell": 7
+        }
+      ],
       "electronegativity_pauling": null,
       "group_block": "Post-transition metal",
       "id": "element:Nh",
@@ -6630,6 +9529,8 @@
       "melting_point_k": null,
       "name": "Nihonium",
       "neutral_electron_count": 113,
+      "outer_shell_electron_count": 3,
+      "outer_shell_number": 7,
       "oxidation_states": [],
       "photo_search_urls": [
         "https://pubchem.ncbi.nlm.nih.gov/element/113",
@@ -6675,6 +9576,37 @@
       "density_g_cm3": null,
       "electron_affinity_ev": null,
       "electron_configuration": "[Rn]7s2 7p2 5f14 6d10 (predicted)",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 32,
+          "shell": 5
+        },
+        {
+          "electrons": 18,
+          "shell": 6
+        },
+        {
+          "electrons": 4,
+          "shell": 7
+        }
+      ],
       "electronegativity_pauling": null,
       "group_block": "Post-transition metal",
       "id": "element:Fl",
@@ -6683,6 +9615,8 @@
       "melting_point_k": null,
       "name": "Flerovium",
       "neutral_electron_count": 114,
+      "outer_shell_electron_count": 4,
+      "outer_shell_number": 7,
       "oxidation_states": [
         "+6",
         "+4",
@@ -6726,6 +9660,37 @@
       "density_g_cm3": null,
       "electron_affinity_ev": null,
       "electron_configuration": "[Rn]7s2 7p3 5f14 6d10 (predicted)",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 32,
+          "shell": 5
+        },
+        {
+          "electrons": 18,
+          "shell": 6
+        },
+        {
+          "electrons": 5,
+          "shell": 7
+        }
+      ],
       "electronegativity_pauling": null,
       "group_block": "Post-transition metal",
       "id": "element:Mc",
@@ -6734,6 +9699,8 @@
       "melting_point_k": null,
       "name": "Moscovium",
       "neutral_electron_count": 115,
+      "outer_shell_electron_count": 5,
+      "outer_shell_number": 7,
       "oxidation_states": [
         "+3",
         "+1"
@@ -6778,6 +9745,37 @@
       "density_g_cm3": null,
       "electron_affinity_ev": null,
       "electron_configuration": "[Rn]7s2 7p4 5f14 6d10 (predicted)",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 32,
+          "shell": 5
+        },
+        {
+          "electrons": 18,
+          "shell": 6
+        },
+        {
+          "electrons": 6,
+          "shell": 7
+        }
+      ],
       "electronegativity_pauling": null,
       "group_block": "Post-transition metal",
       "id": "element:Lv",
@@ -6786,6 +9784,8 @@
       "melting_point_k": null,
       "name": "Livermorium",
       "neutral_electron_count": 116,
+      "outer_shell_electron_count": 6,
+      "outer_shell_number": 7,
       "oxidation_states": [
         "+4",
         "+2",
@@ -6835,6 +9835,37 @@
       "density_g_cm3": null,
       "electron_affinity_ev": null,
       "electron_configuration": "[Rn]7s2 7p5 5f14 6d10 (predicted)",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 32,
+          "shell": 5
+        },
+        {
+          "electrons": 18,
+          "shell": 6
+        },
+        {
+          "electrons": 7,
+          "shell": 7
+        }
+      ],
       "electronegativity_pauling": null,
       "group_block": "Halogen",
       "id": "element:Ts",
@@ -6843,6 +9874,8 @@
       "melting_point_k": null,
       "name": "Tennessine",
       "neutral_electron_count": 117,
+      "outer_shell_electron_count": 7,
+      "outer_shell_number": 7,
       "oxidation_states": [
         "+5",
         "+3",
@@ -6897,6 +9930,37 @@
       "density_g_cm3": null,
       "electron_affinity_ev": null,
       "electron_configuration": "[Rn]7s2 7p6 5f14 6d10 (predicted)",
+      "electron_shell_basis": "parsed_from_pubchem_electron_configuration",
+      "electron_shells": [
+        {
+          "electrons": 2,
+          "shell": 1
+        },
+        {
+          "electrons": 8,
+          "shell": 2
+        },
+        {
+          "electrons": 18,
+          "shell": 3
+        },
+        {
+          "electrons": 32,
+          "shell": 4
+        },
+        {
+          "electrons": 32,
+          "shell": 5
+        },
+        {
+          "electrons": 18,
+          "shell": 6
+        },
+        {
+          "electrons": 8,
+          "shell": 7
+        }
+      ],
       "electronegativity_pauling": null,
       "group_block": "Noble gas",
       "id": "element:Og",
@@ -6905,6 +9969,8 @@
       "melting_point_k": null,
       "name": "Oganesson",
       "neutral_electron_count": 118,
+      "outer_shell_electron_count": 8,
+      "outer_shell_number": 7,
       "oxidation_states": [
         "+6",
         "+4",

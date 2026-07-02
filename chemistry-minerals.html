@@ -167,6 +167,10 @@ font:12px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
         <label for="targetSelect">Enrichment target</label>
         <select id="targetSelect"></select>
       </div>
+      <div class="field">
+        <label for="containsSelect">Contains element filter</label>
+        <select id="containsSelect"></select>
+      </div>
     </div>
     <div class="stats" id="stats"></div>
     <div class="results" id="results" aria-live="polite"></div>
@@ -193,6 +197,7 @@ const state = {
   query: "",
   kind: "all",
   mineralClass: "all",
+  contains: "all",
   target: "Si"
 };
 
@@ -202,6 +207,7 @@ const dom = {
   recordSelect: document.getElementById("recordSelect"),
   kindFilter: document.getElementById("kindFilter"),
   classFilter: document.getElementById("classFilter"),
+  containsSelect: document.getElementById("containsSelect"),
   targetSelect: document.getElementById("targetSelect"),
   stats: document.getElementById("stats"),
   results: document.getElementById("results"),
@@ -250,6 +256,13 @@ function elementName(symbol){
   return element ? element.name : symbol;
 }
 
+function electronShellSummary(element){
+  if(!Array.isArray(element.electron_shells)){
+    return "";
+  }
+  return element.electron_shells.map(row => row.electrons).join("-");
+}
+
 function displayTitle(record){
   return record.kind === "element" ? `${record.item.name} (${record.item.symbol})` : record.item.name;
 }
@@ -259,7 +272,8 @@ function recordCorpus(record){
   if(record.kind === "element"){
     const isotopeText = item.isotope_variants.map(iso => iso.isotope).join(" ");
     const ionText = item.common_ions.map(ion => ion.label).join(" ");
-    return [item.symbol, item.name, item.group_block, item.electron_configuration, isotopeText, ionText].join(" ");
+    const shellText = electronShellSummary(item);
+    return [item.symbol, item.name, item.group_block, item.electron_configuration, shellText, isotopeText, ionText].join(" ");
   }
   return [item.name, item.formula, item.mineral_class, item.element_symbols.join(" "), item.target_elements.join(" "), item.enrichment_note].join(" ");
 }
@@ -343,6 +357,11 @@ function populateControls(){
   });
 
   clear(dom.targetSelect);
+  clear(dom.containsSelect);
+  const containsAll = document.createElement("option");
+  containsAll.value = "all";
+  containsAll.textContent = "All elements";
+  dom.containsSelect.appendChild(containsAll);
   state.data.enrichment_profiles
     .filter(profile => profile.top_candidates.length)
     .sort((a, b) => elementName(a.symbol).localeCompare(elementName(b.symbol)))
@@ -351,19 +370,26 @@ function populateControls(){
       option.value = profile.symbol;
       option.textContent = `${profile.symbol} - ${elementName(profile.symbol)}`;
       dom.targetSelect.appendChild(option);
+
+      const containsOption = document.createElement("option");
+      containsOption.value = profile.symbol;
+      containsOption.textContent = `${profile.symbol} - ${elementName(profile.symbol)}`;
+      dom.containsSelect.appendChild(containsOption);
     });
   dom.targetSelect.value = state.target;
+  dom.containsSelect.value = state.contains;
 }
 
 function renderStats(){
   clear(dom.stats);
   const isotopeCount = state.data.elements.reduce((count, element) => count + element.isotope_variants.length, 0);
+  const visibleCount = filteredRecords({limit:false}).length;
   const stats = [
+    [String(visibleCount), "visible records"],
     ["118", "elements"],
     [String(state.data.minerals.length), "minerals"],
     [String(state.data.edges.length), "contains edges"],
     [String(isotopeCount), "isotope variants"],
-    [String(state.data.enrichment_profiles.length), "enrichment profiles"],
     [state.data.meta.coverage, "coverage"]
   ];
   stats.forEach(([value, label]) => {
@@ -375,25 +401,25 @@ function renderStats(){
   });
 }
 
-function filteredRecords(){
+function filteredRecords(options = {limit:true}){
   const q = state.query.trim();
-  return state.records
+  const matches = state.records
     .filter(record => state.kind === "all" || record.kind === state.kind)
     .filter(record => state.mineralClass === "all" || record.kind !== "mineral" || record.item.mineral_class === state.mineralClass)
     .filter(record => {
-      if(!state.target || state.target === "all"){
+      if(state.contains === "all"){
         return true;
       }
       if(record.kind === "element"){
-        return record.item.symbol === state.target || !q;
+        return record.item.symbol === state.contains;
       }
-      return record.item.element_symbols.includes(state.target);
+      return record.item.element_symbols.includes(state.contains);
     })
     .map(record => ({record, score: scoreItem(record, q)}))
     .filter(row => !q || row.score > 0)
     .sort((a, b) => b.score - a.score || displayTitle(a.record).localeCompare(displayTitle(b.record)))
-    .slice(0, 80)
     .map(row => row.record);
+  return options.limit ? matches.slice(0, 80) : matches;
 }
 
 function selectRecord(id){
@@ -408,6 +434,7 @@ function selectRecord(id){
     dom.targetSelect.value = state.target;
   }
   renderResults();
+  renderStats();
   renderDetail(record);
   renderEnrichment();
 }
@@ -424,7 +451,7 @@ function renderResults(){
     const name = make("div", "name");
     append(name, [make("span", null, displayTitle(record)), recordChip(record)]);
     const subText = record.kind === "element"
-      ? `${record.item.atomic_number} protons/electrons neutral - ${record.item.group_block || "element"}`
+      ? `${record.item.atomic_number} protons/electrons neutral - shells ${electronShellSummary(record.item) || "n/a"} - ${record.item.group_block || "element"}`
       : `${record.item.formula} - ${record.item.mineral_class} - ${record.item.element_symbols.join(", ")}`;
     append(button, [name, make("div", "sub", subText)]);
     button.addEventListener("click", () => selectRecord(record.id));
@@ -520,6 +547,8 @@ function renderElement(record){
   append(grid, [
     kv("atomic mass", element.atomic_mass),
     kv("electron configuration", element.electron_configuration),
+    kv("electron shells", electronShellSummary(element)),
+    kv("outer shell e-", element.outer_shell_electron_count),
     kv("electronegativity", element.electronegativity_pauling),
     kv("atomic radius pm", element.atomic_radius_pm),
     kv("ionization eV", element.ionization_energy_ev),
@@ -688,19 +717,27 @@ function bindEvents(){
   dom.q.addEventListener("input", event => {
     state.query = event.target.value;
     renderResults();
+    renderStats();
   });
   dom.recordSelect.addEventListener("change", event => selectRecord(event.target.value));
   dom.kindFilter.addEventListener("change", event => {
     state.kind = event.target.value;
     renderResults();
+    renderStats();
   });
   dom.classFilter.addEventListener("change", event => {
     state.mineralClass = event.target.value;
     renderResults();
+    renderStats();
+  });
+  dom.containsSelect.addEventListener("change", event => {
+    state.contains = event.target.value;
+    renderResults();
+    renderStats();
   });
   dom.targetSelect.addEventListener("change", event => {
     state.target = event.target.value;
-    refresh();
+    renderEnrichment();
   });
 }
 
