@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KnitWeb - Chemistry Mineral Index</title>
+<style>
+:root{
+  color-scheme:light dark;
+  --bg:#f6f8fb;
+  --panel:#ffffff;
+  --ink:#16202a;
+  --mut:#5c6977;
+  --line:#d7dfe7;
+  --accent:#0b6bcb;
+  --accent-2:#0f7a68;
+  --gold:#8a6500;
+  --chip:#edf3f8;
+  --code:#101820;
+  --code-ink:#dceaf5;
+  --bar:#1d7f5c;
+  --shadow:0 14px 30px rgba(15,23,32,.08);
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0d1117;
+    --panel:#151b23;
+    --ink:#e6edf3;
+    --mut:#99a5b1;
+    --line:#303946;
+    --accent:#58a6ff;
+    --accent-2:#2dd4bf;
+    --gold:#d8a21b;
+    --chip:#1f2935;
+    --code:#090d12;
+    --code-ink:#dceaf5;
+    --bar:#2dd4bf;
+    --shadow:none;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);
+font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+button,input,select{font:inherit}
+a{color:var(--accent)}
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--panel) 92%,transparent);
+backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar{display:flex;align-items:center;gap:14px;min-height:58px;padding:10px 18px}
+.brand{font-size:16px;font-weight:760;white-space:nowrap}
+.brand span{color:var(--accent-2)}
+.toplinks{display:flex;gap:10px;margin-left:auto;flex-wrap:wrap}
+.toplinks a{text-decoration:none;color:var(--mut);font-weight:650;font-size:13px}
+.shell{display:grid;grid-template-columns:minmax(300px,430px) 1fr;gap:16px;max-width:1560px;margin:0 auto;padding:16px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);min-width:0}
+.left{display:flex;flex-direction:column;min-height:calc(100vh - 90px)}
+.searchbox{padding:14px;border-bottom:1px solid var(--line)}
+.field{display:flex;flex-direction:column;gap:5px;margin-bottom:10px}
+label{color:var(--mut);font-weight:690;font-size:12px}
+input,select{width:100%;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:9px 10px}
+input:focus,select:focus{outline:2px solid color-mix(in srgb,var(--accent) 35%,transparent);border-color:var(--accent)}
+.filters{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;padding:12px 14px;border-bottom:1px solid var(--line);align-items:stretch}
+.stat{min-width:0;min-height:82px;background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:8px;
+display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center}
+.stat .n{display:block;width:100%;min-height:25px;font-size:20px;font-weight:780;line-height:1.1;font-variant-numeric:tabular-nums;
+white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.stat .n.long{font-size:12px;line-height:1.2}
+.stat .k{display:block;min-height:28px;color:var(--mut);font-size:11px;font-weight:680;line-height:1.25}
+.results{overflow:auto;padding:8px;display:flex;flex-direction:column;gap:7px}
+.result{width:100%;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px;
+display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px;color:inherit;cursor:pointer}
+.result:hover,.result.active{border-color:var(--accent);background:color-mix(in srgb,var(--chip) 72%,var(--panel))}
+.result .name{font-weight:730;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.result .sub{color:var(--mut);font-size:12px;margin-top:2px}
+.empty-state{color:var(--mut);border:1px dashed var(--line);border-radius:8px;padding:12px;background:var(--bg)}
+.badge{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:2px 7px;font-size:11px;font-weight:750;border:1px solid var(--line);white-space:nowrap}
+.badge.element{color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,transparent)}
+.badge.mineral{color:var(--accent-2);background:color-mix(in srgb,var(--accent-2) 10%,transparent)}
+.badge.gold{color:var(--gold);background:color-mix(in srgb,var(--gold) 10%,transparent)}
+.content{display:grid;grid-template-columns:minmax(360px,1fr) minmax(330px,470px);gap:16px;align-items:start}
+.detail,.enrichment{padding:16px}
+.detail-head{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start}
+.detail h1{margin:0;font-size:26px;line-height:1.16}
+.detail p{margin:8px 0;color:var(--mut)}
+.mut{color:var(--mut)}
+.meta{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0}
+.kv{border:1px solid var(--line);background:var(--bg);border-radius:7px;padding:10px;min-width:0}
+.kv .k{color:var(--mut);font-size:11px;font-weight:760;text-transform:uppercase}
+.kv .v{margin-top:3px;word-break:break-word}
+.section{border-top:1px solid var(--line);padding-top:13px;margin-top:13px}
+.section h2,.enrichment h2{margin:0 0 9px;font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:3px 8px;color:var(--ink);font-size:12px}
+button.chip{cursor:pointer}
+.swatch{width:54px;height:54px;border-radius:8px;border:1px solid var(--line);box-shadow:inset 0 0 0 1px rgba(255,255,255,.35)}
+.composition{display:flex;flex-direction:column;gap:8px}
+.comp-row{display:grid;grid-template-columns:48px 1fr 64px;gap:8px;align-items:center}
+.comp-track{height:10px;background:var(--chip);border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.comp-fill{height:100%;background:linear-gradient(90deg,var(--bar),var(--accent));border-radius:999px}
+.rank-list{display:flex;flex-direction:column;gap:8px}
+.rank{width:100%;text-align:left;border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:9px;color:inherit;cursor:pointer}
+.rank:hover{border-color:var(--accent)}
+.rank-top{display:flex;align-items:center;justify-content:space-between;gap:10px;font-weight:720}
+.rank small{display:block;color:var(--mut);margin-top:3px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:var(--bg);color:var(--mut);font-size:11px;text-transform:uppercase}
+.source-list{display:flex;flex-direction:column;gap:5px}
+.source-list a{overflow-wrap:anywhere}
+pre{margin:0;background:var(--code);color:var(--code-ink);border-radius:8px;padding:12px;overflow:auto;max-height:430px;
+font:12px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+@media (max-width:1080px){
+  .shell,.content{grid-template-columns:1fr}
+  .left{min-height:auto}
+  .results{max-height:420px}
+}
+@media (max-width:640px){
+  .topbar{align-items:flex-start;flex-direction:column}
+  .toplinks{margin-left:0}
+  .shell{padding:10px}
+  .filters,.grid{grid-template-columns:1fr}
+  .detail h1{font-size:22px}
+  .comp-row{grid-template-columns:42px 1fr 58px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="topbar">
+    <div class="brand">Knit<span>Web</span> Chemistry + Minerals</div>
+    <nav class="toplinks" aria-label="site">
+      <a href="https://knitweb.github.io/">Whitepaper</a>
+      <a href="https://knitweb.github.io/graph.html">Shared Fabric</a>
+      <a href="https://knitweb.github.io/quantum-machines.html">Quantum Machines</a>
+      <a href="https://5mart.ml/intel/">5mart.ml/intel</a>
+    </nav>
+  </div>
+</header>
+<main class="shell">
+  <aside class="panel left">
+    <div class="searchbox">
+      <div class="field">
+        <label for="q">Search element or mineral</label>
+        <input id="q" type="search" list="recordNames" autocomplete="off" placeholder="Si-28, quartz, lithium, vanadium">
+        <datalist id="recordNames"></datalist>
+      </div>
+      <div class="field">
+        <label for="recordSelect">Dropdown</label>
+        <select id="recordSelect"></select>
+      </div>
+      <div class="filters">
+        <div class="field">
+          <label for="kindFilter">Type</label>
+          <select id="kindFilter">
+            <option value="all">All records</option>
+            <option value="element">Elements</option>
+            <option value="mineral">Minerals</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="classFilter">Mineral class</label>
+          <select id="classFilter"></select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="targetSelect">Enrichment target</label>
+        <select id="targetSelect"></select>
+      </div>
+    </div>
+    <div class="stats" id="stats"></div>
+    <div class="results" id="results" aria-live="polite"></div>
+  </aside>
+  <section class="content">
+    <article class="panel detail" id="detailPanel"></article>
+    <aside class="panel enrichment">
+      <h2>Enrichment ranking</h2>
+      <p class="mut" id="enrichmentNote"></p>
+      <div class="rank-list" id="enrichmentList"></div>
+      <div class="section">
+        <h2>Target isotope context</h2>
+        <div id="targetIsotopes"></div>
+      </div>
+    </aside>
+  </section>
+</main>
+<script>
+const DATA_URL = "data/chemistry_minerals.json";
+const state = {
+  data: null,
+  records: [],
+  selectedId: null,
+  query: "",
+  kind: "all",
+  mineralClass: "all",
+  target: "Si"
+};
+
+const dom = {
+  q: document.getElementById("q"),
+  recordNames: document.getElementById("recordNames"),
+  recordSelect: document.getElementById("recordSelect"),
+  kindFilter: document.getElementById("kindFilter"),
+  classFilter: document.getElementById("classFilter"),
+  targetSelect: document.getElementById("targetSelect"),
+  stats: document.getElementById("stats"),
+  results: document.getElementById("results"),
+  detailPanel: document.getElementById("detailPanel"),
+  enrichmentNote: document.getElementById("enrichmentNote"),
+  enrichmentList: document.getElementById("enrichmentList"),
+  targetIsotopes: document.getElementById("targetIsotopes")
+};
+
+function clear(node){
+  while(node.firstChild){
+    node.removeChild(node.firstChild);
+  }
+}
+
+function make(tag, className, text){
+  const node = document.createElement(tag);
+  if(className){
+    node.className = className;
+  }
+  if(text !== undefined && text !== null){
+    node.textContent = text;
+  }
+  return node;
+}
+
+function append(parent, children){
+  children.filter(Boolean).forEach(child => parent.appendChild(child));
+  return parent;
+}
+
+function normalize(value){
+  return String(value || "").toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "");
+}
+
+function percent(bps){
+  return `${(Number(bps) / 100).toFixed(2)}%`;
+}
+
+function shortBasis(value){
+  return String(value || "").replace(/_/g, " ");
+}
+
+function elementName(symbol){
+  const element = state.data.elements.find(item => item.symbol === symbol);
+  return element ? element.name : symbol;
+}
+
+function displayTitle(record){
+  return record.kind === "element" ? `${record.item.name} (${record.item.symbol})` : record.item.name;
+}
+
+function recordCorpus(record){
+  const item = record.item;
+  if(record.kind === "element"){
+    const isotopeText = item.isotope_variants.map(iso => iso.isotope).join(" ");
+    const ionText = item.common_ions.map(ion => ion.label).join(" ");
+    return [item.symbol, item.name, item.group_block, item.electron_configuration, isotopeText, ionText].join(" ");
+  }
+  return [item.name, item.formula, item.mineral_class, item.element_symbols.join(" "), item.target_elements.join(" "), item.enrichment_note].join(" ");
+}
+
+function levenshtein(a, b){
+  const previous = Array.from({length:b.length + 1}, (_, index) => index);
+  const current = Array(b.length + 1).fill(0);
+  for(let i = 1; i <= a.length; i += 1){
+    current[0] = i;
+    for(let j = 1; j <= b.length; j += 1){
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      current[j] = Math.min(previous[j] + 1, current[j - 1] + 1, previous[j - 1] + cost);
+    }
+    for(let j = 0; j <= b.length; j += 1){
+      previous[j] = current[j];
+    }
+  }
+  return previous[b.length];
+}
+
+function scoreItem(record, query){
+  if(!query){
+    return 0;
+  }
+  const q = normalize(query);
+  const title = normalize(displayTitle(record));
+  const corpus = normalize(recordCorpus(record));
+  if(title === q){
+    return 1000;
+  }
+  if(title.startsWith(q)){
+    return 850 - title.length;
+  }
+  if(corpus.includes(q)){
+    return 650 - corpus.indexOf(q);
+  }
+  const tokens = corpus.split(/[^a-z0-9+-]+/).filter(Boolean);
+  const bestDistance = tokens.reduce((best, token) => Math.min(best, levenshtein(q, token.slice(0, Math.max(q.length, 2)))), 99);
+  return Math.max(0, 360 - bestDistance * 55);
+}
+
+function chip(text, className){
+  return make("span", `chip${className ? ` ${className}` : ""}`, text);
+}
+
+function recordChip(record){
+  const kind = make("span", `badge ${record.kind}`, record.kind);
+  return kind;
+}
+
+function buildRecords(data){
+  const elements = data.elements.map(item => ({kind:"element", id:item.id, item}));
+  const minerals = data.minerals.map(item => ({kind:"mineral", id:item.id, item}));
+  return elements.concat(minerals);
+}
+
+function populateControls(){
+  clear(dom.recordNames);
+  clear(dom.recordSelect);
+  state.records.forEach(record => {
+    const option = document.createElement("option");
+    option.value = displayTitle(record);
+    dom.recordNames.appendChild(option);
+
+    const selectOption = document.createElement("option");
+    selectOption.value = record.id;
+    selectOption.textContent = `${record.kind}: ${displayTitle(record)}`;
+    dom.recordSelect.appendChild(selectOption);
+  });
+
+  clear(dom.classFilter);
+  const all = document.createElement("option");
+  all.value = "all";
+  all.textContent = "All classes";
+  dom.classFilter.appendChild(all);
+  [...new Set(state.data.minerals.map(item => item.mineral_class))].sort().forEach(name => {
+    const option = document.createElement("option");
+    option.value = name;
+    option.textContent = name;
+    dom.classFilter.appendChild(option);
+  });
+
+  clear(dom.targetSelect);
+  state.data.enrichment_profiles
+    .filter(profile => profile.top_candidates.length)
+    .sort((a, b) => elementName(a.symbol).localeCompare(elementName(b.symbol)))
+    .forEach(profile => {
+      const option = document.createElement("option");
+      option.value = profile.symbol;
+      option.textContent = `${profile.symbol} - ${elementName(profile.symbol)}`;
+      dom.targetSelect.appendChild(option);
+    });
+  dom.targetSelect.value = state.target;
+}
+
+function renderStats(){
+  clear(dom.stats);
+  const isotopeCount = state.data.elements.reduce((count, element) => count + element.isotope_variants.length, 0);
+  const stats = [
+    ["118", "elements"],
+    [String(state.data.minerals.length), "minerals"],
+    [String(state.data.edges.length), "contains edges"],
+    [String(isotopeCount), "isotope variants"],
+    [String(state.data.enrichment_profiles.length), "enrichment profiles"],
+    [state.data.meta.coverage, "coverage"]
+  ];
+  stats.forEach(([value, label]) => {
+    const card = make("div", "stat");
+    const valueNode = make("span", `n${String(value).length > 10 ? " long" : ""}`, value);
+    valueNode.title = value;
+    append(card, [valueNode, make("span", "k", label)]);
+    dom.stats.appendChild(card);
+  });
+}
+
+function filteredRecords(){
+  const q = state.query.trim();
+  return state.records
+    .filter(record => state.kind === "all" || record.kind === state.kind)
+    .filter(record => state.mineralClass === "all" || record.kind !== "mineral" || record.item.mineral_class === state.mineralClass)
+    .filter(record => {
+      if(!state.target || state.target === "all"){
+        return true;
+      }
+      if(record.kind === "element"){
+        return record.item.symbol === state.target || !q;
+      }
+      return record.item.element_symbols.includes(state.target);
+    })
+    .map(record => ({record, score: scoreItem(record, q)}))
+    .filter(row => !q || row.score > 0)
+    .sort((a, b) => b.score - a.score || displayTitle(a.record).localeCompare(displayTitle(b.record)))
+    .slice(0, 80)
+    .map(row => row.record);
+}
+
+function selectRecord(id){
+  const record = state.records.find(item => item.id === id);
+  if(!record){
+    return;
+  }
+  state.selectedId = id;
+  dom.recordSelect.value = id;
+  if(record.kind === "element"){
+    state.target = record.item.symbol;
+    dom.targetSelect.value = state.target;
+  }
+  renderResults();
+  renderDetail(record);
+  renderEnrichment();
+}
+
+function renderResults(){
+  clear(dom.results);
+  const records = filteredRecords();
+  if(!records.length){
+    dom.results.appendChild(make("div", "empty-state", "No matching elements or minerals in the public seed index."));
+    return;
+  }
+  records.forEach(record => {
+    const button = make("button", `result${record.id === state.selectedId ? " active" : ""}`);
+    const name = make("div", "name");
+    append(name, [make("span", null, displayTitle(record)), recordChip(record)]);
+    const subText = record.kind === "element"
+      ? `${record.item.atomic_number} protons/electrons neutral - ${record.item.group_block || "element"}`
+      : `${record.item.formula} - ${record.item.mineral_class} - ${record.item.element_symbols.join(", ")}`;
+    append(button, [name, make("div", "sub", subText)]);
+    button.addEventListener("click", () => selectRecord(record.id));
+    dom.results.appendChild(button);
+  });
+}
+
+function kv(label, value){
+  const box = make("div", "kv");
+  append(box, [make("div", "k", label), make("div", "v", value === null || value === undefined || value === "" ? "n/a" : String(value))]);
+  return box;
+}
+
+function renderSources(parent, urls){
+  const list = make("div", "source-list");
+  urls.forEach(url => {
+    const link = make("a", null, url);
+    link.href = url;
+    link.rel = "noopener";
+    list.appendChild(link);
+  });
+  parent.appendChild(list);
+}
+
+function renderIsotopeTable(parent, isotopes){
+  if(!isotopes.length){
+    parent.appendChild(make("p", "mut", "No curated isotope variants are included for this element yet."));
+    return;
+  }
+  const table = make("table");
+  const thead = make("thead");
+  const headRow = make("tr");
+  ["Isotope", "Abundance", "Stability", "Half-life"].forEach(label => headRow.appendChild(make("th", null, label)));
+  thead.appendChild(headRow);
+  table.appendChild(thead);
+  const tbody = make("tbody");
+  isotopes.forEach(iso => {
+    const row = make("tr");
+    append(row, [
+      make("td", null, iso.isotope),
+      make("td", null, iso.abundance_percent === null ? "trace / radioactive" : `${iso.abundance_percent}%`),
+      make("td", null, iso.stability || "n/a"),
+      make("td", null, iso.half_life || "")
+    ]);
+    tbody.appendChild(row);
+  });
+  table.appendChild(tbody);
+  parent.appendChild(table);
+}
+
+function renderComposition(parent, rows){
+  const wrap = make("div", "composition");
+  rows.forEach(row => {
+    const line = make("div", "comp-row");
+    const track = make("div", "comp-track");
+    const fill = make("div", "comp-fill");
+    fill.style.width = percent(row.mass_percent_bps);
+    track.appendChild(fill);
+    append(line, [make("strong", null, row.symbol), track, make("span", null, percent(row.mass_percent_bps))]);
+    wrap.appendChild(line);
+  });
+  parent.appendChild(wrap);
+}
+
+function renderRecord(parent, record){
+  const section = make("div", "section");
+  section.appendChild(make("h2", null, "KnitWeb record"));
+  section.appendChild(make("pre", null, JSON.stringify(record.item, null, 2)));
+  parent.appendChild(section);
+}
+
+function renderElement(record){
+  const element = record.item;
+  const head = make("div", "detail-head");
+  const titleBox = make("div");
+  append(titleBox, [
+    make("h1", null, `${element.name} (${element.symbol})`),
+    make("p", null, `Atomic number ${element.atomic_number}; neutral atom has ${element.neutral_electron_count} electrons.`)
+  ]);
+  const swatch = make("div", "swatch");
+  if(element.cpk_hex_color){
+    swatch.style.background = `#${element.cpk_hex_color}`;
+    swatch.title = `CPK color #${element.cpk_hex_color}`;
+  }
+  append(head, [titleBox, swatch]);
+  dom.detailPanel.appendChild(head);
+
+  const meta = make("div", "meta");
+  append(meta, [recordChip(record), chip(element.group_block || "element"), chip(element.standard_state || "state unknown")]);
+  dom.detailPanel.appendChild(meta);
+
+  const grid = make("div", "grid");
+  append(grid, [
+    kv("atomic mass", element.atomic_mass),
+    kv("electron configuration", element.electron_configuration),
+    kv("electronegativity", element.electronegativity_pauling),
+    kv("atomic radius pm", element.atomic_radius_pm),
+    kv("ionization eV", element.ionization_energy_ev),
+    kv("density g/cm3", element.density_g_cm3),
+    kv("melting K", element.melting_point_k),
+    kv("boiling K", element.boiling_point_k)
+  ]);
+  dom.detailPanel.appendChild(grid);
+
+  const ions = make("div", "section");
+  ions.appendChild(make("h2", null, "Ions and oxidation states"));
+  const ionChips = make("div", "chips");
+  element.oxidation_states.forEach(value => ionChips.appendChild(chip(`oxidation ${value}`)));
+  element.common_ions.forEach(value => ionChips.appendChild(chip(value.label)));
+  if(!ionChips.childNodes.length){
+    ionChips.appendChild(chip("no common ion seed"));
+  }
+  ions.appendChild(ionChips);
+  dom.detailPanel.appendChild(ions);
+
+  const isotopes = make("div", "section");
+  isotopes.appendChild(make("h2", null, "Isotope variants"));
+  renderIsotopeTable(isotopes, element.isotope_variants);
+  dom.detailPanel.appendChild(isotopes);
+
+  const profile = state.data.enrichment_profiles.find(item => item.symbol === element.symbol);
+  const minerals = make("div", "section");
+  minerals.appendChild(make("h2", null, "Minerals containing this element"));
+  if(profile){
+    const list = make("div", "rank-list");
+    profile.top_candidates.forEach(candidate => {
+      const item = make("button", "rank");
+      append(item, [
+        append(make("div", "rank-top"), [make("span", null, candidate.mineral_name), make("span", null, percent(candidate.mass_percent_bps))]),
+        make("small", null, `${candidate.formula} - ${shortBasis(candidate.composition_basis)}`)
+      ]);
+      item.addEventListener("click", () => selectRecord(candidate.mineral_id));
+      list.appendChild(item);
+    });
+    minerals.appendChild(list);
+  } else {
+    minerals.appendChild(make("p", "mut", "No curated mineral seed currently contains this element."));
+  }
+  dom.detailPanel.appendChild(minerals);
+
+  const photons = make("div", "section");
+  photons.appendChild(make("h2", null, "Photons, photos, and sources"));
+  const hooks = make("div", "chips");
+  element.photon_interactions.forEach(value => hooks.appendChild(chip(value)));
+  photons.appendChild(hooks);
+  renderSources(photons, element.photo_search_urls.concat(element.source_urls));
+  dom.detailPanel.appendChild(photons);
+  renderRecord(dom.detailPanel, record);
+}
+
+function renderMineral(record){
+  const mineral = record.item;
+  dom.detailPanel.appendChild(make("h1", null, mineral.name));
+  dom.detailPanel.appendChild(make("p", null, `${mineral.formula} - ${mineral.enrichment_note}`));
+  const meta = make("div", "meta");
+  append(meta, [recordChip(record), chip(mineral.mineral_class), chip(shortBasis(mineral.composition_basis), "gold")]);
+  dom.detailPanel.appendChild(meta);
+
+  const grid = make("div", "grid");
+  append(grid, [
+    kv("formula", mineral.formula),
+    kv("mineral class", mineral.mineral_class),
+    kv("target elements", mineral.target_elements.join(", ")),
+    kv("formula atoms", Object.entries(mineral.formula_atoms).map(([key, value]) => `${key}${value}`).join(" "))
+  ]);
+  dom.detailPanel.appendChild(grid);
+
+  const contains = make("div", "section");
+  contains.appendChild(make("h2", null, "Connected elements"));
+  const links = make("div", "chips");
+  mineral.element_symbols.forEach(symbol => {
+    const elementButton = make("button", "chip", `${symbol} - ${elementName(symbol)}`);
+    elementButton.addEventListener("click", () => selectRecord(`element:${symbol}`));
+    links.appendChild(elementButton);
+  });
+  contains.appendChild(links);
+  dom.detailPanel.appendChild(contains);
+
+  const composition = make("div", "section");
+  composition.appendChild(make("h2", null, "Average composition basis"));
+  composition.appendChild(make("p", "mut", state.data.meta.composition_note));
+  renderComposition(composition, mineral.ideal_formula_mass_percent);
+  dom.detailPanel.appendChild(composition);
+
+  const isotopes = make("div", "section");
+  isotopes.appendChild(make("h2", null, "Isotope relevance"));
+  const isotopeChips = make("div", "chips");
+  mineral.element_symbols.forEach(symbol => {
+    const element = state.data.elements.find(item => item.symbol === symbol);
+    if(element && element.isotope_variants.length){
+      element.isotope_variants.slice(0, 4).forEach(iso => isotopeChips.appendChild(chip(iso.isotope)));
+    }
+  });
+  if(!isotopeChips.childNodes.length){
+    isotopeChips.appendChild(chip("no curated isotope variants for contained elements yet"));
+  }
+  isotopes.appendChild(isotopeChips);
+  dom.detailPanel.appendChild(isotopes);
+
+  const photons = make("div", "section");
+  photons.appendChild(make("h2", null, "Photons, photos, and sources"));
+  const hooks = make("div", "chips");
+  mineral.photon_interactions.forEach(value => hooks.appendChild(chip(value)));
+  photons.appendChild(hooks);
+  renderSources(photons, mineral.photo_search_urls.concat(mineral.source_urls));
+  dom.detailPanel.appendChild(photons);
+  renderRecord(dom.detailPanel, record);
+}
+
+function renderDetail(record){
+  clear(dom.detailPanel);
+  if(record.kind === "element"){
+    renderElement(record);
+  } else {
+    renderMineral(record);
+  }
+}
+
+function renderTargetIsotopes(symbol){
+  clear(dom.targetIsotopes);
+  const element = state.data.elements.find(item => item.symbol === symbol);
+  if(!element){
+    dom.targetIsotopes.appendChild(make("p", "mut", "Select an element to inspect isotope variants."));
+    return;
+  }
+  renderIsotopeTable(dom.targetIsotopes, element.isotope_variants);
+}
+
+function renderEnrichment(){
+  const profile = state.data.enrichment_profiles.find(item => item.symbol === state.target);
+  const name = elementName(state.target);
+  dom.enrichmentNote.textContent = profile
+    ? `Best mineral seeds for ${state.target} (${name}) by ideal formula mass percentage.`
+    : `No enrichment profile for ${state.target || "selected target"}.`;
+  clear(dom.enrichmentList);
+  if(profile){
+    profile.top_candidates.forEach(candidate => {
+      const row = make("button", "rank");
+      const top = make("div", "rank-top");
+      append(top, [make("span", null, candidate.mineral_name), make("span", null, percent(candidate.mass_percent_bps))]);
+      const track = make("div", "comp-track");
+      const fill = make("div", "comp-fill");
+      fill.style.width = percent(candidate.mass_percent_bps);
+      track.appendChild(fill);
+      append(row, [top, make("small", null, candidate.formula), track]);
+      row.addEventListener("click", () => selectRecord(candidate.mineral_id));
+      dom.enrichmentList.appendChild(row);
+    });
+  } else {
+    dom.enrichmentList.appendChild(make("div", "empty-state", "No mineral candidates in the seed index."));
+  }
+  renderTargetIsotopes(state.target);
+}
+
+function refresh(){
+  renderResults();
+  renderEnrichment();
+}
+
+function bindEvents(){
+  dom.q.addEventListener("input", event => {
+    state.query = event.target.value;
+    renderResults();
+  });
+  dom.recordSelect.addEventListener("change", event => selectRecord(event.target.value));
+  dom.kindFilter.addEventListener("change", event => {
+    state.kind = event.target.value;
+    renderResults();
+  });
+  dom.classFilter.addEventListener("change", event => {
+    state.mineralClass = event.target.value;
+    renderResults();
+  });
+  dom.targetSelect.addEventListener("change", event => {
+    state.target = event.target.value;
+    refresh();
+  });
+}
+
+fetch(DATA_URL)
+  .then(response => response.json())
+  .then(data => {
+    state.data = data;
+    state.records = buildRecords(data);
+    populateControls();
+    renderStats();
+    bindEvents();
+    const initial = state.records.find(record => record.id === "element:Si") || state.records[0];
+    selectRecord(initial.id);
+  })
+  .catch(error => {
+    clear(dom.detailPanel);
+    dom.detailPanel.appendChild(make("h1", null, "Chemistry data failed to load"));
+    dom.detailPanel.appendChild(make("p", "mut", String(error)));
+  });
+</script>
+</body>
+</html>
