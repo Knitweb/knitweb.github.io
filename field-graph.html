@@ -1,0 +1,283 @@
+<title>Knitweb — the field weave</title>
+<style>
+  :root{
+    --bg:#0c1013; --panel:#131b20; --panel-2:#0f171c; --line:#1e2a31;
+    --ink:#e7eef2; --dim:#7f8f99; --accent:#3fb6a8;
+    --hub:#eef3f6; --field:#f2b134; --division:#a78bfa; --major:#3fb6a8;
+    --sector:#f4788f; --entity:#6ea8fe; --scheme:#5fd0e6; --source:#8b98a8;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono","Menlo",monospace;
+    --sans:system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);overflow:hidden}
+  #stage{position:fixed;inset:0}
+  canvas{display:block;width:100%;height:100%;cursor:grab}
+  canvas.grabbing{cursor:grabbing}
+
+  .panel{
+    position:fixed;background:linear-gradient(180deg,rgba(19,27,32,.92),rgba(15,23,28,.92));
+    border:1px solid var(--line);border-radius:12px;backdrop-filter:blur(6px);
+    box-shadow:0 8px 30px rgba(0,0,0,.35);
+  }
+  /* title / stats — top left */
+  #head{top:18px;left:18px;padding:16px 18px;max-width:320px}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin:0 0 6px}
+  #head h1{font-family:var(--mono);font-weight:600;font-size:21px;line-height:1.15;margin:0;text-wrap:balance}
+  #head h1 b{color:var(--accent);font-weight:600}
+  #head p{color:var(--dim);font-size:12.5px;line-height:1.5;margin:9px 0 0;max-width:34ch}
+  .stats{display:flex;gap:18px;margin-top:14px;padding-top:13px;border-top:1px solid var(--line)}
+  .stat b{display:block;font-family:var(--mono);font-size:20px;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1}
+  .stat span{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+
+  /* legend / filters — bottom left */
+  #legend{bottom:18px;left:18px;padding:13px 15px;font-size:12px}
+  #legend h2{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin:0 0 9px;font-weight:600}
+  .legrow{display:flex;flex-wrap:wrap;gap:7px 8px;max-width:340px}
+  .chip{display:inline-flex;align-items:center;gap:7px;padding:4px 9px 4px 7px;border:1px solid var(--line);
+    border-radius:20px;cursor:pointer;user-select:none;color:var(--ink);background:var(--panel-2);
+    font-family:var(--mono);font-size:11px;transition:opacity .15s,border-color .15s}
+  .chip:hover{border-color:var(--accent)}
+  .chip.off{opacity:.32}
+  .chip .dot{width:9px;height:9px;border-radius:50%;flex:none}
+  .chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .edgekey{margin-top:12px;padding-top:11px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.7;font-family:var(--mono)}
+  .edgekey i{font-style:normal;color:var(--sector)}
+  .hint{margin-top:9px;color:var(--dim);font-size:10.5px;font-family:var(--sans)}
+
+  /* tooltip */
+  #tip{position:fixed;pointer-events:none;opacity:0;transform:translateY(4px);transition:opacity .12s,transform .12s;
+    background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;
+    padding:10px 12px;max-width:300px;z-index:10;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+  #tip.show{opacity:1;transform:translateY(0)}
+  #tip .t-type{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 3px}
+  #tip .t-label{font-size:14px;font-weight:600;margin:0;line-height:1.25}
+  #tip .t-meta{font-family:var(--mono);font-size:11px;color:var(--dim);margin:6px 0 0;line-height:1.5;word-break:break-all}
+  #tip .t-derived{color:var(--sector)}
+  @media (max-width:640px){#head p{display:none}.stats{margin-top:11px}}
+</style>
+
+<div id="stage"><canvas id="c"></canvas></div>
+
+<div class="panel" id="head">
+  <p class="eyebrow">knitweb · content-addressed fabric</p>
+  <h1>The field <b>weave</b></h1>
+  <p>Every node is a signed, content-addressed record; every thread is a typed, provenance-bearing fiber. This is the live graph woven across the fields.</p>
+  <div class="stats">
+    <div class="stat"><b id="s-knits">0</b><span>knits</span></div>
+    <div class="stat"><b id="s-fibers">0</b><span>fibers</span></div>
+    <div class="stat"><b id="s-nodes">0</b><span>nodes</span></div>
+    <div class="stat"><b id="s-edges">0</b><span>fibers shown</span></div>
+  </div>
+</div>
+
+<div class="panel" id="legend">
+  <h2>Node types · click to filter</h2>
+  <div class="legrow" id="chips"></div>
+  <div class="edgekey">
+    solid — published provenance<br>
+    <i>— — dashed — derived estimate (maps&nbsp;to sector)</i>
+  </div>
+  <div class="hint">drag nodes · hover for CID + source</div>
+</div>
+
+<div id="tip">
+  <p class="t-type"></p>
+  <p class="t-label"></p>
+  <p class="t-meta"></p>
+</div>
+
+<script>
+const GRAPH = {"nodes":[{"id":"hub","type":"hub","label":"knitweb"},{"id":"field:chemfield","type":"field","label":"chemfield"},{"id":"field:finfield","type":"field","label":"finfield"},{"id":"field:gangfield","type":"field","label":"gangfield"},{"id":"field:ledgerfield","type":"field","label":"ledgerfield"},{"id":"field:molgang","type":"field","label":"molgang"},{"id":"ff1:fa0faef540c2ad2c52855502d42ae08a16daaa90b5afb0171c5014222ec398c9","type":"major-group","label":"01 \u00b7 Agricultural Production - Crops","method":"published"},{"id":"ff1:29df66d28241efb49fff3aa7bdf5e1c167b5ea11aa0f75b75db2570eec403c41","type":"major-group","label":"10 \u00b7 Metal Mining","method":"published"},{"id":"ff1:e48619d2978e9618584c0b8765c69295c61e17f4f81955ce08af8abe7754d54b","type":"major-group","label":"13 \u00b7 Oil & Gas Extraction","method":"published"},{"id":"ff1:4463df7e1585fda3dd824ad4377464dd80e6c73fcf9ab74a87e77062e9921ecf","type":"major-group","label":"15 \u00b7 Building Construction - General Contractors","method":"published"},{"id":"ff1:9009191567be1f1026df1d29ed1544d4b0cf637efd494ac110eaaa8c0adfb978","type":"major-group","label":"20 \u00b7 Food & Kindred Products","method":"published"},{"id":"ff1:1562ef3b1b85cc43c709e392782a4ec700a92a4f33123662061a59f3161b351e","type":"major-group","label":"22 \u00b7 Textile Mill Products","method":"published"},{"id":"ff1:db96b791059fe2988c2e083b169318dec649970e56b9fc8f6d4f6c2dd17ac048","type":"major-group","label":"23 \u00b7 Apparel & Other Finished Products","method":"published"},{"id":"ff1:f8890711d934543cc37cde82abcd669280318d743d1269c544b29c430cde7049","type":"major-group","label":"24 \u00b7 Lumber & Wood Products","method":"published"},{"id":"ff1:e685cab58c030d2742785326e76bc51ff28ee8cbfa19fcdaa848b16de80e4f7c","type":"major-group","label":"26 \u00b7 Paper & Allied Products","method":"published"},{"id":"ff1:33a9d7d9eae0c1421850e1071ebc9007e73decab4733687a43f19c1623e33c17","type":"major-group","label":"27 \u00b7 Printing, Publishing & Allied Industries","method":"published"},{"id":"ff1:d683a2b983ed07c56cbfa4438dbc21847d4788657e62bdae9e21dfd90ba2163b","type":"major-group","label":"28 \u00b7 Chemicals & Allied Products","method":"published"},{"id":"ff1:f6d9b7d9686c026713d72da99186b0a4ffbc27a1dbc4e470769f55082611ffdf","type":"major-group","label":"29 \u00b7 Petroleum Refining & Related Industries","method":"published"},{"id":"ff1:0cfa53db06e708ff4e54f5e0c69ff170f3f2505c3ccb1c6db0c358bd4fbb94b5","type":"major-group","label":"30 \u00b7 Rubber & Miscellaneous Plastics Products","method":"published"},{"id":"ff1:ef868b3ddc3b7d9109c89841de60fb3b71c5d788804104e36b1f00f84ecbb839","type":"major-group","label":"33 \u00b7 Primary Metal Industries","method":"published"},{"id":"ff1:ee27f1d5981b091d444af2eff8f0e7a021ff8d48bccce50a5926d0896338a2bc","type":"major-group","label":"34 \u00b7 Fabricated Metal Products","method":"published"},{"id":"scheme:sic","type":"scheme","label":"SIC scheme"},{"id":"ff1:5bf494efb125695d20b9c578f8fc0abc13ba59a180e44546c480c1a019ae3264","type":"division","label":"A \u00b7 Agriculture, Forestry & Fishing"},{"id":"source:sec","type":"source","label":"SEC SIC list"},{"id":"sector:Consumer Staples","type":"sector","label":"Consumer Staples","method":"derived"},{"id":"ticker:AGRO US","type":"entity","label":"AGRO US"},{"id":"ff1:7600ad883c11136f205e878d4df869fc1903d6a61146c17148caacbb45ed3856","type":"division","label":"B \u00b7 Mining"},{"id":"sector:Materials","type":"sector","label":"Materials","method":"derived"},{"id":"ticker:NEM US","type":"entity","label":"NEM US"},{"id":"sector:Energy","type":"sector","label":"Energy","method":"derived"},{"id":"ticker:XOM US","type":"entity","label":"XOM US"},{"id":"ff1:42fdf5318a01590e38e781921de895927871fb5f358f04bbeab7c0284eddd7c6","type":"division","label":"C \u00b7 Construction"},{"id":"sector:Industrials","type":"sector","label":"Industrials","method":"derived"},{"id":"ticker:PHM US","type":"entity","label":"PHM US"},{"id":"ff1:183fcfd999012e159b8173fdde5c5e2fb575b09cf6575661c7b59a7dfa8ba5fc","type":"division","label":"D \u00b7 Manufacturing"},{"id":"ticker:GIS US","type":"entity","label":"GIS US"},{"id":"sector:Consumer Discretionary","type":"sector","label":"Consumer Discretionary","method":"derived"},{"id":"ticker:UA US","type":"entity","label":"UA US"},{"id":"ticker:RL US","type":"entity","label":"RL US"},{"id":"ticker:WY US","type":"entity","label":"WY US"},{"id":"ticker:IP US","type":"entity","label":"IP US"},{"id":"sector:Communication Services","type":"sector","label":"Communication Services","method":"derived"},{"id":"ticker:NWSA US","type":"entity","label":"NWSA US"},{"id":"ticker:DD US","type":"entity","label":"DD US"},{"id":"ticker:VLO US","type":"entity","label":"VLO US"},{"id":"ticker:NWL US","type":"entity","label":"NWL US"},{"id":"ticker:NUE US","type":"entity","label":"NUE US"},{"id":"ticker:SWK US","type":"entity","label":"SWK US"}],"edges":[{"source":"hub","target":"field:chemfield","rel":"hosts","method":"published"},{"source":"hub","target":"field:finfield","rel":"hosts","method":"published"},{"source":"hub","target":"field:gangfield","rel":"hosts","method":"published"},{"source":"hub","target":"field:ledgerfield","rel":"hosts","method":"published"},{"source":"hub","target":"field:molgang","rel":"hosts","method":"published"},{"source":"field:finfield","target":"scheme:sic","rel":"owns","method":"published"},{"source":"ff1:fa0faef540c2ad2c52855502d42ae08a16daaa90b5afb0171c5014222ec398c9","target":"ff1:5bf494efb125695d20b9c578f8fc0abc13ba59a180e44546c480c1a019ae3264","rel":"subclass_of","method":"published"},{"source":"ff1:fa0faef540c2ad2c52855502d42ae08a16daaa90b5afb0171c5014222ec398c9","target":"scheme:sic","rel":"in_scheme","method":"published"},{"source":"ff1:fa0faef540c2ad2c52855502d42ae08a16daaa90b5afb0171c5014222ec398c9","target":"source:sec","rel":"sourced_from","method":"published"},{"source":"ff1:fa0faef540c2ad2c52855502d42ae08a16daaa90b5afb0171c5014222ec398c9","target":"sector:Consumer Staples","rel":"maps_to","method":"derived"},{"source":"ticker:AGRO US","target":"ff1:fa0faef540c2ad2c52855502d42ae08a16daaa90b5afb0171c5014222ec398c9","rel":"classified_as","method":"published"},{"source":"ff1:29df66d28241efb49fff3aa7bdf5e1c167b5ea11aa0f75b75db2570eec403c41","target":"ff1:7600ad883c11136f205e878d4df869fc1903d6a61146c17148caacbb45ed3856","rel":"subclass_of","method":"published"},{"source":"ff1:29df66d28241efb49fff3aa7bdf5e1c167b5ea11aa0f75b75db2570eec403c41","target":"scheme:sic","rel":"in_scheme","method":"published"},{"source":"ff1:29df66d28241efb49fff3aa7bdf5e1c167b5ea11aa0f75b75db2570eec403c41","target":"source:sec","rel":"sourced_from","method":"published"},{"source":"ff1:29df66d28241efb49fff3aa7bdf5e1c167b5ea11aa0f75b75db2570eec403c41","target":"sector:Materials","rel":"maps_to","method":"derived"},{"source":"ticker:NEM US","target":"ff1:29df66d28241efb49fff3aa7bdf5e1c167b5ea11aa0f75b75db2570eec403c41","rel":"classified_as","method":"published"},{"source":"ff1:e48619d2978e9618584c0b8765c69295c61e17f4f81955ce08af8abe7754d54b","target":"ff1:7600ad883c11136f205e878d4df869fc1903d6a61146c17148caacbb45ed3856","rel":"subclass_of","method":"published"},{"source":"ff1:e48619d2978e9618584c0b8765c69295c61e17f4f81955ce08af8abe7754d54b","target":"scheme:sic","rel":"in_scheme","method":"published"},{"source":"ff1:e48619d2978e9618584c0b8765c69295c61e17f4f81955ce08af8abe7754d54b","target":"source:sec","rel":"sourced_from","method":"published"},{"source":"ff1:e48619d2978e9618584c0b8765c69295c61e17f4f81955ce08af8abe7754d54b","target":"sector:Energy","rel":"maps_to","method":"derived"},{"source":"ticker:XOM US","target":"ff1:e48619d2978e9618584c0b8765c69295c61e17f4f81955ce08af8abe7754d54b","rel":"classified_as","method":"published"},{"source":"ff1:4463df7e1585fda3dd824ad4377464dd80e6c73fcf9ab74a87e77062e9921ecf","target":"ff1:42fdf5318a01590e38e781921de895927871fb5f358f04bbeab7c0284eddd7c6","rel":"subclass_of","method":"published"},{"source":"ff1:4463df7e1585fda3dd824ad4377464dd80e6c73fcf9ab74a87e77062e9921ecf","target":"scheme:sic","rel":"in_scheme","method":"published"},{"source":"ff1:4463df7e1585fda3dd824ad4377464dd80e6c73fcf9ab74a87e77062e9921ecf","target":"source:sec","rel":"sourced_from","method":"published"},{"source":"ff1:4463df7e1585fda3dd824ad4377464dd80e6c73fcf9ab74a87e77062e9921ecf","target":"sector:Industrials","rel":"maps_to","method":"derived"},{"source":"ticker:PHM US","target":"ff1:4463df7e1585fda3dd824ad4377464dd80e6c73fcf9ab74a87e77062e9921ecf","rel":"classified_as","method":"published"},{"source":"ff1:9009191567be1f1026df1d29ed1544d4b0cf637efd494ac110eaaa8c0adfb978","target":"ff1:183fcfd999012e159b8173fdde5c5e2fb575b09cf6575661c7b59a7dfa8ba5fc","rel":"subclass_of","method":"published"},{"source":"ff1:9009191567be1f1026df1d29ed1544d4b0cf637efd494ac110eaaa8c0adfb978","target":"scheme:sic","rel":"in_scheme","method":"published"},{"source":"ff1:9009191567be1f1026df1d29ed1544d4b0cf637efd494ac110eaaa8c0adfb978","target":"source:sec","rel":"sourced_from","method":"published"},{"source":"ff1:9009191567be1f1026df1d29ed1544d4b0cf637efd494ac110eaaa8c0adfb978","target":"sector:Consumer Staples","rel":"maps_to","method":"derived"},{"source":"ticker:GIS US","target":"ff1:9009191567be1f1026df1d29ed1544d4b0cf637efd494ac110eaaa8c0adfb978","rel":"classified_as","method":"published"},{"source":"ff1:1562ef3b1b85cc43c709e392782a4ec700a92a4f33123662061a59f3161b351e","target":"ff1:183fcfd999012e159b8173fdde5c5e2fb575b09cf6575661c7b59a7dfa8ba5fc","rel":"subclass_of","method":"published"},{"source":"ff1:1562ef3b1b85cc43c709e392782a4ec700a92a4f33123662061a59f3161b351e","target":"scheme:sic","rel":"in_scheme","method":"published"},{"source":"ff1:1562ef3b1b85cc43c709e392782a4ec700a92a4f33123662061a59f3161b351e","target":"source:sec","rel":"sourced_from","method":"published"},{"source":"ff1:1562ef3b1b85cc43c709e392782a4ec700a92a4f33123662061a59f3161b351e","target":"sector:Consumer Discretionary","rel":"maps_to","method":"derived"},{"source":"ticker:UA US","target":"ff1:1562ef3b1b85cc43c709e392782a4ec700a92a4f33123662061a59f3161b351e","rel":"classified_as","method":"published"},{"source":"ff1:db96b791059fe2988c2e083b169318dec649970e56b9fc8f6d4f6c2dd17ac048","target":"ff1:183fcfd999012e159b8173fdde5c5e2fb575b09cf6575661c7b59a7dfa8ba5fc","rel":"subclass_of","method":"published"},{"source":"ff1:db96b791059fe2988c2e083b169318dec649970e56b9fc8f6d4f6c2dd17ac048","target":"scheme:sic","rel":"in_scheme","method":"published"},{"source":"ff1:db96b791059fe2988c2e083b169318dec649970e56b9fc8f6d4f6c2dd17ac048","target":"source:sec","rel":"sourced_from","method":"published"},{"source":"ff1:db96b791059fe2988c2e083b169318dec649970e56b9fc8f6d4f6c2dd17ac048","target":"sector:Consumer Discretionary","rel":"maps_to","method":"derived"},{"source":"ticker:RL US","target":"ff1:db96b791059fe2988c2e083b169318dec649970e56b9fc8f6d4f6c2dd17ac048","rel":"classified_as","method":"published"},{"source":"ff1:f8890711d934543cc37cde82abcd669280318d743d1269c544b29c430cde7049","target":"ff1:183fcfd999012e159b8173fdde5c5e2fb575b09cf6575661c7b59a7dfa8ba5fc","rel":"subclass_of","method":"published"},{"source":"ff1:f8890711d934543cc37cde82abcd669280318d743d1269c544b29c430cde7049","target":"scheme:sic","rel":"in_scheme","method":"published"},{"source":"ff1:f8890711d934543cc37cde82abcd669280318d743d1269c544b29c430cde7049","target":"source:sec","rel":"sourced_from","method":"published"},{"source":"ff1:f8890711d934543cc37cde82abcd669280318d743d1269c544b29c430cde7049","target":"sector:Materials","rel":"maps_to","method":"derived"},{"source":"ticker:WY US","target":"ff1:f8890711d934543cc37cde82abcd669280318d743d1269c544b29c430cde7049","rel":"classified_as","method":"published"},{"source":"ff1:e685cab58c030d2742785326e76bc51ff28ee8cbfa19fcdaa848b16de80e4f7c","target":"ff1:183fcfd999012e159b8173fdde5c5e2fb575b09cf6575661c7b59a7dfa8ba5fc","rel":"subclass_of","method":"published"},{"source":"ff1:e685cab58c030d2742785326e76bc51ff28ee8cbfa19fcdaa848b16de80e4f7c","target":"scheme:sic","rel":"in_scheme","method":"published"},{"source":"ff1:e685cab58c030d2742785326e76bc51ff28ee8cbfa19fcdaa848b16de80e4f7c","target":"source:sec","rel":"sourced_from","method":"published"},{"source":"ff1:e685cab58c030d2742785326e76bc51ff28ee8cbfa19fcdaa848b16de80e4f7c","target":"sector:Materials","rel":"maps_to","method":"derived"},{"source":"ticker:IP US","target":"ff1:e685cab58c030d2742785326e76bc51ff28ee8cbfa19fcdaa848b16de80e4f7c","rel":"classified_as","method":"published"},{"source":"ff1:33a9d7d9eae0c1421850e1071ebc9007e73decab4733687a43f19c1623e33c17","target":"ff1:183fcfd999012e159b8173fdde5c5e2fb575b09cf6575661c7b59a7dfa8ba5fc","rel":"subclass_of","method":"published"},{"source":"ff1:33a9d7d9eae0c1421850e1071ebc9007e73decab4733687a43f19c1623e33c17","target":"scheme:sic","rel":"in_scheme","method":"published"},{"source":"ff1:33a9d7d9eae0c1421850e1071ebc9007e73decab4733687a43f19c1623e33c17","target":"source:sec","rel":"sourced_from","method":"published"},{"source":"ff1:33a9d7d9eae0c1421850e1071ebc9007e73decab4733687a43f19c1623e33c17","target":"sector:Communication Services","rel":"maps_to","method":"derived"},{"source":"ticker:NWSA US","target":"ff1:33a9d7d9eae0c1421850e1071ebc9007e73decab4733687a43f19c1623e33c17","rel":"classified_as","method":"published"},{"source":"ff1:d683a2b983ed07c56cbfa4438dbc21847d4788657e62bdae9e21dfd90ba2163b","target":"ff1:183fcfd999012e159b8173fdde5c5e2fb575b09cf6575661c7b59a7dfa8ba5fc","rel":"subclass_of","method":"published"},{"source":"ff1:d683a2b983ed07c56cbfa4438dbc21847d4788657e62bdae9e21dfd90ba2163b","target":"scheme:sic","rel":"in_scheme","method":"published"},{"source":"ff1:d683a2b983ed07c56cbfa4438dbc21847d4788657e62bdae9e21dfd90ba2163b","target":"source:sec","rel":"sourced_from","method":"published"},{"source":"ff1:d683a2b983ed07c56cbfa4438dbc21847d4788657e62bdae9e21dfd90ba2163b","target":"sector:Materials","rel":"maps_to","method":"derived"},{"source":"ticker:DD US","target":"ff1:d683a2b983ed07c56cbfa4438dbc21847d4788657e62bdae9e21dfd90ba2163b","rel":"classified_as","method":"published"},{"source":"ff1:f6d9b7d9686c026713d72da99186b0a4ffbc27a1dbc4e470769f55082611ffdf","target":"ff1:183fcfd999012e159b8173fdde5c5e2fb575b09cf6575661c7b59a7dfa8ba5fc","rel":"subclass_of","method":"published"},{"source":"ff1:f6d9b7d9686c026713d72da99186b0a4ffbc27a1dbc4e470769f55082611ffdf","target":"scheme:sic","rel":"in_scheme","method":"published"},{"source":"ff1:f6d9b7d9686c026713d72da99186b0a4ffbc27a1dbc4e470769f55082611ffdf","target":"source:sec","rel":"sourced_from","method":"published"},{"source":"ff1:f6d9b7d9686c026713d72da99186b0a4ffbc27a1dbc4e470769f55082611ffdf","target":"sector:Energy","rel":"maps_to","method":"derived"},{"source":"ticker:VLO US","target":"ff1:f6d9b7d9686c026713d72da99186b0a4ffbc27a1dbc4e470769f55082611ffdf","rel":"classified_as","method":"published"},{"source":"ff1:0cfa53db06e708ff4e54f5e0c69ff170f3f2505c3ccb1c6db0c358bd4fbb94b5","target":"ff1:183fcfd999012e159b8173fdde5c5e2fb575b09cf6575661c7b59a7dfa8ba5fc","rel":"subclass_of","method":"published"},{"source":"ff1:0cfa53db06e708ff4e54f5e0c69ff170f3f2505c3ccb1c6db0c358bd4fbb94b5","target":"scheme:sic","rel":"in_scheme","method":"published"},{"source":"ff1:0cfa53db06e708ff4e54f5e0c69ff170f3f2505c3ccb1c6db0c358bd4fbb94b5","target":"source:sec","rel":"sourced_from","method":"published"},{"source":"ff1:0cfa53db06e708ff4e54f5e0c69ff170f3f2505c3ccb1c6db0c358bd4fbb94b5","target":"sector:Materials","rel":"maps_to","method":"derived"},{"source":"ticker:NWL US","target":"ff1:0cfa53db06e708ff4e54f5e0c69ff170f3f2505c3ccb1c6db0c358bd4fbb94b5","rel":"classified_as","method":"published"},{"source":"ff1:ef868b3ddc3b7d9109c89841de60fb3b71c5d788804104e36b1f00f84ecbb839","target":"ff1:183fcfd999012e159b8173fdde5c5e2fb575b09cf6575661c7b59a7dfa8ba5fc","rel":"subclass_of","method":"published"},{"source":"ff1:ef868b3ddc3b7d9109c89841de60fb3b71c5d788804104e36b1f00f84ecbb839","target":"scheme:sic","rel":"in_scheme","method":"published"},{"source":"ff1:ef868b3ddc3b7d9109c89841de60fb3b71c5d788804104e36b1f00f84ecbb839","target":"source:sec","rel":"sourced_from","method":"published"},{"source":"ff1:ef868b3ddc3b7d9109c89841de60fb3b71c5d788804104e36b1f00f84ecbb839","target":"sector:Materials","rel":"maps_to","method":"derived"},{"source":"ticker:NUE US","target":"ff1:ef868b3ddc3b7d9109c89841de60fb3b71c5d788804104e36b1f00f84ecbb839","rel":"classified_as","method":"published"},{"source":"ff1:ee27f1d5981b091d444af2eff8f0e7a021ff8d48bccce50a5926d0896338a2bc","target":"ff1:183fcfd999012e159b8173fdde5c5e2fb575b09cf6575661c7b59a7dfa8ba5fc","rel":"subclass_of","method":"published"},{"source":"ff1:ee27f1d5981b091d444af2eff8f0e7a021ff8d48bccce50a5926d0896338a2bc","target":"scheme:sic","rel":"in_scheme","method":"published"},{"source":"ff1:ee27f1d5981b091d444af2eff8f0e7a021ff8d48bccce50a5926d0896338a2bc","target":"source:sec","rel":"sourced_from","method":"published"},{"source":"ff1:ee27f1d5981b091d444af2eff8f0e7a021ff8d48bccce50a5926d0896338a2bc","target":"sector:Industrials","rel":"maps_to","method":"derived"},{"source":"ticker:SWK US","target":"ff1:ee27f1d5981b091d444af2eff8f0e7a021ff8d48bccce50a5926d0896338a2bc","rel":"classified_as","method":"published"}],"stats":{"knits":15,"fibers":75,"nodes":48,"edges":81}};
+
+const TYPE = {
+  hub:      {c:'#eef3f6', r:17, name:'hub'},
+  field:    {c:'#f2b134', r:12, name:'field'},
+  division: {c:'#a78bfa', r:9,  name:'SIC division'},
+  'major-group':{c:'#3fb6a8', r:7, name:'SIC major-group'},
+  sector:   {c:'#f4788f', r:8,  name:'sector (derived)'},
+  entity:   {c:'#6ea8fe', r:5,  name:'entity'},
+  scheme:   {c:'#5fd0e6', r:8,  name:'scheme'},
+  source:   {c:'#8b98a8', r:6,  name:'source'},
+};
+const REL = {
+  hosts:'#f2b134', owns:'#5fd0e6', subclass_of:'#a78bfa',
+  in_scheme:'#5fd0e6', sourced_from:'#8b98a8', maps_to:'#f4788f', classified_as:'#6ea8fe'
+};
+const ALWAYS_LABEL = new Set(['hub','field','division','sector','scheme','source']);
+
+const cvs = document.getElementById('c'), ctx = cvs.getContext('2d');
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let W, H, DPR;
+function resize(){
+  DPR = Math.min(2, devicePixelRatio || 1);
+  W = innerWidth; H = innerHeight;
+  cvs.width = W*DPR; cvs.height = H*DPR;
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+}
+addEventListener('resize', resize); resize();
+
+// --- model ---
+const byId = {};
+const nodes = GRAPH.nodes.map((n,i)=>{
+  const t = TYPE[n.type] || {c:'#8b98a8',r:6};
+  const a = (i/GRAPH.nodes.length)*Math.PI*2;
+  const o = Object.assign({}, n, {
+    x: W/2 + Math.cos(a)*180*Math.random()+ (Math.random()-.5)*60,
+    y: H/2 + Math.sin(a)*180*Math.random()+ (Math.random()-.5)*60,
+    vx:0, vy:0, r:t.r, col:t.c, deg:0, fixed:false
+  });
+  byId[n.id]=o; return o;
+});
+const edges = GRAPH.edges.filter(e=>byId[e.source]&&byId[e.target]).map(e=>{
+  const s=byId[e.source], t=byId[e.target]; s.deg++; t.deg++;
+  return {s, t, rel:e.rel, derived:e.method==='derived', col:REL[e.rel]||'#4a5a63'};
+});
+
+// live type filter
+const active = new Set(Object.keys(TYPE));
+function visN(n){ return active.has(n.type); }
+function visE(e){ return visN(e.s) && visN(e.t); }
+
+// stats
+document.getElementById('s-knits').textContent = GRAPH.stats.knits;
+document.getElementById('s-fibers').textContent = GRAPH.stats.fibers;
+document.getElementById('s-nodes').textContent = GRAPH.stats.nodes;
+function refreshShown(){ document.getElementById('s-edges').textContent = edges.filter(visE).length; }
+
+// --- force simulation ---
+let alpha = 1;
+function tick(){
+  const vn = nodes.filter(visN);
+  // repulsion (O(n^2), n≈48 — cheap)
+  for(let i=0;i<vn.length;i++){
+    const a=vn[i];
+    for(let j=i+1;j<vn.length;j++){
+      const b=vn[j];
+      let dx=a.x-b.x, dy=a.y-b.y, d2=dx*dx+dy*dy+.01;
+      const f = (2600*alpha)/d2;
+      const d=Math.sqrt(d2); dx/=d; dy/=d;
+      a.vx+=dx*f; a.vy+=dy*f; b.vx-=dx*f; b.vy-=dy*f;
+    }
+    // gravity to centre
+    a.vx += (W/2 - a.x)*0.0022*alpha;
+    a.vy += (H/2 - a.y)*0.0022*alpha;
+  }
+  // springs
+  for(const e of edges){
+    if(!visE(e)) continue;
+    let dx=e.t.x-e.s.x, dy=e.t.y-e.s.y, d=Math.sqrt(dx*dx+dy*dy)+.01;
+    const rest = e.rel==='hosts'?150 : e.rel==='owns'?120 : 70;
+    const f = (d-rest)*0.02*alpha;
+    dx/=d; dy/=d;
+    if(!e.s.fixed){ e.s.vx+=dx*f; e.s.vy+=dy*f; }
+    if(!e.t.fixed){ e.t.vx-=dx*f; e.t.vy-=dy*f; }
+  }
+  for(const n of nodes){
+    if(n.fixed) { n.vx=n.vy=0; continue; }
+    n.vx*=0.86; n.vy*=0.86;
+    n.x+=n.vx; n.y+=n.vy;
+    n.x=Math.max(n.r+4,Math.min(W-n.r-4,n.x));
+    n.y=Math.max(n.r+4,Math.min(H-n.r-4,n.y));
+  }
+  alpha *= 0.985; if(alpha<0.02) alpha=0.02;
+}
+
+let hover=null;
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  const hi = hover;
+  const inc = new Set();
+  if(hi) for(const e of edges){ if(e.s===hi) inc.add(e.t); if(e.t===hi) inc.add(e.s); }
+  // edges
+  ctx.lineWidth=1;
+  for(const e of edges){
+    if(!visE(e)) continue;
+    const lit = hi && (e.s===hi||e.t===hi);
+    ctx.globalAlpha = hi ? (lit?0.95:0.06) : (e.derived?0.5:0.28);
+    ctx.strokeStyle = e.col;
+    ctx.setLineDash(e.derived?[4,4]:[]);
+    ctx.beginPath(); ctx.moveTo(e.s.x,e.s.y); ctx.lineTo(e.t.x,e.t.y); ctx.stroke();
+  }
+  ctx.setLineDash([]); ctx.globalAlpha=1;
+  // nodes
+  ctx.font='11px ui-monospace,monospace'; ctx.textAlign='center'; ctx.textBaseline='middle';
+  for(const n of nodes){
+    if(!visN(n)) continue;
+    const dim = hi && n!==hi && !inc.has(n);
+    ctx.globalAlpha = dim?0.18:1;
+    if(n===hi || n.type==='hub'){
+      ctx.beginPath(); ctx.arc(n.x,n.y,n.r+5,0,7); ctx.strokeStyle=n.type==='hub'?'#3fb6a8':n.col;
+      ctx.globalAlpha=dim?0.18:0.5; ctx.lineWidth=1.5; ctx.stroke(); ctx.globalAlpha=dim?0.18:1;
+    }
+    ctx.beginPath(); ctx.arc(n.x,n.y,n.r,0,7); ctx.fillStyle=n.col; ctx.fill();
+    // labels
+    if(ALWAYS_LABEL.has(n.type) || n===hi || inc.has(n)){
+      let lab = n.label;
+      if(n.type==='major-group' && n!==hi && !inc.has(n)) lab = n.label.split(' · ')[0];
+      if(lab.length>26 && n!==hi) lab = lab.slice(0,24)+'…';
+      ctx.fillStyle = n===hi ? '#fff' : 'rgba(231,238,242,.78)';
+      ctx.fillText(lab, n.x, n.y - n.r - 8);
+    }
+  }
+  ctx.globalAlpha=1;
+}
+
+let running=true;
+function loop(){ if(running){ tick(); draw(); } requestAnimationFrame(loop); }
+if(reduced){ for(let i=0;i<420;i++) tick(); draw(); running=false;
+  const t=()=>{draw();}; // static; redraw only on interaction
+  window.__redraw=t;
+} else { loop(); }
+function reheat(v){ if(reduced){ for(let i=0;i<60;i++) tick(); draw(); } else { alpha=Math.max(alpha,v||0.5); } }
+refreshShown();
+
+// --- interaction: hover + drag ---
+const tip=document.getElementById('tip');
+function nodeAt(mx,my){
+  let best=null, bd=1e9;
+  for(const n of nodes){ if(!visN(n)) continue;
+    const d=(n.x-mx)**2+(n.y-my)**2; if(d<bd && d<(n.r+7)**2){ bd=d; best=n; } }
+  return best;
+}
+let drag=null;
+cvs.addEventListener('pointermove',e=>{
+  const mx=e.clientX, my=e.clientY;
+  if(drag){ drag.x=mx; drag.y=my; drag.fixed=true; reheat(0.4); if(reduced&&window.__redraw)window.__redraw(); return; }
+  const n=nodeAt(mx,my);
+  if(n!==hover){ hover=n; if(reduced&&window.__redraw)window.__redraw(); }
+  if(n){
+    tip.classList.add('show');
+    tip.querySelector('.t-type').textContent = (TYPE[n.type]||{}).name || n.type;
+    tip.querySelector('.t-label').textContent = n.label;
+    const meta = tip.querySelector('.t-meta');
+    const bits=[];
+    bits.push('degree '+n.deg+' fiber'+(n.deg===1?'':'s'));
+    if(n.method==='derived') bits.push('<span class="t-derived">method: derived estimate</span>');
+    if(String(n.id).startsWith('ff1:')) bits.push('cid '+String(n.id).slice(0,22)+'…');
+    meta.innerHTML = bits.join('<br>');
+    let tx=mx+16, ty=my+16;
+    if(tx>W-300)tx=mx-16-300; if(ty>H-120)ty=my-16-90;
+    tip.style.left=tx+'px'; tip.style.top=ty+'px';
+    cvs.style.cursor='pointer';
+  } else { tip.classList.remove('show'); cvs.style.cursor='grab'; }
+});
+cvs.addEventListener('pointerdown',e=>{ const n=nodeAt(e.clientX,e.clientY);
+  if(n){ drag=n; cvs.classList.add('grabbing'); cvs.setPointerCapture(e.pointerId);} });
+cvs.addEventListener('pointerup',e=>{ if(drag){ drag.fixed=false; drag=null; cvs.classList.remove('grabbing'); } });
+cvs.addEventListener('pointerleave',()=>{ hover=null; tip.classList.remove('show'); if(reduced&&window.__redraw)window.__redraw(); });
+
+// --- legend chips (filters) ---
+const chips=document.getElementById('chips');
+for(const [type,def] of Object.entries(TYPE)){
+  const b=document.createElement('button');
+  b.className='chip'; b.setAttribute('aria-pressed','true'); b.tabIndex=0;
+  b.innerHTML=`<span class="dot" style="background:${def.c}"></span>${def.name}`;
+  const toggle=()=>{ if(active.has(type)){active.delete(type);b.classList.add('off');b.setAttribute('aria-pressed','false');}
+    else{active.add(type);b.classList.remove('off');b.setAttribute('aria-pressed','true');}
+    refreshShown(); reheat(0.6); if(reduced&&window.__redraw)window.__redraw(); };
+  b.addEventListener('click',toggle);
+  b.addEventListener('keydown',ev=>{ if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();toggle();} });
+  chips.appendChild(b);
+}
+</script>
