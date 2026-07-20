@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PLS &amp; PAR — two coins, one web · Knitweb</title>
+<meta name="description" content="PLS pays for verified useful work; PAR rewards verified AR observations of the physical world. No premine, no admin mint. Launch faucets: 150 places per country, then a waitlist.">
+<style>
+  :root{--bg:#0b0e14;--surface:#141922;--line:#262d3a;--text:#e6edf3;--muted:#8b95a5;
+    --green:#5fd0a5;--blue:#78a8ff;--purple:#c084fc;--gold:#f4c95d;
+    --mono:'SF Mono',ui-monospace,'JetBrains Mono',Menlo,Consolas,monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:radial-gradient(1100px 700px at 72% -10%,#101826,#0b0e14);color:var(--text);
+    font-family:var(--mono);font-size:14px;line-height:1.65;max-width:900px;margin:0 auto;padding:22px}
+  a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
+  .hero{padding:36px 0 20px;border-bottom:1px solid var(--line)}
+  .eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.16em;color:var(--muted)}
+  h1{font-size:32px;font-weight:800;margin-top:8px}
+  h1 .pls{color:var(--green)} h1 .par{color:var(--purple)}
+  h2{font-size:18px;margin:30px 0 10px}
+  .lede{color:var(--muted);max-width:660px;margin-top:12px}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0}
+  @media(max-width:700px){.cols{grid-template-columns:1fr}}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .card h3{font-size:15px;margin-bottom:8px}
+  .card.pls h3{color:var(--green)} .card.par h3{color:var(--purple)}
+  .card p{color:var(--muted);font-size:13px}
+  .cta{display:inline-block;margin-top:12px;border:1px solid var(--line);border-radius:8px;
+    padding:8px 16px;font-weight:700}
+  .card.pls .cta{color:#0b0e14;background:var(--green)} .card.par .cta{color:#0b0e14;background:var(--purple)}
+  .fact{border-left:3px solid var(--gold);padding:2px 0 2px 14px;margin:16px 0;color:var(--muted);font-size:13px}
+  footer{border-top:1px solid var(--line);margin-top:34px;padding-top:14px;color:var(--muted);font-size:12px}
+</style>
+</head>
+<body>
+<section class="hero">
+  <p class="eyebrow">pre-registration open · engineers invited · no premine · self-custody</p>
+  <h1><span class="pls">PLS</span> &amp; <span class="par">PAR</span> — two coins, one web</h1>
+  <p class="lede">Every unit that will ever exist is minted by the protocol as a bounded
+     reward for something a peer independently verified: <strong>PLS</strong> for useful
+     computation, <strong>PAR</strong> for confirmed observations of the physical world.
+     No premine, no admin mint, integer-exact on every machine.</p>
+</section>
+
+<div class="cols">
+  <div class="card pls">
+    <h3>PLS — proof of useful work</h3>
+    <p>Escrow-funded jobs — GPU vision, quantum path sampling (PQ), chemistry
+       validation, relay, storage — verified by sampled re-execution. Fraud settles
+       nothing. Reward ≤ escrow spent, hard supply caps, replay-proof coinbases.</p>
+    <a class="cta" href="https://5mart.ml/pls/">Pre-register — faucet opens shortly →</a>
+  </div>
+  <div class="card par">
+    <h3>PAR — proof of observation</h3>
+    <p>A bounty names a place, an object class and a time window; a Quest 3S, phone
+       or browser answers it with a confirmed, signed observation peers re-check.
+       Raw captures stay in your personal pod — the ledger sees only signed facts.</p>
+    <a class="cta" href="https://5mart.ml/par/">Pre-register — faucet opens shortly →</a>
+  </div>
+</div>
+
+<h2>Pre-registration — the launch faucets</h2>
+<p class="lede">This is the pre-registration phase: the faucets open shortly with
+   150 granted places per country per coin and a fair FIFO waitlist beyond that —
+   one self-custody <code>pls1</code> address per person. The faucet stores no
+   personal data: an address, a country code, a timestamp — nothing else.</p>
+
+<h2>Engineers: build with us, now</h2>
+<p class="lede">Everything is pure Python, reviewed and property-tested in the open.
+   Pick a lane and weave: spiders &amp; the PoUW marketplace
+   (<a href="https://github.com/Knitweb/pulse">pulse</a>), the deterministic float
+   kernel &amp; Feynman path engine (<a href="https://github.com/Knitweb/vank">vank</a>),
+   the AR capture engine (<a href="https://github.com/Knitweb/weave-core">weave-core</a>),
+   or the chemistry loop behind MOLGANG. Contributions earn like everything else
+   here: verified work, rewarded by the protocol.</p>
+
+<div class="fact">Your GPU joins only by consent: using the Pulse wallet grants the web
+   at most <strong>49%</strong> of your device — a signed, scoped, one-tap-revocable record,
+   never a majority.</div>
+
+<h2>Built and verified in the open</h2>
+<p class="lede">The protocol, the mint paths, the AR pipeline, the quantum engine and the
+   chemistry loop are public with reviewed pull requests and property tests:
+   <a href="https://github.com/Knitweb/pulse">Knitweb/pulse</a> ·
+   <a href="https://github.com/Knitweb/vank">Knitweb/vank</a> ·
+   <a href="https://github.com/Knitweb/weave-core">weave-core</a>. The EU MiCA
+   compliance dossier — classification, AFM filing timeline, white-paper drafts —
+   is public too: <a href="https://github.com/Knitweb/pulse/tree/main/docs/mica">docs/mica</a>.</p>
+
+<footer>PLS &amp; PAR are protocol rewards, not investment products; they may lose value,
+  may not be liquid, and are not covered by EU deposit-guarantee or
+  investor-compensation schemes. · <a href="index.html">Knitweb</a></footer>
+</body>
+</html>
